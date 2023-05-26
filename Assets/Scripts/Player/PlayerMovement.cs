@@ -5,6 +5,7 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
     private MovePointReticle movePointReticle;
+    private SwordTestController swordTestController;
     [SerializeField] private float speed;
     private Vector3 positionToMove;
     private State state;
@@ -16,11 +17,13 @@ public class PlayerMovement : MonoBehaviour
     private void Awake()
     {
         movePointReticle = this.GetComponent<MovePointReticle>();
+        swordTestController = this.GetComponentInChildren<SwordTestController>();
         state = State.idle;
     }
     private void Update()
     {
         HandleRightClick();
+        HandleLeftClick();
         switch(state)
         {
             case State.idle:
@@ -31,14 +34,32 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
+    private void HandleLeftClick()
+    {
+        if (Input.GetKeyDown(KeyCode.Mouse0) && !swordTestController.inAnimation)
+        {
+            swordTestController.HandleSwordSwingAnim("Swing");
+            Vector3 mousePos = GetMousePosition();
+            HandleRotation(mousePos);
+        }
+    }
+
     private void HandleRightClick()
     {
         if (Input.GetKeyDown(KeyCode.Mouse1))
         {
             positionToMove = GetMousePosition();
+            HandleRotation(positionToMove);
             movePointReticle.CreateReticle(positionToMove);
             state = State.moving;
         }
+    }
+ 
+    private void HandleRotation(Vector3 pos)
+    {
+        Vector3 direction = (pos - this.transform.position).normalized;
+        float angle = Mathf.Atan2(-direction.x, direction.y) * Mathf.Rad2Deg;
+        transform.eulerAngles = new Vector3(0,0,angle);
     }
 
     private void HandleMoving()
