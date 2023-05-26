@@ -23,7 +23,7 @@ public class PlayerMovement : MonoBehaviour
     private void Update()
     {
         HandleRightClick();
-        HandleLeftClick();
+        HandleQAbility();
         switch(state)
         {
             case State.idle:
@@ -34,9 +34,14 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-    private void HandleLeftClick()
+    private void OnCollisionEnter2D(Collision2D other)
     {
-        if (Input.GetKeyDown(KeyCode.Mouse0) && !swordTestController.inAnimation)
+        state = State.idle;
+    }
+
+    private void HandleQAbility()
+    {
+        if (Input.GetKeyDown(KeyCode.Q) && !swordTestController.inAnimation)
         {
             swordTestController.HandleSwordSwingAnim("Swing");
             Vector3 mousePos = GetMousePosition();
