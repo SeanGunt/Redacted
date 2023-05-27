@@ -2,11 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerMovement : MonoBehaviour
+public class PlayerBase : MonoBehaviour
 {
     private MovePointReticle movePointReticle;
-    private SwordTestController swordTestController;
-    [SerializeField] private float speed;
+    protected SwordTestController swordTestController;
+    [SerializeField] private float speed, health;
+    protected bool canRotate;
     private Vector3 positionToMove;
     private State state;
     private enum State
@@ -24,6 +25,9 @@ public class PlayerMovement : MonoBehaviour
     {
         HandleRightClick();
         HandleQAbility();
+        HandleWAbility();
+        HandleEAbility();
+        HandleRAbility();
         switch(state)
         {
             case State.idle:
@@ -39,14 +43,24 @@ public class PlayerMovement : MonoBehaviour
         state = State.idle;
     }
 
-    private void HandleQAbility()
+    protected virtual void HandleQAbility()
     {
-        if (Input.GetKeyDown(KeyCode.Q) && !swordTestController.inAnimation)
-        {
-            swordTestController.HandleSwordSwingAnim("Swing");
-            Vector3 mousePos = GetMousePosition();
-            HandleRotation(mousePos);
-        }
+        
+    }
+
+    protected virtual void HandleWAbility()
+    {
+
+    }
+
+    protected virtual void HandleEAbility()
+    {
+
+    }
+
+    protected virtual void HandleRAbility()
+    {
+
     }
 
     private void HandleRightClick()
@@ -54,13 +68,16 @@ public class PlayerMovement : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Mouse1))
         {
             positionToMove = GetMousePosition();
-            HandleRotation(positionToMove);
+            if (swordTestController.canRotate)
+            {
+                HandleRotation(positionToMove);
+            }
             movePointReticle.CreateReticle(positionToMove);
             state = State.moving;
         }
     }
  
-    private void HandleRotation(Vector3 pos)
+    protected void HandleRotation(Vector3 pos)
     {
         Vector3 direction = (pos - this.transform.position).normalized;
         float angle = Mathf.Atan2(-direction.x, direction.y) * Mathf.Rad2Deg;
@@ -71,7 +88,7 @@ public class PlayerMovement : MonoBehaviour
     {
         this.transform.position = Vector3.MoveTowards(this.transform.position, positionToMove, speed * Time.deltaTime);
     }
-    Vector3 GetMousePosition()
+    public Vector3 GetMousePosition()
     {
        Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
        mousePos.z = 0;
