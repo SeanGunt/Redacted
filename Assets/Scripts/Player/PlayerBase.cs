@@ -8,9 +8,8 @@ public class PlayerBase : MonoBehaviour
     protected SwordTestController swordTestController;
     protected Rigidbody2D rb;
     [SerializeField] private float speed, health;
-    protected bool canRotate;
-    protected bool canMove = true;
     private Vector3 positionToMove;
+    protected Transform weaponStartTransform;
     protected State state;
     protected enum State
     {
@@ -22,6 +21,7 @@ public class PlayerBase : MonoBehaviour
         movePointReticle = this.GetComponent<MovePointReticle>();
         swordTestController = this.GetComponentInChildren<SwordTestController>();
         rb = this.GetComponent<Rigidbody2D>();
+        weaponStartTransform = swordTestController.transform;
         state = State.idle;
     }
     private void Update()
@@ -73,18 +73,18 @@ public class PlayerBase : MonoBehaviour
             positionToMove = GetMousePosition();
             if (swordTestController.canRotate)
             {
-                HandleRotation(positionToMove);
+                HandleRotation(positionToMove, this.transform);
             }
             movePointReticle.CreateReticle(positionToMove);
             state = State.moving;
         }
     }
  
-    protected void HandleRotation(Vector3 pos)
+    protected void HandleRotation(Vector3 pos, Transform thingToRotate)
     {
-        Vector3 direction = (pos - this.transform.position).normalized;
+        Vector3 direction = (pos - thingToRotate.position).normalized;
         float angle = Mathf.Atan2(-direction.x, direction.y) * Mathf.Rad2Deg;
-        transform.eulerAngles = new Vector3(0,0,angle);
+        thingToRotate.eulerAngles = new Vector3(0,0,angle);
     }
 
     private void HandleMoving()

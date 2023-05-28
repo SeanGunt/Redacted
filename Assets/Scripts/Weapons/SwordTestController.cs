@@ -5,7 +5,7 @@ using UnityEngine;
 public class SwordTestController : MonoBehaviour
 {
     private Animator animator;
-    private BoxCollider2D weaponCollider;
+    [HideInInspector] public BoxCollider2D weaponCollider;
     [SerializeField] private float weaponDamage;
     [HideInInspector] public bool inAnimation; 
     [HideInInspector] public bool canRotate {get; private set;} = true;
@@ -19,6 +19,7 @@ public class SwordTestController : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
+        Debug.Log(other.transform.gameObject.name);
         IDamagable damagable = other.gameObject.GetComponent<IDamagable>();
         if (damagable != null)
         {
