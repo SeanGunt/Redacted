@@ -6,11 +6,13 @@ public class PlayerBase : MonoBehaviour
 {
     private MovePointReticle movePointReticle;
     protected SwordTestController swordTestController;
+    protected Rigidbody2D rb;
     [SerializeField] private float speed, health;
     protected bool canRotate;
+    protected bool canMove = true;
     private Vector3 positionToMove;
-    private State state;
-    private enum State
+    protected State state;
+    protected enum State
     {
         idle, moving
     }
@@ -19,6 +21,7 @@ public class PlayerBase : MonoBehaviour
     {
         movePointReticle = this.GetComponent<MovePointReticle>();
         swordTestController = this.GetComponentInChildren<SwordTestController>();
+        rb = this.GetComponent<Rigidbody2D>();
         state = State.idle;
     }
     private void Update()
@@ -86,6 +89,7 @@ public class PlayerBase : MonoBehaviour
 
     private void HandleMoving()
     {
+        if (!swordTestController.canMove) return;
         this.transform.position = Vector3.MoveTowards(this.transform.position, positionToMove, speed * Time.deltaTime);
     }
     public Vector3 GetMousePosition()

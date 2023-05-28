@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
-using UnityEngine.UI;
 
 public interface IDamagable
 {
@@ -10,19 +9,25 @@ public interface IDamagable
 }
 public class EnemyMaster : MonoBehaviour, IDamagable
 {
-    [SerializeField] private float health, speed, damage, damageInterval;
+    [SerializeField] private float maxHealth, speed, damage, damageInterval;
+    private float health;
     [SerializeField] private RectTransform healhBar;
     private GameObject player;
     private NavMeshAgent agent;
 
     private void Awake()
     {
-        player = GameManager.Instance.player;
-
         agent = GetComponent<NavMeshAgent>();
         agent.speed = speed;
         agent.updateUpAxis = false;
         agent.updateRotation = false;
+
+        health = maxHealth;
+    }
+
+    private void Start()
+    {
+        player = GameManager.Instance.player;
     }
 
     private void Update()
@@ -33,7 +38,7 @@ public class EnemyMaster : MonoBehaviour, IDamagable
     public void TakeDamage(float damage)
     {
         health -= damage;
-        float ratio = health / 10;
+        float ratio = maxHealth / 100;
         float damageToBar = damage / ratio;
         healhBar.sizeDelta -= new Vector2(damageToBar, 0);
 

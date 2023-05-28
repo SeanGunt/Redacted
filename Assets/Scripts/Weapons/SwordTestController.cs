@@ -9,6 +9,7 @@ public class SwordTestController : MonoBehaviour
     [SerializeField] private float weaponDamage;
     [HideInInspector] public bool inAnimation; 
     [HideInInspector] public bool canRotate {get; private set;} = true;
+    [HideInInspector] public bool canMove {get; private set;} = true;
     private void Awake()
     {
         animator = this.GetComponent<Animator>();
@@ -24,6 +25,8 @@ public class SwordTestController : MonoBehaviour
             damagable.TakeDamage(weaponDamage);
         }
     }
+
+    #region Animation Events
     public void HandleSwordSwingAnim(string animToPlay)
     {
         animator.SetTrigger(animToPlay);
@@ -37,6 +40,16 @@ public class SwordTestController : MonoBehaviour
     public void DisableWeaponCollider()
     {
         weaponCollider.enabled = false;
+    }
+
+    public void CanMove()
+    {
+        canMove = true;
+    }
+
+    public void CantMove()
+    {
+        canMove = false;
     }
 
     public void CanRotate()
@@ -58,4 +71,5 @@ public class SwordTestController : MonoBehaviour
     {
         inAnimation = false;
     }
+    #endregion
 }

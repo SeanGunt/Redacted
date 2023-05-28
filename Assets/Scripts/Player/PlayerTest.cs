@@ -19,4 +19,25 @@ public class PlayerTest : PlayerBase
             swordTestController.HandleSwordSwingAnim("Spin");
         }
     }
+
+    protected override void HandleEAbility()
+    {
+        if (Input.GetKeyDown(KeyCode.E) && !swordTestController.inAnimation)
+        {
+            state = State.idle;
+            Vector3 posToDash = GetMousePosition();
+            Vector3 direction = (posToDash - this.transform.position).normalized;
+            HandleRotation(posToDash);
+            rb.AddForce(direction * 25, ForceMode2D.Impulse);
+            swordTestController.HandleSwordSwingAnim("Dash");
+        }
+    }
+
+    protected override void HandleRAbility()
+    {
+        if (Input.GetKeyDown(KeyCode.R) && !swordTestController.inAnimation)
+        {
+            
+        }
+    }
 }
