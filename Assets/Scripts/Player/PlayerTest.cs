@@ -92,7 +92,7 @@ public class PlayerTest : PlayerBase
     {
         swordTestController.GetComponent<Animator>().enabled = false;
         swordTestController.inAnimation = true;
-        swordTestController.weaponCollider.enabled = true;
+        swordTestController.EnableWeaponCollider();
         swordTestController.transform.SetParent(null, true);
         Transform[] arrayOfEnemies = enemiesToTarget.ToArray();
         float moveSpeed = 25f;
@@ -124,7 +124,7 @@ public class PlayerTest : PlayerBase
         }
         swordTestController.transform.SetParent(this.transform, false);
         swordTestController.inAnimation = false;
-        swordTestController.weaponCollider.enabled = false;
+        swordTestController.DisableWeaponCollider();
         swordTestController.GetComponent<Animator>().enabled = true;
     }
 }

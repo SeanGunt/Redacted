@@ -5,6 +5,7 @@ using UnityEngine;
 public class SwordTestController : MonoBehaviour
 {
     private Animator animator;
+    private TrailRenderer trailRenderer;
     [HideInInspector] public BoxCollider2D weaponCollider;
     [SerializeField] private float weaponDamage;
     [HideInInspector] public bool inAnimation; 
@@ -14,7 +15,9 @@ public class SwordTestController : MonoBehaviour
     {
         animator = this.GetComponent<Animator>();
         weaponCollider = this.GetComponent<BoxCollider2D>();
+        trailRenderer = this.GetComponentInChildren<TrailRenderer>();
         weaponCollider.enabled = false;
+        trailRenderer.emitting = false;
     }
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -36,11 +39,13 @@ public class SwordTestController : MonoBehaviour
     public void EnableWeaponCollider()
     {
         weaponCollider.enabled = true;
+        trailRenderer.emitting = true;
     }
 
     public void DisableWeaponCollider()
     {
         weaponCollider.enabled = false;
+        trailRenderer.emitting = false;
     }
 
     public void CanMove()
