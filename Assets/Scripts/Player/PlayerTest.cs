@@ -7,23 +7,25 @@ public class PlayerTest : PlayerBase
     private List<Transform> enemies = new List<Transform>();
     protected override void HandleQAbility()
     {
-        if (Input.GetKeyDown(KeyCode.Q) && !swordTestController.inAnimation)
+        if (Input.GetKeyDown(KeyCode.Q) && !swordTestController.inAnimation && qCooldown <= 0)
         {
             swordTestController.HandleSwordSwingAnim("Swing");
+            StartCoroutine(HandleQCooldown());
         }
     }
 
     protected override void HandleWAbility()
     {
-        if (Input.GetKeyDown(KeyCode.W) && !swordTestController.inAnimation)
+        if (Input.GetKeyDown(KeyCode.W) && !swordTestController.inAnimation && wCooldown <= 0)
         {
             swordTestController.HandleSwordSwingAnim("Spin");
+            StartCoroutine(HandleWCooldown());
         }
     }
 
     protected override void HandleEAbility()
     {
-        if (Input.GetKeyDown(KeyCode.E) && !swordTestController.inAnimation)
+        if (Input.GetKeyDown(KeyCode.E) && !swordTestController.inAnimation && eCooldown <= 0)
         {
             state = State.idle;
             Vector3 posToDash = GetMousePosition();
@@ -31,12 +33,13 @@ public class PlayerTest : PlayerBase
             HandleRotation(posToDash, this.transform);
             rb.AddForce(direction * 25, ForceMode2D.Impulse);
             swordTestController.HandleSwordSwingAnim("Dash");
+            StartCoroutine(HandleECooldown());
         }
     }
 
     protected override void HandleRAbility()
     {
-        if (Input.GetKeyDown(KeyCode.R) && !swordTestController.inAnimation)
+        if (Input.GetKeyDown(KeyCode.R) && !swordTestController.inAnimation && rCooldown <= 0)
         {
             Vector3 playerPosition = this.transform.position;
             GetEnemiesOnScreen();
@@ -126,5 +129,6 @@ public class PlayerTest : PlayerBase
         swordTestController.inAnimation = false;
         swordTestController.DisableWeaponCollider();
         swordTestController.GetComponent<Animator>().enabled = true;
+        StartCoroutine(HandleRCooldown());
     }
 }

@@ -8,8 +8,9 @@ public class PlayerBase : MonoBehaviour
     protected SwordTestController swordTestController;
     protected Rigidbody2D rb;
     [SerializeField] private float speed, health;
+    [SerializeField] protected float qCooldownAmount, wCooldownAmount, eCooldownAmount, rCooldownAmount;
+    protected float qCooldown = 0f, wCooldown = 0f, eCooldown = 0f, rCooldown = 0f;
     private Vector3 positionToMove;
-    protected Transform weaponStartTransform;
     protected State state;
     protected enum State
     {
@@ -21,7 +22,6 @@ public class PlayerBase : MonoBehaviour
         movePointReticle = this.GetComponent<MovePointReticle>();
         swordTestController = this.GetComponentInChildren<SwordTestController>();
         rb = this.GetComponent<Rigidbody2D>();
-        weaponStartTransform = swordTestController.transform;
         state = State.idle;
     }
     private void Update()
@@ -31,6 +31,7 @@ public class PlayerBase : MonoBehaviour
         HandleWAbility();
         HandleEAbility();
         HandleRAbility();
+
         switch(state)
         {
             case State.idle:
@@ -92,6 +93,47 @@ public class PlayerBase : MonoBehaviour
         if (!swordTestController.canMove) return;
         this.transform.position = Vector3.MoveTowards(this.transform.position, positionToMove, speed * Time.deltaTime);
     }
+
+    protected virtual IEnumerator HandleQCooldown()
+    {
+        qCooldown = qCooldownAmount;
+        while(qCooldown >= 0)
+        {
+            qCooldown -= Time.deltaTime;
+            yield return null;
+        }
+    }
+
+    protected virtual IEnumerator HandleWCooldown()
+    {
+        wCooldown = wCooldownAmount;
+        while(wCooldown >= 0)
+        {
+            wCooldown -= Time.deltaTime;
+            yield return null;
+        }
+    }
+
+    protected virtual IEnumerator HandleECooldown()
+    {
+        eCooldown = eCooldownAmount;
+        while(eCooldown >= 0)
+        {
+            eCooldown -= Time.deltaTime;
+            yield return null;
+        }
+    }
+
+    protected virtual IEnumerator HandleRCooldown()
+    {
+        rCooldown = rCooldownAmount;
+        while(rCooldown >= 0)
+        {
+            rCooldown -= Time.deltaTime;
+            yield return null;
+        }
+    }
+
     public Vector3 GetMousePosition()
     {
        Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
