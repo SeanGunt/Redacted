@@ -93,11 +93,15 @@ public class PlayerTest : PlayerBase
 
     private IEnumerator SendSwordToEnemies(List<Transform> enemiesToTarget)
     {
+        Transform[] arrayOfEnemies = enemiesToTarget.ToArray();
+        if (arrayOfEnemies.Length == 0)
+        {
+            yield break;
+        }
         swordTestController.GetComponent<Animator>().enabled = false;
         swordTestController.inAnimation = true;
         swordTestController.EnableWeaponCollider();
         swordTestController.transform.SetParent(null, true);
-        Transform[] arrayOfEnemies = enemiesToTarget.ToArray();
         float moveSpeed = 25f;
 
         for (int i = 0; i < arrayOfEnemies.Length; i++)
