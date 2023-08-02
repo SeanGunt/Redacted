@@ -4,5 +4,7 @@ using UnityEngine;
 
 public class BasicEnemy : EnemyMaster
 {
-    
+    private void Start() {
+        Debug.Log("penis");
+    }
 }
