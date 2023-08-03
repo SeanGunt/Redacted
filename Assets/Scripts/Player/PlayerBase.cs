@@ -2,9 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.InputSystem;
 
 public class PlayerBase : MonoBehaviour
 {
+    [SerializeField] InputActionReference rightClickRef, mousePosRef, QAttackRef, WAttackRef, EAttackRef, RAttackRef;
+    private Vector2 mousePos;
     private MovePointReticle movePointReticle;
     protected SwordTestController swordTestController;
     protected Rigidbody2D rb;
@@ -31,11 +34,11 @@ public class PlayerBase : MonoBehaviour
     }
     private void Update()
     {
-        HandleRightClick();
-        HandleQAbility();
-        HandleWAbility();
-        HandleEAbility();
-        HandleRAbility();
+        //HandleRightClick();
+        //HandleQAbility();
+        //HandleWAbility();
+        //HandleEAbility();
+        //HandleRAbility();
 
         switch(state)
         {
@@ -52,30 +55,48 @@ public class PlayerBase : MonoBehaviour
         state = State.idle;
     }
 
-    protected virtual void HandleQAbility()
+    protected virtual void HandleQAbility(InputAction.CallbackContext obj)
     {
         
     }
 
-    protected virtual void HandleWAbility()
+    protected virtual void HandleWAbility(InputAction.CallbackContext obj)
     {
 
     }
 
-    protected virtual void HandleEAbility()
+    protected virtual void HandleEAbility(InputAction.CallbackContext obj)
     {
 
     }
 
-    protected virtual void HandleRAbility()
+    protected virtual void HandleRAbility(InputAction.CallbackContext obj)
     {
 
     }
 
-    private void HandleRightClick()
+    private void OnEnable()
     {
-        if (Input.GetKeyDown(KeyCode.Mouse1))
-        {
+        rightClickRef.action.performed += RightClick;
+        QAttackRef.action.performed += HandleQAbility;
+        WAttackRef.action.performed += HandleWAbility;
+        EAttackRef.action.performed += HandleEAbility;
+        RAttackRef.action.performed += HandleRAbility;
+    }
+
+    private void OnDisable()
+    {
+        rightClickRef.action.performed -= RightClick;
+        QAttackRef.action.performed -= HandleQAbility;
+        WAttackRef.action.performed -= HandleWAbility;
+        EAttackRef.action.performed -= HandleEAbility;
+        RAttackRef.action.performed -= HandleRAbility;
+    }
+
+    private void RightClick(InputAction.CallbackContext obj)
+    {
+        //if (Input.GetKeyDown(KeyCode.Mouse1))
+        //{
             positionToMove = GetMousePosition();
             if (swordTestController.canRotate)
             {
@@ -83,7 +104,7 @@ public class PlayerBase : MonoBehaviour
             }
             movePointReticle.CreateReticle(positionToMove);
             state = State.moving;
-        }
+        //}
     }
  
     protected void HandleRotation(Vector3 pos, Transform thingToRotate)
@@ -157,8 +178,9 @@ public class PlayerBase : MonoBehaviour
 
     public Vector3 GetMousePosition()
     {
-       Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+       Vector3 mousePos = mousePosRef.action.ReadValue<Vector2>();
        mousePos.z = 0;
+       mousePos = Camera.main.ScreenToWorldPoint(mousePos);
        return mousePos;
     }
 }

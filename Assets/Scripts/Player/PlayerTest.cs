@@ -1,31 +1,32 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class PlayerTest : PlayerBase
 {
     private List<Transform> enemies = new List<Transform>();
-    protected override void HandleQAbility()
+    protected override void HandleQAbility(InputAction.CallbackContext obj)
     {
-        if (Input.GetKeyDown(KeyCode.Q) && !swordTestController.inAnimation && qCooldown <= 0)
+        if (!swordTestController.inAnimation && qCooldown <= 0)
         {
             swordTestController.HandleSwordSwingAnim("Swing");
             StartCoroutine(HandleQCooldown());
         }
     }
 
-    protected override void HandleWAbility()
+    protected override void HandleWAbility(InputAction.CallbackContext obj)
     {
-        if (Input.GetKeyDown(KeyCode.W) && !swordTestController.inAnimation && wCooldown <= 0)
+        if (!swordTestController.inAnimation && wCooldown <= 0)
         {
             swordTestController.HandleSwordSwingAnim("Spin");
             StartCoroutine(HandleWCooldown());
         }
     }
 
-    protected override void HandleEAbility()
+    protected override void HandleEAbility(InputAction.CallbackContext obj)
     {
-        if (Input.GetKeyDown(KeyCode.E) && !swordTestController.inAnimation && eCooldown <= 0)
+        if (!swordTestController.inAnimation && eCooldown <= 0)
         {
             state = State.idle;
             Vector3 posToDash = GetMousePosition();
@@ -37,9 +38,9 @@ public class PlayerTest : PlayerBase
         }
     }
 
-    protected override void HandleRAbility()
+    protected override void HandleRAbility(InputAction.CallbackContext obj)
     {
-        if (Input.GetKeyDown(KeyCode.R) && !swordTestController.inAnimation && rCooldown <= 0)
+        if (!swordTestController.inAnimation && rCooldown <= 0)
         {
             Vector3 playerPosition = this.transform.position;
             GetEnemiesOnScreen();
