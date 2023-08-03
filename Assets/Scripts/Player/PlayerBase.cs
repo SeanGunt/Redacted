@@ -6,7 +6,7 @@ using UnityEngine.InputSystem;
 
 public class PlayerBase : MonoBehaviour
 {
-    [SerializeField] InputActionReference rightClickRef, mousePosRef, QAttackRef, WAttackRef, EAttackRef, RAttackRef;
+    [SerializeField] private InputActionReference rightClickRef, mousePosRef, QAttackRef, WAttackRef, EAttackRef, RAttackRef;
     private Vector2 mousePos;
     private MovePointReticle movePointReticle;
     protected SwordTestController swordTestController;
@@ -34,12 +34,6 @@ public class PlayerBase : MonoBehaviour
     }
     private void Update()
     {
-        //HandleRightClick();
-        //HandleQAbility();
-        //HandleWAbility();
-        //HandleEAbility();
-        //HandleRAbility();
-
         switch(state)
         {
             case State.idle:
@@ -95,16 +89,13 @@ public class PlayerBase : MonoBehaviour
 
     private void RightClick(InputAction.CallbackContext obj)
     {
-        //if (Input.GetKeyDown(KeyCode.Mouse1))
-        //{
-            positionToMove = GetMousePosition();
-            if (swordTestController.canRotate)
-            {
-                HandleRotation(positionToMove, this.transform);
-            }
-            movePointReticle.CreateReticle(positionToMove);
-            state = State.moving;
-        //}
+        positionToMove = GetMousePosition();
+        if (swordTestController.canRotate)
+        {
+            HandleRotation(positionToMove, this.transform);
+        }
+        movePointReticle.CreateReticle(positionToMove);
+        state = State.moving;
     }
  
     protected void HandleRotation(Vector3 pos, Transform thingToRotate)
@@ -179,8 +170,8 @@ public class PlayerBase : MonoBehaviour
     public Vector3 GetMousePosition()
     {
        Vector3 mousePos = mousePosRef.action.ReadValue<Vector2>();
-       mousePos.z = 0;
        mousePos = Camera.main.ScreenToWorldPoint(mousePos);
+       mousePos.z = 0;
        return mousePos;
     }
 }

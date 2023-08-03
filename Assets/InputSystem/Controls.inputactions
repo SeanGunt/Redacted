@@ -7,7 +7,7 @@
             "actions": [
                 {
                     "name": "RightClick",
-                    "type": "Button",
+                    "type": "PassThrough",
                     "id": "12d65c98-d5fc-4f32-a86a-98137d46d445",
                     "expectedControlType": "Button",
                     "processors": "",
