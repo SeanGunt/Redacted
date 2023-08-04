@@ -7,18 +7,21 @@ using UnityEngine.InputSystem;
 public class PlayerBase : MonoBehaviour
 {
     [SerializeField] private InputActionReference rightClickRef, mousePosRef, QAttackRef, WAttackRef, EAttackRef, RAttackRef;
-    private Vector2 mousePos;
     private MovePointReticle movePointReticle;
     protected SwordTestController swordTestController;
     protected Rigidbody2D rb;
     [SerializeField] protected Image qImage, wImage, eImage, rImage;
+    public Image healthBar;
     private Color imageCooldownColor = new Color(0.5f, 0.5f, 0.5f, 1.0f);
     private Color imageStartColor;
-    [SerializeField] private float speed, health;
-    [SerializeField] protected float qCooldownAmount, wCooldownAmount, eCooldownAmount, rCooldownAmount;
-    protected float qCooldown = 0f, wCooldown = 0f, eCooldown = 0f, rCooldown = 0f;
     private Vector3 positionToMove;
     protected State state;
+    #region Stats
+    [SerializeField] public float speed, baseHealth;
+    [HideInInspector] public float health;
+    [SerializeField] protected float qCooldownAmount, wCooldownAmount, eCooldownAmount, rCooldownAmount;
+    protected float qCooldown = 0f, wCooldown = 0f, eCooldown = 0f, rCooldown = 0f;
+    #endregion
     protected enum State
     {
         idle, moving
@@ -26,10 +29,11 @@ public class PlayerBase : MonoBehaviour
 
     private void Awake()
     {
-        movePointReticle = this.GetComponent<MovePointReticle>();
-        swordTestController = this.GetComponentInChildren<SwordTestController>();
+        movePointReticle = GetComponent<MovePointReticle>();
+        swordTestController = GetComponentInChildren<SwordTestController>();
         imageStartColor = qImage.color;
-        rb = this.GetComponent<Rigidbody2D>();
+        health = baseHealth;
+        rb = GetComponent<Rigidbody2D>();
         state = State.idle;
     }
     private void Update()

@@ -40,9 +40,9 @@ public class EnemyManager : MonoBehaviour
         {
             spawnPosition = SpawnUp();
         }
-        Debug.Log(spawnPosition);
         GameObject newEnemy = Instantiate(enemy);
-        newEnemy.transform.position = spawnPosition;
+        newEnemy.transform.position = spawnPosition + GameManager.Instance.player.transform.position;
+        newEnemy.transform.SetParent(this.transform);
     }
 
     private Vector3 SpawnLeft()
