@@ -57,7 +57,6 @@ public class EnemyMaster : MonoBehaviour, IDamagable
             playerBase.health -= damage;
             float ratio = damage / playerBase.baseHealth;
             playerBase.healthBar.fillAmount -= Mathf.Clamp(ratio, 0f, 1f);
-            Debug.Log(playerBase.health);
         }
     }
 
