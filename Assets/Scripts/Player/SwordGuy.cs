@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class PlayerTest : PlayerBase
+public class SwordGuy : PlayerBase
 {
     private List<Transform> enemies = new List<Transform>();
     protected override void HandleQAbility(InputAction.CallbackContext obj)

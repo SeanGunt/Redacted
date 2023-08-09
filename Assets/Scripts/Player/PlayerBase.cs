@@ -3,29 +3,41 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.InputSystem;
+using TMPro;
 
 public class PlayerBase : MonoBehaviour
 {
+    #region Classes
     [SerializeField] private InputActionReference rightClickRef, mousePosRef, QAttackRef, WAttackRef, EAttackRef, RAttackRef;
     private MovePointReticle movePointReticle;
     protected SwordTestController swordTestController;
-    protected Rigidbody2D rb;
+    #endregion
+
+    #region UI
     [SerializeField] protected Image qImage, wImage, eImage, rImage;
     public Image healthBar;
     private Color imageCooldownColor = new Color(0.5f, 0.5f, 0.5f, 1.0f);
     private Color imageStartColor;
-    private Vector3 positionToMove;
-    protected State state;
+    [SerializeField] private TextMeshProUGUI curHealthNum;
+    #endregion
+
     #region Stats
     [SerializeField] public float speed, baseHealth;
     [HideInInspector] public float health;
     [SerializeField] protected float qCooldownAmount, wCooldownAmount, eCooldownAmount, rCooldownAmount;
+    [SerializeField] protected float healthRegen;
     protected float qCooldown = 0f, wCooldown = 0f, eCooldown = 0f, rCooldown = 0f;
     #endregion
+
+    #region Other
+    protected State state;
+    private Vector3 positionToMove;
+    protected Rigidbody2D rb;
     protected enum State
     {
         idle, moving
     }
+    #endregion
 
     private void Awake()
     {
@@ -38,6 +50,7 @@ public class PlayerBase : MonoBehaviour
     }
     private void Update()
     {
+        HandleHealth();
         switch(state)
         {
             case State.idle:
@@ -113,6 +126,17 @@ public class PlayerBase : MonoBehaviour
     {
         if (!swordTestController.canMove) return;
         this.transform.position = Vector3.MoveTowards(this.transform.position, positionToMove, speed * Time.deltaTime);
+    }
+
+    private void HandleHealth()
+    {
+        curHealthNum.text = health.ToString("n0");
+        float ratio = 1 / baseHealth;
+        healthBar.fillAmount = health * ratio;
+        if (health < baseHealth)
+        {
+            health += healthRegen * Time.deltaTime;
+        }
     }
 
     protected virtual IEnumerator HandleQCooldown()
