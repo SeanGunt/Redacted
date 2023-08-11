@@ -6,6 +6,15 @@
             "id": "9800408c-2349-486f-b030-7c3fa9056c52",
             "actions": [
                 {
+                    "name": "LeftClick",
+                    "type": "Button",
+                    "id": "dd59d81f-4372-46eb-862b-f2f18baff592",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
                     "name": "RightClick",
                     "type": "Button",
                     "id": "12d65c98-d5fc-4f32-a86a-98137d46d445",
@@ -54,6 +63,15 @@
                     "name": "RAttack",
                     "type": "Button",
                     "id": "c51276ca-1391-4419-8d7b-8bca88952a3d",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Pause",
+                    "type": "Button",
+                    "id": "e74cbfc7-4744-442c-b431-1a161708eb69",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -124,6 +142,28 @@
                     "processors": "",
                     "groups": "",
                     "action": "RAttack",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "8c6fcf1d-16bd-4653-a057-cafb305ce855",
+                    "path": "<Keyboard>/escape",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Pause",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "d5e267b9-f6a7-4b48-82d9-98e7c7edc0d7",
+                    "path": "<Mouse>/leftButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "LeftClick",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
