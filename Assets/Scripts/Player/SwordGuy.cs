@@ -6,27 +6,28 @@ using UnityEngine.InputSystem;
 public class SwordGuy : PlayerBase
 {
     private List<Transform> enemies = new List<Transform>();
-    protected override void HandleQAbility(InputAction.CallbackContext obj)
+    [SerializeField] private SwordTestController swordTestController;
+    protected override void HandleQAbility()
     {
-        if (!swordTestController.inAnimation && qCooldown <= 0)
+        if (playerInput.actions["QAttack"].triggered && !swordTestController.inAnimation && qCooldown <= 0)
         {
             swordTestController.HandleSwordSwingAnim("Swing");
             StartCoroutine(HandleQCooldown());
         }
     }
 
-    protected override void HandleWAbility(InputAction.CallbackContext obj)
+    protected override void HandleWAbility()
     {
-        if (!swordTestController.inAnimation && wCooldown <= 0)
+        if (playerInput.actions["WAttack"].triggered && !swordTestController.inAnimation && wCooldown <= 0)
         {
             swordTestController.HandleSwordSwingAnim("Spin");
             StartCoroutine(HandleWCooldown());
         }
     }
 
-    protected override void HandleEAbility(InputAction.CallbackContext obj)
+    protected override void HandleEAbility()
     {
-        if (!swordTestController.inAnimation && eCooldown <= 0)
+        if (!swordTestController.inAnimation && eCooldown <= 0 && playerInput.actions["EAttack"].triggered)
         {
             state = State.idle;
             Vector3 posToDash = GetMousePosition();
@@ -38,9 +39,9 @@ public class SwordGuy : PlayerBase
         }
     }
 
-    protected override void HandleRAbility(InputAction.CallbackContext obj)
+    protected override void HandleRAbility()
     {
-        if (!swordTestController.inAnimation && rCooldown <= 0)
+        if (!swordTestController.inAnimation && rCooldown <= 0 && playerInput.actions["RAttack"].triggered)
         {
             Vector3 playerPosition = this.transform.position;
             GetEnemiesOnScreen();

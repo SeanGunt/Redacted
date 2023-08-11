@@ -8,9 +8,9 @@ using TMPro;
 public class PlayerBase : MonoBehaviour
 {
     #region Classes
-    [SerializeField] private InputActionReference rightClickRef, mousePosRef, QAttackRef, WAttackRef, EAttackRef, RAttackRef;
+    public PlayerInput playerInput;
     private MovePointReticle movePointReticle;
-    protected SwordTestController swordTestController;
+    protected WeaponBase weaponBase;
     #endregion
 
     #region UI
@@ -42,7 +42,8 @@ public class PlayerBase : MonoBehaviour
     private void Awake()
     {
         movePointReticle = GetComponent<MovePointReticle>();
-        swordTestController = GetComponentInChildren<SwordTestController>();
+        weaponBase = GetComponentInChildren<WeaponBase>();
+        playerInput = GetComponent<PlayerInput>();
         imageStartColor = qImage.color;
         health = baseHealth;
         rb = GetComponent<Rigidbody2D>();
@@ -51,6 +52,11 @@ public class PlayerBase : MonoBehaviour
     private void Update()
     {
         HandleHealth();
+        RightClick();
+        HandleQAbility();
+        HandleWAbility();
+        HandleEAbility();
+        HandleRAbility();
         switch(state)
         {
             case State.idle:
@@ -66,53 +72,38 @@ public class PlayerBase : MonoBehaviour
         state = State.idle;
     }
 
-    protected virtual void HandleQAbility(InputAction.CallbackContext obj)
+    protected virtual void HandleQAbility()
     {
         
     }
 
-    protected virtual void HandleWAbility(InputAction.CallbackContext obj)
+    protected virtual void HandleWAbility()
     {
 
     }
 
-    protected virtual void HandleEAbility(InputAction.CallbackContext obj)
+    protected virtual void HandleEAbility()
     {
 
     }
 
-    protected virtual void HandleRAbility(InputAction.CallbackContext obj)
+    protected virtual void HandleRAbility()
     {
 
     }
 
-    private void OnEnable()
+    private void RightClick()
     {
-        rightClickRef.action.performed += RightClick;
-        QAttackRef.action.performed += HandleQAbility;
-        WAttackRef.action.performed += HandleWAbility;
-        EAttackRef.action.performed += HandleEAbility;
-        RAttackRef.action.performed += HandleRAbility;
-    }
-
-    private void OnDisable()
-    {
-        rightClickRef.action.performed -= RightClick;
-        QAttackRef.action.performed -= HandleQAbility;
-        WAttackRef.action.performed -= HandleWAbility;
-        EAttackRef.action.performed -= HandleEAbility;
-        RAttackRef.action.performed -= HandleRAbility;
-    }
-
-    private void RightClick(InputAction.CallbackContext obj)
-    {
-        positionToMove = GetMousePosition();
-        if (swordTestController.canRotate)
+        if (playerInput.actions["RightClick"].triggered)
         {
-            HandleRotation(positionToMove, this.transform);
+            positionToMove = GetMousePosition();
+            if (weaponBase.canRotate)
+            {
+                HandleRotation(positionToMove, this.transform);
+            }
+            movePointReticle.CreateReticle(positionToMove);
+            state = State.moving;
         }
-        movePointReticle.CreateReticle(positionToMove);
-        state = State.moving;
     }
  
     protected void HandleRotation(Vector3 pos, Transform thingToRotate)
@@ -124,7 +115,7 @@ public class PlayerBase : MonoBehaviour
 
     private void HandleMoving()
     {
-        if (!swordTestController.canMove) return;
+        if (!weaponBase.canMove) return;
         this.transform.position = Vector3.MoveTowards(this.transform.position, positionToMove, speed * Time.deltaTime);
     }
 
@@ -197,7 +188,7 @@ public class PlayerBase : MonoBehaviour
 
     public Vector3 GetMousePosition()
     {
-       Vector3 mousePos = mousePosRef.action.ReadValue<Vector2>();
+       Vector3 mousePos = playerInput.actions["PointerPosition"].ReadValue<Vector2>();
        mousePos = Camera.main.ScreenToWorldPoint(mousePos);
        mousePos.z = 0;
        return mousePos;
