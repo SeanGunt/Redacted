@@ -572,6 +572,7 @@ GameObject:
   - component: {fileID: 3884314428910866145}
   - component: {fileID: 3884314428910866144}
   - component: {fileID: 3884314428910866175}
+  - component: {fileID: 1636167505}
   m_Layer: 0
   m_Name: SwordGuy
   m_TagString: Untagged
@@ -730,6 +731,69 @@ MonoBehaviour:
   eCooldownAmount: 6
   rCooldownAmount: 20
   healthRegen: 1
+  swordTestController: {fileID: 3884314429422785120}
+--- !u!114 &1636167505
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3884314428910866150}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Actions: {fileID: -944628639613478452, guid: e17b32398fd3e904388897be2625095f, type: 3}
+  m_NotificationBehavior: 2
+  m_UIInputModule: {fileID: 0}
+  m_DeviceLostEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_DeviceRegainedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ControlsChangedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ActionEvents:
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: dd59d81f-4372-46eb-862b-f2f18baff592
+    m_ActionName: KBM/LeftClick[/Mouse/leftButton]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 12d65c98-d5fc-4f32-a86a-98137d46d445
+    m_ActionName: KBM/RightClick[/Mouse/rightButton]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 38867b15-d1c4-4b20-8729-cbacb7cfc6bb
+    m_ActionName: KBM/PointerPosition[/Mouse/position]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 37248390-8d2c-45d9-a1ba-e0d76d0e176c
+    m_ActionName: KBM/QAttack[/Keyboard/q]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 1fc8a7f5-cb00-4769-9989-6632548d9083
+    m_ActionName: KBM/WAttack[/Keyboard/w]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: ee085c73-f3ae-4dea-b6f3-4746d31d6960
+    m_ActionName: KBM/EAttack[/Keyboard/e]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: c51276ca-1391-4419-8d7b-8bca88952a3d
+    m_ActionName: KBM/RAttack[/Keyboard/r]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: e74cbfc7-4744-442c-b431-1a161708eb69
+    m_ActionName: KBM/Pause[/Keyboard/escape]
+  m_NeverAutoSwitchControlSchemes: 0
+  m_DefaultControlScheme: 
+  m_DefaultActionMap: KBM
+  m_SplitScreenIndex: -1
+  m_Camera: {fileID: 0}
 --- !u!1 &3884314429084726794
 GameObject:
   m_ObjectHideFlags: 0
@@ -1201,6 +1265,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 17ffff5ba3863b146a710df79ab06f93, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  canRotate: 1
+  canMove: 1
   weaponCollider: {fileID: 0}
   weaponDamage: 50
   inAnimation: 0

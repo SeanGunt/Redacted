@@ -2,15 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SwordTestController : MonoBehaviour
+public class SwordTestController : WeaponBase
 {
     private Animator animator;
     private TrailRenderer trailRenderer;
     [HideInInspector] public BoxCollider2D weaponCollider;
     [SerializeField] private float weaponDamage;
     [HideInInspector] public bool inAnimation; 
-    [HideInInspector] public bool canRotate {get; private set;} = true;
-    [HideInInspector] public bool canMove {get; private set;} = true;
     private void Awake()
     {
         animator = this.GetComponent<Animator>();
