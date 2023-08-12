@@ -153,6 +153,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 1636167497}
+  paused: 0
 --- !u!4 &45057044
 Transform:
   m_ObjectHideFlags: 0
@@ -1743,7 +1744,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1521077107}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2049606911}
+        m_TargetAssemblyTypeName: PauseMenu, Assembly-CSharp
+        m_MethodName: ReturnToMainMenu
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1521077107
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1859,6 +1872,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 3884314428910866148, guid: fc62ff03dc418b84ca43e39107de425a, type: 3}
   m_PrefabInstance: {fileID: 3884314429439730095}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1636167505 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1636167505, guid: fc62ff03dc418b84ca43e39107de425a, type: 3}
+  m_PrefabInstance: {fileID: 3884314429439730095}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1636167497}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1658009331
 GameObject:
   m_ObjectHideFlags: 0
@@ -2495,7 +2519,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b9dc017eb06671e4bb3545541ce5f5f9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pauseRef: {fileID: -6445984224432607249, guid: e17b32398fd3e904388897be2625095f, type: 3}
   pauseMenuCanvas: {fileID: 1174077200}
   paused: 0
 --- !u!224 &2124099427 stripped
@@ -2702,6 +2725,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3884314428910866175, guid: fc62ff03dc418b84ca43e39107de425a, type: 3}
+      propertyPath: playerInput2
+      value: 
+      objectReference: {fileID: 1636167505}
     - target: {fileID: 3884314430342519716, guid: fc62ff03dc418b84ca43e39107de425a, type: 3}
       propertyPath: m_Camera
       value: 

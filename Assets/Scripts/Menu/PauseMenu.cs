@@ -2,10 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
 public class PauseMenu : MonoBehaviour
 {
-    [SerializeField] private InputActionReference pauseRef;
+    private PlayerInput playerInput;
     [SerializeField] private GameObject pauseMenuCanvas;
     private GameObject playerUI;
     public bool paused;
@@ -13,29 +14,41 @@ public class PauseMenu : MonoBehaviour
     private void Awake()
     {
         playerUI =  GameObject.FindGameObjectWithTag("PlayerUI");
+        playerInput = GameManager.Instance.player.GetComponent<PlayerInput>();
     }
 
-    private void OnEnable()
+    private void Update()
     {
-        pauseRef.action.performed += Pause;
+        if (!paused && playerInput.actions["Pause"].triggered)
+        {
+            Pause();
+        }
+        else if (paused && playerInput.actions["Pause"].triggered)
+        {
+            UnPause();
+        }
     }
 
-    private void OnDisable()
+    public void Pause()
     {
-        pauseRef.action.performed -= Pause;
-    }
-
-    public void Pause(InputAction.CallbackContext obj)
-    {
-        Time.timeScale = 0f;
-        playerUI.SetActive(false);
-        pauseMenuCanvas.SetActive(true);
+        HandlePause(0f, false, true, true);
     }
 
     public void UnPause()
     {
-        Time.timeScale = 1f;
-        playerUI.SetActive(true);
-        pauseMenuCanvas.SetActive(false);
+        HandlePause(1f, true, false, false);
+    }
+
+    public void ReturnToMainMenu()
+    {
+        SceneManager.LoadScene("MainMenu");
+    }
+
+    private void HandlePause(float timeScale, bool playerUIActive, bool pauseMenuCanvasActive, bool isPaused)
+    {
+        paused = isPaused;
+        Time.timeScale = timeScale;
+        playerUI.SetActive(playerUIActive);
+        pauseMenuCanvas.SetActive(pauseMenuCanvasActive);
     }
 }
