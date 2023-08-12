@@ -2589,6 +2589,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SwordGuy
       objectReference: {fileID: 0}
+    - target: {fileID: 3884314428910866175, guid: fc62ff03dc418b84ca43e39107de425a, type: 3}
+      propertyPath: playerInput2
+      value: 
+      objectReference: {fileID: 1636167505}
     - target: {fileID: 3884314429084726792, guid: fc62ff03dc418b84ca43e39107de425a, type: 3}
       propertyPath: m_Color.a
       value: 0.78431374
@@ -2637,9 +2641,21 @@ PrefabInstance:
       propertyPath: m_Color.a
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3884314429254688667, guid: fc62ff03dc418b84ca43e39107de425a, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 140
+      objectReference: {fileID: 0}
     - target: {fileID: 3884314429342625833, guid: fc62ff03dc418b84ca43e39107de425a, type: 3}
       propertyPath: m_Color.a
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3884314429342625834, guid: fc62ff03dc418b84ca43e39107de425a, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 70
+      objectReference: {fileID: 0}
+    - target: {fileID: 3884314429465838560, guid: fc62ff03dc418b84ca43e39107de425a, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -200
       objectReference: {fileID: 0}
     - target: {fileID: 3884314429465838591, guid: fc62ff03dc418b84ca43e39107de425a, type: 3}
       propertyPath: m_Color.a
@@ -2652,6 +2668,10 @@ PrefabInstance:
     - target: {fileID: 3884314429581564564, guid: fc62ff03dc418b84ca43e39107de425a, type: 3}
       propertyPath: m_Enabled
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3884314429581564565, guid: fc62ff03dc418b84ca43e39107de425a, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -275
       objectReference: {fileID: 0}
     - target: {fileID: 3884314430087178767, guid: fc62ff03dc418b84ca43e39107de425a, type: 3}
       propertyPath: m_RootOrder
@@ -2725,10 +2745,6 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 3884314428910866175, guid: fc62ff03dc418b84ca43e39107de425a, type: 3}
-      propertyPath: playerInput2
-      value: 
-      objectReference: {fileID: 1636167505}
     - target: {fileID: 3884314430342519716, guid: fc62ff03dc418b84ca43e39107de425a, type: 3}
       propertyPath: m_Camera
       value: 
