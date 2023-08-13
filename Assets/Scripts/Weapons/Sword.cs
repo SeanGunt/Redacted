@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SwordTestController : WeaponBase
+public class Sword : WeaponBase
 {
     private Animator animator;
     private TrailRenderer trailRenderer;
