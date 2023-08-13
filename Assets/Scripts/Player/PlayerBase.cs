@@ -7,29 +7,30 @@ using TMPro;
 
 public class PlayerBase : MonoBehaviour
 {
-    #region Classes
-    public PlayerInput playerInput;
+    [Header("Classes")]
+    [HideInInspector] public PlayerInput playerInput;
     private MovePointReticle movePointReticle;
     protected WeaponBase weaponBase;
-    #endregion
 
-    #region UI
-    [SerializeField] protected Image qImage, wImage, eImage, rImage;
+    [Header("UI")]
+    [SerializeField] protected Image qImage;
+    [SerializeField] protected Image wImage;
+    [SerializeField] protected Image eImage;
+    [SerializeField] protected Image rImage;
+    [SerializeField] private TextMeshProUGUI curHealthNum;
     public Image healthBar;
     private Color imageCooldownColor = new Color(0.5f, 0.5f, 0.5f, 1.0f);
     private Color imageStartColor;
-    [SerializeField] private TextMeshProUGUI curHealthNum;
-    #endregion
 
-    #region Stats
-    [SerializeField] public float speed, baseHealth;
-    [HideInInspector] public float health;
-    [SerializeField] protected float qCooldownAmount, wCooldownAmount, eCooldownAmount, rCooldownAmount;
+    [Header("Stats")]
+    [SerializeField] public float speed;
+    [SerializeField] public float baseHealth;
     [SerializeField] protected float healthRegen;
+    [SerializeField] protected float qCooldownAmount, wCooldownAmount, eCooldownAmount, rCooldownAmount;
+    [HideInInspector] public float health;
     protected float qCooldown = 0f, wCooldown = 0f, eCooldown = 0f, rCooldown = 0f;
-    #endregion
 
-    #region Other
+    [Header("Other")]
     protected State state;
     private Vector3 positionToMove;
     protected Rigidbody2D rb;
@@ -37,16 +38,15 @@ public class PlayerBase : MonoBehaviour
     {
         idle, moving
     }
-    #endregion
 
     private void Awake()
     {
         movePointReticle = GetComponent<MovePointReticle>();
         weaponBase = GetComponentInChildren<WeaponBase>();
         playerInput = GetComponent<PlayerInput>();
+        rb = GetComponent<Rigidbody2D>();
         imageStartColor = qImage.color;
         health = baseHealth;
-        rb = GetComponent<Rigidbody2D>();
         state = State.idle;
     }
     private void Update()

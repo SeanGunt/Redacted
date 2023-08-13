@@ -1,47 +1,46 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 public class SwordGuy : PlayerBase
 {
     private List<Transform> enemies = new List<Transform>();
-    [SerializeField] private SwordTestController swordTestController;
+    [SerializeField] private Sword sword;
     protected override void HandleQAbility()
     {
-        if (playerInput.actions["QAttack"].triggered && !swordTestController.inAnimation && qCooldown <= 0)
+        if (playerInput.actions["QAttack"].triggered && !sword.inAnimation && qCooldown <= 0)
         {
-            swordTestController.HandleSwordSwingAnim("Swing");
+            sword.HandleSwordSwingAnim("Swing");
             StartCoroutine(HandleQCooldown());
         }
     }
 
     protected override void HandleWAbility()
     {
-        if (playerInput.actions["WAttack"].triggered && !swordTestController.inAnimation && wCooldown <= 0)
+        if (playerInput.actions["WAttack"].triggered && !sword.inAnimation && wCooldown <= 0)
         {
-            swordTestController.HandleSwordSwingAnim("Spin");
+            sword.HandleSwordSwingAnim("Spin");
             StartCoroutine(HandleWCooldown());
         }
     }
 
     protected override void HandleEAbility()
     {
-        if (!swordTestController.inAnimation && eCooldown <= 0 && playerInput.actions["EAttack"].triggered)
+        if (!sword.inAnimation && eCooldown <= 0 && playerInput.actions["EAttack"].triggered)
         {
             state = State.idle;
             Vector3 posToDash = GetMousePosition();
             Vector3 direction = (posToDash - this.transform.position).normalized;
             HandleRotation(posToDash, this.transform);
             rb.AddForce(direction * 25, ForceMode2D.Impulse);
-            swordTestController.HandleSwordSwingAnim("Dash");
+            sword.HandleSwordSwingAnim("Dash");
             StartCoroutine(HandleECooldown());
         }
     }
 
     protected override void HandleRAbility()
     {
-        if (!swordTestController.inAnimation && rCooldown <= 0 && playerInput.actions["RAttack"].triggered)
+        if (!sword.inAnimation && rCooldown <= 0 && playerInput.actions["RAttack"].triggered)
         {
             Vector3 playerPosition = this.transform.position;
             GetEnemiesOnScreen();
@@ -100,10 +99,10 @@ public class SwordGuy : PlayerBase
         {
             yield break;
         }
-        swordTestController.GetComponent<Animator>().enabled = false;
-        swordTestController.inAnimation = true;
-        swordTestController.EnableWeaponCollider();
-        swordTestController.transform.SetParent(null, true);
+        sword.GetComponent<Animator>().enabled = false;
+        sword.inAnimation = true;
+        sword.EnableWeaponCollider();
+        sword.transform.SetParent(null, true);
         float moveSpeed = 25f;
 
         for (int i = 0; i < arrayOfEnemies.Length; i++)
@@ -116,25 +115,25 @@ public class SwordGuy : PlayerBase
 
                 while (!reachedTarget && currentEnemy != null)
                 {
-                    float distance = Vector3.Distance(swordTestController.transform.position, currentEnemy.position);
+                    float distance = Vector3.Distance(sword.transform.position, currentEnemy.position);
                     if (distance <= 0.1f)
                     {
                     reachedTarget = true;
                     }
                     else
                     {
-                        swordTestController.transform.position = Vector3.MoveTowards(swordTestController.transform.position, currentEnemy.position, moveSpeed * Time.deltaTime);
-                        HandleRotation(currentEnemy.transform.position, swordTestController.transform);
+                        sword.transform.position = Vector3.MoveTowards(sword.transform.position, currentEnemy.position, moveSpeed * Time.deltaTime);
+                        HandleRotation(currentEnemy.transform.position, sword.transform);
                     }
 
                     yield return null;
                 }
             }
         }
-        swordTestController.transform.SetParent(this.transform, false);
-        swordTestController.inAnimation = false;
-        swordTestController.DisableWeaponCollider();
-        swordTestController.GetComponent<Animator>().enabled = true;
+        sword.transform.SetParent(this.transform, false);
+        sword.inAnimation = false;
+        sword.DisableWeaponCollider();
+        sword.GetComponent<Animator>().enabled = true;
         StartCoroutine(HandleRCooldown());
     }
 }
