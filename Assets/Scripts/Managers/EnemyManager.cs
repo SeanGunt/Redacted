@@ -9,6 +9,13 @@ public class EnemyManager : MonoBehaviour
     [SerializeField] float spawnTimer;
     float timer;
 
+    private void Start()
+    {
+        foreach (GameObject prefab in ObjectPool.instance.prefabsToPool)
+        {
+            ObjectPool.instance.InitiaizePool(ObjectPool.instance.prefabsToPool[1], 20, GameManager.Instance.poolHolders, 1);
+        }
+    }
     private void Update()
     {
         timer -= Time.deltaTime;
