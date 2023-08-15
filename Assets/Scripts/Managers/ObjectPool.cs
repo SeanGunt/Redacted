@@ -5,34 +5,41 @@ using UnityEngine;
 public class ObjectPool : MonoBehaviour
 {
     public static ObjectPool instance;
-    public List<GameObject> pooledObjects;
-    public GameObject objectToPool;
-    public int amountToPool;
+    public GameObject[] prefabsToPool;
+    private Dictionary<GameObject, List<GameObject>> pooledObjectsDict = new Dictionary<GameObject, List<GameObject>>();
 
     private void Awake()
     {
         instance = this;
     }
 
-    private void Start()
+    public void InitiaizePool(GameObject prefab, int amountToPool, GameObject[] poolHolder, int index)
     {
-        pooledObjects = new List<GameObject>();
-        GameObject tmp;
-        for(int i = 0; i < amountToPool; i++)
+        if (!pooledObjectsDict.ContainsKey(prefab))
         {
-            tmp = Instantiate(objectToPool);
-            tmp.SetActive(false);
-            pooledObjects.Add(tmp);
+            List<GameObject> pooledObjects = new List<GameObject>();
+            for (int i = 0; i < amountToPool; i++)
+            {
+                GameObject obj = Instantiate(prefab);
+                obj.transform.SetParent(poolHolder[index].transform);
+                obj.SetActive(false);
+                pooledObjects.Add(obj);
+            }
+            pooledObjectsDict.Add(prefab, pooledObjects);
         }
     }
 
-    public GameObject GetPooledObjects()
+    public GameObject GetPooledObject(GameObject prefab)
     {
-        for(int i = 0; i < amountToPool; i++)
+        if (pooledObjectsDict.ContainsKey(prefab))
         {
-            if (!pooledObjects[i].activeInHierarchy)
+            List<GameObject> pooledObjects = pooledObjectsDict[prefab];
+            foreach (GameObject obj in pooledObjects)
             {
-                return pooledObjects[i];
+                if (!obj.activeInHierarchy)
+                {
+                    return obj;
+                }
             }
         }
         return null;
