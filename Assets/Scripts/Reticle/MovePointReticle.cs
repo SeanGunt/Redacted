@@ -4,10 +4,13 @@ using UnityEngine;
 
 public class MovePointReticle : MonoBehaviour
 {
-    [SerializeField] private GameObject reticlePrefab;
-    private GameObject reticle;
     public void CreateReticle(Vector3 reticlePos)
     {
-        reticle = Instantiate(reticlePrefab, reticlePos, Quaternion.identity);
+        GameObject reticle = ObjectPool.instance.GetPooledObjects();
+        if (reticle != null)
+        {
+            reticle.transform.position = reticlePos;
+            reticle.SetActive(true);
+        }
     }
 }
