@@ -4,8 +4,14 @@ using UnityEngine;
 
 public class ShrinkReticle : MonoBehaviour
 {
+    private Vector3 initialSize;
     private void Awake()
     {
+        initialSize = this.transform.localScale;
+    }
+    private void OnEnable()
+    {
+        this.transform.localScale = initialSize;
         StartCoroutine(HandleShrink());
     }
 
@@ -19,6 +25,6 @@ public class ShrinkReticle : MonoBehaviour
             this.transform.localScale = new Vector3(startSize.x, startSize.y, 0f);
             yield return null;
         }
-        Destroy(this.gameObject);
+        this.gameObject.SetActive(false);
     }
 }
