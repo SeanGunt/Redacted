@@ -119,7 +119,6 @@ MonoBehaviour:
   maxHealth: 100
   speed: 2
   damage: 1
-  damageInterval: 0.5
   healhBar: {fileID: 5000603000992708831}
 --- !u!195 &5000602999480124614
 NavMeshAgent:
@@ -202,7 +201,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0, b: 0, a: 0.2509804}
+  m_Color: {r: 0, g: 0, b: 0, a: 0.5019608}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1

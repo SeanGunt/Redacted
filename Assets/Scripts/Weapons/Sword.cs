@@ -7,7 +7,6 @@ public class Sword : WeaponBase
     private Animator animator;
     private TrailRenderer trailRenderer;
     [HideInInspector] public BoxCollider2D weaponCollider;
-    [SerializeField] private float weaponDamage;
     [HideInInspector] public bool inAnimation; 
     private void Awake()
     {
@@ -23,7 +22,7 @@ public class Sword : WeaponBase
         IDamagable damagable = other.gameObject.GetComponent<IDamagable>();
         if (damagable != null)
         {
-            damagable.TakeDamage(weaponDamage);
+            damagable.TakeDamage(ApplyDamage());
         }
     }
 

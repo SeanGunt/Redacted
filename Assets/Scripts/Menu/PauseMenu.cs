@@ -9,12 +9,13 @@ public class PauseMenu : MonoBehaviour
     private PlayerInput playerInput;
     [SerializeField] private GameObject pauseMenuCanvas;
     private GameObject playerUI;
-    public bool paused;
+    private bool paused;
 
     private void Awake()
     {
         playerUI =  GameObject.FindGameObjectWithTag("PlayerUI");
         playerInput = GameManager.Instance.player.GetComponent<PlayerInput>();
+        HandlePause(1f, true, false, false);
     }
 
     private void Update()

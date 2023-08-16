@@ -1183,7 +1183,7 @@ MonoBehaviour:
   wCooldownAmount: 5
   eCooldownAmount: 6
   rCooldownAmount: 20
-  pickupRange: 2
+  pickupRange: 1.5
   health: 50
   sword: {fileID: 3884314429422785120}
 --- !u!114 &1636167505
@@ -1732,8 +1732,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   canRotate: 1
   canMove: 1
+  qDamage: 35
+  wDamage: 50
+  eDamage: 25
+  rDamage: 90
+  abilityType: 0
   weaponCollider: {fileID: 0}
-  weaponDamage: 50
   inAnimation: 0
 --- !u!61 &3884314429422785151
 BoxCollider2D:

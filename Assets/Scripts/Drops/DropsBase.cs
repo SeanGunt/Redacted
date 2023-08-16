@@ -6,11 +6,12 @@ public class DropsBase : MonoBehaviour
 {
     [SerializeField] private float bobSpeed;
     [SerializeField] private float amplitude;
+    [SerializeField] private float vacuumSpeed;
     private float timeOffset;
+    private bool vacuuming;
     private Vector3 startPos;
     private GameObject player;
     private PlayerBase playerBase;
-    private bool vacuuming;
 
     private void Awake()
     {
@@ -26,7 +27,6 @@ public class DropsBase : MonoBehaviour
 
     private void OnDisable()
     {
-        StopCoroutine(VacuumToPlayer());
         vacuuming = false;
     }
     private void Update()
@@ -45,19 +45,17 @@ public class DropsBase : MonoBehaviour
     private void HandleVacuum()
     {
         float distanceToPlayer = Vector3.Distance(transform.position, player.transform.position);
-        Debug.Log(distanceToPlayer);
-        if (distanceToPlayer <= playerBase.pickupRange && !vacuuming)
+        if (distanceToPlayer <= playerBase.pickupRange)
         {
-            StartCoroutine(VacuumToPlayer());
+            vacuuming = true;
+        }
+
+        if (vacuuming)
+        {
+            transform.position = Vector3.Lerp(transform.position, player.transform.position, Time.deltaTime * vacuumSpeed);
         }
     }
 
-    private IEnumerator VacuumToPlayer()
-    {
-        vacuuming = true;
-        this.transform.position = Vector3.Lerp(this.transform.position, player.transform.position, Time.deltaTime);
-        yield return null;
-    }
     protected virtual void OnTriggerEnter2D(Collider2D other)
     {
 
