@@ -157,7 +157,6 @@ MonoBehaviour:
   - {fileID: 1994190393}
   - {fileID: 909727263}
   player: {fileID: 1636167497}
-  paused: 0
 --- !u!4 &45057044
 Transform:
   m_ObjectHideFlags: 0
@@ -2426,7 +2425,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pauseMenuCanvas: {fileID: 1174077200}
-  paused: 0
 --- !u!1001 &3884314429439730095
 PrefabInstance:
   m_ObjectHideFlags: 0

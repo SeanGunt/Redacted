@@ -100,6 +100,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bobSpeed: 3.5
   amplitude: 0.15
+  vacuumSpeed: 6
   expAmount: 10
 --- !u!61 &-3421176780615629067
 BoxCollider2D:

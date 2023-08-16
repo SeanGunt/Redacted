@@ -7,7 +7,6 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance {get; private set;}
     public GameObject[] poolHolders;
     [HideInInspector] public GameObject player;
-    [HideInInspector] public bool paused;
     private void Awake()
     {
         if (Instance == null)

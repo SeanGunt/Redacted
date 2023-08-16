@@ -10,6 +10,7 @@ public class SwordGuy : PlayerBase
     {
         if (playerInput.actions["QAttack"].triggered && !sword.inAnimation && qCooldown <= 0)
         {
+            sword.abilityType = WeaponBase.AbilityType.Q;
             sword.HandleSwordSwingAnim("Swing");
             StartCoroutine(HandleQCooldown());
         }
@@ -19,6 +20,7 @@ public class SwordGuy : PlayerBase
     {
         if (playerInput.actions["WAttack"].triggered && !sword.inAnimation && wCooldown <= 0)
         {
+            sword.abilityType = WeaponBase.AbilityType.W;
             sword.HandleSwordSwingAnim("Spin");
             StartCoroutine(HandleWCooldown());
         }
@@ -29,6 +31,7 @@ public class SwordGuy : PlayerBase
         if (!sword.inAnimation && eCooldown <= 0 && playerInput.actions["EAttack"].triggered)
         {
             state = State.idle;
+            sword.abilityType = WeaponBase.AbilityType.E;
             Vector3 posToDash = GetMousePosition();
             Vector3 direction = (posToDash - this.transform.position).normalized;
             HandleRotation(posToDash, this.transform);
@@ -42,6 +45,7 @@ public class SwordGuy : PlayerBase
     {
         if (!sword.inAnimation && rCooldown <= 0 && playerInput.actions["RAttack"].triggered)
         {
+            sword.abilityType = WeaponBase.AbilityType.R;
             Vector3 playerPosition = this.transform.position;
             GetEnemiesOnScreen();
             List<float> distances = CalculateDistances(playerPosition);
