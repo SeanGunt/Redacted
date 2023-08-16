@@ -60,6 +60,12 @@ public class EnemyMaster : MonoBehaviour, IDamagable
 
     protected virtual void Die()
     {
+        GameObject exp = ObjectPool.instance.GetPooledObject(ObjectPool.instance.prefabsToPool[1]);
+        if (exp != null)
+        {
+            exp.transform.position = this.transform.position;
+            exp.SetActive(true);
+        }
         Destroy(this.gameObject);
     }
     protected virtual void Movement()
