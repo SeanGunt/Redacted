@@ -15,6 +15,15 @@
                     "initialStateCheck": false
                 },
                 {
+                    "name": "LeftClickUI",
+                    "type": "PassThrough",
+                    "id": "7f14c3e5-460f-4f41-bb1f-badf9db1d184",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
                     "name": "RightClick",
                     "type": "Button",
                     "id": "12d65c98-d5fc-4f32-a86a-98137d46d445",
@@ -24,8 +33,17 @@
                     "initialStateCheck": false
                 },
                 {
+                    "name": "RightClickUI",
+                    "type": "PassThrough",
+                    "id": "9ad7f8a1-f4d9-4f72-b46b-6ee697e02aa0",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
                     "name": "PointerPosition",
-                    "type": "Value",
+                    "type": "PassThrough",
                     "id": "38867b15-d1c4-4b20-8729-cbacb7cfc6bb",
                     "expectedControlType": "Vector2",
                     "processors": "",
@@ -164,6 +182,28 @@
                     "processors": "",
                     "groups": "",
                     "action": "LeftClick",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "df56a735-118d-4896-834d-23220e7e29a1",
+                    "path": "<Mouse>/leftButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "LeftClickUI",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "b7b4cd0e-e772-4e1a-a100-784f17e18390",
+                    "path": "<Mouse>/rightButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "RightClickUI",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

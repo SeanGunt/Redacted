@@ -1183,6 +1183,7 @@ MonoBehaviour:
   wCooldownAmount: 5
   eCooldownAmount: 6
   rCooldownAmount: 20
+  pickupRange: 5
   health: 50
   sword: {fileID: 3884314429422785120}
 --- !u!114 &1636167505
@@ -1242,6 +1243,14 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: e74cbfc7-4744-442c-b431-1a161708eb69
     m_ActionName: KBM/Pause[/Keyboard/escape]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 7f14c3e5-460f-4f41-bb1f-badf9db1d184
+    m_ActionName: KBM/LeftClickUI[/Mouse/leftButton]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 9ad7f8a1-f4d9-4f72-b46b-6ee697e02aa0
+    m_ActionName: KBM/RightClickUI[/Mouse/rightButton]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: KBM

@@ -1,10 +1,58 @@
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class DropsBase : MonoBehaviour
 {
+    [SerializeField] private float bobSpeed;
+    [SerializeField] private float amplitude;
+    private float timeOffset;
+    private Vector3 startPos;
+    private GameObject player;
+    private PlayerBase playerBase;
+
+    private void Awake()
+    {
+        player = GameManager.Instance.player;
+        playerBase = player.GetComponent<PlayerBase>();
+    }
+
+    private void OnEnable()
+    {
+        startPos = transform.position;
+        timeOffset = Random.Range(0f, Mathf.PI * 2f);
+    }
+
+    private void OnDisable()
+    {
+        StopCoroutine(VacuumToPlayer());
+    }
+    private void Update()
+    {
+        HandleBobbing();
+        HandleVacuum();
+    }
+    private void HandleBobbing()
+    {
+        float yOffset = amplitude * Mathf.Sin(bobSpeed * (Time.time - timeOffset));
+        Vector3 newPos = startPos + new Vector3(0.0f, yOffset, 0.0f);
+        transform.position = newPos;
+    }
+
+    private void HandleVacuum()
+    {
+        float distanceToPlayer = Vector3.Distance(transform.position, player.transform.position);
+        if (distanceToPlayer <= playerBase.pickupRange)
+        {
+            StartCoroutine(VacuumToPlayer());
+        }
+    }
+
+    private IEnumerator VacuumToPlayer()
+    {
+        this.transform.position = Vector3.Lerp(this.transform.position, player.transform.position, Time.deltaTime);
+        yield return null;
+    }
     protected virtual void OnTriggerEnter2D(Collider2D other)
     {
 
