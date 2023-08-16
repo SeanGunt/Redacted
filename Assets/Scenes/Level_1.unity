@@ -310,7 +310,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -1330,7 +1330,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -2259,9 +2259,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 69cfeb556890dfd438edebe4f748a437, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  rockDensity: 90
+  grassFloor: 0.5
+  grassCeiling: 0.5
+  dirtFloor: 0.5
+  dirtCeiling: 0.5
+  waterFloor: 0.5
+  waterCeiling: 0.5
   tileVariants:
-  - {fileID: 11400000, guid: d41878707b4bd7e4d8db99806f9aeb68, type: 2}
-  - {fileID: 11400000, guid: 3897d66fb17e2a24186716c61f84f08a, type: 2}
+  - {fileID: 11400000, guid: 43d0e1bff34b7454991a93b0c5d86f12, type: 2}
+  - {fileID: 11400000, guid: 5cccb7b5925a75448b15861f7c829302, type: 2}
+  playerPos: {x: 0, y: 0, z: 0}
 --- !u!1 &1945219398
 GameObject:
   m_ObjectHideFlags: 0

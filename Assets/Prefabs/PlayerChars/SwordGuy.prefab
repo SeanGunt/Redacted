@@ -1183,7 +1183,7 @@ MonoBehaviour:
   wCooldownAmount: 5
   eCooldownAmount: 6
   rCooldownAmount: 20
-  pickupRange: 5
+  pickupRange: 2
   health: 50
   sword: {fileID: 3884314429422785120}
 --- !u!114 &1636167505

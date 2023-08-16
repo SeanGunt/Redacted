@@ -10,6 +10,7 @@ public class DropsBase : MonoBehaviour
     private Vector3 startPos;
     private GameObject player;
     private PlayerBase playerBase;
+    private bool vacuuming;
 
     private void Awake()
     {
@@ -26,6 +27,7 @@ public class DropsBase : MonoBehaviour
     private void OnDisable()
     {
         StopCoroutine(VacuumToPlayer());
+        vacuuming = false;
     }
     private void Update()
     {
@@ -34,6 +36,7 @@ public class DropsBase : MonoBehaviour
     }
     private void HandleBobbing()
     {
+        if (vacuuming) return;
         float yOffset = amplitude * Mathf.Sin(bobSpeed * (Time.time - timeOffset));
         Vector3 newPos = startPos + new Vector3(0.0f, yOffset, 0.0f);
         transform.position = newPos;
@@ -42,7 +45,8 @@ public class DropsBase : MonoBehaviour
     private void HandleVacuum()
     {
         float distanceToPlayer = Vector3.Distance(transform.position, player.transform.position);
-        if (distanceToPlayer <= playerBase.pickupRange)
+        Debug.Log(distanceToPlayer);
+        if (distanceToPlayer <= playerBase.pickupRange && !vacuuming)
         {
             StartCoroutine(VacuumToPlayer());
         }
@@ -50,6 +54,7 @@ public class DropsBase : MonoBehaviour
 
     private IEnumerator VacuumToPlayer()
     {
+        vacuuming = true;
         this.transform.position = Vector3.Lerp(this.transform.position, player.transform.position, Time.deltaTime);
         yield return null;
     }
