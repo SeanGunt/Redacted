@@ -6,12 +6,12 @@ public class WeaponBase : MonoBehaviour
 {
     [HideInInspector] public bool canRotate = true;
     [HideInInspector] public bool canMove = true;
+    [HideInInspector] public AbilityType abilityType;
     public float qDamage;
     public float wDamage;
     public float eDamage;
     public float rDamage;
     protected float damageToApply;
-    public AbilityType abilityType;
     public enum AbilityType
     {
         Q, W, E, R

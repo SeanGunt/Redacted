@@ -11,7 +11,7 @@ public class DropsBase : MonoBehaviour
     private bool vacuuming;
     private Vector3 startPos;
     private GameObject player;
-    private PlayerBase playerBase;
+    protected PlayerBase playerBase;
 
     private void Awake()
     {

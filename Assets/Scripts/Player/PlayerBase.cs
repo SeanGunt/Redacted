@@ -17,7 +17,9 @@ public class PlayerBase : MonoBehaviour
     [SerializeField] protected Image wImage;
     [SerializeField] protected Image eImage;
     [SerializeField] protected Image rImage;
-    [SerializeField] private TextMeshProUGUI curHealthNum;
+    [SerializeField] protected Image expBar;
+    [SerializeField] private TextMeshProUGUI curHealthNumText;
+    [SerializeField] private TextMeshProUGUI levelText;
     public Image healthBar;
     private Color imageCooldownColor = new Color(0.5f, 0.5f, 0.5f, 1.0f);
     private Color imageStartColor;
@@ -29,6 +31,11 @@ public class PlayerBase : MonoBehaviour
     [SerializeField] protected float qCooldownAmount, wCooldownAmount, eCooldownAmount, rCooldownAmount;
     [SerializeField] public float pickupRange;
     [HideInInspector] public float health;
+    //EXP VARS
+    [HideInInspector] public float exp = 0f;
+    protected float totalExp;
+    protected float expTillNextLevel = 100f;
+    protected int level = 1;
     protected float qCooldown = 0f, wCooldown = 0f, eCooldown = 0f, rCooldown = 0f;
 
     [Header("Other")]
@@ -53,6 +60,8 @@ public class PlayerBase : MonoBehaviour
     private void Update()
     {
         HandleHealth();
+        HandleExpBar();
+        HandleLevel();
         RightClick();
         HandleQAbility();
         HandleWAbility();
@@ -122,13 +131,30 @@ public class PlayerBase : MonoBehaviour
 
     private void HandleHealth()
     {
-        curHealthNum.text = health.ToString("n0");
+        curHealthNumText.text = health.ToString("n0");
         float ratio = 1 / baseHealth;
         healthBar.fillAmount = health * ratio;
         if (health < baseHealth)
         {
             health += healthRegen * Time.deltaTime;
         }
+    }
+
+    private void HandleLevel()
+    {
+        levelText.text = level.ToString();
+        if (exp >= expTillNextLevel)
+        {
+            level += 1;
+            exp = 0f;
+            expTillNextLevel += 200f;
+        }
+    }
+
+    private void HandleExpBar()
+    {
+        float ratio = 1 / expTillNextLevel;
+        expBar.fillAmount = exp * ratio;
     }
 
     protected virtual IEnumerator HandleQCooldown()
