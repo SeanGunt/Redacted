@@ -134,6 +134,7 @@ GameObject:
   - component: {fileID: 45057044}
   - component: {fileID: 45057043}
   - component: {fileID: 45057045}
+  - component: {fileID: 45057046}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -187,6 +188,20 @@ MonoBehaviour:
   prefabsToPool:
   - {fileID: 6995438670468304949, guid: beda4f50c42c5bc43b58563ba42a91d2, type: 3}
   - {fileID: 731891583094075925, guid: 77b2ebf051814284c8990542a60646df, type: 3}
+--- !u!114 &45057046
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 45057042}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4796a261667902b43abcbd5d29c3ec25, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  timer: 1200
+  timerText: {fileID: 1759601586}
 --- !u!1 &192914758
 GameObject:
   m_ObjectHideFlags: 0
@@ -1965,6 +1980,17 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1724406743}
   m_CullTransparentMesh: 1
+--- !u!114 &1759601586 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1759601586, guid: fc62ff03dc418b84ca43e39107de425a, type: 3}
+  m_PrefabInstance: {fileID: 3884314429439730095}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1838407191
 GameObject:
   m_ObjectHideFlags: 0

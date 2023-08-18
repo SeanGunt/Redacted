@@ -6,9 +6,10 @@ public class SwordGuy : PlayerBase
 {
     private List<Transform> enemies = new List<Transform>();
     [SerializeField] private Sword sword;
+
     protected override void HandleQAbility()
     {
-        if (playerInput.actions["QAttack"].triggered && !sword.inAnimation && qCooldown <= 0)
+        if (CanUseAbility("QAttack", sword.inAnimation, qCooldown))
         {
             sword.abilityType = WeaponBase.AbilityType.Q;
             sword.HandleSwordSwingAnim("Swing");
@@ -18,7 +19,7 @@ public class SwordGuy : PlayerBase
 
     protected override void HandleWAbility()
     {
-        if (playerInput.actions["WAttack"].triggered && !sword.inAnimation && wCooldown <= 0)
+        if (CanUseAbility("WAttack", sword.inAnimation, wCooldown))
         {
             sword.abilityType = WeaponBase.AbilityType.W;
             sword.HandleSwordSwingAnim("Spin");
@@ -28,13 +29,13 @@ public class SwordGuy : PlayerBase
 
     protected override void HandleEAbility()
     {
-        if (!sword.inAnimation && eCooldown <= 0 && playerInput.actions["EAttack"].triggered)
+        if (CanUseAbility("EAttack", sword.inAnimation, eCooldown))
         {
             state = State.idle;
             sword.abilityType = WeaponBase.AbilityType.E;
             Vector3 posToDash = GetMousePosition();
-            Vector3 direction = (posToDash - this.transform.position).normalized;
-            HandleRotation(posToDash, this.transform);
+            Vector3 direction = (posToDash - transform.position).normalized;
+            HandleRotation(posToDash, transform);
             rb.AddForce(direction * 25, ForceMode2D.Impulse);
             sword.HandleSwordSwingAnim("Dash");
             StartCoroutine(HandleECooldown());
@@ -43,10 +44,10 @@ public class SwordGuy : PlayerBase
 
     protected override void HandleRAbility()
     {
-        if (!sword.inAnimation && rCooldown <= 0 && playerInput.actions["RAttack"].triggered)
+        if (CanUseAbility("RAttack", sword.inAnimation, rCooldown))
         {
             sword.abilityType = WeaponBase.AbilityType.R;
-            Vector3 playerPosition = this.transform.position;
+            Vector3 playerPosition = transform.position;
             GetEnemiesOnScreen();
             List<float> distances = CalculateDistances(playerPosition);
             SortEnemies(distances);
@@ -134,7 +135,7 @@ public class SwordGuy : PlayerBase
                 }
             }
         }
-        sword.transform.SetParent(this.transform, false);
+        sword.transform.SetParent(transform, false);
         sword.inAnimation = false;
         sword.DisableWeaponCollider();
         sword.GetComponent<Animator>().enabled = true;

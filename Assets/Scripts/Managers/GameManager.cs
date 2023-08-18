@@ -15,7 +15,7 @@ public class GameManager : MonoBehaviour
         }
         else
         {
-            Destroy(this.gameObject);
+            Destroy(gameObject);
         }
         player = GameObject.FindGameObjectWithTag("Player");
     }

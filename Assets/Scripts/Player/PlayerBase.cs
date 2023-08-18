@@ -42,6 +42,7 @@ public class PlayerBase : MonoBehaviour
     protected State state;
     private Vector3 positionToMove;
     protected Rigidbody2D rb;
+    protected bool canUseAbility = true;
     protected enum State
     {
         idle, moving
@@ -102,6 +103,19 @@ public class PlayerBase : MonoBehaviour
 
     }
 
+    protected bool CanUseAbility(string attackName, bool inAnimation, float cooldown)
+    {
+        if (playerInput.actions[attackName].triggered && !inAnimation && cooldown <= 0)
+        {
+            canUseAbility = true;
+        }
+        else
+        {
+            canUseAbility = false;
+        }
+        return canUseAbility;
+    }
+
     private void RightClick()
     {
         if (playerInput.actions["RightClick"].triggered)
@@ -114,6 +128,14 @@ public class PlayerBase : MonoBehaviour
             movePointReticle.CreateReticle(positionToMove);
             state = State.moving;
         }
+    }
+
+    public Vector3 GetMousePosition()
+    {
+       Vector3 mousePos = playerInput.actions["PointerPosition"].ReadValue<Vector2>();
+       mousePos = Camera.main.ScreenToWorldPoint(mousePos);
+       mousePos.z = 0;
+       return mousePos;
     }
  
     protected void HandleRotation(Vector3 pos, Transform thingToRotate)
@@ -211,13 +233,5 @@ public class PlayerBase : MonoBehaviour
             yield return null;
         }
         rImage.color = imageStartColor;
-    }
-
-    public Vector3 GetMousePosition()
-    {
-       Vector3 mousePos = playerInput.actions["PointerPosition"].ReadValue<Vector2>();
-       mousePos = Camera.main.ScreenToWorldPoint(mousePos);
-       mousePos.z = 0;
-       return mousePos;
     }
 }
