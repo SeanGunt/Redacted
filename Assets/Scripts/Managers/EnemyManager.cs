@@ -42,7 +42,7 @@ public class EnemyManager : MonoBehaviour
         }
         GameObject newEnemy = Instantiate(enemy);
         newEnemy.transform.position = spawnPosition + GameManager.Instance.player.transform.position;
-        newEnemy.transform.SetParent(this.transform);
+        newEnemy.transform.SetParent(transform);
     }
 
     private Vector3 SpawnLeft()

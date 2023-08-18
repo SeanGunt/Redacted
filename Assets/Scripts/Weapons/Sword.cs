@@ -10,9 +10,9 @@ public class Sword : WeaponBase
     [HideInInspector] public bool inAnimation; 
     private void Awake()
     {
-        animator = this.GetComponent<Animator>();
-        weaponCollider = this.GetComponent<BoxCollider2D>();
-        trailRenderer = this.GetComponentInChildren<TrailRenderer>();
+        animator = GetComponent<Animator>();
+        weaponCollider = GetComponent<BoxCollider2D>();
+        trailRenderer = GetComponentInChildren<TrailRenderer>();
         weaponCollider.enabled = false;
         trailRenderer.emitting = false;
     }
