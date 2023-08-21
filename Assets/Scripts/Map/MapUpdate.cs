@@ -1,28 +1,8 @@
 using System;
+using System.Numerics;
 using UnityEngine;
+using UnityEngine.InputSystem.LowLevel;
 using UnityEngine.Tilemaps;
-
-enum LiquidTiles
-{
-    varA = 0
-}
-
-enum GroundTiles
-{
-    varA = 1,
-    varB,
-    varC,
-    botEdge,
-    leftEdge,
-    corner
-}
-
-enum PathTiles
-{
-    varA = 7,
-    varB,
-    varC
-}
 
 public class MapUpdate : MonoBehaviour
 {
@@ -33,15 +13,18 @@ public class MapUpdate : MonoBehaviour
     [SerializeField] public float liquidMin, liquidMax;
     [Range(-0.2f, 1.2f)]
     [SerializeField] public float groundMin, groundMax;
-    [SerializeField] public bool useOffset;
+    [SerializeField] public int variantTypeProbabilityB, variantTypeProbabilityC;
+    [SerializeField] public bool useCustomOffset;
     [SerializeField] public Vector2Int offset;
+    [SerializeField] public bool collisionLayerOn;
 
-    private Tilemap baseLayer, collisionLayer;
-    private int[,] tileTypes;
+    private Tilemap baseLayer, collisionLayer, roadLayer;
+    private float[,] noiseMap;
+    private string[,] map;
 
     private void Awake()
     {   
-        if (!useOffset)
+        if (!useCustomOffset)
         {
             offset.x = mapDimensions.x/2;
             offset.y = mapDimensions.y/2;   
@@ -49,44 +32,20 @@ public class MapUpdate : MonoBehaviour
 
         baseLayer = CreateTilemap("base");
         collisionLayer = CreateTilemap("collision");
-        collisionLayer.gameObject.AddComponent<TilemapCollider2D>();
+        roadLayer = CreateTilemap("road");
 
-        int rand = UnityEngine.Random.Range(0, 10000);
-        tileTypes = new int[mapDimensions.x, mapDimensions.y];
+        if (collisionLayerOn)
+        {
+            collisionLayer.gameObject.AddComponent<TilemapCollider2D>();
+        }
         
-        baseLayer.ClearAllTiles();
-        collisionLayer.ClearAllTiles();
+        GeneratePerlinGrid();
 
-        // Get x by y grid of tiles from perlin noise
-        for (int y = 0; y < mapDimensions.y; y++)
-        {
-            for (int x = 0; x < mapDimensions.x; x++)
-            {
-                float sampleX = x / noiseScale;
-                float sampleY = y / noiseScale;
-                
-                float perlinValue = Mathf.PerlinNoise(rand + sampleX, rand + sampleY);
+        GenerateMap();
 
-                int type = (int)GroundTiles.varA;
-                if (x != 0 && x != mapDimensions.x-1 && y != 0 && y != mapDimensions.y-1)
-                    type = ChooseType(perlinValue, x, y);
+        PlaceTiles();
 
-                tileTypes[x, y] = type;
-            }
-        }
-
-        // Place base tiles
-        for (int y = 0; y < mapDimensions.y; y++)
-        {
-            for (int x = 0; x < mapDimensions.x; x++)
-            {
-                PlaceTile(tileTypes[x, y], new Vector3Int(x-offset.x, y-offset.y, 0));
-            }
-        }
-
-        // Place roads
-
-        // Place prefab scenery
+        GenerateRoads();
     }
 
     Tilemap CreateTilemap(string tilemapName)
@@ -100,69 +59,87 @@ public class MapUpdate : MonoBehaviour
         return tilemap;
     }
 
-    private void PlaceTile(int tileType, Vector3Int pos)
+    private void PlaceTiles()
     {
-        if (tileType == (int)LiquidTiles.varA)
+        for (int x = 0; x < mapDimensions.x; x++)
         {
-            collisionLayer.SetTile(pos, Tiles[tileType]);
+            for (int y = 0; y < mapDimensions.y; y++)
+            {
+                if (map[x,y] == "liquid")
+                {
+                    collisionLayer.SetTile(new Vector3Int(x-offset.x, y-offset.y, 0), Tiles[0]);
+                }
+                else
+                {
+                    baseLayer.SetTile(new Vector3Int(x-offset.x, y-offset.y, 0), Tiles[1]);
+                }
+            }
         }
-
-        baseLayer.SetTile(pos, Tiles[tileType]);
     }
 
-    private int ChooseType(float perlinValue, int Xindex, int Yindex)
+    private void GeneratePerlinGrid()
     {
-        int tileType = 0;
-        if (perlinValue > liquidMin && perlinValue < liquidMax)
-            tileType = ChooseVariantType((int)LiquidTiles.varA, Xindex, Yindex);
-        if (perlinValue > groundMin && perlinValue < groundMax)
-            tileType = ChooseVariantType((int)GroundTiles.varA, Xindex, Yindex);
-
-        return tileType;
+        noiseMap = new float[mapDimensions.x, mapDimensions.y];
+        int rng = UnityEngine.Random.Range(0, 10000);
+        for (int x = 0; x < mapDimensions.x; x++)
+        {
+            for (int y = 0; y < mapDimensions.y; y++)
+            {
+                float sampleX = x / noiseScale;
+                float sampleY = y / noiseScale;
+                
+                float perlinValue = Mathf.PerlinNoise(rng + sampleX, rng + sampleY);
+                noiseMap[x, y] = perlinValue;
+            }
+        }
     }
 
-    private int ChooseVariantType(int tileType, int Xindex, int Yindex)
+    private void GenerateMap()
     {
-        int rand = UnityEngine.Random.Range(0, 100);
-        switch (tileType)
+        map = new string[mapDimensions.x, mapDimensions.y];
+        for (int x = 0; x < mapDimensions.x; x++)
         {
-            case (int)GroundTiles.varA:
-                // choose a variant if random number is right
-                if (rand > 50)
-                {
-                    return (int)GroundTiles.varB;
-                }
-                else if (rand < 30)
-                {
-                    return (int)GroundTiles.varC;
-                }
-
-                // override variant decision with edge blocks if water is near
-                if (tileTypes[Xindex-1, Yindex] == (int)LiquidTiles.varA)
-                {
-                    return (int)GroundTiles.leftEdge;
-                }
-                else if (tileTypes[Xindex, Yindex-1] == (int)LiquidTiles.varA)
-                {
-                    return (int)GroundTiles.botEdge;
-                }
-                else if (tileTypes[Xindex-1, Yindex] == (int)GroundTiles.botEdge &&
-                    tileTypes[Xindex, Yindex-1] == (int)GroundTiles.leftEdge)
-                {
-                    return (int)GroundTiles.corner;
-                }
-
-                break;
-            case (int)PathTiles.varA:
-                // path tile decisions here
-                break;
-            case (int)LiquidTiles.varA:
-                // liquid tile decisions here
-                return (int)LiquidTiles.varA;
-            default:
-                break;
+            for (int y = 0; y < mapDimensions.y; y++)
+            {
+                map[x,y] = IsLiquidTile(x,y) ? "liquid" : "ground";
+            }
         }
-        return (int)GroundTiles.varA;
+    }
+
+    private void GenerateRoads()
+    {
+        float amplitude = 20f;
+        float frequency = 2.0f;
+        float phase = 0f;
+
+        for (int x = 0; x < mapDimensions.x; x++)
+        {
+            float angle = x * (2 * Mathf.PI) / mapDimensions.x;
+            float y = amplitude * Mathf.Sin(frequency * angle + phase);
+
+            roadLayer.SetTile(new Vector3Int(x-offset.x, (int)y, 0), Tiles[7]);
+            roadLayer.SetTile(new Vector3Int(x-offset.x, (int)y+1, 0), Tiles[7]);
+            roadLayer.SetTile(new Vector3Int(x-offset.x, (int)y-1, 0), Tiles[7]);
+        }
+
+        for (int y = 0; y < mapDimensions.y; y++)
+        {
+            float angle = y * (2 * Mathf.PI) / mapDimensions.y;
+            float x = amplitude * Mathf.Sin(frequency * angle + phase);
+
+            roadLayer.SetTile(new Vector3Int((int)x, y-offset.y, 0), Tiles[7]);
+            roadLayer.SetTile(new Vector3Int((int)x+1, y-offset.y, 0), Tiles[7]);
+            roadLayer.SetTile(new Vector3Int((int)x-1, y-offset.y, 0), Tiles[7]);   
+        }
+    }
+
+    private bool IsLiquidTile(int x, int y)
+    {
+        if (noiseMap[x,y] > liquidMin && noiseMap[x,y] < liquidMax)
+        {
+            return true;
+        }
+        return false;
     }
 }
 
