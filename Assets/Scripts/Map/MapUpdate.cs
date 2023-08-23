@@ -1,11 +1,28 @@
 using System;
-using System.Numerics;
+using System.ComponentModel;
+using System.Data.Common;
+using System.Xml.Linq;
+using TreeEditor;
 using UnityEngine;
-using UnityEngine.InputSystem.LowLevel;
 using UnityEngine.Tilemaps;
 
 public class MapUpdate : MonoBehaviour
 {
+    // for this to work, tiles must be placed correctly in the inspector
+    enum Types
+    {
+        l = 0,    // liquid
+        g_c_a,    // ground-center-variantA
+        g_c_b,    // ground-center-varaintB
+        g_c_c,    // ground-genter-variantC
+        g_b_e,    // ground-bot-edge
+        g_l_e,    // ground-left-edge
+        g_b_l_c,  // ground-bot-left-corner
+        p_a,      // pathway-variantA
+        p_b,      // pathway-variantB
+        p_c       // pathway-variantC
+    }
+
     [SerializeField] public TileBase[] Tiles;
     [SerializeField] public float noiseScale;
     [SerializeField] public Vector2Int mapDimensions;
@@ -17,10 +34,10 @@ public class MapUpdate : MonoBehaviour
     [SerializeField] public bool useCustomOffset;
     [SerializeField] public Vector2Int offset;
     [SerializeField] public bool collisionLayerOn;
+    [SerializeField] public int numRoads;
 
     private Tilemap baseLayer, collisionLayer, roadLayer;
-    private float[,] noiseMap;
-    private string[,] map;
+    private int[,] types;
 
     private void Awake()
     {   
@@ -41,11 +58,62 @@ public class MapUpdate : MonoBehaviour
         
         GeneratePerlinGrid();
 
-        GenerateMap();
-
-        PlaceTiles();
+        PerlinToTile();
 
         GenerateRoads();
+
+        PlaceTiles();
+    }
+
+    void PerlinToTile()
+    {
+        int botEdge, leftEdge, refinedType;
+        // topEdge, rightEdge, thisTile,
+        for (int x = 0; x < mapDimensions.x; x++)
+        {
+            for (int y = 0; y < mapDimensions.y; y++)
+            {
+                if (x == 0 || x == mapDimensions.x || y == 0 || y == mapDimensions.y
+                    || types[x, y] == (int)Types.l)
+                {
+                    continue;
+                }
+
+                botEdge = types[x, y-1];
+                //topEdge = types[x, y+1];
+                leftEdge = types[x-1, y];
+                //rightEdge = types[x+1, y];
+                //thisTile = types[x, y];
+                refinedType = (int)Types.g_c_a;
+
+                // choose a ground variant
+                int randomizer = UnityEngine.Random.Range(0, 100);
+                if (randomizer < variantTypeProbabilityB)
+                {
+                    refinedType = (int)Types.g_c_b;
+                }
+                else if (randomizer < variantTypeProbabilityC)
+                {
+                    refinedType = (int)Types.g_c_c;
+                }
+
+                // now choose an edge case
+                if (botEdge == (int)Types.l)
+                {
+                    refinedType = (int)Types.g_b_e;
+                }
+                else if (leftEdge == (int)Types.l)
+                {
+                    refinedType = (int)Types.g_l_e;
+                }
+                else if (leftEdge == (int)Types.g_b_e)
+                {
+                    refinedType = (int)Types.g_b_l_c;
+                }
+
+                types[x, y] = refinedType;
+            }
+        }
     }
 
     Tilemap CreateTilemap(string tilemapName)
@@ -65,13 +133,13 @@ public class MapUpdate : MonoBehaviour
         {
             for (int y = 0; y < mapDimensions.y; y++)
             {
-                if (map[x,y] == "liquid")
+                if (types[x,y] == (int)Types.l)
                 {
-                    collisionLayer.SetTile(new Vector3Int(x-offset.x, y-offset.y, 0), Tiles[0]);
+                    collisionLayer.SetTile(new Vector3Int(x-offset.x, y-offset.y, 0), Tiles[types[x,y]]);
                 }
                 else
                 {
-                    baseLayer.SetTile(new Vector3Int(x-offset.x, y-offset.y, 0), Tiles[1]);
+                    baseLayer.SetTile(new Vector3Int(x-offset.x, y-offset.y, 0), Tiles[types[x,y]]);
                 }
             }
         }
@@ -79,7 +147,7 @@ public class MapUpdate : MonoBehaviour
 
     private void GeneratePerlinGrid()
     {
-        noiseMap = new float[mapDimensions.x, mapDimensions.y];
+        types = new int[mapDimensions.x, mapDimensions.y];
         int rng = UnityEngine.Random.Range(0, 10000);
         for (int x = 0; x < mapDimensions.x; x++)
         {
@@ -89,19 +157,15 @@ public class MapUpdate : MonoBehaviour
                 float sampleY = y / noiseScale;
                 
                 float perlinValue = Mathf.PerlinNoise(rng + sampleX, rng + sampleY);
-                noiseMap[x, y] = perlinValue;
-            }
-        }
-    }
 
-    private void GenerateMap()
-    {
-        map = new string[mapDimensions.x, mapDimensions.y];
-        for (int x = 0; x < mapDimensions.x; x++)
-        {
-            for (int y = 0; y < mapDimensions.y; y++)
-            {
-                map[x,y] = IsLiquidTile(x,y) ? "liquid" : "ground";
+                if (perlinValue > liquidMin && perlinValue < liquidMax)
+                {
+                    types[x, y] = (int)Types.l;
+                }
+                else
+                {
+                    types[x, y] = (int)Types.g_c_a; 
+                }
             }
         }
     }
@@ -112,34 +176,20 @@ public class MapUpdate : MonoBehaviour
         float frequency = 2.0f;
         float phase = 0f;
 
-        for (int x = 0; x < mapDimensions.x; x++)
-        {
-            float angle = x * (2 * Mathf.PI) / mapDimensions.x;
-            float y = amplitude * Mathf.Sin(frequency * angle + phase);
-
-            roadLayer.SetTile(new Vector3Int(x-offset.x, (int)y, 0), Tiles[7]);
-            roadLayer.SetTile(new Vector3Int(x-offset.x, (int)y+1, 0), Tiles[7]);
-            roadLayer.SetTile(new Vector3Int(x-offset.x, (int)y-1, 0), Tiles[7]);
-        }
-
-        for (int y = 0; y < mapDimensions.y; y++)
+        for (int y = 10; y < mapDimensions.y-10; y++)
         {
             float angle = y * (2 * Mathf.PI) / mapDimensions.y;
             float x = amplitude * Mathf.Sin(frequency * angle + phase);
+            
+            Debug.Log((int)x);
 
-            roadLayer.SetTile(new Vector3Int((int)x, y-offset.y, 0), Tiles[7]);
-            roadLayer.SetTile(new Vector3Int((int)x+1, y-offset.y, 0), Tiles[7]);
-            roadLayer.SetTile(new Vector3Int((int)x-1, y-offset.y, 0), Tiles[7]);   
+            types[(int)x+250, y-1] = (int)Types.p_a;
+            types[(int)x+250, y] = (int)Types.p_a;
+            types[(int)x+250, y+1] = (int)Types.p_a;
+            types[(int)x+250, y+2] = (int)Types.p_a;
+            types[(int)x+250, y+3] = (int)Types.p_a;  
         }
-    }
-
-    private bool IsLiquidTile(int x, int y)
-    {
-        if (noiseMap[x,y] > liquidMin && noiseMap[x,y] < liquidMax)
-        {
-            return true;
-        }
-        return false;
+        
     }
 }
 
