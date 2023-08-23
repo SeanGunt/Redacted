@@ -268,7 +268,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &238841139
 Transform:
   m_ObjectHideFlags: 0
@@ -976,7 +976,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &845550101
 Transform:
   m_ObjectHideFlags: 0
@@ -1288,7 +1288,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1321441908
 Transform:
   m_ObjectHideFlags: 0
@@ -2284,17 +2284,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 69cfeb556890dfd438edebe4f748a437, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rockDensity: 90
-  grassFloor: 0.5
-  grassCeiling: 0.5
-  dirtFloor: 0.5
-  dirtCeiling: 0.5
-  waterFloor: 0.5
-  waterCeiling: 0.5
-  tileVariants:
-  - {fileID: 11400000, guid: 43d0e1bff34b7454991a93b0c5d86f12, type: 2}
-  - {fileID: 11400000, guid: 5cccb7b5925a75448b15861f7c829302, type: 2}
-  playerPos: {x: 0, y: 0, z: 0}
+  Tiles:
+  - {fileID: 11400000, guid: 65ff12fd0286c2a4185de869d47cf7ab, type: 2}
+  - {fileID: 11400000, guid: 498bad8fac02f10489a3633204dccb27, type: 2}
+  - {fileID: 11400000, guid: cef2cd7cacd07914ab0e42c84356c698, type: 2}
+  - {fileID: 11400000, guid: 78ee0bdc85002514ebaf59b4a270b5ef, type: 2}
+  - {fileID: 11400000, guid: d7dcc9be876781c4d8a01cfb16a5ed60, type: 2}
+  - {fileID: 11400000, guid: db6083478a669cf42ac8e5ad575a0e8a, type: 2}
+  - {fileID: 11400000, guid: c1f366f5e10dc454b80e4ba3489e074b, type: 2}
+  - {fileID: 11400000, guid: e8423b20db10d7e489180289b468e979, type: 2}
+  - {fileID: 11400000, guid: 5a1aff0e0687a304081dcde95736b7bc, type: 2}
+  - {fileID: 11400000, guid: 339038a53475b014cb206c658d6d397b, type: 2}
+  noiseScale: 20
+  mapDimensions: {x: 500, y: 500}
+  liquidMin: -0.2
+  liquidMax: 0.35
+  groundMin: 0.35
+  groundMax: 1.2
+  variantTypeProbabilityB: 20
+  variantTypeProbabilityC: 20
+  useCustomOffset: 0
+  offset: {x: 0, y: 0}
+  collisionLayerOn: 0
 --- !u!1 &1945219398
 GameObject:
   m_ObjectHideFlags: 0
