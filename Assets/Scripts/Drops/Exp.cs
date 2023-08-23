@@ -5,18 +5,19 @@ using UnityEngine;
 public class Exp : DropsBase
 {
     [SerializeField] private float expAmount;
-    
+    private ExperienceManager experienceManager;
+
+    protected override void Start()
+    {
+        experienceManager = player.GetComponent<ExperienceManager>();
+    }
+
     protected override void OnTriggerEnter2D(Collider2D other)
     {
         if (other.gameObject == GameManager.Instance.player)
         {
-            HandleExperienceGain();
+            experienceManager.IncreaseExperience(expAmount);
             gameObject.SetActive(false);
         }
-    }
-
-    private void HandleExperienceGain()
-    {
-        playerBase.exp += expAmount;
     }
 }
