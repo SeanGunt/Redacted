@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class DropsBase : MonoBehaviour
@@ -10,8 +11,9 @@ public class DropsBase : MonoBehaviour
     private float timeOffset;
     private bool vacuuming;
     private Vector3 startPos;
-    private GameObject player;
+    protected GameObject player;
     protected PlayerBase playerBase;
+
 
     private void Awake()
     {
@@ -28,6 +30,11 @@ public class DropsBase : MonoBehaviour
     private void OnDisable()
     {
         vacuuming = false;
+    }
+
+    protected virtual void Start()
+    {
+
     }
     private void Update()
     {

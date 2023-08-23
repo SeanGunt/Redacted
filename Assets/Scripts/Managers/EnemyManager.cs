@@ -18,8 +18,6 @@ public class EnemyManager : MonoBehaviour
             timer = spawnTimer;
         }
     }
-    /* When checking for position to spawn enemy, we must decide if x = 0, y = (-5.6 - 5.6) and if y = 0, x = (-10, 10)
-    We do not want the enemy spawning on screen, they must spawn off screen*/
     private void SpawnEnemy()
     {
         int spawnArea = Random.Range(0,4);

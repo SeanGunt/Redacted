@@ -2306,6 +2306,7 @@ MonoBehaviour:
   useCustomOffset: 0
   offset: {x: 0, y: 0}
   collisionLayerOn: 0
+  numRoads: 0
 --- !u!1 &1945219398
 GameObject:
   m_ObjectHideFlags: 0

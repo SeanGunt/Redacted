@@ -397,7 +397,7 @@ GameObject:
   - component: {fileID: 1480769910}
   - component: {fileID: 1480769909}
   m_Layer: 5
-  m_Name: HealthUI
+  m_Name: HealthText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1053,7 +1053,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 83.43015, y: 74.04}
+  m_AnchoredPosition: {x: 86, y: 0}
   m_SizeDelta: {x: 194.9396, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3884314428567572625
@@ -1188,7 +1188,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 74.742966, y: 74.04}
+  m_AnchoredPosition: {x: 77.2, y: 0}
   m_SizeDelta: {x: 201.9141, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3884314428784118248
@@ -1298,10 +1298,12 @@ GameObject:
   m_Component:
   - component: {fileID: 3884314428910866148}
   - component: {fileID: 3884314428910866149}
+  - component: {fileID: 3884314428910866175}
+  - component: {fileID: 4024712692425742683}
+  - component: {fileID: 3276744826110593063}
   - component: {fileID: 3884314428910866146}
   - component: {fileID: 3884314428910866145}
   - component: {fileID: 3884314428910866144}
-  - component: {fileID: 3884314428910866175}
   - component: {fileID: 1636167505}
   m_Layer: 0
   m_Name: SwordGuy
@@ -1379,6 +1381,62 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &3884314428910866175
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3884314428910866150}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bf0fd919e1db2624cab9134b5cf40955, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 3.5
+  baseHealth: 500
+  healthRegen: 1
+  qCooldownAmount: 2
+  wCooldownAmount: 5
+  eCooldownAmount: 6
+  rCooldownAmount: 20
+  pickupRange: 1.5
+  health: 50
+  sword: {fileID: 3884314429422785120}
+--- !u!114 &4024712692425742683
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3884314428910866150}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ed293f165ff36cc4bbf72bb0773b99a7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  qImage: {fileID: 3884314430283994006}
+  wImage: {fileID: 3884314429188966789}
+  eImage: {fileID: 3884314430404688485}
+  rImage: {fileID: 3884314429084726792}
+  expBar: {fileID: 1276043093}
+  curHealthNumText: {fileID: 1480769909}
+  levelText: {fileID: 1705868100}
+  healthBar: {fileID: 1177798341}
+  imageCooldownColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  imageStartColor: {r: 0, g: 0, b: 0, a: 0}
+--- !u!114 &3276744826110593063
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3884314428910866150}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8a8605c8ff4760e43b31325d422e3bf4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &3884314428910866146
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1428,38 +1486,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 1
   m_Constraints: 4
---- !u!114 &3884314428910866175
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3884314428910866150}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bf0fd919e1db2624cab9134b5cf40955, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  playerInput: {fileID: 0}
-  qImage: {fileID: 3884314430283994006}
-  wImage: {fileID: 3884314429188966789}
-  eImage: {fileID: 3884314430404688485}
-  rImage: {fileID: 3884314429084726792}
-  expBar: {fileID: 1276043093}
-  curHealthNumText: {fileID: 1480769909}
-  levelText: {fileID: 1705868100}
-  healthBar: {fileID: 1177798341}
-  speed: 3.5
-  baseHealth: 500
-  healthRegen: 1
-  qCooldownAmount: 2
-  wCooldownAmount: 5
-  eCooldownAmount: 6
-  rCooldownAmount: 20
-  pickupRange: 1.5
-  health: 50
-  exp: 0
-  sword: {fileID: 3884314429422785120}
 --- !u!114 &1636167505
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2250,7 +2276,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 82, y: 74.04}
+  m_AnchoredPosition: {x: 83.2, y: 0}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3884314429853172221
@@ -2525,7 +2551,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 85.44, y: 74.04}
+  m_AnchoredPosition: {x: 86, y: 0}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3884314430087178765

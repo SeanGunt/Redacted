@@ -1,28 +1,16 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 using UnityEngine.InputSystem;
-using TMPro;
 
 public class PlayerBase : MonoBehaviour
 {
     [Header("Classes")]
-    [HideInInspector] public PlayerInput playerInput;
+    private PlayerInput playerInput;
     private MovePointReticle movePointReticle;
+    private ExperienceManager experienceManager;
     protected WeaponBase weaponBase;
-
-    [Header("UI")]
-    [SerializeField] protected Image qImage;
-    [SerializeField] protected Image wImage;
-    [SerializeField] protected Image eImage;
-    [SerializeField] protected Image rImage;
-    [SerializeField] protected Image expBar;
-    [SerializeField] private TextMeshProUGUI curHealthNumText;
-    [SerializeField] private TextMeshProUGUI levelText;
-    public Image healthBar;
-    private Color imageCooldownColor = new Color(0.5f, 0.5f, 0.5f, 1.0f);
-    private Color imageStartColor;
+    protected PlayerUI playerUI;
 
     [Header("Stats")]
     [SerializeField] public float speed;
@@ -31,11 +19,6 @@ public class PlayerBase : MonoBehaviour
     [SerializeField] protected float qCooldownAmount, wCooldownAmount, eCooldownAmount, rCooldownAmount;
     [SerializeField] public float pickupRange;
     [HideInInspector] public float health;
-    //EXP VARS
-    [HideInInspector] public float exp = 0f;
-    protected float totalExp;
-    protected float expTillNextLevel = 100f;
-    protected int level = 1;
     protected float qCooldown = 0f, wCooldown = 0f, eCooldown = 0f, rCooldown = 0f;
 
     [Header("Other")]
@@ -53,16 +36,15 @@ public class PlayerBase : MonoBehaviour
         movePointReticle = GetComponent<MovePointReticle>();
         weaponBase = GetComponentInChildren<WeaponBase>();
         playerInput = GetComponent<PlayerInput>();
+        playerUI = GetComponent<PlayerUI>();
+        experienceManager = GetComponent<ExperienceManager>();
         rb = GetComponent<Rigidbody2D>();
-        imageStartColor = qImage.color;
         health = baseHealth;
         state = State.idle;
     }
     private void Update()
     {
         HandleHealth();
-        HandleExpBar();
-        HandleLevel();
         RightClick();
         HandleQAbility();
         HandleWAbility();
@@ -153,85 +135,68 @@ public class PlayerBase : MonoBehaviour
 
     private void HandleHealth()
     {
-        curHealthNumText.text = health.ToString("n0");
+        playerUI.curHealthNumText.text = health.ToString("n0");
         float ratio = 1 / baseHealth;
-        healthBar.fillAmount = health * ratio;
+        playerUI.healthBar.fillAmount = health * ratio;
         if (health < baseHealth)
         {
             health += healthRegen * Time.deltaTime;
         }
     }
 
-    private void HandleLevel()
-    {
-        levelText.text = level.ToString();
-        if (exp >= expTillNextLevel)
-        {
-            level += 1;
-            exp = 0f;
-            expTillNextLevel += 200f;
-        }
-    }
-
-    private void HandleExpBar()
-    {
-        float ratio = 1 / expTillNextLevel;
-        expBar.fillAmount = exp * ratio;
-    }
-
     protected virtual IEnumerator HandleQCooldown()
     {
         qCooldown = qCooldownAmount;
-        qImage.color = imageCooldownColor;
-        qImage.fillAmount = 0f;
+        playerUI.qImage.color = playerUI.imageCooldownColor;
+        playerUI.qImage.fillAmount = 0f;
         while(qCooldown >= 0)
         {
             qCooldown -= Time.deltaTime;
-            qImage.fillAmount += Time.deltaTime / qCooldownAmount;
+            playerUI.qImage.fillAmount += Time.deltaTime / qCooldownAmount;
             yield return null;
         }
-        qImage.color = imageStartColor;
+        playerUI.qImage.color = playerUI.imageStartColor;
     }
 
     protected virtual IEnumerator HandleWCooldown()
     {
         wCooldown = wCooldownAmount;
-        wImage.color = imageCooldownColor;
-        wImage.fillAmount = 0f;
+        playerUI.wImage.color = playerUI.imageCooldownColor;
+        playerUI.wImage.fillAmount = 0f;
         while(wCooldown >= 0)
         {
             wCooldown -= Time.deltaTime;
-            wImage.fillAmount += Time.deltaTime / wCooldownAmount;
+            playerUI.wImage.fillAmount += Time.deltaTime / wCooldownAmount;
             yield return null;
         }
-        wImage.color = imageStartColor;
+        playerUI.wImage.color = playerUI.imageStartColor;
     }
 
     protected virtual IEnumerator HandleECooldown()
     {
         eCooldown = eCooldownAmount;
-        eImage.color = imageCooldownColor;
-        eImage.fillAmount = 0f;
+        playerUI.eImage.color = playerUI.imageCooldownColor;
+        playerUI.eImage.fillAmount = 0f;
         while(eCooldown >= 0)
         {
             eCooldown -= Time.deltaTime;
-            eImage.fillAmount += Time.deltaTime / eCooldownAmount;
+            playerUI.eImage.fillAmount += Time.deltaTime / eCooldownAmount;
             yield return null;
         }
-        eImage.color = imageStartColor;
+        playerUI.eImage.color = playerUI.imageStartColor;
     }
 
     protected virtual IEnumerator HandleRCooldown()
     {
         rCooldown = rCooldownAmount;
-        rImage.color = imageCooldownColor;
-        rImage.fillAmount = 0f;
+        playerUI.rImage.color = playerUI.imageCooldownColor;
+        playerUI.rImage.fillAmount = 0f;
         while(rCooldown >= 0)
         {
             rCooldown -= Time.deltaTime;
-            rImage.fillAmount += Time.deltaTime / rCooldownAmount;
+            playerUI.rImage.fillAmount += Time.deltaTime / rCooldownAmount;
             yield return null;
         }
-        rImage.color = imageStartColor;
+        playerUI.rImage.color = playerUI.imageStartColor;
     }
 }
