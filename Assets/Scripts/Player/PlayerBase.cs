@@ -10,7 +10,7 @@ public class PlayerBase : MonoBehaviour
     private MovePointReticle movePointReticle;
     private ExperienceManager experienceManager;
     protected WeaponBase weaponBase;
-    protected PlayerUI playerUI;
+    private PlayerUI playerUI;
 
     [Header("Stats")]
     [SerializeField] public float speed;
@@ -19,6 +19,10 @@ public class PlayerBase : MonoBehaviour
     [SerializeField] protected float qCooldownAmount, wCooldownAmount, eCooldownAmount, rCooldownAmount;
     [SerializeField] public float pickupRange;
     [HideInInspector] public float health;
+    [SerializeField] public float physicalDamage;
+    [SerializeField] public float magicalDamage;
+    [SerializeField] public float physicalResistance;
+    [SerializeField] public float magicalResistance;
     protected float qCooldown = 0f, wCooldown = 0f, eCooldown = 0f, rCooldown = 0f;
 
     [Header("Other")]
@@ -45,6 +49,7 @@ public class PlayerBase : MonoBehaviour
     private void Update()
     {
         HandleHealth();
+        HandleStatsUI();
         RightClick();
         HandleQAbility();
         HandleWAbility();
@@ -142,6 +147,14 @@ public class PlayerBase : MonoBehaviour
         {
             health += healthRegen * Time.deltaTime;
         }
+    }
+
+    private void HandleStatsUI()
+    {
+        playerUI.physicalDamageText.text = "Phys: " + physicalDamage.ToString();
+        playerUI.magicalDamageText.text = "Mag: " + magicalDamage.ToString();
+        playerUI.physicalResistanceText.text = "Phys Res: " + physicalResistance.ToString();
+        playerUI.magicalResistanceText.text = "Mag Res: " + magicalResistance.ToString();
     }
 
     protected virtual IEnumerator HandleQCooldown()

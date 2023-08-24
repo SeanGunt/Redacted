@@ -15,6 +15,8 @@ public class EnemyMaster : MonoBehaviour, IDamagable
     private GameObject player;
     private PlayerBase playerBase;
     private NavMeshAgent agent;
+    private SpriteRenderer spriteRenderer;
+    private Material material;
 
     private void Awake()
     {
@@ -24,6 +26,11 @@ public class EnemyMaster : MonoBehaviour, IDamagable
         agent.updateRotation = false;
 
         health = maxHealth;
+
+        spriteRenderer = GetComponent<SpriteRenderer>();
+        material = Instantiate(spriteRenderer.sharedMaterial);
+        spriteRenderer.material = material;
+        material.SetColor("_Color", Color.black);
     }
 
     private void Start()
@@ -48,6 +55,15 @@ public class EnemyMaster : MonoBehaviour, IDamagable
         {
             Die();
         }
+        StartCoroutine(ChangeColor());
+    }
+
+    private IEnumerator ChangeColor()
+    {
+        material.SetColor("_Color", Color.white);
+        yield return new WaitForSeconds(0.1f);
+        material.SetColor("_Color", Color.black);
+        yield break;
     }
 
     private void OnTriggerStay2D(Collider2D other)
