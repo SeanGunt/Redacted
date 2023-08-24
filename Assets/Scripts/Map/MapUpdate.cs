@@ -181,7 +181,7 @@ public class MapUpdate : MonoBehaviour
             float angle = y * (2 * Mathf.PI) / mapDimensions.y;
             float x = amplitude * Mathf.Sin(frequency * angle + phase);
             
-            Debug.Log((int)x);
+            //Debug.Log((int)x);
 
             types[(int)x+250, y-1] = (int)Types.p_a;
             types[(int)x+250, y] = (int)Types.p_a;

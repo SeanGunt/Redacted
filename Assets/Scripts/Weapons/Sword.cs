@@ -8,7 +8,7 @@ public class Sword : WeaponBase
     private TrailRenderer trailRenderer;
     [HideInInspector] public BoxCollider2D weaponCollider;
     [HideInInspector] public bool inAnimation; 
-    private void Awake()
+    private void Start()
     {
         animator = GetComponent<Animator>();
         weaponCollider = GetComponent<BoxCollider2D>();
