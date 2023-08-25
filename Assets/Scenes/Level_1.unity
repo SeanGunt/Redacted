@@ -2295,18 +2295,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: e8423b20db10d7e489180289b468e979, type: 2}
   - {fileID: 11400000, guid: 5a1aff0e0687a304081dcde95736b7bc, type: 2}
   - {fileID: 11400000, guid: 339038a53475b014cb206c658d6d397b, type: 2}
-  noiseScale: 20
-  mapDimensions: {x: 500, y: 500}
-  liquidMin: -0.2
-  liquidMax: 0.35
-  groundMin: 0.35
-  groundMax: 1.2
-  variantTypeProbabilityB: 20
-  variantTypeProbabilityC: 20
-  useCustomOffset: 0
-  offset: {x: 0, y: 0}
-  collisionLayerOn: 0
-  numRoads: 0
 --- !u!1 &1945219398
 GameObject:
   m_ObjectHideFlags: 0
