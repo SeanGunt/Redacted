@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class WorldSingleton : MonoBehaviour
@@ -24,11 +25,9 @@ public class WorldSingleton : MonoBehaviour
 
     readonly private int numShops = 10;
     readonly private float noiseScale = 20;
-    public Vector2Int mapDimensions = new Vector2Int(500, 500);
+    public Vector2Int mapDimensions = new(500, 500);
     readonly private float liquidMin = -0.2f, liquidMax = 0.35f;
-    readonly private float groundMin = 0.35f, groundMax = 1.2f;
     readonly private int variantTypeProbabilityB = 20, variantTypeProbabilityC = 20;
-    readonly private int numRoads = 10;
 
     void Awake()
     {
@@ -40,7 +39,7 @@ public class WorldSingleton : MonoBehaviour
         else
         {
             Destroy(gameObject);
-        }
+        }     
 
         types = null;
 
@@ -51,7 +50,9 @@ public class WorldSingleton : MonoBehaviour
         }
 
         GeneratePerlinGrid();
+
         PerlinToTile();
+
         GenerateRoads();
     }
 

@@ -6,7 +6,7 @@ using UnityEngine.Tilemaps;
 public class MapUpdate : MonoBehaviour
 {
     // for this to work, tiles must be placed correctly in the inspector
-    readonly private WorldSingleton world;
+    private WorldSingleton world;
 
     public TileBase[] Tiles; // size 10
 
@@ -17,7 +17,21 @@ public class MapUpdate : MonoBehaviour
 
     void Start()
     {
-        StartCoroutine(WaitForShopManagerInitialization());
+        world = WorldSingleton.instance;
+        
+        // for new script
+        baseLayer = CreateTilemap("base");
+        collisionLayer = CreateTilemap("collision");
+        roadLayer = CreateTilemap("road");
+
+        collisionLayer.gameObject.AddComponent<TilemapCollider2D>();
+
+        mapDimensions = world.mapDimensions;
+        offset = new Vector2Int(mapDimensions.x/2, mapDimensions.y/2);
+
+        types = world.types;
+
+        PlaceTiles();
     }
 
     Tilemap CreateTilemap(string tilemapName)
@@ -47,29 +61,6 @@ public class MapUpdate : MonoBehaviour
                 }
             }
         }
-    }
-
-    private IEnumerator WaitForShopManagerInitialization()
-    {
-        // Keep checking if the ShopManager instance is initialized.
-        while (WorldSingleton.instance != null && WorldSingleton.instance.types != null)
-        {
-            yield return null; // Wait for one frame.
-        }
-
-        // for new script
-        baseLayer = CreateTilemap("base");
-        collisionLayer = CreateTilemap("collision");
-        roadLayer = CreateTilemap("road");
-
-        collisionLayer.gameObject.AddComponent<TilemapCollider2D>();
-
-        mapDimensions = world.mapDimensions;
-        offset = new Vector2Int(mapDimensions.x/2, mapDimensions.y/2);
-
-        types = world.types;
-
-        PlaceTiles();
     }
 }
 
