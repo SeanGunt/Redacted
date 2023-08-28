@@ -1,7 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
-using System.Runtime.CompilerServices;
-using TMPro;
 using UnityEngine;
 
 public class WorldSingleton : MonoBehaviour
@@ -23,13 +19,15 @@ public class WorldSingleton : MonoBehaviour
 
     public static WorldSingleton instance;
     public int[,] types;
+    public Vector2Int[] shops;
+    public int shopCounter = 0;
     bool[] activeShops;
 
     readonly private int numShops = 10;
     readonly private float noiseScale = 20;
     public Vector2Int mapDimensions = new(1000, 1000);
     readonly private float liquidMin = -0.2f, liquidMax = 0.10f;
-    readonly private int variantTypeProbabilityB = 5, variantTypeProbabilityC = 5;
+    readonly private int variantTypeProbabilityB = 10, variantTypeProbabilityC = 10;
 
     void Awake()
     {
@@ -162,14 +160,35 @@ public class WorldSingleton : MonoBehaviour
         float numerator = 1.0f;
         float denominator = 4.0f;
         */
-
-        for (int x = 5; x < mapDimensions.x; x++)
+        int waitX = 0, waitY = 0, numShops = 10;
+        shops = new Vector2Int[numShops];
+        for (int x = 5; x < mapDimensions.x-5; x++)
         {
-            for (int y = 5; y < mapDimensions.y; y++)
+            for (int y = 5; y < mapDimensions.y-5; y++)
             {
+                int randomizerA = Random.Range(0, 100);
+                if (randomizerA < 25) continue;
                 // logic for placing the shops goes here
+                
+                if (ValidAreaForShop(x,y) && x-waitX > 50 && y-waitY > 50)
+                {
+                    int randomizerB = Random.Range(0, 100);
+                    if (randomizerB < 50)
+                    {
+                        types[mapDimensions.x-x,mapDimensions.y-y] = (int)Types.shop;
+                        shops[shopCounter] = new Vector2Int(mapDimensions.x-x, mapDimensions.y-y);
+                    } else
+                    {
+                        types[x,y] = (int)Types.shop;
+                        shops[shopCounter] = new Vector2Int(x, y);
+                    }
+                    
+                    waitX = x;
+                    waitY = y;
+                    shopCounter++;
 
-                // modify types[,]
+                    if (shopCounter > numShops) return;
+                }
             }
         }
     }
@@ -177,6 +196,12 @@ public class WorldSingleton : MonoBehaviour
     private bool ValidAreaForShop(int x, int y)
     {
         if (types[x,y] != (int)Types.g_c_a) return false;
+
+        if (x > (mapDimensions.x/2)-mapDimensions.x/5 && x < (mapDimensions.x/2)+mapDimensions.x/5 &&
+            y > (mapDimensions.y/2)-mapDimensions.y/5 && y < (mapDimensions.y/2)+mapDimensions.y/5)
+        {
+            return false;
+        }
 
         int grass = (int)Types.g_c_a;
         // Check if the types along the horizontal and vertical axis are grass
