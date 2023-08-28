@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using TMPro;
 using UnityEngine;
 
@@ -16,7 +17,8 @@ public class WorldSingleton : MonoBehaviour
         g_b_l_c,  // ground-bot-left-corner
         p_a,      // pathway-variantA
         p_b,      // pathway-variantB
-        p_c       // pathway-variantC
+        p_c,      // pathway-variantC
+        shop,     // shop
     }
 
     public static WorldSingleton instance;
@@ -25,9 +27,9 @@ public class WorldSingleton : MonoBehaviour
 
     readonly private int numShops = 10;
     readonly private float noiseScale = 20;
-    public Vector2Int mapDimensions = new(500, 500);
-    readonly private float liquidMin = -0.2f, liquidMax = 0.35f;
-    readonly private int variantTypeProbabilityB = 20, variantTypeProbabilityC = 20;
+    public Vector2Int mapDimensions = new(1000, 1000);
+    readonly private float liquidMin = -0.2f, liquidMax = 0.10f;
+    readonly private int variantTypeProbabilityB = 5, variantTypeProbabilityC = 5;
 
     void Awake()
     {
@@ -56,12 +58,14 @@ public class WorldSingleton : MonoBehaviour
         PerlinToTile();
 
         GenerateRoads();
+
+        GenerateShops();
     }
 
     private void GeneratePerlinGrid()
     {
         types = new int[mapDimensions.x, mapDimensions.y];
-        int rng = UnityEngine.Random.Range(0, 10000);
+        int rng = Random.Range(0, 10000);
         for (int x = 0; x < mapDimensions.x; x++)
         {
             for (int y = 0; y < mapDimensions.y; y++)
@@ -101,7 +105,7 @@ public class WorldSingleton : MonoBehaviour
                 refinedType = (int)Types.g_c_a;
 
                 // choose a ground variant
-                int randomizer = UnityEngine.Random.Range(0, 100);
+                int randomizer = Random.Range(0, 100);
                 if (randomizer < variantTypeProbabilityB)
                 {
                     refinedType = (int)Types.g_c_b;
@@ -144,25 +148,49 @@ public class WorldSingleton : MonoBehaviour
             types[(int)x+250, y-1] = (int)Types.p_a;
             types[(int)x+250, y] = (int)Types.p_a;
             types[(int)x+250, y+1] = (int)Types.p_a;
-            types[(int)x+250, y+2] = (int)Types.p_a;
-            types[(int)x+250, y+3] = (int)Types.p_a;  
+            types[(int)(x+250)-1, y] = (int)Types.p_a;
+            types[(int)(x+250), y] = (int)Types.p_a;
+            types[(int)(x+250)+1, y] = (int)Types.p_a;
         }
     }
 
     private void GenerateShops()
     {
-        int grassCounter = 0;
-        for (int x = 0; x < mapDimensions.x; x++)
-        {
-            for (int y = 0; y < mapDimensions.y; y++)
-            {
-                if (types[x,y] == (int)Types.g_c_a)
-                {
-                    grassCounter++;
-                }
+        /* will use these later
 
-                
+        bool chunkHasShop = false;
+        float numerator = 1.0f;
+        float denominator = 4.0f;
+        */
+
+        for (int x = 5; x < mapDimensions.x; x++)
+        {
+            for (int y = 5; y < mapDimensions.y; y++)
+            {
+                // logic for placing the shops goes here
+
+                // modify types[,]
             }
         }
+    }
+
+    private bool ValidAreaForShop(int x, int y)
+    {
+        if (types[x,y] != (int)Types.g_c_a) return false;
+
+        int grass = (int)Types.g_c_a;
+        // Check if the types along the horizontal and vertical axis are grass
+        if (
+            types[x-3,y] == grass && types[x-2,y] == grass &&
+            types[x-1,y] == grass && types[x+1,y] == grass &&
+            types[x+2,y] == grass && types[x+3,y] == grass &&
+            types[x,y-3] == grass && types[x,y-2] == grass &&
+            types[x,y-1] == grass && types[x,y+1] == grass &&
+            types[x,y+2] == grass && types[x,y+3] == grass
+        ) {
+            return true;
+        }
+
+        return false;
     }
 }

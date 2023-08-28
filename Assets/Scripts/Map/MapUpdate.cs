@@ -8,7 +8,7 @@ public class MapUpdate : MonoBehaviour
     // for this to work, tiles must be placed correctly in the inspector
     private WorldSingleton world;
 
-    public TileBase[] Tiles; // size 10
+    public TileBase[] Tiles;
 
     private Tilemap baseLayer, collisionLayer, roadLayer;
     private int[,] types;
