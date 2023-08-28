@@ -49,6 +49,8 @@ public class WorldSingleton : MonoBehaviour
             activeShops[i] = true;
         }
 
+
+        // implement a loading bar
         GeneratePerlinGrid();
 
         PerlinToTile();
@@ -138,14 +140,29 @@ public class WorldSingleton : MonoBehaviour
         {
             float angle = y * (2 * Mathf.PI) / mapDimensions.y;
             float x = amplitude * Mathf.Sin(frequency * angle + phase);
-            
-            //Debug.Log((int)x);
 
             types[(int)x+250, y-1] = (int)Types.p_a;
             types[(int)x+250, y] = (int)Types.p_a;
             types[(int)x+250, y+1] = (int)Types.p_a;
             types[(int)x+250, y+2] = (int)Types.p_a;
             types[(int)x+250, y+3] = (int)Types.p_a;  
+        }
+    }
+
+    private void GenerateShops()
+    {
+        int grassCounter = 0;
+        for (int x = 0; x < mapDimensions.x; x++)
+        {
+            for (int y = 0; y < mapDimensions.y; y++)
+            {
+                if (types[x,y] == (int)Types.g_c_a)
+                {
+                    grassCounter++;
+                }
+
+                
+            }
         }
     }
 }
