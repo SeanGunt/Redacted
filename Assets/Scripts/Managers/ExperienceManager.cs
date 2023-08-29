@@ -7,8 +7,9 @@ public class ExperienceManager : MonoBehaviour
     private PlayerUI playerUI;
     private float exp = 0f;
     private float totalExp;
-    protected float expTillNextLevel = 100f;
-    protected int level = 1;
+    private float expTillNextLevel = 100f;
+    private int level = 1;
+    private readonly int maxLevel = 20;
 
     private void Awake()
     {
@@ -24,7 +25,7 @@ public class ExperienceManager : MonoBehaviour
     private void HandleLevel()
     {
         playerUI.levelText.text = level.ToString();
-        if (exp >= expTillNextLevel)
+        if (exp >= expTillNextLevel && level < maxLevel)
         {
             level += 1;
             exp = 0f;
