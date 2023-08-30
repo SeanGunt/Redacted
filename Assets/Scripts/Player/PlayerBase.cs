@@ -23,6 +23,11 @@ public class PlayerBase : MonoBehaviour
     [SerializeField] public float magicalDamage;
     [SerializeField] public float physicalResistance;
     [SerializeField] public float magicalResistance;
+    [SerializeField] public float healthPerLevel;
+    [SerializeField] public float physPerLevel;
+    [SerializeField] public float magPerLevel;
+    [SerializeField] public float physResPerLevel;
+    [SerializeField] public float magResPerLevel;
     protected float qCooldown = 0f, wCooldown = 0f, eCooldown = 0f, rCooldown = 0f;
 
     [Header("Other")]
@@ -155,6 +160,16 @@ public class PlayerBase : MonoBehaviour
         playerUI.magicalDamageText.text = "Mag: " + magicalDamage.ToString();
         playerUI.physicalResistanceText.text = "Phys Res: " + physicalResistance.ToString();
         playerUI.magicalResistanceText.text = "Mag Res: " + magicalResistance.ToString();
+    }
+
+    public void HandleOnlevel()
+    {
+        baseHealth += healthPerLevel;
+        health += healthPerLevel;
+        physicalDamage += physPerLevel;
+        magicalDamage += magPerLevel;
+        physicalResistance += physResPerLevel;
+        magicalResistance += magResPerLevel;
     }
 
     protected virtual IEnumerator HandleQCooldown()

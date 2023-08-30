@@ -2069,6 +2069,11 @@ MonoBehaviour:
   magicalDamage: 0
   physicalResistance: 23
   magicalResistance: 17
+  healthPerLevel: 53
+  physPerLevel: 7
+  magPerLevel: 2
+  physResPerLevel: 5
+  magResPerLevel: 2.5
   sword: {fileID: 3884314429422785120}
 --- !u!114 &4024712692425742683
 MonoBehaviour:

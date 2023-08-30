@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class ShopManager : MonoBehaviour
 {
-    private readonly Vector2Int[] shopsPos = WorldSingleton.instance.shops;
+    private Vector2Int[] shopsPos;
 
     struct Shop
     {
@@ -16,6 +16,7 @@ public class ShopManager : MonoBehaviour
 
     void Awake()
     {
+        shopsPos = WorldSingleton.instance.shops;
         numShops = WorldSingleton.instance.shopCounter;
         // Initialize list of shops
         shops = new Shop[numShops];

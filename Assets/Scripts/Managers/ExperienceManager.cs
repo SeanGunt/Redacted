@@ -5,6 +5,7 @@ using UnityEngine;
 public class ExperienceManager : MonoBehaviour
 {
     private PlayerUI playerUI;
+    private PlayerBase playerBase;
     private float exp = 0f;
     private float totalExp;
     private float expTillNextLevel = 100f;
@@ -14,6 +15,7 @@ public class ExperienceManager : MonoBehaviour
     private void Awake()
     {
         playerUI = GetComponent<PlayerUI>();
+        playerBase = GetComponent<PlayerBase>();
     }
 
     private void Update()
@@ -28,6 +30,7 @@ public class ExperienceManager : MonoBehaviour
         if (exp >= expTillNextLevel && level < maxLevel)
         {
             level += 1;
+            playerBase.HandleOnlevel();
             exp = 0f;
             expTillNextLevel += 100f;
         }
