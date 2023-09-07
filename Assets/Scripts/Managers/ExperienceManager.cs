@@ -6,6 +6,7 @@ public class ExperienceManager : MonoBehaviour
 {
     private PlayerUI playerUI;
     private PlayerBase playerBase;
+    private AbilityManager abilityManager;
     private float exp = 0f;
     private float totalExp;
     private float expTillNextLevel = 100f;
@@ -16,6 +17,7 @@ public class ExperienceManager : MonoBehaviour
     {
         playerUI = GetComponent<PlayerUI>();
         playerBase = GetComponent<PlayerBase>();
+        abilityManager = GetComponent<AbilityManager>();
     }
 
     private void Update()
@@ -31,6 +33,7 @@ public class ExperienceManager : MonoBehaviour
         {
             level += 1;
             playerBase.HandleOnlevel();
+            abilityManager.canLevelAbility = true;
             exp = 0f;
             expTillNextLevel += 100f;
         }

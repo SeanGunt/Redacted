@@ -28,6 +28,8 @@ public class PlayerBase : MonoBehaviour
     [SerializeField] public float magPerLevel;
     [SerializeField] public float physResPerLevel;
     [SerializeField] public float magResPerLevel;
+    [SerializeField] public float critChance;
+    [SerializeField] public float cooldownReduction;
     protected float qCooldown = 0f, wCooldown = 0f, eCooldown = 0f, rCooldown = 0f;
 
     [Header("Other")]
@@ -95,9 +97,9 @@ public class PlayerBase : MonoBehaviour
 
     }
 
-    protected bool CanUseAbility(string attackName, bool inAnimation, float cooldown)
+    protected bool CanUseAbility(string attackName, bool inAnimation, float cooldown, float abilityLevel)
     {
-        if (playerInput.actions[attackName].triggered && !inAnimation && cooldown <= 0)
+        if (playerInput.actions[attackName].triggered && !inAnimation && cooldown <= 0 && abilityLevel > 0)
         {
             canUseAbility = true;
         }
