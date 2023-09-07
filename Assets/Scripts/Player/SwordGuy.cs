@@ -9,7 +9,7 @@ public class SwordGuy : PlayerBase
 
     protected override void HandleQAbility()
     {
-        if (CanUseAbility("QAttack", sword.inAnimation, qCooldown))
+        if (CanUseAbility("QAttack", sword.inAnimation, qCooldown, weaponBase.qLevel))
         {
             sword.abilityType = WeaponBase.AbilityType.Q;
             sword.HandleSwordSwingAnim("Swing");
@@ -19,7 +19,7 @@ public class SwordGuy : PlayerBase
 
     protected override void HandleWAbility()
     {
-        if (CanUseAbility("WAttack", sword.inAnimation, wCooldown))
+        if (CanUseAbility("WAttack", sword.inAnimation, wCooldown, weaponBase.wLevel))
         {
             sword.abilityType = WeaponBase.AbilityType.W;
             sword.HandleSwordSwingAnim("Spin");
@@ -29,7 +29,7 @@ public class SwordGuy : PlayerBase
 
     protected override void HandleEAbility()
     {
-        if (CanUseAbility("EAttack", sword.inAnimation, eCooldown))
+        if (CanUseAbility("EAttack", sword.inAnimation, eCooldown, weaponBase.eLevel))
         {
             state = State.idle;
             sword.abilityType = WeaponBase.AbilityType.E;
@@ -44,7 +44,7 @@ public class SwordGuy : PlayerBase
 
     protected override void HandleRAbility()
     {
-        if (CanUseAbility("RAttack", sword.inAnimation, rCooldown))
+        if (CanUseAbility("RAttack", sword.inAnimation, rCooldown, weaponBase.rLevel))
         {
             sword.abilityType = WeaponBase.AbilityType.R;
             Vector3 playerPosition = transform.position;
