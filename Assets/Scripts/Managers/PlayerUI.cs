@@ -18,9 +18,15 @@ public class PlayerUI : MonoBehaviour
     public Image healthBar;
     [HideInInspector] public Color imageCooldownColor = new Color(0.5f, 0.5f, 0.5f, 1.0f);
     [HideInInspector] public Color imageStartColor;
+    public GameObject[] levelIconsGO;
+    public Dictionary<string, GameObject> levelIconsDict = new Dictionary<string, GameObject>();
 
     private void Awake()
     {
         imageStartColor = qImage.color;
+        levelIconsDict["LevelQ"] = levelIconsGO[0];
+        levelIconsDict["LevelW"] = levelIconsGO[1];
+        levelIconsDict["LevelE"] = levelIconsGO[2];
+        levelIconsDict["LevelR"] = levelIconsGO[3];
     }
 }

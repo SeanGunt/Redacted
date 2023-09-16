@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using TMPro;
 
 public interface IDamagable
 {
@@ -50,6 +51,7 @@ public class EnemyMaster : MonoBehaviour, IDamagable
         float ratio = maxHealth / 100;
         float damageToBar = damage / ratio;
         healhBar.sizeDelta -= new Vector2(damageToBar, 0);
+        SpawnDamageNumber(damage);
 
         if (health <= 0)
         {
@@ -84,6 +86,18 @@ public class EnemyMaster : MonoBehaviour, IDamagable
             exp.SetActive(true);
         }
         Destroy(gameObject);
+    }
+
+    protected virtual void SpawnDamageNumber(float damage)
+    {
+        GameObject num = ObjectPool.instance.GetPooledObject(ObjectPool.instance.prefabsToPool[2]);
+        TextMeshProUGUI numText =  num.GetComponent<TextMeshProUGUI>();
+        if (num != null)
+        {
+            num.transform.position = transform.position;
+            numText.text = damage.ToString();
+            num.SetActive(true);
+        }
     }
     protected virtual void Movement()
     {

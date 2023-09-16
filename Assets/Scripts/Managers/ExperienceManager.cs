@@ -10,7 +10,7 @@ public class ExperienceManager : MonoBehaviour
     private float exp = 0f;
     private float totalExp;
     private float expTillNextLevel = 100f;
-    private int level = 1;
+    [HideInInspector] public int level = 1;
     private readonly int maxLevel = 20;
 
     private void Awake()
