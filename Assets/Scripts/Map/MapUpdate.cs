@@ -1,36 +1,28 @@
-using System;
-using System.Collections;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
 public class MapUpdate : MonoBehaviour
 {
-    // for this to work, tiles must be placed correctly in the inspector
     private WorldSingleton world;
-
-    public TileBase[] Tiles;
-
-    private Tilemap baseLayer, collisionLayer, roadLayer;
-    private int[,] types;
-    Vector2Int mapDimensions;
+    public TileBase[] CollidableTiles;
+    public TileBase[] BaseTiles;
+    private Tilemap baseLayer, collidableLayer;
     Vector2Int offset;
 
-    void Start()
+    void Awake()
     {
         world = WorldSingleton.instance;
         
-        // for new script
         baseLayer = CreateTilemap("base");
-        collisionLayer = CreateTilemap("collision");
-        roadLayer = CreateTilemap("road");
+        collidableLayer = CreateTilemap("collidable");
 
-        collisionLayer.gameObject.AddComponent<TilemapCollider2D>();
+        collidableLayer.gameObject.AddComponent<TilemapCollider2D>();
 
-        mapDimensions = world.mapDimensions;
-        offset = new Vector2Int(mapDimensions.x/2, mapDimensions.y/2);
+        offset = new Vector2Int(world.mapDimensions.x/2, world.mapDimensions.y/2);
+    }
 
-        types = world.types;
-
+    void Start()
+    {
         PlaceTiles();
     }
 
@@ -47,17 +39,23 @@ public class MapUpdate : MonoBehaviour
 
     private void PlaceTiles()
     {
-        for (int x = 0; x < mapDimensions.x; x++)
+        for (int x = 0; x < world.mapDimensions.x; x++)
         {
-            for (int y = 0; y < mapDimensions.y; y++)
+            for (int y = 0; y < world.mapDimensions.y; y++)
             {
-                if (types[x,y] == 0)
+                if (world.bases[x,y] == -1) 
                 {
-                    collisionLayer.SetTile(new Vector3Int(x-offset.x, y-offset.y, 0), Tiles[types[x,y]]);
+                    collidableLayer.SetTile(
+                        new Vector3Int(x-offset.x, y-offset.y, 0),
+                        CollidableTiles[world.collidables[x,y]]
+                    );
                 }
-                else
+                else // it is a non-collidable tile
                 {
-                    baseLayer.SetTile(new Vector3Int(x-offset.x, y-offset.y, 0), Tiles[types[x,y]]);
+                    baseLayer.SetTile(
+                        new Vector3Int(x-offset.x, y-offset.y, 0),
+                        BaseTiles[world.bases[x,y]]
+                    );
                 }
             }
         }

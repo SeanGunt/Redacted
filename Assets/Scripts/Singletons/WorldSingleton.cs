@@ -1,33 +1,76 @@
 using UnityEngine;
 
+/*
+    WORLD GENERATION AND HOW TO USE THIS SCRIPT:
+
+    This script has the very important role of setting the initial positions of
+    world tiles and structure tiles. This is done using Perlin noise. For any map,
+    we define a few tile types that will not change.
+
+    Collidable types:
+
+    - collision-variant-<A, B, C> 
+        (most prominent collidable type such as water)
+    - natural-variant-<A, B, C> 
+        (any object such as a rock or a tree)
+    - structural-variant-<A, B, C>
+        (any object such as a fire, or lightpost)
+
+    Base types:
+
+    - base-variant-<A, B, C>
+        (most prominent non-collidable type such as grass or brick)
+
+    As you can see there can be either an A, B, or C variant of any particular tile
+    for any level. This will allow us to store folders containing certain sprites for
+    particular levels, and dynamically load the right assets at run-time WHILE still
+    being able to make the map look interesting procedurally generated.
+
+    You can find all the variables that dictate how a map is generated inside this
+    script. They must be adjusted from this script.
+*/
+
 public class WorldSingleton : MonoBehaviour
 {
-    public enum Types
+    // Tiles that are non-collidable and provide a base to the map
+    public enum Base
     {
-        l = 0,    // liquid
-        g_c_a,    // ground-center-variantA
-        g_c_b,    // ground-center-varaintB
-        g_c_c,    // ground-genter-variantC
-        g_b_e,    // ground-bot-edge
-        g_l_e,    // ground-left-edge
-        g_b_l_c,  // ground-bot-left-corner
-        p_a,      // pathway-variantA
-        p_b,      // pathway-variantB
-        p_c,      // pathway-variantC
-        shop,     // shop
+        b_v_a = 0,      // base_variant_A
+        b_v_b,          // base_variant_B
+        b_v_c,          // base_variant_C
+        b_e_b,          // base_edge_bottom
+        b_e_l,          // base_edge_left
+        b_c,            // base_corner
+        b_i_c           // base_inverted_corner
+    }
+
+    // Tiles that are collidable AND provide a base to the map
+    public enum Collidable
+    {
+        c_v_a = 0,      // collidable_variant_A
+        c_v_b,          // collidable_variant_B
+        c_v_c           // collidable_variant_C
+    }
+
+    // Tiles that are collidable
+    public enum Object
+    {
+        n_v_a = 0,      // natural_variant_A
+        n_v_b,          // natural_variant_B
+        n_v_c,          // natural_variant_C
+        s_v_a,          // structural_variant_A
+        s_v_b,          // structural_variant_B
+        s_v_c           // structural_variant_C
     }
 
     public static WorldSingleton instance;
-    public int[,] types;
-    public Vector2Int[] shops;
-    public int shopCounter = 0;
-    bool[] activeShops;
+    public int[,] bases;
+    public int[,] collidables;
 
-    readonly private int numShops = 10;
+    readonly public Vector2Int mapDimensions = new(500, 500);
+    readonly private float collidableMin = -0.2f, collidableMax = 0.25f;
     readonly private float noiseScale = 20;
-    public Vector2Int mapDimensions = new(1000, 1000);
-    readonly private float liquidMin = -0.2f, liquidMax = 0.10f;
-    readonly private int variantTypeProbabilityB = 10, variantTypeProbabilityC = 10;
+    readonly private int variantProbability = 20;
 
     void Awake()
     {
@@ -41,28 +84,20 @@ public class WorldSingleton : MonoBehaviour
             Destroy(gameObject);
         }     
 
-        types = null;
-
-        activeShops = new bool[numShops];
-        for (int i = 0; i < numShops; i++)
-        {
-            activeShops[i] = true;
-        }
-
-
-        // implement a loading bar
-        GeneratePerlinGrid();
-
-        PerlinToTile();
-
-        GenerateRoads();
-
-        GenerateShops();
+        bases = null;
+        collidables = null;
     }
 
-    private void GeneratePerlinGrid()
+    void Start()
     {
-        types = new int[mapDimensions.x, mapDimensions.y];
+        GenerateBaseAndCollidableGrid();
+        AddEdgePieces();
+    }
+
+    private void GenerateBaseAndCollidableGrid()
+    {
+        bases = new int[mapDimensions.x, mapDimensions.y];
+        collidables = new int[mapDimensions.x, mapDimensions.y];
         int rng = Random.Range(0, 10000);
         for (int x = 0; x < mapDimensions.x; x++)
         {
@@ -73,149 +108,57 @@ public class WorldSingleton : MonoBehaviour
                 
                 float perlinValue = Mathf.PerlinNoise(rng + sampleX, rng + sampleY);
 
-                if (perlinValue > liquidMin && perlinValue < liquidMax)
+                int variant = Random.Range(0, 3);
+                bool addVariant = Random.Range(0, 100) < variantProbability ? true : false;
+
+                if (perlinValue > collidableMin && perlinValue < collidableMax)
                 {
-                    types[x, y] = (int)Types.l;
+                    collidables[x, y] = (int)Collidable.c_v_a + (addVariant ? variant : 0);
+                    bases[x, y] = -1;
                 }
                 else
                 {
-                    types[x, y] = (int)Types.g_c_a; 
+                    bases[x, y] = (int)Base.b_v_a + (addVariant ? variant : 0);
+                    collidables[x, y] = -1;
                 }
             }
         }
     }
 
-    void PerlinToTile()
+    void AddEdgePieces()
     {
-        int botEdge, leftEdge, refinedType;
         for (int x = 0; x < mapDimensions.x; x++)
         {
             for (int y = 0; y < mapDimensions.y; y++)
             {
-                if (x == 0 || x == mapDimensions.x || y == 0 || y == mapDimensions.y
-                    || types[x, y] == (int)Types.l)
+                // Skip this iteration if the following are true
+                if (bases[x,y] == -1) continue;
+                if (x == 0 || x == mapDimensions.x-1 || y == 0 || y == mapDimensions.y-1) continue;
+
+                // if left-most tile is a collidable and bot-most tile is collidable
+                if (bases[x-1, y] == -1 && bases[x, y-1] == -1)
                 {
-                    continue;
+                    bases[x, y] = (int)Base.b_i_c;
                 }
 
-                botEdge = types[x, y-1];
-                leftEdge = types[x-1, y];
-                refinedType = (int)Types.g_c_a;
-
-                // choose a ground variant
-                int randomizer = Random.Range(0, 100);
-                if (randomizer < variantTypeProbabilityB)
+                // if left-most tile is not collidable and bot-most tile is collidable
+                if (bases[x-1, y] != -1 && bases[x, y-1] == -1)
                 {
-                    refinedType = (int)Types.g_c_b;
-                }
-                else if (randomizer < variantTypeProbabilityC)
-                {
-                    refinedType = (int)Types.g_c_c;
+                    bases[x, y] = (int)Base.b_e_b;
                 }
 
-                // now choose an edge case
-                if (botEdge == (int)Types.l)
+                // if left most tile is collidable and bot-most tile is collidable
+                if (bases[x-1, y] == -1 && bases[x, y-1] != -1)
                 {
-                    refinedType = (int)Types.g_b_e;
-                }
-                else if (leftEdge == (int)Types.l)
-                {
-                    refinedType = (int)Types.g_l_e;
-                }
-                else if (leftEdge == (int)Types.g_b_e)
-                {
-                    refinedType = (int)Types.g_b_l_c;
+                    bases[x, y] = (int)Base.b_e_l;
                 }
 
-                types[x, y] = refinedType;
-            }
-        }
-    }
-    
-    private void GenerateRoads()
-    {
-        float amplitude = 20f;
-        float frequency = 2.0f;
-        float phase = 0f;
-
-        for (int y = 10; y < mapDimensions.y-10; y++)
-        {
-            float angle = y * (2 * Mathf.PI) / mapDimensions.y;
-            float x = amplitude * Mathf.Sin(frequency * angle + phase);
-
-            types[(int)x+250, y-1] = (int)Types.p_a;
-            types[(int)x+250, y] = (int)Types.p_a;
-            types[(int)x+250, y+1] = (int)Types.p_a;
-            types[(int)(x+250)-1, y] = (int)Types.p_a;
-            types[(int)(x+250), y] = (int)Types.p_a;
-            types[(int)(x+250)+1, y] = (int)Types.p_a;
-        }
-    }
-
-    private void GenerateShops()
-    {
-        /* will use these later
-
-        bool chunkHasShop = false;
-        float numerator = 1.0f;
-        float denominator = 4.0f;
-        */
-        int waitX = 0, waitY = 0, numShops = 10;
-        shops = new Vector2Int[numShops];
-        for (int x = 5; x < mapDimensions.x-5; x++)
-        {
-            for (int y = 5; y < mapDimensions.y-5; y++)
-            {
-                int randomizerA = Random.Range(0, 100);
-                if (randomizerA < 25) continue;
-                // logic for placing the shops goes here
-                
-                if (ValidAreaForShop(x,y) && x-waitX > 50 && y-waitY > 50)
+                // if bot-left-corner tile is collidable and the left-most and bot-most tiles are non-collidable
+                if (bases[x-1, y-1] == -1 && bases[x-1, y] != -1 && bases[x, y-1] != -1)
                 {
-                    int randomizerB = Random.Range(0, 100);
-                    if (randomizerB < 50)
-                    {
-                        types[mapDimensions.x-x,mapDimensions.y-y] = (int)Types.shop;
-                        shops[shopCounter] = new Vector2Int(mapDimensions.x-x, mapDimensions.y-y);
-                    } else
-                    {
-                        types[x,y] = (int)Types.shop;
-                        shops[shopCounter] = new Vector2Int(x, y);
-                    }
-                    
-                    waitX = x;
-                    waitY = y;
-                    shopCounter++;
-
-                    if (shopCounter > numShops) return;
+                    bases[x, y] = (int)Base.b_c;
                 }
             }
         }
-    }
-
-    private bool ValidAreaForShop(int x, int y)
-    {
-        if (types[x,y] != (int)Types.g_c_a) return false;
-
-        if (x > (mapDimensions.x/2)-mapDimensions.x/5 && x < (mapDimensions.x/2)+mapDimensions.x/5 &&
-            y > (mapDimensions.y/2)-mapDimensions.y/5 && y < (mapDimensions.y/2)+mapDimensions.y/5)
-        {
-            return false;
-        }
-
-        int grass = (int)Types.g_c_a;
-        // Check if the types along the horizontal and vertical axis are grass
-        if (
-            types[x-3,y] == grass && types[x-2,y] == grass &&
-            types[x-1,y] == grass && types[x+1,y] == grass &&
-            types[x+2,y] == grass && types[x+3,y] == grass &&
-            types[x,y-3] == grass && types[x,y-2] == grass &&
-            types[x,y-1] == grass && types[x,y+1] == grass &&
-            types[x,y+2] == grass && types[x,y+3] == grass
-        ) {
-            return true;
-        }
-
-        return false;
     }
 }
