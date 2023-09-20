@@ -29,7 +29,7 @@ public class SwordGuy : PlayerBase
 
     protected override void HandleEAbility()
     {
-        if (CanUseAbility("EAttack", eCooldown, weaponBase.eLevel) && sword.inAnimation)
+        if (CanUseAbility("EAttack", eCooldown, weaponBase.eLevel) && !sword.inAnimation)
         {
             state = State.idle;
             sword.abilityType = WeaponBase.AbilityType.E;
@@ -44,7 +44,7 @@ public class SwordGuy : PlayerBase
 
     protected override void HandleRAbility()
     {
-        if (CanUseAbility("RAttack", rCooldown, weaponBase.rLevel) && sword.inAnimation)
+        if (CanUseAbility("RAttack", rCooldown, weaponBase.rLevel) && !sword.inAnimation)
         {
             sword.abilityType = WeaponBase.AbilityType.R;
             Vector3 playerPosition = transform.position;

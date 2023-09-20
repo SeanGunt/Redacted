@@ -58,10 +58,7 @@ public class PlayerBase : MonoBehaviour
         HandleHealth();
         HandleStatsUI();
         RightClick();
-        HandleQAbility();
-        HandleWAbility();
-        HandleEAbility();
-        HandleRAbility();
+        HandleAbilities();
         switch(state)
         {
             case State.idle:
@@ -95,6 +92,15 @@ public class PlayerBase : MonoBehaviour
     protected virtual void HandleRAbility()
     {
 
+    }
+
+    private void HandleAbilities()
+    {
+        if (playerInput.actions["LevelAbility"].inProgress) return;
+        HandleQAbility();
+        HandleWAbility();
+        HandleEAbility();
+        HandleRAbility();
     }
 
     protected bool CanUseAbility(string attackName, float cooldown, float abilityLevel)
@@ -162,6 +168,8 @@ public class PlayerBase : MonoBehaviour
         playerUI.magicalDamageText.text = magicalDamage.ToString();
         playerUI.physicalResistanceText.text = physicalResistance.ToString();
         playerUI.magicalResistanceText.text = magicalResistance.ToString();
+        playerUI.criticalChanceText.text = critChance.ToString() + "%";
+        playerUI.cooldownReductionText.text = cooldownReduction.ToString() + "%";
     }
 
     public void HandleOnlevel()
