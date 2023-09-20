@@ -97,9 +97,9 @@ public class PlayerBase : MonoBehaviour
 
     }
 
-    protected bool CanUseAbility(string attackName, bool inAnimation, float cooldown, float abilityLevel)
+    protected bool CanUseAbility(string attackName, float cooldown, float abilityLevel)
     {
-        if (playerInput.actions[attackName].triggered && !inAnimation && cooldown <= 0 && abilityLevel > 0)
+        if (playerInput.actions[attackName].triggered && cooldown <= 0 && abilityLevel > 0)
         {
             canUseAbility = true;
         }
@@ -158,10 +158,10 @@ public class PlayerBase : MonoBehaviour
 
     private void HandleStatsUI()
     {
-        playerUI.physicalDamageText.text = "Phys: " + physicalDamage.ToString();
-        playerUI.magicalDamageText.text = "Mag: " + magicalDamage.ToString();
-        playerUI.physicalResistanceText.text = "Phys Res: " + physicalResistance.ToString();
-        playerUI.magicalResistanceText.text = "Mag Res: " + magicalResistance.ToString();
+        playerUI.physicalDamageText.text =  physicalDamage.ToString();
+        playerUI.magicalDamageText.text = magicalDamage.ToString();
+        playerUI.physicalResistanceText.text = physicalResistance.ToString();
+        playerUI.magicalResistanceText.text = magicalResistance.ToString();
     }
 
     public void HandleOnlevel()
