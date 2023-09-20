@@ -130,6 +130,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "LevelAbility",
+                    "type": "Button",
+                    "id": "2bc28fcb-8910-4163-9a9a-067c07873f3f",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -374,6 +383,17 @@
                     "action": "LevelR",
                     "isComposite": false,
                     "isPartOfComposite": true
+                },
+                {
+                    "name": "",
+                    "id": "8124012e-cc06-4182-b79b-260518b02289",
+                    "path": "<Keyboard>/ctrl",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "LevelAbility",
+                    "isComposite": false,
+                    "isPartOfComposite": false
                 }
             ]
         }
