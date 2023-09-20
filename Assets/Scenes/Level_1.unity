@@ -587,7 +587,7 @@ Camera:
   far clip plane: 1000
   field of view: 34
   orthographic: 1
-  orthographic size: 5.625
+  orthographic size: 6.5625
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -2326,18 +2326,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 69cfeb556890dfd438edebe4f748a437, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Tiles:
-  - {fileID: 11400000, guid: 65ff12fd0286c2a4185de869d47cf7ab, type: 2}
-  - {fileID: 11400000, guid: 498bad8fac02f10489a3633204dccb27, type: 2}
-  - {fileID: 11400000, guid: cef2cd7cacd07914ab0e42c84356c698, type: 2}
-  - {fileID: 11400000, guid: 78ee0bdc85002514ebaf59b4a270b5ef, type: 2}
-  - {fileID: 11400000, guid: d7dcc9be876781c4d8a01cfb16a5ed60, type: 2}
-  - {fileID: 11400000, guid: db6083478a669cf42ac8e5ad575a0e8a, type: 2}
-  - {fileID: 11400000, guid: c1f366f5e10dc454b80e4ba3489e074b, type: 2}
-  - {fileID: 11400000, guid: e8423b20db10d7e489180289b468e979, type: 2}
-  - {fileID: 11400000, guid: 5a1aff0e0687a304081dcde95736b7bc, type: 2}
-  - {fileID: 11400000, guid: 339038a53475b014cb206c658d6d397b, type: 2}
-  - {fileID: 11400000, guid: 71bf51fee81ea034d9bc52f4213fe422, type: 2}
+  CollidableTiles:
+  - {fileID: 11400000, guid: 4f8a9ec26fec68b4d93a9eb630a7746f, type: 2}
+  - {fileID: 11400000, guid: c6f3a289642474b4789bda8be5590e4e, type: 2}
+  - {fileID: 11400000, guid: 758131a1d77effc47901df1b5a7d1fff, type: 2}
+  BaseTiles:
+  - {fileID: 11400000, guid: 831296b349314a245bf1e3cfae58b8a4, type: 2}
+  - {fileID: 11400000, guid: 1974c8ddba63feb4aa19f6fea230b901, type: 2}
+  - {fileID: 11400000, guid: 99d0e507a14a7d74fb623effa5d91e6d, type: 2}
+  - {fileID: 11400000, guid: b101e6bc38d5ff444bda9841ad8eae84, type: 2}
+  - {fileID: 11400000, guid: 44930ac9c72cb9640abe1f613959ab44, type: 2}
+  - {fileID: 11400000, guid: 3bd98e0966be1ce4e8fc2a86b8a4ee0c, type: 2}
+  - {fileID: 11400000, guid: 53ce914013a97c7489d9b870434be4c6, type: 2}
 --- !u!114 &1882551441
 MonoBehaviour:
   m_ObjectHideFlags: 0
