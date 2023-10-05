@@ -3505,6 +3505,7 @@ MonoBehaviour:
   magResPerLevel: 0
   critChance: 0
   cooldownReduction: 0
+  staff: {fileID: 7571425812173182767}
 --- !u!1 &3884314429084726794
 GameObject:
   m_ObjectHideFlags: 0
