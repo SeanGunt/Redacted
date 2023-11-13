@@ -3052,14 +3052,15 @@ GameObject:
   m_Component:
   - component: {fileID: 3884314428910866148}
   - component: {fileID: 3884314428910866149}
+  - component: {fileID: 99880761256294759}
   - component: {fileID: 4024712692425742683}
   - component: {fileID: 3276744826110593063}
   - component: {fileID: 3884314428910866146}
+  - component: {fileID: 1636167500}
+  - component: {fileID: 68437941772015930}
+  - component: {fileID: 1636167505}
   - component: {fileID: 3884314428910866145}
   - component: {fileID: 3884314428910866144}
-  - component: {fileID: 1636167505}
-  - component: {fileID: 1636167500}
-  - component: {fileID: 99880761256294759}
   m_Layer: 0
   m_Name: WizardGuy
   m_TagString: Player
@@ -3136,6 +3137,39 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &99880761256294759
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3884314428910866150}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a3a374fc17f532245ba3b2d4d9878747, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 2
+  baseHealth: 400
+  healthRegen: 3
+  qCooldownAmount: 1
+  wCooldownAmount: 4
+  eCooldownAmount: 5
+  rCooldownAmount: 25
+  pickupRange: 3
+  health: 0
+  physicalDamage: 0
+  magicalDamage: 31
+  physicalResistance: 1
+  magicalResistance: 4
+  healthPerLevel: 50
+  physPerLevel: 2
+  magPerLevel: 10
+  physResPerLevel: 0.5
+  magResPerLevel: 1
+  critChance: 0
+  cooldownReduction: 0
+  staff: {fileID: 7571425812173182767}
 --- !u!114 &4024712692425742683
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3198,43 +3232,31 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2b79f8a7d51c93443a1120579bf47c74, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!58 &3884314428910866145
-CircleCollider2D:
+--- !u!114 &1636167500
+MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3884314428910866150}
   m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: -0.03, y: 0}
-  serializedVersion: 2
-  m_Radius: 0.41
---- !u!50 &3884314428910866144
-Rigidbody2D:
-  serializedVersion: 4
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d4f7baf50db581240b838670653fd872, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  canLevelAbility: 0
+--- !u!114 &68437941772015930
+MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3884314428910866150}
-  m_BodyType: 0
-  m_Simulated: 1
-  m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDrag: 5
-  m_AngularDrag: 1
-  m_GravityScale: 0
-  m_Material: {fileID: 0}
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 1
-  m_Constraints: 4
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c70900b0b0cff5a45b02a30bf13dce91, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &1636167505
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3325,52 +3347,43 @@ MonoBehaviour:
   m_DefaultActionMap: KBM
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
---- !u!114 &1636167500
-MonoBehaviour:
+--- !u!58 &3884314428910866145
+CircleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3884314428910866150}
   m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d4f7baf50db581240b838670653fd872, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  canLevelAbility: 0
---- !u!114 &99880761256294759
-MonoBehaviour:
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -0.03, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.41
+--- !u!50 &3884314428910866144
+Rigidbody2D:
+  serializedVersion: 4
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3884314428910866150}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a3a374fc17f532245ba3b2d4d9878747, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: 2
-  baseHealth: 400
-  healthRegen: 3
-  qCooldownAmount: 1
-  wCooldownAmount: 4
-  eCooldownAmount: 5
-  rCooldownAmount: 25
-  pickupRange: 3
-  health: 0
-  physicalDamage: 0
-  magicalDamage: 31
-  physicalResistance: 1
-  magicalResistance: 4
-  healthPerLevel: 50
-  physPerLevel: 2
-  magPerLevel: 10
-  physResPerLevel: 0.5
-  magResPerLevel: 1
-  critChance: 0
-  cooldownReduction: 0
-  staff: {fileID: 7571425812173182767}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 5
+  m_AngularDrag: 1
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 1
+  m_Constraints: 4
 --- !u!1 &3884314429084726794
 GameObject:
   m_ObjectHideFlags: 0
