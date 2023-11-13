@@ -12,6 +12,6 @@ public class TimerManager : MonoBehaviour
     private void Update()
     {
         timer -= Time.deltaTime;
-         timerText.text = TimeSpan.FromSeconds(timer).ToString(@"m\:ss");
+        timerText.text = TimeSpan.FromSeconds(timer).ToString(@"m\:ss");
     }
 }
