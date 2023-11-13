@@ -3485,24 +3485,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a3a374fc17f532245ba3b2d4d9878747, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 0
-  baseHealth: 0
-  healthRegen: 0
-  qCooldownAmount: 0
-  wCooldownAmount: 0
-  eCooldownAmount: 0
-  rCooldownAmount: 0
-  pickupRange: 0
+  speed: 2
+  baseHealth: 400
+  healthRegen: 3
+  qCooldownAmount: 1
+  wCooldownAmount: 4
+  eCooldownAmount: 5
+  rCooldownAmount: 25
+  pickupRange: 3
   health: 0
   physicalDamage: 0
-  magicalDamage: 0
-  physicalResistance: 0
-  magicalResistance: 0
-  healthPerLevel: 0
-  physPerLevel: 0
-  magPerLevel: 0
-  physResPerLevel: 0
-  magResPerLevel: 0
+  magicalDamage: 31
+  physicalResistance: 1
+  magicalResistance: 4
+  healthPerLevel: 50
+  physPerLevel: 2
+  magPerLevel: 10
+  physResPerLevel: 0.5
+  magResPerLevel: 1
   critChance: 0
   cooldownReduction: 0
   staff: {fileID: 7571425812173182767}
@@ -3964,7 +3964,7 @@ Animator:
   m_GameObject: {fileID: 3884314429422785124}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 27bc622f8ec327b468ebc1559df9c1ca, type: 2}
+  m_Controller: {fileID: 9100000, guid: c62e883b09f86da41b8d0a935c3cffd2, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -4036,10 +4036,10 @@ MonoBehaviour:
   canRotate: 1
   canMove: 1
   abilityType: 0
-  qDamage: 0
-  wDamage: 0
-  eDamage: 0
-  rDamage: 0
+  qDamage: 10
+  wDamage: 14
+  eDamage: 15
+  rDamage: 30
   qLevel: 0
   wLevel: 0
   eLevel: 0
@@ -4056,6 +4056,8 @@ MonoBehaviour:
   wMagRatio: 0
   eMagRatio: 0
   rMagRatio: 0
+  weaponCollider: {fileID: 0}
+  inAnimation: 0
 --- !u!1 &3884314429465838561
 GameObject:
   m_ObjectHideFlags: 0
