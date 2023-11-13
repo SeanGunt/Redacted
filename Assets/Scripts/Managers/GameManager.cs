@@ -17,6 +17,10 @@ public class GameManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
+    }
+
+    private void Start()
+    {
         player = GameObject.FindGameObjectWithTag("Player");
     }
 }
