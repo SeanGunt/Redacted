@@ -24,5 +24,10 @@ public class Staff : WeaponBase
         animator.SetTrigger(animToPlay);
     }
 
+    public void HandleStaffSwingAnim(string animToPlay)
+    {
+        animator.SetTrigger(animToPlay);
+    }
+    
     #endregion
 }
