@@ -119,6 +119,7 @@ MonoBehaviour:
   maxHealth: 100
   speed: 2.5
   damage: 2
+  moneyGainedOnKill: 24
   healhBar: {fileID: 5000603000992708831}
 --- !u!195 &5000602999480124614
 NavMeshAgent:

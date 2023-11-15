@@ -12,6 +12,7 @@ public class EnemyMaster : MonoBehaviour, IDamagable
 {
     [SerializeField] private float maxHealth, speed, damage;
     private float health;
+    [SerializeField] private int moneyGainedOnKill;
     [SerializeField] private RectTransform healhBar;
     private GameObject player;
     private PlayerBase playerBase;
@@ -85,6 +86,7 @@ public class EnemyMaster : MonoBehaviour, IDamagable
             exp.transform.position = transform.position;
             exp.SetActive(true);
         }
+        MoneyManager.instance.AddMoney(moneyGainedOnKill);
         Destroy(gameObject);
     }
 
