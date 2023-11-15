@@ -135,6 +135,7 @@ GameObject:
   - component: {fileID: 45057043}
   - component: {fileID: 45057045}
   - component: {fileID: 45057046}
+  - component: {fileID: 45057047}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -204,6 +205,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   timer: 1200
   timerText: {fileID: 174604263}
+--- !u!114 &45057047
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 45057042}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c70900b0b0cff5a45b02a30bf13dce91, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  money: 0
+  moneyPerSecondMultiplier: 2.5
+  timerText: {fileID: 93670259}
 --- !u!1 &93670257
 GameObject:
   m_ObjectHideFlags: 0
@@ -216,7 +232,7 @@ GameObject:
   - component: {fileID: 93670260}
   - component: {fileID: 93670259}
   m_Layer: 5
-  m_Name: Money
+  m_Name: MoneyText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
