@@ -1,5 +1,7 @@
 using UnityEngine;
 using UnityEngine.Tilemaps;
+using NavMeshPlus.Components;
+using NavMeshPlus.Extensions;
 
 public class MapUpdate : MonoBehaviour
 {
@@ -7,14 +9,16 @@ public class MapUpdate : MonoBehaviour
     public TileBase[] CollidableTiles;
     public TileBase[] BaseTiles;
     private Tilemap baseLayer, collidableLayer;
+    [SerializeField] private NavMeshSurface navMeshSurface;
+    CollectSources2d collectSources2D;
     Vector2Int offset;
 
     void Awake()
     {
         world = WorldSingleton.instance;
         
-        baseLayer = CreateTilemap("base");
-        collidableLayer = CreateTilemap("collidable");
+        baseLayer = CreateTilemap("base", 0);
+        collidableLayer = CreateTilemap("collidable", 1);
 
         collidableLayer.gameObject.AddComponent<TilemapCollider2D>();
 
@@ -24,12 +28,17 @@ public class MapUpdate : MonoBehaviour
     void Start()
     {
         PlaceTiles();
+        navMeshSurface.BuildNavMesh();
     }
 
-    Tilemap CreateTilemap(string tilemapName)
+    Tilemap CreateTilemap(string tilemapName, int areaType)
     {
         GameObject tilemapObject = new(tilemapName);
         tilemapObject.transform.SetParent(transform);
+
+        NavMeshModifier navMeshModifier = tilemapObject.AddComponent<NavMeshModifier>();
+        navMeshModifier.overrideArea = true;
+        navMeshModifier.area = areaType;
 
         Tilemap tilemap = tilemapObject.AddComponent<Tilemap>();
         tilemapObject.AddComponent<TilemapRenderer>();

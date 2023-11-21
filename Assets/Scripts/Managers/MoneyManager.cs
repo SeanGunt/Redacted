@@ -6,7 +6,7 @@ using TMPro;
 public class MoneyManager : MonoBehaviour
 {
     public static MoneyManager instance;
-    public float money;
+    private float money;
     public float moneyPerSecondMultiplier;
     public TextMeshProUGUI timerText;
 

@@ -9,6 +9,11 @@ public class EnemyManager : MonoBehaviour
     [SerializeField] float spawnTimer;
     float timer;
 
+    private void Awake()
+    {
+        timer = spawnTimer;
+    }
+
     private void Update()
     {
         timer -= Time.deltaTime;
