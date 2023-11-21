@@ -40,7 +40,7 @@ public class WizardGuy : PlayerBase
         SortEnemies(distances);
         Vector3 targetPos = enemies[0].position;
         IDamagable damagable = enemies[0].gameObject.GetComponent<IDamagable>();
-        damagable.TakeDamage(weaponBase.qDamage);
+        damagable.TakeDamage(staff.ApplyDamage());
     }
 
     private void GetEnemiesOnScreen()

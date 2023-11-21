@@ -33,7 +33,7 @@ public class WeaponBase : MonoBehaviour
         playerBase = GetComponentInParent<PlayerBase>();
     }
 
-    protected virtual float ApplyDamage()
+    public float ApplyDamage()
     {
         switch(abilityType)
         {

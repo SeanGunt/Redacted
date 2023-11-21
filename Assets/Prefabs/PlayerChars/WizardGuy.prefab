@@ -3900,7 +3900,7 @@ MonoBehaviour:
   canRotate: 1
   canMove: 1
   abilityType: 0
-  qDamage: 150
+  qDamage: 75
   wDamage: 14
   eDamage: 15
   rDamage: 30
@@ -3908,7 +3908,7 @@ MonoBehaviour:
   wLevel: 0
   eLevel: 0
   rLevel: 0
-  qBaseScaling: 0
+  qBaseScaling: 10
   wBaseScaling: 0
   eBaseScaling: 0
   rBaseScaling: 0
@@ -3916,7 +3916,7 @@ MonoBehaviour:
   wPhysRatio: 0
   ePhysRatio: 0
   rPhysRatio: 0
-  qMagRatio: 0
+  qMagRatio: 0.4
   wMagRatio: 0
   eMagRatio: 0
   rMagRatio: 0

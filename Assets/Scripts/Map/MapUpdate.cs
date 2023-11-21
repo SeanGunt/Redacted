@@ -28,7 +28,6 @@ public class MapUpdate : MonoBehaviour
     void Start()
     {
         PlaceTiles();
-        navMeshSurface.BuildNavMesh();
     }
 
     Tilemap CreateTilemap(string tilemapName, int areaType)
@@ -68,6 +67,8 @@ public class MapUpdate : MonoBehaviour
                 }
             }
         }
+
+        navMeshSurface.BuildNavMesh();
     }
 }
 
