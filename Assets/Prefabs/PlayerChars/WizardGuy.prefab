@@ -3900,7 +3900,7 @@ MonoBehaviour:
   canRotate: 1
   canMove: 1
   abilityType: 0
-  qDamage: 10
+  qDamage: 150
   wDamage: 14
   eDamage: 15
   rDamage: 30
