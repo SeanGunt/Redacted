@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class TestBuyItem : MonoBehaviour
 {
@@ -18,6 +19,11 @@ public class TestBuyItem : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.L) && inventoryPage.CheckInventorySize() < 4)
         {
             InventoryItem inventoryItem = Instantiate(testItem, Vector3.zero, Quaternion.identity, inventoryPage.contentPanel.transform);
+            Image image = inventoryItem.gameObject.GetComponent<Image>();
+            float randomRValue = Random.Range(0f,1f);
+            float randomRGalue = Random.Range(0f,1f);
+            float randomRBalue = Random.Range(0f,1f);
+            image.color = new Color(randomRValue, randomRGalue, randomRBalue, 1f);
             inventoryPage.AddItemToList(inventoryItem);
             inventoryPage.InitializeUIHandling(inventoryItem);
         }

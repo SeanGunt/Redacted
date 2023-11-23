@@ -160,6 +160,7 @@ MonoBehaviour:
   - {fileID: 909727263}
   - {fileID: 404142593}
   player: {fileID: 0}
+  uiInput: {fileID: 919783617}
 --- !u!4 &45057044
 Transform:
   m_ObjectHideFlags: 0
@@ -872,7 +873,7 @@ Camera:
   far clip plane: 1000
   field of view: 34
   orthographic: 1
-  orthographic size: 5.625
+  orthographic size: 4.46875
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -986,7 +987,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 520937848}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: dc42784cf147c0c48a680349fa168899, type: 3}
   m_Name: 
@@ -1036,7 +1037,7 @@ Canvas:
   m_OverrideSorting: 0
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
-  m_AdditionalShaderChannelsFlag: 0
+  m_AdditionalShaderChannelsFlag: 25
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
@@ -1303,9 +1304,9 @@ MonoBehaviour:
   m_MoveAction: {fileID: 0}
   m_SubmitAction: {fileID: 0}
   m_CancelAction: {fileID: 0}
-  m_LeftClickAction: {fileID: -8146050145384961612, guid: e17b32398fd3e904388897be2625095f, type: 3}
+  m_LeftClickAction: {fileID: 7658798214443717966, guid: e17b32398fd3e904388897be2625095f, type: 3}
   m_MiddleClickAction: {fileID: 0}
-  m_RightClickAction: {fileID: 7170309497751648740, guid: e17b32398fd3e904388897be2625095f, type: 3}
+  m_RightClickAction: {fileID: -4975937179104306431, guid: e17b32398fd3e904388897be2625095f, type: 3}
   m_ScrollWheelAction: {fileID: 0}
   m_TrackedDevicePositionAction: {fileID: 0}
   m_TrackedDeviceOrientationAction: {fileID: 0}
@@ -1371,7 +1372,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &919783617
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1396,7 +1397,67 @@ MonoBehaviour:
   m_ControlsChangedEvent:
     m_PersistentCalls:
       m_Calls: []
-  m_ActionEvents: []
+  m_ActionEvents:
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: dd59d81f-4372-46eb-862b-f2f18baff592
+    m_ActionName: KBM/LeftClick[/Mouse/leftButton]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 7f14c3e5-460f-4f41-bb1f-badf9db1d184
+    m_ActionName: KBM/LeftClickUI[/Mouse/leftButton]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 12d65c98-d5fc-4f32-a86a-98137d46d445
+    m_ActionName: KBM/RightClick[/Mouse/rightButton]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 9ad7f8a1-f4d9-4f72-b46b-6ee697e02aa0
+    m_ActionName: KBM/RightClickUI[/Mouse/rightButton]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 38867b15-d1c4-4b20-8729-cbacb7cfc6bb
+    m_ActionName: KBM/PointerPosition[/Mouse/position]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 37248390-8d2c-45d9-a1ba-e0d76d0e176c
+    m_ActionName: KBM/QAttack[/Keyboard/q]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 1fc8a7f5-cb00-4769-9989-6632548d9083
+    m_ActionName: KBM/WAttack[/Keyboard/w]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: ee085c73-f3ae-4dea-b6f3-4746d31d6960
+    m_ActionName: KBM/EAttack[/Keyboard/e]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: c51276ca-1391-4419-8d7b-8bca88952a3d
+    m_ActionName: KBM/RAttack[/Keyboard/r]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: e74cbfc7-4744-442c-b431-1a161708eb69
+    m_ActionName: KBM/Pause[/Keyboard/escape]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 0e77ba20-6e6b-4d50-8e10-09a174b945fe
+    m_ActionName: KBM/LevelQ[/Keyboard/ctrl,/Keyboard/q]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 82a6c58f-12a7-4212-8d10-e5671afa2ea1
+    m_ActionName: KBM/LevelW[/Keyboard/ctrl,/Keyboard/w]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 26c4d436-b791-422e-9318-c6c894dcfce6
+    m_ActionName: KBM/LevelE[/Keyboard/ctrl,/Keyboard/e]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 5a0bb9ec-9f43-4166-a9ea-c384b37ff8d4
+    m_ActionName: KBM/LevelR[/Keyboard/ctrl,/Keyboard/r]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 2bc28fcb-8910-4163-9a9a-067c07873f3f
+    m_ActionName: KBM/LevelAbility[/Keyboard/ctrl]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: KBM

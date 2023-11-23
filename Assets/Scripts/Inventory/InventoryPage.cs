@@ -6,6 +6,7 @@ public class InventoryPage : MonoBehaviour
 {
     public GameObject contentPanel;
     List<InventoryItem> listOfUIItems = new List<InventoryItem>();
+    [SerializeField] private MouseFollower mouseFollower;
 
     public void AddItemToList(InventoryItem inventoryItem)
     {
@@ -27,22 +28,25 @@ public class InventoryPage : MonoBehaviour
 
     public void HandleItemSelection(InventoryItem inventoryItem)
     {
-        Debug.Log(inventoryItem.name);
+        int index = listOfUIItems.IndexOf(inventoryItem);
+        if (index == -1) return;
+        Debug.Log(index);
     }
 
     public void HandleBeginDrag(InventoryItem inventoryItem)
     {
-
+        mouseFollower.Toggle(false);
+        Debug.Log("Dragging Started");
     }
 
     public void HandleSwap(InventoryItem inventoryItem)
     {
-
+        Debug.Log("Swapped");
     }
 
     public void HandleEndDrag(InventoryItem inventoryItem)
     {
-
+        Debug.Log("Dragging Ended");
     }
     
 }

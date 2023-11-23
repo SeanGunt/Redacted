@@ -4,7 +4,8 @@ using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 
-public class InventoryItem : MonoBehaviour
+public class InventoryItem : MonoBehaviour, IPointerClickHandler,
+        IBeginDragHandler, IEndDragHandler, IDropHandler, IDragHandler
 {
     private Image itemImage;
     private PlayerInput playerInput;
@@ -15,31 +16,31 @@ public class InventoryItem : MonoBehaviour
         itemImage = GetComponent<Image>();
         playerInput = GameManager.Instance.player.GetComponent<PlayerInput>();
     }
-
-    private void OnLeftClickUI()
-    {
-        OnItemClicked?.Invoke(this);
-    }
-    public void OnBeginDrag()
+    public void OnBeginDrag(PointerEventData eventData)
     {
         OnItemBeginDrag?.Invoke(this);
     }
 
-    public void OnEndDrag()
+    public void OnEndDrag(PointerEventData eventData)
     {
         OnItemEndDrag?.Invoke(this);
     }
 
-    public void OnDrop()
+    public void OnDrop(PointerEventData eventData)
     {
         OnItemDropped?.Invoke(this);
     }
+
+    public void OnDrag(PointerEventData eventData)
+    {
+        
+    }
     
-    public void OnPointerClick(BaseEventData data)
+    public void OnPointerClick(PointerEventData eventData)
     {
         if (playerInput.actions["LeftClickUI"].triggered)
         {
-            OnLeftClickUI();
+            OnItemClicked?.Invoke(this);
         }
     }
 }
