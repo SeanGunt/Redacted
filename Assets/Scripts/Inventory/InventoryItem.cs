@@ -7,7 +7,7 @@ using UnityEngine.InputSystem;
 public class InventoryItem : MonoBehaviour, IPointerClickHandler,
         IBeginDragHandler, IEndDragHandler, IDropHandler, IDragHandler
 {
-    private Image itemImage;
+    [HideInInspector] public Image itemImage;
     private PlayerInput playerInput;
     public event Action<InventoryItem> OnItemBeginDrag, OnItemEndDrag, OnItemDropped, OnItemClicked;
 
