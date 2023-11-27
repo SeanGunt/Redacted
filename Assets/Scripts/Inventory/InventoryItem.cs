@@ -8,6 +8,7 @@ public class InventoryItem : MonoBehaviour, IPointerClickHandler,
         IBeginDragHandler, IEndDragHandler, IDropHandler, IDragHandler
 {
     [HideInInspector] public Image itemImage;
+    [HideInInspector] public int currentInventorySlot;
     private PlayerInput playerInput;
     public event Action<InventoryItem> OnItemBeginDrag, OnItemEndDrag, OnItemDropped, OnItemClicked;
 

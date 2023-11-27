@@ -18,7 +18,8 @@ public class TestBuyItem : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.L) && inventoryPage.CheckInventorySize() < 4)
         {
-            InventoryItem inventoryItem = Instantiate(testItem, Vector3.zero, Quaternion.identity, inventoryPage.content.transform);
+            Transform slotTransform = inventoryPage.CheckAvailableInventorySlots();
+            InventoryItem inventoryItem = Instantiate(testItem, slotTransform.position, Quaternion.identity, slotTransform);
             Image image = inventoryItem.gameObject.GetComponent<Image>();
             float randomRValue = Random.Range(0f,1f);
             float randomRGalue = Random.Range(0f,1f);

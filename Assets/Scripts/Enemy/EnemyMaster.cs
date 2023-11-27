@@ -4,10 +4,6 @@ using UnityEngine;
 using UnityEngine.AI;
 using TMPro;
 
-public interface IDamagable
-{
-    void TakeDamage(float damage);
-}
 public class EnemyMaster : MonoBehaviour, IDamagable
 {
     [SerializeField] private float maxHealth, speed, damage;
