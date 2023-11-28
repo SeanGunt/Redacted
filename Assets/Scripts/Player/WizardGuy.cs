@@ -19,17 +19,45 @@ public class WizardGuy : PlayerBase
 
     protected override void HandleWAbility() 
     {
+        if (CanUseAbility("WAttack", wCooldown, weaponBase.wLevel))
+        {
+            staff.abilityType = WeaponBase.AbilityType.W;
+            
+            // @TODO
+            // instead of an animation here, the staff wont move but electricity will
+            // flow out of it in a straight line.
 
+            StartCoroutine(HandleWCooldown());
+        }
     }
 
     protected override void HandleEAbility() 
     {
+        if (CanUseAbility("EAttack", eCooldown, weaponBase.eLevel))
+        {
+            staff.abilityType = WeaponBase.AbilityType.E;
 
+            // @TODO
+            // again, no animation here, just a radiating pulse of electricity that
+            // should flow from the tip of the staff to the edges of the maps
+
+            StartCoroutine(HandleECooldown());
+        }
     }
 
     protected override void HandleRAbility() 
     {
+        if (CanUseAbility("RAttack", rCooldown, weaponBase.rLevel))
+        {
+            staff.abilityType = WeaponBase.AbilityType.R;
 
+            // @TODO
+            // this will probably just take some transformations and
+            // particle systems to create. I want electricity to surround the player,
+            // and for the player to grow in size and gain haste. 
+
+            StartCoroutine(HandleECooldown());
+        }
     }
 
     private void SendBolt()
