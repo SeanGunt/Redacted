@@ -12,19 +12,42 @@ public class InventoryPage : MonoBehaviour
     [SerializeField] public InventorySlot[] inventorySlots;
     private GameObject ghostImage;
     private int currentlyDraggedItemIndex;
-    private int slotIndexToAdd;
+    private bool currentlyDraggingItem;
     private Transform parentToSwap;
 
-    public void AddItemToList(InventoryItem inventoryItem)
+    private void Awake()
     {
-        listOfUIItems.Add(inventoryItem);
-        inventoryItem.currentInventorySlot = slotIndexToAdd;
+        InitializeInventoryItemsList();
     }
 
-    public int CheckInventorySize()
+    public void InitializeInventoryItemsList()
     {
-        return listOfUIItems.Count;
+        for (int i = 0; i < 4; i++)
+        {
+            InventoryItem inventoryItem = inventorySlots[i].GetComponentInChildren<InventoryItem>();
+            InitializeUIHandling(inventoryItem);
+            listOfUIItems.Add(inventoryItem);
+        }
     }
+
+    public InventoryItem PurchaseInventoryItem()
+    {
+        for (int i = 0; i < 4; i++)
+        {
+            InventoryItem inventoryItem = listOfUIItems[i];
+            if (inventoryItem == null || inventoryItem.itemInitialized)
+            {
+                continue;
+            }
+            else
+            {
+                inventoryItem.itemInitialized = true;
+                return inventoryItem;
+            }
+        }
+        return null;
+    }
+
 
     public void SwapItems(int itemIndex_1, int itemIndex_2, InventoryItem inventoryItem)
     {
@@ -36,23 +59,6 @@ public class InventoryPage : MonoBehaviour
         inventoryItem.transform.SetParent(parentToSwap, false);
     }
 
-    public Transform CheckAvailableInventorySlots()
-    {
-        for (int i = 0; i < 4; i ++)
-        {
-            if (inventorySlots[i].inventorySlotFilled)
-            {
-                continue;
-            }
-            else
-            {
-                slotIndexToAdd = i;
-                inventorySlots[i].inventorySlotFilled = true;
-                return inventorySlots[i].transform;
-            }
-        }
-        return null;
-    }
 
     public void CreateOrDestroyGhostItem(bool val, InventoryItem inventoryItem)
     {
@@ -80,11 +86,13 @@ public class InventoryPage : MonoBehaviour
     public void HandleItemSelection(InventoryItem inventoryItem)
     {
         Debug.Log("Index of inventory item in list: " + listOfUIItems.IndexOf(inventoryItem));
-        Debug.Log("Index of inventory item in inventory slots: " + inventoryItem.currentInventorySlot);
+        Debug.Log("Inventory Item is Initialized " + inventoryItem.itemInitialized);
     }
 
     public void HandleBeginDrag(InventoryItem inventoryItem)
     {
+        if (!inventoryItem.itemInitialized) return;
+        currentlyDraggingItem = true;
         currentlyDraggedItemIndex = listOfUIItems.IndexOf(inventoryItem);
         currentlyDraggedItem = inventoryItem;
         parentToSwap = inventoryItem.transform.parent;
@@ -94,6 +102,7 @@ public class InventoryPage : MonoBehaviour
 
     public void HandleSwap(InventoryItem inventoryItem)
     {
+        if (!currentlyDraggingItem) return;
         int itemToSwapIndex = listOfUIItems.IndexOf(inventoryItem);
         SwapItems(currentlyDraggedItemIndex, itemToSwapIndex, inventoryItem);
 
@@ -104,6 +113,7 @@ public class InventoryPage : MonoBehaviour
     {
         mouseFollower.Toggle(false);
         CreateOrDestroyGhostItem(false, inventoryItem);
+        currentlyDraggingItem = false;
     }
     
 }

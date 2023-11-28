@@ -8,11 +8,11 @@ public class InventoryItem : MonoBehaviour, IPointerClickHandler,
         IBeginDragHandler, IEndDragHandler, IDropHandler, IDragHandler
 {
     [HideInInspector] public Image itemImage;
-    [HideInInspector] public int currentInventorySlot;
+    [HideInInspector] public bool itemInitialized;
     private PlayerInput playerInput;
     public event Action<InventoryItem> OnItemBeginDrag, OnItemEndDrag, OnItemDropped, OnItemClicked;
 
-    private void Awake()
+    private void Start()
     {
         itemImage = GetComponent<Image>();
         playerInput = GameManager.Instance.player.GetComponent<PlayerInput>();

@@ -16,17 +16,18 @@ public class TestBuyItem : MonoBehaviour
     }
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.L) && inventoryPage.CheckInventorySize() < 4)
+        if (Input.GetKeyDown(KeyCode.L))
         {
-            Transform slotTransform = inventoryPage.CheckAvailableInventorySlots();
-            InventoryItem inventoryItem = Instantiate(testItem, slotTransform.position, Quaternion.identity, slotTransform);
-            Image image = inventoryItem.gameObject.GetComponent<Image>();
-            float randomRValue = Random.Range(0f,1f);
-            float randomRGalue = Random.Range(0f,1f);
-            float randomRBalue = Random.Range(0f,1f);
-            image.color = new Color(randomRValue, randomRGalue, randomRBalue, 1f);
-            inventoryPage.AddItemToList(inventoryItem);
-            inventoryPage.InitializeUIHandling(inventoryItem);
+            InventoryItem inventoryItem = inventoryPage.PurchaseInventoryItem();
+            if (inventoryItem != null)
+            {
+                Image image = inventoryItem.gameObject.GetComponent<Image>();
+                float randomRValue = Random.Range(0f,1f);
+                float randomRGalue = Random.Range(0f,1f);
+                float randomRBalue = Random.Range(0f,1f);
+                image.color = new Color(randomRValue, randomRGalue, randomRBalue, 1f);
+            }
+            
         }
     }
 }
