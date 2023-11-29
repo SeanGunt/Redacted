@@ -68,4 +68,24 @@ public class WeaponBase : MonoBehaviour
         float baseDamage = abilityDamage + (abilityLevel * abilityDamageScaling);
         return baseDamage;
     }
+
+    public void CanMove()
+    {
+        canMove = true;
+    }
+
+    public void CantMove()
+    {
+        canMove = false;
+    }
+
+    public void CanRotate()
+    {
+        canRotate = true;
+    }
+
+    public void CantRotate()
+    {
+        canRotate = false;
+    }
 }

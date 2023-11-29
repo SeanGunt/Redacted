@@ -5,6 +5,8 @@ using UnityEngine;
 public class WizardGuy : PlayerBase
 {
     [SerializeField] private Staff staff;
+    [SerializeField] private Transform particleSpawnPoint;
+    private ParticleSystem lightningParticles;
     private List<Transform> enemies = new List<Transform>();
     protected override void HandleQAbility() 
     {
@@ -13,7 +15,6 @@ public class WizardGuy : PlayerBase
             staff.abilityType = WeaponBase.AbilityType.Q;
             staff.HandleStaffThrustAnim("Thrust");
             SendBolt();
-            SendLightning();
             StartCoroutine(HandleQCooldown());
         }
     }
@@ -23,6 +24,10 @@ public class WizardGuy : PlayerBase
         if (CanUseAbility("WAttack", wCooldown, weaponBase.wLevel))
         {
             staff.abilityType = WeaponBase.AbilityType.W;
+            staff.CantRotate();
+            staff.HandleStaffThrustAnim("Thrust");
+            SendLightning();
+            StartCoroutine(DestroyLightningParticle());
             
             // @TODO
             // instead of an animation here, the staff wont move but electricity will
@@ -64,7 +69,7 @@ public class WizardGuy : PlayerBase
             StartCoroutine(HandleECooldown());
         }
     }
-
+    #region QAbility
     private void SendBolt()
     {
         Vector3 playerPos = transform.position;
@@ -75,12 +80,6 @@ public class WizardGuy : PlayerBase
         damagable.TakeDamage(staff.ApplyDamage());
     }
 
-    private void SendLightning()
-    {
-        ParticleSystem lightningParticles = Instantiate(staff.ps, staff.transform.position + new Vector3(0f, 2.2f, 0f), Quaternion.Euler(new Vector3(0f, 0f, 90f)), staff.gameObject.transform);
-
-        lightningParticles.Play();
-    }
 
     private void GetEnemiesOnScreen()
     {
@@ -121,4 +120,29 @@ public class WizardGuy : PlayerBase
             }
         }
     }
+
+    #endregion
+
+    #region WAbility
+    private void SendLightning()
+    {
+        lightningParticles = Instantiate(staff.ps, particleSpawnPoint.position, Quaternion.Euler(new Vector3(0f, 0f, staff.transform.eulerAngles.z + 90f)), 
+        staff.gameObject.transform);
+        
+        lightningParticles.Play();
+    }
+
+    private IEnumerator DestroyLightningParticle()
+    {
+        float particleDuration = 1.0f;
+        while (particleDuration >= 0)
+        {
+            particleDuration -= Time.deltaTime;
+            yield return null;
+        }
+        staff.CanRotate();
+        Destroy(lightningParticles.gameObject);
+    }
+    
+    #endregion
 }

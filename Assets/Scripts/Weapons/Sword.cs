@@ -44,26 +44,6 @@ public class Sword : WeaponBase
         trailRenderer.emitting = false;
     }
 
-    public void CanMove()
-    {
-        canMove = true;
-    }
-
-    public void CantMove()
-    {
-        canMove = false;
-    }
-
-    public void CanRotate()
-    {
-        canRotate = true;
-    }
-
-    public void CantRotate()
-    {
-        canRotate = false;
-    }
-
     public void StartAnim()
     {
         inAnimation = true;
