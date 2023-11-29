@@ -27,6 +27,10 @@ public class WizardGuy : PlayerBase
             // instead of an animation here, the staff wont move but electricity will
             // flow out of it in a straight line.
 
+            // get the normalized direction of where the player is looking
+
+            // 
+
             StartCoroutine(HandleWCooldown());
         }
     }
@@ -66,7 +70,6 @@ public class WizardGuy : PlayerBase
         GetEnemiesOnScreen();
         List<float> distances = CalculateDistances(playerPos);
         SortEnemies(distances);
-        Vector3 targetPos = enemies[0].position;
         IDamagable damagable = enemies[0].gameObject.GetComponent<IDamagable>();
         damagable.TakeDamage(staff.ApplyDamage());
     }

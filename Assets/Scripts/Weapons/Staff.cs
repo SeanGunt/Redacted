@@ -16,8 +16,6 @@ public class Staff : WeaponBase
         weaponCollider.enabled = false;
     }
 
-
-
     #region Animation Events
     public void HandleStaffThrustAnim(string animToPlay)
     {
