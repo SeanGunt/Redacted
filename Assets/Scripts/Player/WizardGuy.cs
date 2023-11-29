@@ -13,6 +13,7 @@ public class WizardGuy : PlayerBase
             staff.abilityType = WeaponBase.AbilityType.Q;
             staff.HandleStaffThrustAnim("Thrust");
             SendBolt();
+            SendLightning();
             StartCoroutine(HandleQCooldown());
         }
     }
@@ -72,6 +73,13 @@ public class WizardGuy : PlayerBase
         SortEnemies(distances);
         IDamagable damagable = enemies[0].gameObject.GetComponent<IDamagable>();
         damagable.TakeDamage(staff.ApplyDamage());
+    }
+
+    private void SendLightning()
+    {
+        ParticleSystem lightningParticles = Instantiate(staff.ps, staff.transform.position + new Vector3(0f, 2.2f, 0f), Quaternion.Euler(new Vector3(0f, 0f, 90f)), staff.gameObject.transform);
+
+        lightningParticles.Play();
     }
 
     private void GetEnemiesOnScreen()
