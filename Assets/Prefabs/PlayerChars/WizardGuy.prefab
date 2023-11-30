@@ -3777,7 +3777,7 @@ GameObject:
   - component: {fileID: 7571425812173182767}
   m_Layer: 0
   m_Name: Staff
-  m_TagString: Untagged
+  m_TagString: Staff
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3934,7 +3934,7 @@ MonoBehaviour:
   canMove: 1
   abilityType: 0
   qDamage: 75
-  wDamage: 14
+  wDamage: 60
   eDamage: 15
   rDamage: 30
   qLevel: 0

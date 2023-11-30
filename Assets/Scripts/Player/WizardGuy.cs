@@ -126,8 +126,11 @@ public class WizardGuy : PlayerBase
     #region WAbility
     private void SendLightning()
     {
-        lightningParticles = Instantiate(staff.ps, particleSpawnPoint.position, Quaternion.Euler(new Vector3(0f, 0f, staff.transform.eulerAngles.z + 90f)), 
-        staff.gameObject.transform);
+        lightningParticles = Instantiate(
+            staff.ps, particleSpawnPoint.position, 
+            Quaternion.Euler(new Vector3(0f, 0f, staff.transform.eulerAngles.z + 90f)), 
+            staff.gameObject.transform
+        );
         
         lightningParticles.Play();
     }

@@ -1,3 +1,5 @@
+using System.Security.Cryptography.X509Certificates;
+using Unity.VisualScripting;
 using UnityEngine;
 
 /*
@@ -92,6 +94,7 @@ public class WorldSingleton : MonoBehaviour
     {
         GenerateBaseAndCollidableGrid();
         AddEdgePieces();
+        AddNoCollideSpawnZone();
     }
 
     private void GenerateBaseAndCollidableGrid()
@@ -158,6 +161,19 @@ public class WorldSingleton : MonoBehaviour
                 {
                     bases[x, y] = (int)Base.b_c;
                 }
+            }
+        }
+    }
+
+    void AddNoCollideSpawnZone()
+    {
+        int leftX = (mapDimensions.x/2)-3;
+        int rightX = (mapDimensions.x/2)+3;
+        int topY = (mapDimensions.y/2)-3;
+        int botY = (mapDimensions.y/2)+3;
+        for (int x = leftX; x < rightX; x++) {
+            for (int y = topY; y < botY; y++) {
+                bases[x, y] = (int)Base.b_v_a;
             }
         }
     }
