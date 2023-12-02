@@ -90,4 +90,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemImage: {fileID: 0}
-  currentInventorySlot: 0
+  itemInitialized: 0
+  item: {fileID: 11400000, guid: 3f03c05ce95e68a4fb824087dc3c36ff, type: 2}

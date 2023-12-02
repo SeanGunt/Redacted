@@ -3065,6 +3065,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   inventorySlotFilled: 0
+  abilityBinding: Item3
 --- !u!222 &8396331052940434042
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -4031,6 +4032,22 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: 2bc28fcb-8910-4163-9a9a-067c07873f3f
     m_ActionName: KBM/LevelAbility[/Keyboard/ctrl]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: e69f2647-b15d-4f2b-a56a-7837812e8ca2
+    m_ActionName: KBM/Item1[/Keyboard/1]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: e6fd1854-3875-4b39-9159-99f6ce36c66e
+    m_ActionName: KBM/Item2[/Keyboard/2]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 8b95f346-1acf-4ba3-ab0f-4a458c0e9cc2
+    m_ActionName: KBM/Item3[/Keyboard/3]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: d07a7b22-c58e-4cff-8d1b-138f1cec2e98
+    m_ActionName: KBM/Item4[/Keyboard/4]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: KBM
@@ -5469,6 +5486,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   inventorySlotFilled: 0
+  abilityBinding: Item4
 --- !u!222 &7246883147709584497
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -6138,6 +6156,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   inventorySlotFilled: 0
+  abilityBinding: Item1
 --- !u!222 &2395490783306217214
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -6198,6 +6217,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   inventorySlotFilled: 0
+  abilityBinding: Item2
 --- !u!222 &7944648057321923645
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -6441,6 +6461,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 3619672435111449487}
     m_Modifications:
+    - target: {fileID: 7259493933935811609, guid: 400672ee199762e4cb6025d38d0a0b35, type: 3}
+      propertyPath: item
+      value: 
+      objectReference: {fileID: 11400000, guid: 3f03c05ce95e68a4fb824087dc3c36ff, type: 2}
     - target: {fileID: 9205804436792952164, guid: 400672ee199762e4cb6025d38d0a0b35, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -6543,6 +6567,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 4189838439250101840}
     m_Modifications:
+    - target: {fileID: 7259493933935811609, guid: 400672ee199762e4cb6025d38d0a0b35, type: 3}
+      propertyPath: item
+      value: 
+      objectReference: {fileID: 11400000, guid: 3f03c05ce95e68a4fb824087dc3c36ff, type: 2}
     - target: {fileID: 9205804436792952164, guid: 400672ee199762e4cb6025d38d0a0b35, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -6645,6 +6673,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 8585293325636640119}
     m_Modifications:
+    - target: {fileID: 7259493933935811609, guid: 400672ee199762e4cb6025d38d0a0b35, type: 3}
+      propertyPath: item
+      value: 
+      objectReference: {fileID: 11400000, guid: 3f03c05ce95e68a4fb824087dc3c36ff, type: 2}
     - target: {fileID: 9205804436792952164, guid: 400672ee199762e4cb6025d38d0a0b35, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
