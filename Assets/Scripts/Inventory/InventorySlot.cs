@@ -20,9 +20,9 @@ public class InventorySlot : MonoBehaviour
         if (playerInput.actions[abilityBinding].triggered)
         {
             inventoryItem = GetComponentInChildren<InventoryItem>();
-            IItem iitem = GetComponentInChildren<IItem>();
-            if (!inventoryItem.itemInitialized || inventoryItem == null || iitem == null) return;
-            iitem.ActiveAbility();
+            IItem iItem = GetComponentInChildren<IItem>();
+            if (!inventoryItem.itemInitialized || inventoryItem == null || iItem == null) return;
+            iItem.ActiveAbility();
         }
     }
 }

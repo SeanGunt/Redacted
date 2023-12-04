@@ -15,7 +15,7 @@ public class PlayerBase : MonoBehaviour
     [Header("Stats")]
     [SerializeField] public float speed;
     [SerializeField] public float baseHealth;
-    [SerializeField] protected float healthRegen;
+    [SerializeField] public float healthRegen;
     [SerializeField] protected float qCooldownAmount, wCooldownAmount, eCooldownAmount, rCooldownAmount;
     [SerializeField] public float pickupRange;
     [HideInInspector] public float health;
@@ -28,9 +28,11 @@ public class PlayerBase : MonoBehaviour
     [SerializeField] public float magPerLevel;
     [SerializeField] public float physResPerLevel;
     [SerializeField] public float magResPerLevel;
-    [SerializeField] public float critChance;
-    [SerializeField] public float cooldownReduction;
+    [SerializeField] [Range(0.0f, 100.0f)] public float lifeSteal;
+    [SerializeField] [Range(0.0f, 100.0f)] public float critChance;
+    [SerializeField] [Range(0.0f, 100.0f)] public float cooldownReduction;
     protected float qCooldown = 0f, wCooldown = 0f, eCooldown = 0f, rCooldown = 0f;
+    protected float qBaseCooldown, wBaseCooldown, eBaseCooldown, rBaseCooldown;
 
     [Header("Other")]
     protected State state;
@@ -52,6 +54,10 @@ public class PlayerBase : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         health = baseHealth;
         state = State.idle;
+        qBaseCooldown = qCooldownAmount;
+        wBaseCooldown = wCooldownAmount;
+        eBaseCooldown = eCooldownAmount;
+        rBaseCooldown = rCooldownAmount;
     }
     private void Update()
     {
@@ -148,7 +154,7 @@ public class PlayerBase : MonoBehaviour
     private void HandleMoving()
     {
         if (!weaponBase.canMove) return;
-        this.transform.position = Vector3.MoveTowards(this.transform.position, positionToMove, speed * Time.deltaTime);
+        transform.position = Vector3.MoveTowards(transform.position, positionToMove, speed * Time.deltaTime);
     }
 
     private void HandleHealth()
@@ -180,6 +186,14 @@ public class PlayerBase : MonoBehaviour
         magicalDamage += magPerLevel;
         physicalResistance += physResPerLevel;
         magicalResistance += magResPerLevel;
+    }
+
+    private void HandleCoolDownReduction()
+    {
+        qCooldownAmount = qBaseCooldown - (qBaseCooldown * (cooldownReduction / 100));
+        wCooldownAmount = wBaseCooldown - (wBaseCooldown * (cooldownReduction / 100));
+        eCooldownAmount = eBaseCooldown - (eBaseCooldown * (cooldownReduction / 100));
+        rCooldownAmount = rBaseCooldown - (rBaseCooldown * (cooldownReduction / 100));
     }
 
     protected virtual IEnumerator HandleQCooldown()

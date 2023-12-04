@@ -1,33 +1,26 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class TestBuyItem : MonoBehaviour
 {
-    [SerializeField] private InventoryItem testItem;
+    [SerializeField] private ShopManager shopManager;
     private GameObject player;
-    private InventoryPage inventoryPage;
 
     private void Start()
     {
         player = GameManager.Instance.player;
-        inventoryPage = player.GetComponentInChildren<InventoryPage>();
     }
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.L))
+        if (Input.GetKeyDown(KeyCode.L) && !shopManager.shopActive)
         {
-            InventoryItem inventoryItem = inventoryPage.PurchaseInventoryItem();
-            if (inventoryItem != null)
-            {
-                Image image = inventoryItem.gameObject.GetComponent<Image>();
-                float randomRValue = Random.Range(0f,1f);
-                float randomRGalue = Random.Range(0f,1f);
-                float randomRBalue = Random.Range(0f,1f);
-                image.color = new Color(randomRValue, randomRGalue, randomRBalue, 1f);
-            }
+            shopManager.HandleShopUI(true, 0);
             
+        }
+        else if (Input.GetKeyDown(KeyCode.L) && shopManager.shopActive)
+        {
+            shopManager.HandleShopUI(false, 1);
         }
     }
 }

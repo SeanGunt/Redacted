@@ -44,13 +44,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e3dda62024bf4c4c99a4d884bbaf8ab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemName: 
-  health: 0
+  itemName: Enhancer
+  health: 250
   healthRegen: 0
   moveSpeed: 0
-  physicalDamage: 0
+  physicalDamage: 35
   magicalDamage: 0
   physicalResistance: 0
   magicalResistance: 0
   lifeSteal: 0
-  coolDownReduction: 0
+  coolDownReduction: 10
+  imageSprite: {fileID: 21300000, guid: 787f59679bf0b1b4ebf80552550eba31, type: 3}

@@ -13,7 +13,9 @@ public class ItemBase : MonoBehaviour, IItem
     public float physicalResistance;
     public float magicalResistance;
     public float lifeSteal;
+    public float critChance;
     public float coolDownReduction;
+    public Sprite imageSprite;
     protected GameObject player;
     protected WeaponBase weaponBase;
     protected PlayerBase playerBase;
@@ -23,6 +25,22 @@ public class ItemBase : MonoBehaviour, IItem
         player = GameManager.Instance.player;
         weaponBase = player.GetComponentInChildren<WeaponBase>();
         playerBase = player.GetComponentInChildren<PlayerBase>();
+        AddStats();
+    }
+
+    private void AddStats()
+    {
+        playerBase.health += health;
+        playerBase.healthRegen += healthRegen;
+        playerBase.speed += moveSpeed;
+        playerBase.physicalDamage += physicalDamage;
+        playerBase.magicalDamage += magicalDamage;
+        playerBase.physicalResistance += physicalResistance;
+        playerBase.magicalResistance += magicalResistance;
+        playerBase.lifeSteal += lifeSteal;
+        playerBase.critChance += critChance;
+        playerBase.cooldownReduction += coolDownReduction;
+        playerBase.Invoke("HandleCoolDownReduction", 0f);
     }
 
     public virtual void ActiveAbility()

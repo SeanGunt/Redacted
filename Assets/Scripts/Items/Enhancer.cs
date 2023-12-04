@@ -6,7 +6,7 @@ public class Enhancer : ItemBase
 {
     public override void ActiveAbility()
     {
-        
+        Debug.Log("Enhanced!");
     }
 
     public override void PassiveAbility()
