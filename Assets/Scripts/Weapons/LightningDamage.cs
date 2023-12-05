@@ -8,15 +8,24 @@ public class LightningDamage : MonoBehaviour
     void OnTriggerEnter2D(Collider2D col)
     {
         GameObject staff = GameObject.FindWithTag("Staff");
-        if (staff) {
+   
+        if (staff) 
+        {
             Staff staffMethods = staff.GetComponent<Staff>();
-            if (staffMethods) {
-                IDamagable damagable = col.gameObject.GetComponent<IDamagable>();  
-                damagable.TakeDamage(staffMethods.ApplyDamage());
-            } else {
+            if (staffMethods) 
+            {
+                IDamagable damagable = col.gameObject.GetComponent<IDamagable>();
+
+                if (damagable != null)
+                {
+                    damagable.TakeDamage(staffMethods.ApplyDamage());
+                }
+            } else 
+            {
                 Debug.Log("staffMethods not accessible");
             }
-        } else {
+        } else 
+        {
             Debug.Log("staff not initialized");
         }   
     }
