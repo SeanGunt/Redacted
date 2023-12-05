@@ -4,10 +4,11 @@ using UnityEngine;
 
 public class ItemBase : MonoBehaviour, IItem
 {
-    public string itemName;
+    [Header("Item Stats")]
     public float health;
     public float healthRegen;
     public float moveSpeed;
+    public float pickupRange;
     public float physicalDamage;
     public float magicalDamage;
     public float physicalResistance;
@@ -16,6 +17,12 @@ public class ItemBase : MonoBehaviour, IItem
     public float critChance;
     public float coolDownReduction;
     public Sprite imageSprite;
+    [Header("Item Information")]
+    public string itemName;
+    public float activeBaseCooldown;
+    private float activeCooldown;
+
+    [Header("References")]
     protected GameObject player;
     protected WeaponBase weaponBase;
     protected PlayerBase playerBase;
@@ -33,6 +40,7 @@ public class ItemBase : MonoBehaviour, IItem
         playerBase.health += health;
         playerBase.healthRegen += healthRegen;
         playerBase.speed += moveSpeed;
+        playerBase.pickupRange += pickupRange;
         playerBase.physicalDamage += physicalDamage;
         playerBase.magicalDamage += magicalDamage;
         playerBase.physicalResistance += physicalResistance;
