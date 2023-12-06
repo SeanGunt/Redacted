@@ -34,6 +34,9 @@ public class PlayerBase : MonoBehaviour
     protected float qCooldown = 0f, wCooldown = 0f, eCooldown = 0f, rCooldown = 0f;
     protected float qBaseCooldown, wBaseCooldown, eBaseCooldown, rBaseCooldown;
 
+    [Header("Item Logic")]
+    [HideInInspector] public int attacksUsed;
+
     [Header("Other")]
     protected State state;
     private Vector3 positionToMove;
@@ -87,17 +90,17 @@ public class PlayerBase : MonoBehaviour
 
     protected virtual void HandleWAbility()
     {
-
+        
     }
 
     protected virtual void HandleEAbility()
     {
-
+        
     }
 
     protected virtual void HandleRAbility()
     {
-
+        
     }
 
     private void HandleAbilities()
@@ -196,8 +199,11 @@ public class PlayerBase : MonoBehaviour
         rCooldownAmount = rBaseCooldown - (rBaseCooldown * (cooldownReduction / 100));
     }
 
-    protected virtual IEnumerator HandleQCooldown()
+    protected virtual IEnumerator HandleQCooldown(float delay)
     {
+        playerUI.qImage.color = Color.yellow;
+        yield return new WaitForSeconds(delay);
+        attacksUsed += 1;
         qCooldown = qCooldownAmount;
         playerUI.qImage.color = playerUI.imageCooldownColor;
         playerUI.qImage.fillAmount = 0f;
@@ -210,8 +216,11 @@ public class PlayerBase : MonoBehaviour
         playerUI.qImage.color = playerUI.imageStartColor;
     }
 
-    protected virtual IEnumerator HandleWCooldown()
+    protected virtual IEnumerator HandleWCooldown(float delay)
     {
+        playerUI.wImage.color = Color.yellow;
+        yield return new WaitForSeconds(delay);
+        attacksUsed += 1;
         wCooldown = wCooldownAmount;
         playerUI.wImage.color = playerUI.imageCooldownColor;
         playerUI.wImage.fillAmount = 0f;
@@ -224,8 +233,11 @@ public class PlayerBase : MonoBehaviour
         playerUI.wImage.color = playerUI.imageStartColor;
     }
 
-    protected virtual IEnumerator HandleECooldown()
+    protected virtual IEnumerator HandleECooldown(float delay)
     {
+        playerUI.eImage.color = Color.yellow;
+        yield return new WaitForSeconds(delay);
+        attacksUsed += 1;
         eCooldown = eCooldownAmount;
         playerUI.eImage.color = playerUI.imageCooldownColor;
         playerUI.eImage.fillAmount = 0f;
@@ -238,8 +250,11 @@ public class PlayerBase : MonoBehaviour
         playerUI.eImage.color = playerUI.imageStartColor;
     }
 
-    protected virtual IEnumerator HandleRCooldown()
+    protected virtual IEnumerator HandleRCooldown(float delay)
     {
+        playerUI.rImage.color = Color.yellow;
+        yield return new WaitForSeconds(delay);
+        attacksUsed += 1;
         rCooldown = rCooldownAmount;
         playerUI.rImage.color = playerUI.imageCooldownColor;
         playerUI.rImage.fillAmount = 0f;

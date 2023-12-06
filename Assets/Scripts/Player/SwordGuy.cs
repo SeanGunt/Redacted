@@ -13,7 +13,7 @@ public class SwordGuy : PlayerBase
         {
             sword.abilityType = WeaponBase.AbilityType.Q;
             sword.HandleSwordSwingAnim("Swing");
-            StartCoroutine(HandleQCooldown());
+            StartCoroutine(HandleQCooldown(sword.clips[1].length));
         }
     }
 
@@ -23,7 +23,7 @@ public class SwordGuy : PlayerBase
         {
             sword.abilityType = WeaponBase.AbilityType.W;
             sword.HandleSwordSwingAnim("Spin");
-            StartCoroutine(HandleWCooldown());
+            StartCoroutine(HandleWCooldown(sword.clips[2].length));
         }
     }
 
@@ -38,7 +38,8 @@ public class SwordGuy : PlayerBase
             HandleRotation(posToDash, transform);
             rb.AddForce(direction * 25, ForceMode2D.Impulse);
             sword.HandleSwordSwingAnim("Dash");
-            StartCoroutine(HandleECooldown());
+            base.HandleEAbility();
+            StartCoroutine(HandleECooldown(sword.clips[3].length));
         }
     }
 
@@ -139,6 +140,6 @@ public class SwordGuy : PlayerBase
         sword.inAnimation = false;
         sword.DisableWeaponCollider();
         sword.GetComponent<Animator>().enabled = true;
-        StartCoroutine(HandleRCooldown());
+        StartCoroutine(HandleRCooldown(0f));
     }
 }

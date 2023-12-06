@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.UI;
 using UnityEngine;
 
 public class ItemBase : MonoBehaviour, IItem
@@ -20,18 +21,21 @@ public class ItemBase : MonoBehaviour, IItem
     [Header("Item Information")]
     public string itemName;
     public float activeBaseCooldown;
-    private float activeCooldown;
+    protected float activeCooldown;
+    protected Image cooldownImage;
 
     [Header("References")]
     protected GameObject player;
     protected WeaponBase weaponBase;
     protected PlayerBase playerBase;
+    
 
     private void Start()
     {
         player = GameManager.Instance.player;
         weaponBase = player.GetComponentInChildren<WeaponBase>();
         playerBase = player.GetComponentInChildren<PlayerBase>();
+        cooldownImage = GetComponent<Image>();
         AddStats();
     }
 
@@ -59,5 +63,18 @@ public class ItemBase : MonoBehaviour, IItem
     public virtual void PassiveAbility()
     {
 
+    }
+
+    protected virtual IEnumerator HandleItemCooldown()
+    {
+        activeCooldown = activeBaseCooldown;
+        cooldownImage.color = new Color(cooldownImage.color.r, cooldownImage.color.b, cooldownImage.color.r, 0.9f);
+        cooldownImage.fillAmount = 1f;
+        while (activeCooldown >= 0)
+        {
+            activeCooldown -= Time.deltaTime;
+            cooldownImage.fillAmount -= Time.deltaTime / activeBaseCooldown;
+            yield return null;
+        }
     }
 }

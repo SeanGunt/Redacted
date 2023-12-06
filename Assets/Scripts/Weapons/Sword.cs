@@ -4,13 +4,11 @@ using UnityEngine;
 
 public class Sword : WeaponBase
 {
-    private Animator animator;
     private TrailRenderer trailRenderer;
     [HideInInspector] public BoxCollider2D weaponCollider;
-    [HideInInspector] public bool inAnimation; 
+    [HideInInspector] public bool inAnimation;
     private void Start()
     {
-        animator = GetComponent<Animator>();
         weaponCollider = GetComponent<BoxCollider2D>();
         trailRenderer = GetComponentInChildren<TrailRenderer>();
         weaponCollider.enabled = false;

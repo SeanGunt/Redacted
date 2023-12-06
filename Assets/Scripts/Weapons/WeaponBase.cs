@@ -5,9 +5,15 @@ using UnityEngine;
 public class WeaponBase : MonoBehaviour
 {
     protected PlayerBase playerBase;
+    protected Animator animator;
+    [HideInInspector] public AnimationClip[] clips;
+    [HideInInspector] public Material defaultMaterial;
+    [HideInInspector] public SpriteRenderer spriteRenderer;
+    [HideInInspector] public AbilityType abilityType;
+    [HideInInspector] public float damageToApply;
+    [HideInInspector] public float damageMultiplier = 1.0f;
     [HideInInspector] public bool canRotate = true;
     [HideInInspector] public bool canMove = true;
-    [HideInInspector] public AbilityType abilityType;
     public float qDamage;
     public float wDamage;
     public float eDamage;
@@ -22,7 +28,6 @@ public class WeaponBase : MonoBehaviour
     [SerializeField] private float rBaseScaling;
     [SerializeField] private float qPhysRatio, wPhysRatio, ePhysRatio, rPhysRatio;
     [SerializeField] private float qMagRatio, wMagRatio, eMagRatio, rMagRatio;
-    protected float damageToApply;
     public enum AbilityType
     {
         Q, W, E, R
@@ -31,6 +36,10 @@ public class WeaponBase : MonoBehaviour
     private void Awake()
     {
         playerBase = GetComponentInParent<PlayerBase>();
+        animator = GetComponent<Animator>();
+        clips = animator.runtimeAnimatorController.animationClips;
+        spriteRenderer = GetComponent<SpriteRenderer>();
+        defaultMaterial = spriteRenderer.material;
     }
 
     public float ApplyDamage()
@@ -38,23 +47,29 @@ public class WeaponBase : MonoBehaviour
         switch(abilityType)
         {
             case AbilityType.Q:
-                damageToApply = BaseDamage(qDamage, qBaseScaling, qLevel) + DamageScaling(qPhysRatio, qMagRatio);
+                damageToApply = CalculateDamage(qDamage, qBaseScaling, qLevel, qPhysRatio, qMagRatio);
                 Debug.Log("Q Damage: " + damageToApply);
                 break;
             case AbilityType.W:
-                damageToApply = BaseDamage(wDamage, wBaseScaling, wLevel) + DamageScaling(wPhysRatio, wMagRatio);
+                damageToApply = CalculateDamage(wDamage, wBaseScaling, wLevel, wPhysRatio, wMagRatio);
                 Debug.Log("W Damage: " + damageToApply);
                 break;
             case AbilityType.E:
-                damageToApply = BaseDamage(eDamage, eBaseScaling, eLevel) + DamageScaling(ePhysRatio, eMagRatio);
+                damageToApply = CalculateDamage(eDamage, eBaseScaling, eLevel, ePhysRatio, eMagRatio);
                 Debug.Log("E Damage: " + damageToApply);
                 break;
             case AbilityType.R:
-                damageToApply = BaseDamage(rDamage, rBaseScaling, rLevel) + DamageScaling(rPhysRatio, rMagRatio);
+                damageToApply = CalculateDamage(rDamage, rBaseScaling, rLevel, rPhysRatio, rMagRatio);
                 Debug.Log("R Damage: " + damageToApply);
                 break;
         }
         return damageToApply;
+    }
+
+    protected float CalculateDamage(float abilityDamage, float abilityDamageScaling, float abilityLevel, float physRat, float magRat)
+    {
+        float finalDamage = (BaseDamage(abilityDamage, abilityDamageScaling, abilityLevel) + DamageScaling(physRat, magRat)) * damageMultiplier;
+        return finalDamage;
     }
 
     protected float DamageScaling(float physRat, float magRat)

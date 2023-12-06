@@ -3508,6 +3508,7 @@ MonoBehaviour:
   lifeSteal: 0
   critChance: 0
   cooldownReduction: 0
+  attacksUsed: 0
   staff: {fileID: 7571425812173182767}
   particleSpawnPoint: {fileID: 1838365792433893065}
 --- !u!114 &4024712692425742683
@@ -4167,7 +4168,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 2
-  m_Sprite: {fileID: 21300000, guid: 1d514cc419205564e912007a83f96eb8, type: 3}
+  m_Sprite: {fileID: 21300000, guid: bd432cb895dbb134894b30e8461c69a6, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -4257,9 +4258,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0ec8e2aa5fefec4eaa434d76b07f61e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  clips: []
+  defaultMaterial: {fileID: 0}
+  spriteRenderer: {fileID: 0}
+  abilityType: 0
+  damageToApply: 0
+  damageMultiplier: 1
   canRotate: 1
   canMove: 1
-  abilityType: 0
   qDamage: 75
   wDamage: 60
   eDamage: 15

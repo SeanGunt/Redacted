@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class Staff : WeaponBase
 {
-    private Animator animator;
     [SerializeField] public ParticleSystem ps;
     [HideInInspector] public BoxCollider2D weaponCollider;
     [HideInInspector] public bool inAnimation;
@@ -12,7 +11,6 @@ public class Staff : WeaponBase
     // Start is called before the first frame update
     void Start()
     {   
-        animator = GetComponent<Animator>();
         weaponCollider = GetComponent<BoxCollider2D>();
         weaponCollider.enabled = false;
     }

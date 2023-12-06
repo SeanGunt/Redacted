@@ -15,7 +15,7 @@ public class WizardGuy : PlayerBase
             staff.abilityType = WeaponBase.AbilityType.Q;
             staff.HandleStaffThrustAnim("Thrust");
             SendBolt();
-            StartCoroutine(HandleQCooldown());
+            StartCoroutine(HandleQCooldown(0f));
         }
     }
 
@@ -37,7 +37,7 @@ public class WizardGuy : PlayerBase
 
             // 
 
-            StartCoroutine(HandleWCooldown());
+            StartCoroutine(HandleWCooldown(0f));
         }
     }
 
@@ -51,7 +51,7 @@ public class WizardGuy : PlayerBase
             // again, no animation here, just a radiating pulse of electricity that
             // should flow from the tip of the staff to the edges of the maps
 
-            StartCoroutine(HandleECooldown());
+            StartCoroutine(HandleECooldown(0f));
         }
     }
 
@@ -66,7 +66,7 @@ public class WizardGuy : PlayerBase
             // particle systems to create. I want electricity to surround the player,
             // and for the player to grow in size and gain haste. 
 
-            StartCoroutine(HandleECooldown());
+            StartCoroutine(HandleECooldown(0f));
         }
     }
     #region QAbility
