@@ -68,8 +68,8 @@ public class WeaponBase : MonoBehaviour
 
     protected float CalculateDamage(float abilityDamage, float abilityDamageScaling, float abilityLevel, float physRat, float magRat)
     {
-        float finalDamage = (BaseDamage(abilityDamage, abilityDamageScaling, abilityLevel) + DamageScaling(physRat, magRat)) * damageMultiplier;
-        return finalDamage;
+        float finalDamage = BaseDamage(abilityDamage, abilityDamageScaling, abilityLevel) + DamageScaling(physRat, magRat);
+        return finalDamage * damageMultiplier;
     }
 
     protected float DamageScaling(float physRat, float magRat)

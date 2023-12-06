@@ -42,6 +42,7 @@ public class ItemBase : MonoBehaviour, IItem
     private void AddStats()
     {
         playerBase.health += health;
+        playerBase.baseHealth += health;
         playerBase.healthRegen += healthRegen;
         playerBase.speed += moveSpeed;
         playerBase.pickupRange += pickupRange;
