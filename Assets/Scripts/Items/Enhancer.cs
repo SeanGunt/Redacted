@@ -30,10 +30,6 @@ public class Enhancer : ItemBase
         weaponBase.spriteRenderer.material = weaponBase.defaultMaterial;
     }
 
-    public override void PassiveAbility()
-    {
-        
-    }
 
     private void Update()
     {

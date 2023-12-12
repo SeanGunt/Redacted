@@ -18,6 +18,7 @@ public class ItemBase : MonoBehaviour, IItem
     public float critChance;
     public float coolDownReduction;
     public Sprite imageSprite;
+    
     [Header("Item Information")]
     public string itemName;
     public float activeBaseCooldown;

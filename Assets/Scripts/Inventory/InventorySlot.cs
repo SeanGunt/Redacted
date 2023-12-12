@@ -19,10 +19,15 @@ public class InventorySlot : MonoBehaviour
     {
         if (playerInput.actions[abilityBinding].triggered)
         {
-            inventoryItem = GetComponentInChildren<InventoryItem>();
-            IItem iItem = GetComponentInChildren<IItem>();
-            if (!inventoryItem.itemInitialized || inventoryItem == null || iItem == null) return;
-            iItem.ActiveAbility();
+            ActivateItemInSlot();
         }
+    }
+
+    private void ActivateItemInSlot()
+    {
+        inventoryItem = GetComponentInChildren<InventoryItem>();
+        IItem iItem = GetComponentInChildren<IItem>();
+        if (!inventoryItem.itemInitialized || inventoryItem == null || iItem == null) return;
+        iItem.ActiveAbility();
     }
 }
