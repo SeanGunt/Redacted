@@ -93,7 +93,7 @@ public class EnemyMaster : MonoBehaviour, IDamagable
         if (num != null)
         {
             num.transform.position = transform.position;
-            numText.text = damage.ToString();
+            numText.text = damage.ToString("n0");
             num.SetActive(true);
         }
     }

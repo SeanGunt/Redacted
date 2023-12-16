@@ -1164,7 +1164,7 @@ Camera:
   far clip plane: 1000
   field of view: 34
   orthographic: 1
-  orthographic size: 5.625
+  orthographic size: 8.4375
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -1243,8 +1243,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_ComponentVersion: 1
   m_AssetsPPU: 32
-  m_RefResolutionX: 640
-  m_RefResolutionY: 360
+  m_RefResolutionX: 960
+  m_RefResolutionY: 540
   m_CropFrame: 0
   m_GridSnapping: 0
   m_UpscaleRT: 0
@@ -1993,7 +1993,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 23d91ed9838595b40b5255e149537e37, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  testItem: {fileID: 7259493933935811609, guid: 400672ee199762e4cb6025d38d0a0b35, type: 3}
   shopManager: {fileID: 343007681}
 --- !u!1 &1469255114
 GameObject:
@@ -2719,7 +2718,7 @@ MonoBehaviour:
   m_Follow: {fileID: 0}
   m_Lens:
     FieldOfView: 34
-    OrthographicSize: 5.625
+    OrthographicSize: 6.75
     NearClipPlane: 0.3
     FarClipPlane: 1000
     Dutch: 0
