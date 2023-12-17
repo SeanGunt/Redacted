@@ -534,7 +534,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemy: {fileID: 5000602999480124611, guid: a3632eeb72e73404ebf7f09679beba3b, type: 3}
-  spawnArea: {x: 12, y: 7}
+  spawnArea: {x: 20, y: 14}
   spawnTimer: 3
 --- !u!1 &271287204
 GameObject:
@@ -1164,7 +1164,7 @@ Camera:
   far clip plane: 1000
   field of view: 34
   orthographic: 1
-  orthographic size: 8.4375
+  orthographic size: 4.34375
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2

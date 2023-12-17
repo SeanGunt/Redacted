@@ -50,25 +50,25 @@ public class EnemyManager : MonoBehaviour
 
     private Vector3 SpawnLeft()
     {
-        Vector3 positionToSpawn = new Vector3(-12, Random.Range(-spawnArea.y, spawnArea.y), 0);
+        Vector3 positionToSpawn = new Vector3(-20, Random.Range(-spawnArea.y, spawnArea.y), 0);
         return positionToSpawn;
     }
 
     private Vector3 SpawnRight()
     {
-        Vector3 positionToSpawn = new Vector3(12, Random.Range(-spawnArea.y, spawnArea.y), 0);
+        Vector3 positionToSpawn = new Vector3(20, Random.Range(-spawnArea.y, spawnArea.y), 0);
         return positionToSpawn;
     }
 
     private Vector3 SpawnDown()
     {
-        Vector3 positionToSpawn = new Vector3(Random.Range(-spawnArea.x, spawnArea.x), -7, 0f);
+        Vector3 positionToSpawn = new Vector3(Random.Range(-spawnArea.x, spawnArea.x), -14, 0f);
         return positionToSpawn;
     }
 
     private Vector3 SpawnUp()
     {
-        Vector3 positionToSpawn = new Vector3(Random.Range(-spawnArea.x, spawnArea.x), 7f, 0f);
+        Vector3 positionToSpawn = new Vector3(Random.Range(-spawnArea.x, spawnArea.x), 14f, 0f);
         return positionToSpawn;
     }
 }

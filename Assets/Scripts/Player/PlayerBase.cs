@@ -62,7 +62,7 @@ public class PlayerBase : MonoBehaviour
         eBaseCooldown = eCooldownAmount;
         rBaseCooldown = rCooldownAmount;
     }
-    private void Update()
+    virtual protected void Update()
     {
         HandleHealth();
         HandleStatsUI();
