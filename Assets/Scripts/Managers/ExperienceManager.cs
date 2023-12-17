@@ -41,8 +41,11 @@ public class ExperienceManager : MonoBehaviour
 
     private void HandleExpBar()
     {
-        float ratio = 1 / expTillNextLevel;
-        playerUI.expBar.fillAmount = exp * ratio;
+        if (level < maxLevel)
+        {
+            float ratio = 1 / expTillNextLevel;
+            playerUI.expBar.fillAmount = exp * ratio;
+        }
     }
 
     public void IncreaseExperience(float amountToIncrease)

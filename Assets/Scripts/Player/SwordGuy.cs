@@ -12,6 +12,7 @@ public class SwordGuy : PlayerBase
         if (CanUseAbility("QAttack", qCooldown, weaponBase.qLevel) && !sword.inAnimation)
         {
             sword.abilityType = WeaponBase.AbilityType.Q;
+            HandleRotation(GetMousePosition(), transform);
             sword.HandleSwordSwingAnim("Swing");
             StartCoroutine(HandleQCooldown(sword.clips[1].length));
         }
@@ -22,6 +23,7 @@ public class SwordGuy : PlayerBase
         if (CanUseAbility("WAttack", wCooldown, weaponBase.wLevel) && !sword.inAnimation)
         {
             sword.abilityType = WeaponBase.AbilityType.W;
+            HandleRotation(GetMousePosition(), transform);
             sword.HandleSwordSwingAnim("Spin");
             StartCoroutine(HandleWCooldown(sword.clips[2].length));
         }
@@ -54,6 +56,7 @@ public class SwordGuy : PlayerBase
             SortEnemies(distances);
             int numEnemiesToTarget = Mathf.Min(enemies.Count, 10);
             List<Transform> enemiesToTarget = enemies.GetRange(0, numEnemiesToTarget);
+            HandleRotation(enemiesToTarget[0].transform.position, transform);
             StartCoroutine(SendSwordToEnemies(enemiesToTarget));
         }
     }
