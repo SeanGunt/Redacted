@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using TMPro;
 
 public class AbilityManager : MonoBehaviour
 {
@@ -9,7 +10,7 @@ public class AbilityManager : MonoBehaviour
     private ExperienceManager experienceManager;
     private PlayerInput playerInput;
     private PlayerUI playerUI;
-    public bool canLevelAbility;
+    public int numOfLevelsAvailable;
     public enum AbilityType
     {
         LevelQ, LevelE, LevelW, LevelR
@@ -22,7 +23,7 @@ public class AbilityManager : MonoBehaviour
         playerUI = GetComponent<PlayerUI>();
         experienceManager = GetComponent<ExperienceManager>();
 
-        canLevelAbility = true;
+        numOfLevelsAvailable = 1;
     }
 
     private void Update()
@@ -59,7 +60,7 @@ public class AbilityManager : MonoBehaviour
                 {
                     weaponBase.qLevel += 1;
                     playerUI.qLevelText.text = weaponBase.qLevel.ToString();
-                    canLevelAbility = false;
+                    numOfLevelsAvailable -= 1;
                 }
                 break;
             case "LevelW":
@@ -67,7 +68,7 @@ public class AbilityManager : MonoBehaviour
                 {
                     weaponBase.wLevel += 1;
                     playerUI.wLevelText.text = weaponBase.wLevel.ToString();
-                    canLevelAbility = false;
+                    numOfLevelsAvailable -= 1;
                 }
                 break;
             case "LevelE":
@@ -75,7 +76,7 @@ public class AbilityManager : MonoBehaviour
                 {
                     weaponBase.eLevel += 1;
                     playerUI.eLevelText.text = weaponBase.eLevel.ToString();
-                    canLevelAbility = false;
+                    numOfLevelsAvailable -= 1;
                 }
                 break;
             case "LevelR":
@@ -83,17 +84,24 @@ public class AbilityManager : MonoBehaviour
                 {
                     weaponBase.rLevel += 1;
                     playerUI.rLevelText.text = weaponBase.rLevel.ToString();
-                    canLevelAbility = false;
+                    numOfLevelsAvailable -= 1;
                 }
                 break;
         }
+    }
+
+    private void HandleOnLevel(int abilityLevel, TextMeshProUGUI abilityText)
+    {
+        abilityLevel += 1;
+        abilityText.text = abilityLevel.ToString();
+        numOfLevelsAvailable -= 1;
     }
 
     private bool CanLevelAbility(string abilityToLevel)
     {
         int maxLevel = GetMaxAbilityLevel(abilityToLevel);
 
-        return playerInput.actions[abilityToLevel].triggered && canLevelAbility &&
+        return playerInput.actions[abilityToLevel].triggered && numOfLevelsAvailable >= 1 &&
                GetAbilityLevel(abilityToLevel) < maxLevel &&
                (abilityToLevel != "LevelR" || experienceManager.level >= maxLevel * 5 - 4);
     }
@@ -102,7 +110,7 @@ public class AbilityManager : MonoBehaviour
     {
         int maxLevel = GetMaxAbilityLevel(abilityToLevel);
 
-        return canLevelAbility &&
+        return numOfLevelsAvailable >= 1 &&
                GetAbilityLevel(abilityToLevel) < maxLevel &&
                (abilityToLevel != "LevelR" || experienceManager.level >= maxLevel * 5 - 4);
     }

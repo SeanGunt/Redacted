@@ -8,7 +8,6 @@ public class ExperienceManager : MonoBehaviour
     private PlayerBase playerBase;
     private AbilityManager abilityManager;
     private float exp = 0f;
-    private float totalExp;
     private float expTillNextLevel = 100f;
     [HideInInspector] public int level = 1;
     private readonly int maxLevel = 20;
@@ -33,9 +32,10 @@ public class ExperienceManager : MonoBehaviour
         {
             level += 1;
             playerBase.HandleOnlevel();
-            abilityManager.canLevelAbility = true;
-            exp = 0f;
-            expTillNextLevel += 100f;
+            abilityManager.numOfLevelsAvailable += 1;
+            exp -= expTillNextLevel;
+            expTillNextLevel = Mathf.Pow(expTillNextLevel, 1.1f);
+            Debug.Log(expTillNextLevel);
         }
     }
 

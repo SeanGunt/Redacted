@@ -48,19 +48,15 @@ public class WeaponBase : MonoBehaviour
         {
             case AbilityType.Q:
                 damageToApply = CalculateDamage(qDamage, qBaseScaling, qLevel, qPhysRatio, qMagRatio);
-                Debug.Log("Q Damage: " + damageToApply);
                 break;
             case AbilityType.W:
                 damageToApply = CalculateDamage(wDamage, wBaseScaling, wLevel, wPhysRatio, wMagRatio);
-                Debug.Log("W Damage: " + damageToApply);
                 break;
             case AbilityType.E:
                 damageToApply = CalculateDamage(eDamage, eBaseScaling, eLevel, ePhysRatio, eMagRatio);
-                Debug.Log("E Damage: " + damageToApply);
                 break;
             case AbilityType.R:
                 damageToApply = CalculateDamage(rDamage, rBaseScaling, rLevel, rPhysRatio, rMagRatio);
-                Debug.Log("R Damage: " + damageToApply);
                 break;
         }
         return damageToApply;
