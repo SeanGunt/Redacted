@@ -2329,7 +2329,7 @@ SpriteRenderer:
   m_Size: {x: 1, y: 1}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1 &130832244343742476
@@ -2879,13 +2879,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f2a7ec16d240d2418e2d4aaf95da964, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mouseFollower: {fileID: 0}
+  mouseFollower: {fileID: 2912198042496397021}
   ghostImagePrefab: {fileID: 9205804436792952165, guid: 1365c7974cfb930448bc7d8e39cde3a8, type: 3}
   inventorySlots:
-  - {fileID: 6930168913526659346}
-  - {fileID: 1876884681739605350}
-  - {fileID: 829639160212907015}
-  - {fileID: 2656237052264500741}
+  - {fileID: 5202077381326708432}
+  - {fileID: 4042033836601313626}
+  - {fileID: 7603926765671189646}
+  - {fileID: 7176605698785400641}
 --- !u!1 &3107288830893270879
 GameObject:
   m_ObjectHideFlags: 0
@@ -3585,7 +3585,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d4f7baf50db581240b838670653fd872, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  canLevelAbility: 0
+  numOfLevelsAvailable: 0
 --- !u!114 &1636167505
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5785,8 +5785,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2e66646f46af8754bb8b7d3031e53b53, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  canvas: {fileID: 0}
-  playerInput: {fileID: 0}
+  canvas: {fileID: 3884314430342519716}
+  playerInput: {fileID: 1636167505}
 --- !u!1 &6432841532554914960
 GameObject:
   m_ObjectHideFlags: 0
