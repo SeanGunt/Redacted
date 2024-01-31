@@ -167,10 +167,10 @@ public class WorldSingleton : MonoBehaviour
 
     void AddNoCollideSpawnZone()
     {
-        int leftX = (mapDimensions.x/2)-3;
-        int rightX = (mapDimensions.x/2)+3;
-        int topY = (mapDimensions.y/2)-3;
-        int botY = (mapDimensions.y/2)+3;
+        int leftX = (mapDimensions.x/2)-6;
+        int rightX = (mapDimensions.x/2)+6;
+        int topY = (mapDimensions.y/2)-6;
+        int botY = (mapDimensions.y/2)+6;
         for (int x = leftX; x < rightX; x++) {
             for (int y = topY; y < botY; y++) {
                 bases[x, y] = (int)Base.b_v_a;

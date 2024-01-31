@@ -202,9 +202,9 @@ public class PlayerBase : MonoBehaviour
     protected virtual IEnumerator HandleQCooldown(float delay)
     {
         playerUI.qImage.color = Color.yellow;
+        qCooldown = qCooldownAmount;
         yield return new WaitForSeconds(delay);
         attacksUsed += 1;
-        qCooldown = qCooldownAmount;
         playerUI.qImage.color = playerUI.imageCooldownColor;
         playerUI.qImage.fillAmount = 0f;
         while(qCooldown >= 0)
@@ -219,9 +219,9 @@ public class PlayerBase : MonoBehaviour
     protected virtual IEnumerator HandleWCooldown(float delay)
     {
         playerUI.wImage.color = Color.yellow;
+        wCooldown = wCooldownAmount;
         yield return new WaitForSeconds(delay);
         attacksUsed += 1;
-        wCooldown = wCooldownAmount;
         playerUI.wImage.color = playerUI.imageCooldownColor;
         playerUI.wImage.fillAmount = 0f;
         while(wCooldown >= 0)
@@ -236,9 +236,9 @@ public class PlayerBase : MonoBehaviour
     protected virtual IEnumerator HandleECooldown(float delay)
     {
         playerUI.eImage.color = Color.yellow;
+        eCooldown = eCooldownAmount;
         yield return new WaitForSeconds(delay);
         attacksUsed += 1;
-        eCooldown = eCooldownAmount;
         playerUI.eImage.color = playerUI.imageCooldownColor;
         playerUI.eImage.fillAmount = 0f;
         while(eCooldown >= 0)
@@ -253,9 +253,9 @@ public class PlayerBase : MonoBehaviour
     protected virtual IEnumerator HandleRCooldown(float delay)
     {
         playerUI.rImage.color = Color.yellow;
+        rCooldown = rCooldownAmount;
         yield return new WaitForSeconds(delay);
         attacksUsed += 1;
-        rCooldown = rCooldownAmount;
         playerUI.rImage.color = playerUI.imageCooldownColor;
         playerUI.rImage.fillAmount = 0f;
         while(rCooldown >= 0)

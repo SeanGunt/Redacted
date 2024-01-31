@@ -2321,7 +2321,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 1
-  m_Sprite: {fileID: 21300000, guid: 1d514cc419205564e912007a83f96eb8, type: 3}
+  m_Sprite: {fileID: 21300000, guid: bd432cb895dbb134894b30e8461c69a6, type: 3}
   m_Color: {r: 0, g: 0, b: 0, a: 0.3882353}
   m_FlipX: 0
   m_FlipY: 0
@@ -2329,7 +2329,7 @@ SpriteRenderer:
   m_Size: {x: 1, y: 1}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 0
+  m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1 &130832244343742476
@@ -2508,7 +2508,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1016941132943853399}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.5, z: 0}
+  m_LocalPosition: {x: 0, y: 0.4, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -3490,7 +3490,7 @@ MonoBehaviour:
   speed: 3
   baseHealth: 400
   healthRegen: 3
-  qCooldownAmount: 1
+  qCooldownAmount: 1.5
   wCooldownAmount: 4
   eCooldownAmount: 5
   rCooldownAmount: 25
@@ -3510,7 +3510,6 @@ MonoBehaviour:
   cooldownReduction: 0
   attacksUsed: 0
   staff: {fileID: 7571425812173182767}
-  particleSpawnPoint: {fileID: 1838365792433893065}
 --- !u!114 &4024712692425742683
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4266,7 +4265,7 @@ MonoBehaviour:
   damageMultiplier: 1
   canRotate: 1
   canMove: 1
-  qDamage: 75
+  qDamage: 40
   wDamage: 60
   eDamage: 15
   rDamage: 30
@@ -4287,8 +4286,11 @@ MonoBehaviour:
   eMagRatio: 0
   rMagRatio: 0
   ps: {fileID: 8278587810137286617, guid: c87a5334100629146b07e03bc573b67f, type: 3}
+  wizardGuy: {fileID: 99880761256294759}
   weaponCollider: {fileID: 0}
   inAnimation: 0
+  fireballPrefab: {fileID: 6471252855280025352, guid: 8464d62f8c0528f4a8380baa071ca87c, type: 3}
+  staffSpawnPoint: {fileID: 1016941132943853399}
 --- !u!1 &3884314429465838561
 GameObject:
   m_ObjectHideFlags: 0

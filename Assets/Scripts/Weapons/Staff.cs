@@ -1,14 +1,17 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Mathematics;
 using UnityEngine;
 
 public class Staff : WeaponBase
 {
     [SerializeField] public ParticleSystem ps;
+    [SerializeField] private WizardGuy wizardGuy;
     [HideInInspector] public BoxCollider2D weaponCollider;
     [HideInInspector] public bool inAnimation;
+    public GameObject fireballPrefab;
+    public GameObject staffSpawnPoint;
 
-    // Start is called before the first frame update
     void Start()
     {   
         weaponCollider = GetComponent<BoxCollider2D>();
@@ -16,14 +19,14 @@ public class Staff : WeaponBase
     }
 
     #region Animation Events
-    public void HandleStaffThrustAnim(string animToPlay)
+    public void HandleStaffAnims(string animToPlay)
     {
         animator.SetTrigger(animToPlay);
     }
 
-    public void HandleStaffSwingAnim(string animToPlay)
+    public void SpawnFireball()
     {
-        animator.SetTrigger(animToPlay);
+        GameObject fireball = Instantiate(fireballPrefab, staffSpawnPoint.transform.position, wizardGuy.transform.rotation, GameManager.Instance.poolHolders[3].transform);
     }
     
     #endregion
