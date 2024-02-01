@@ -12,7 +12,7 @@ public class WizardGuy : PlayerBase
             staff.abilityType = WeaponBase.AbilityType.Q;
             HandleRotation(GetMousePosition(), transform);
             staff.HandleStaffAnims("Fireball");
-            StartCoroutine(HandleQCooldown(staff.clips[0].length));
+            StartCoroutine(HandleQCooldown(staff.clips[1].length));
         }
     }
 
@@ -42,7 +42,7 @@ public class WizardGuy : PlayerBase
         {
             staff.abilityType = WeaponBase.AbilityType.R;
             HandleRotation(GetMousePosition(), transform);
-            StartCoroutine(HandleECooldown(0f));
+            StartCoroutine(HandleRCooldown(0f));
         }
     }
     #region QAbility
