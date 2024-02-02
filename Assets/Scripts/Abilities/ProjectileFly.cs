@@ -5,6 +5,7 @@ using UnityEngine;
 public class ProjectileFly : MonoBehaviour
 {
     private Rigidbody2D rb;
+    public ParticleSystem particles;
     public float speed;
 
     private void Awake()
@@ -19,6 +20,8 @@ public class ProjectileFly : MonoBehaviour
 
     private void OnBecameInvisible()
     {
+        particles.transform.parent = GameManager.Instance.poolHolders[4].transform;
+        particles.Stop();
         Destroy(gameObject);
     }
     

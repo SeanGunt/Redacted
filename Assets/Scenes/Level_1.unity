@@ -160,6 +160,7 @@ MonoBehaviour:
   - {fileID: 909727263}
   - {fileID: 404142593}
   - {fileID: 224142322}
+  - {fileID: 1558521886}
   player: {fileID: 0}
 --- !u!4 &45057044
 Transform:
@@ -520,7 +521,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 12
+  m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &192914760
 MonoBehaviour:
@@ -566,7 +567,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 14
+  m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &271287204
 GameObject:
@@ -1225,7 +1226,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &519420033
 MonoBehaviour:
@@ -1380,7 +1381,7 @@ RectTransform:
   - {fileID: 93670258}
   - {fileID: 343007680}
   m_Father: {fileID: 0}
-  m_RootOrder: 9
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -1495,7 +1496,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &669513455
 GameObject:
@@ -1527,7 +1528,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &669513457
 MonoBehaviour:
@@ -1601,7 +1602,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -1680,128 +1681,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b791046d5023d3b4b9f29f59fb218594, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!1 &919783616
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 919783618}
-  - component: {fileID: 919783617}
-  m_Layer: 0
-  m_Name: PlayerInput
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 0
---- !u!114 &919783617
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 919783616}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Actions: {fileID: -944628639613478452, guid: e17b32398fd3e904388897be2625095f, type: 3}
-  m_NotificationBehavior: 0
-  m_UIInputModule: {fileID: 832741048}
-  m_DeviceLostEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  m_DeviceRegainedEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  m_ControlsChangedEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  m_ActionEvents:
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: dd59d81f-4372-46eb-862b-f2f18baff592
-    m_ActionName: KBM/LeftClick[/Mouse/leftButton]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 7f14c3e5-460f-4f41-bb1f-badf9db1d184
-    m_ActionName: KBM/LeftClickUI[/Mouse/leftButton]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 12d65c98-d5fc-4f32-a86a-98137d46d445
-    m_ActionName: KBM/RightClick[/Mouse/rightButton]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 9ad7f8a1-f4d9-4f72-b46b-6ee697e02aa0
-    m_ActionName: KBM/RightClickUI[/Mouse/rightButton]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 38867b15-d1c4-4b20-8729-cbacb7cfc6bb
-    m_ActionName: KBM/PointerPosition[/Mouse/position]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 37248390-8d2c-45d9-a1ba-e0d76d0e176c
-    m_ActionName: KBM/QAttack[/Keyboard/q]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 1fc8a7f5-cb00-4769-9989-6632548d9083
-    m_ActionName: KBM/WAttack[/Keyboard/w]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: ee085c73-f3ae-4dea-b6f3-4746d31d6960
-    m_ActionName: KBM/EAttack[/Keyboard/e]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: c51276ca-1391-4419-8d7b-8bca88952a3d
-    m_ActionName: KBM/RAttack[/Keyboard/r]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: e74cbfc7-4744-442c-b431-1a161708eb69
-    m_ActionName: KBM/Pause[/Keyboard/escape]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 0e77ba20-6e6b-4d50-8e10-09a174b945fe
-    m_ActionName: KBM/LevelQ[/Keyboard/ctrl,/Keyboard/q]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 82a6c58f-12a7-4212-8d10-e5671afa2ea1
-    m_ActionName: KBM/LevelW[/Keyboard/ctrl,/Keyboard/w]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 26c4d436-b791-422e-9318-c6c894dcfce6
-    m_ActionName: KBM/LevelE[/Keyboard/ctrl,/Keyboard/e]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 5a0bb9ec-9f43-4166-a9ea-c384b37ff8d4
-    m_ActionName: KBM/LevelR[/Keyboard/ctrl,/Keyboard/r]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 2bc28fcb-8910-4163-9a9a-067c07873f3f
-    m_ActionName: KBM/LevelAbility[/Keyboard/ctrl]
-  m_NeverAutoSwitchControlSchemes: 0
-  m_DefaultControlScheme: 
-  m_DefaultActionMap: KBM
-  m_SplitScreenIndex: -1
-  m_Camera: {fileID: 0}
---- !u!4 &919783618
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 919783616}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 3
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1174077200
 GameObject:
   m_ObjectHideFlags: 0
@@ -2295,6 +2174,37 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1521077104}
   m_CullTransparentMesh: 1
+--- !u!1 &1558521886
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1558521887}
+  m_Layer: 0
+  m_Name: --- PARTICLES ---
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1558521887
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1558521886}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.8922664, y: 5.2571473, z: -0.027275532}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 14
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1597352778
 GameObject:
   m_ObjectHideFlags: 0
@@ -2527,7 +2437,7 @@ Transform:
   m_Children:
   - {fileID: 1686364176}
   m_Father: {fileID: 0}
-  m_RootOrder: 11
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1686364174
 GameObject:
@@ -2780,7 +2690,7 @@ Transform:
   m_Children:
   - {fileID: 1621874158}
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1838407194
 MonoBehaviour:
@@ -3300,7 +3210,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 13
+  m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2011120826
 GameObject:
@@ -3455,7 +3365,7 @@ Transform:
   m_Children:
   - {fileID: 1174077201}
   m_Father: {fileID: 0}
-  m_RootOrder: 10
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &2049606911
 MonoBehaviour:

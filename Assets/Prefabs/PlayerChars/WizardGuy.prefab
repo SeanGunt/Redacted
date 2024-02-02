@@ -3497,13 +3497,13 @@ MonoBehaviour:
   rCooldownAmount: 25
   pickupRange: 3
   health: 0
-  physicalDamage: 0
+  physicalDamage: 25
   magicalDamage: 31
   physicalResistance: 1
   magicalResistance: 4
   healthPerLevel: 50
   physPerLevel: 2
-  magPerLevel: 10
+  magPerLevel: 7
   physResPerLevel: 0.5
   magResPerLevel: 1
   lifeSteal: 0
@@ -4287,7 +4287,7 @@ MonoBehaviour:
   canRotate: 1
   canMove: 1
   qDamage: 40
-  wDamage: 60
+  wDamage: 20
   eDamage: 15
   rDamage: 30
   qLevel: 0
@@ -4295,22 +4295,22 @@ MonoBehaviour:
   eLevel: 0
   rLevel: 0
   qBaseScaling: 10
-  wBaseScaling: 0
+  wBaseScaling: 5
   eBaseScaling: 0
   rBaseScaling: 0
-  qPhysRatio: 0
+  qPhysRatio: 0.1
   wPhysRatio: 0
   ePhysRatio: 0
   rPhysRatio: 0
   qMagRatio: 0.4
-  wMagRatio: 0
+  wMagRatio: 0.25
   eMagRatio: 0
   rMagRatio: 0
-  ps: {fileID: 8278587810137286617, guid: c87a5334100629146b07e03bc573b67f, type: 3}
   wizardGuy: {fileID: 99880761256294759}
   weaponCollider: {fileID: 0}
   inAnimation: 0
   fireballPrefab: {fileID: 6471252855280025352, guid: 8464d62f8c0528f4a8380baa071ca87c, type: 3}
+  lightningPrefab: {fileID: 2842863288066496263, guid: a65d2d893c600a640bec5301ee5522d0, type: 3}
   staffSpawnPoint: {fileID: 1016941132943853399}
 --- !u!1 &3884314429465838561
 GameObject:

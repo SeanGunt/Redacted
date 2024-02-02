@@ -6,14 +6,14 @@ public class ProjectileTrigger : MonoBehaviour
 {
     [HideInInspector] public bool collided;
     private GameObject player;
-    private WeaponBase weaponBase;
+    protected WeaponBase weaponBase;
 
     private void OnEnable()
     {
         player = GameManager.Instance.player;
         weaponBase = player.GetComponentInChildren<WeaponBase>();
     }
-    private void OnTriggerEnter2D(Collider2D other)
+    protected virtual void OnTriggerEnter2D(Collider2D other)
     {
         IDamagable damagable = other.gameObject.GetComponent<IDamagable>();
         if (damagable != null)

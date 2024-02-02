@@ -22,6 +22,7 @@ public class WizardGuy : PlayerBase
         {
             staff.abilityType = WeaponBase.AbilityType.W;
             HandleRotation(GetMousePosition(), transform);
+            staff.HandleStaffAnims("Lightning");
             StartCoroutine(HandleWCooldown(0f));
         }
     }
@@ -45,11 +46,6 @@ public class WizardGuy : PlayerBase
             StartCoroutine(HandleRCooldown(0f));
         }
     }
-    #region QAbility
-    
-
-    #endregion
-
     #region WAbility
 
     
