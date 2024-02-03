@@ -9,7 +9,7 @@ public class ChainLightningTrigger : ProjectileTrigger
         IDamagable damagable = other.gameObject.GetComponent<IDamagable>();
         if (damagable != null)
         {
-            damagable.TakeDamage(weaponBase.ApplyDamage()/3);
+            damagable.TakeDamage(weaponBase.ApplyWDamage()/3);
         }
     }
 }

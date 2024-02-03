@@ -10,6 +10,7 @@ public class Staff : WeaponBase
     [HideInInspector] public bool inAnimation;
     public GameObject fireballPrefab;
     public GameObject lightningPrefab;
+    public GameObject blackHolePrefab;
     public GameObject staffSpawnPoint;
 
     void Start()
@@ -29,11 +30,16 @@ public class Staff : WeaponBase
         GameObject fireball = Instantiate(fireballPrefab, staffSpawnPoint.transform.position, wizardGuy.transform.rotation, GameManager.Instance.poolHolders[3].transform);
     }
 
-    private void LightningBolt()
+    public void LightningBolt()
     {
         GameObject lightning = Instantiate(lightningPrefab, staffSpawnPoint.transform.position, transform.rotation, GameManager.Instance.poolHolders[3].transform);
         lightning.transform.localScale = new Vector3(1f,0,1f);
         StartCoroutine(ExtendBolt(lightning.transform));
+    }
+
+    public void BlackHole()
+    {
+        GameObject blackHole = Instantiate(blackHolePrefab, wizardGuy.GetMousePosition(), Quaternion.identity, GameManager.Instance.poolHolders[3].transform);
     }
 
     private IEnumerator ExtendBolt(Transform lightning)

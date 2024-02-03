@@ -62,6 +62,26 @@ public class WeaponBase : MonoBehaviour
         return damageToApply;
     }
 
+    public float ApplyQDamage()
+    {
+        return CalculateDamage(qDamage, qBaseScaling, qLevel, qPhysRatio, qMagRatio);
+    }
+
+    public float ApplyWDamage()
+    {
+        return CalculateDamage(wDamage, wBaseScaling, wLevel, wPhysRatio, wMagRatio);
+    }
+
+    public float ApplyEDamage()
+    {
+        return CalculateDamage(eDamage, eBaseScaling, eLevel, ePhysRatio, eMagRatio);
+    }
+
+    public float ApplyRDamage()
+    {
+        return CalculateDamage(rDamage, rBaseScaling, rLevel, rPhysRatio, rMagRatio);
+    }
+
     protected float CalculateDamage(float abilityDamage, float abilityDamageScaling, float abilityLevel, float physRat, float magRat)
     {
         float finalDamage = BaseDamage(abilityDamage, abilityDamageScaling, abilityLevel) + DamageScaling(physRat, magRat);

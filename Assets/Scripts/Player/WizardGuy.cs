@@ -23,7 +23,7 @@ public class WizardGuy : PlayerBase
             staff.abilityType = WeaponBase.AbilityType.W;
             HandleRotation(GetMousePosition(), transform);
             staff.HandleStaffAnims("Lightning");
-            StartCoroutine(HandleWCooldown(0f));
+            StartCoroutine(HandleWCooldown(staff.clips[2].length));
         }
     }
 
@@ -43,6 +43,7 @@ public class WizardGuy : PlayerBase
         {
             staff.abilityType = WeaponBase.AbilityType.R;
             HandleRotation(GetMousePosition(), transform);
+            staff.BlackHole();
             StartCoroutine(HandleRCooldown(0f));
         }
     }
