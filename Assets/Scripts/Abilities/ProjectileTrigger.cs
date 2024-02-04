@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class ProjectileTrigger : MonoBehaviour
 {
-    [HideInInspector] public bool collided;
     private GameObject player;
     protected WeaponBase weaponBase;
 
