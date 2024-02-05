@@ -33,6 +33,7 @@ public class WizardGuy : PlayerBase
         {
             staff.abilityType = WeaponBase.AbilityType.E;
             HandleRotation(GetMousePosition(), transform);
+            staff.Iceball();
             StartCoroutine(HandleECooldown(0f));
         }
     }
@@ -44,11 +45,7 @@ public class WizardGuy : PlayerBase
             staff.abilityType = WeaponBase.AbilityType.R;
             HandleRotation(GetMousePosition(), transform);
             staff.BlackHole();
-            StartCoroutine(HandleRCooldown(0f));
+            StartCoroutine(HandleRCooldown(5f));
         }
     }
-    #region WAbility
-
-    
-    #endregion
 }
