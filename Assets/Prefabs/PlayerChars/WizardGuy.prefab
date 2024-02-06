@@ -4296,15 +4296,15 @@ MonoBehaviour:
   rLevel: 0
   qBaseScaling: 10
   wBaseScaling: 5
-  eBaseScaling: 0
-  rBaseScaling: 0
+  eBaseScaling: 7.5
+  rBaseScaling: 25
   qPhysRatio: 0.1
   wPhysRatio: 0
-  ePhysRatio: 0
+  ePhysRatio: 0.2
   rPhysRatio: 0
   qMagRatio: 0.4
   wMagRatio: 0.25
-  eMagRatio: 0
+  eMagRatio: 0.2
   rMagRatio: 0.5
   wizardGuy: {fileID: 99880761256294759}
   weaponCollider: {fileID: 0}
