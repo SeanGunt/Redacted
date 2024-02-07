@@ -163,7 +163,7 @@ MonoBehaviour:
   constantSpeed: 1
   decelerationRate: 6
   initialRotationSpeed: 500
-  shadowRenderer: {fileID: 9100502109206435105}
+  shadowSpriteRenderer: {fileID: 9100502109206435105}
   iceShardSpawnPositions:
   - {fileID: 5684264026862262812}
   - {fileID: 455209683231307292}

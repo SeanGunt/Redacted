@@ -10,11 +10,11 @@ public class IceballLaunch : MonoBehaviour
     [SerializeField] private float constantSpeed;
     [SerializeField] private float decelerationRate;
     [SerializeField] private float initialRotationSpeed;
-    [SerializeField] private SpriteRenderer shadowRenderer;
+    [SerializeField] private SpriteRenderer shadowSpriteRenderer;
     private SpriteRenderer spriteRenderer;
+    private bool fadeStarted;
     [Header("Iceshard Properties")]
     [SerializeField] private Transform[] iceShardSpawnPositions;
-    private IceShardLaunch[] iceShardLaunches;
     [SerializeField] private GameObject iceShardPrefab;
     [SerializeField] private float iceShardShotRate;
     private float iceShardTimer;
@@ -26,8 +26,6 @@ public class IceballLaunch : MonoBehaviour
         spriteRenderer = GetComponent<SpriteRenderer>();
         rb.velocity = transform.up * initialSpeed;
         iceShardTimer =  iceShardShotRate;
-
-        iceShardLaunches = new IceShardLaunch[iceShardSpawnPositions.Length];
         rb.AddTorque(initialRotationSpeed);
     }
 
@@ -44,6 +42,12 @@ public class IceballLaunch : MonoBehaviour
             iceShardTimer = iceShardShotRate;
         }
 
+        if (CanStartFade())
+        {
+            StartCoroutine(Fade());
+            fadeStarted = true;
+        }
+
         if (IceballHasFaded())
         {
             Destroy(gameObject);
@@ -55,38 +59,23 @@ public class IceballLaunch : MonoBehaviour
         for (int i = 0; i < iceShardSpawnPositions.Length; i++)
         {
             GameObject iceShard = Instantiate(iceShardPrefab, iceShardSpawnPositions[i].transform.position, iceShardSpawnPositions[i].transform.rotation, transform);
-            Rigidbody2D rb = iceShard.GetComponent<Rigidbody2D>();
-            iceShard.transform.localScale = new Vector2(0f,0f);
-            iceShardLaunches[i] = iceShard.GetComponent<IceShardLaunch>();
-            StartCoroutine(Expand(iceShard.transform, rb));
         }
     }
 
-    private IEnumerator Expand(Transform iceShard, Rigidbody2D rb)
+    private IEnumerator Fade()
     {
-        while (iceShard.localScale.x <= 1)
+        while (spriteRenderer.color.a > 0)
         {
-            iceShard.localScale += new Vector3(Time.deltaTime * 2, Time.deltaTime * 2, 0f);
+            spriteRenderer.color -= new Color(0,0,0, Time.deltaTime/3);
+            shadowSpriteRenderer.color -= new Color(0,0,0, Time.deltaTime/3);
             yield return null;
-        }
-        rb.bodyType = RigidbodyType2D.Dynamic;
-        for (int i = 0; i < iceShardLaunches.Length; i++)
-        {
-            iceShardLaunches[i].Launch();
-            yield return null;
-        }
-        if (totalShardClustersShotSinceBirth >= 7)
-        {
-            yield return new WaitForSeconds(1f);
-           while (spriteRenderer.color.a >= 0)
-           {
-                spriteRenderer.color -= new Color(0f,0f,0f,Time.deltaTime/2);
-                shadowRenderer.color -= new Color(0f,0f,0f,Time.deltaTime/2);
-                yield return null;
-           }
         }
     }
 
+    private bool CanStartFade()
+    {
+        return totalShardClustersShotSinceBirth >= 7 && !fadeStarted;
+    }
     private bool CanShootIceShards()
     {
         return iceShardTimer <= 0 && totalShardClustersShotSinceBirth < 7;

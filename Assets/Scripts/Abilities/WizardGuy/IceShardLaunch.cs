@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class IceShardLaunch : MonoBehaviour
@@ -14,6 +15,8 @@ public class IceShardLaunch : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         boxCollider2D = GetComponent<BoxCollider2D>();
         boxCollider2D.enabled = false;
+        transform.localScale = new Vector2(0f,0f);
+        StartCoroutine(Expand());
     }
 
     private void Update()
@@ -29,5 +32,17 @@ public class IceShardLaunch : MonoBehaviour
     {
         rb.velocity = transform.up * speed;
         boxCollider2D.enabled = true;
+    }
+
+    private IEnumerator Expand()
+    {
+        while (transform.localScale.x < 1f)
+        {
+            transform.localScale += new Vector3(2 * Time.deltaTime, 2 * Time.deltaTime, 0f);
+            Debug.Log("Expanding");
+            yield return null;
+        }
+        Launch();
+        rb.bodyType = RigidbodyType2D.Dynamic;
     }
 }
