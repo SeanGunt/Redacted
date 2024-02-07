@@ -38,28 +38,7 @@ public class LightningTrigger : ProjectileTrigger
             int randomChainPoint = Random.Range(0,2);
             GameObject chainLightning = Instantiate(chainLightningPrefab, chainPoints[randomChainPoint].position, Quaternion.identity, GameManager.Instance.poolHolders[3].transform);
             HandleRotation(enemyList[i].transform.position, chainLightning.transform);
-            StartCoroutine(ExtendBolt(chainLightning.transform));
         }
-    }
-
-    private IEnumerator ExtendBolt(Transform lightning)
-    {
-        while (lightning.localScale.y <= 4)
-        {
-            lightning.transform.localScale += new Vector3(0f, 25f * Time.deltaTime, 0f);
-            yield return null;
-        }
-        BoxCollider2D bc = lightning.GetComponentInChildren<BoxCollider2D>();
-        bc.enabled = false;
-        SpriteRenderer sr = lightning.GetComponentInChildren<SpriteRenderer>();
-        while (sr.color.a >= 0)
-        {
-            sr.color -= new Color(0f,0f,0f, Time.deltaTime);
-            yield return null;
-        }
-        yield return new WaitForSeconds(1);
-        Destroy(lightning.gameObject);
-        yield return null;
     }
 
     private void HandleRotation(Vector3 pos, Transform thingToRotate)

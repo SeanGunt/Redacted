@@ -146,7 +146,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 74eb93bbc8922894d8a6fab9582f27c7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  collided: 0
+  lightningPivot: {fileID: 808771827629316562}
 --- !u!1 &2842863288066496263
 GameObject:
   m_ObjectHideFlags: 0
