@@ -8,7 +8,7 @@ public class ChainLightningTrigger : ProjectileTrigger
     [SerializeField] private Transform lightningPivot;
     private void Awake()
     {
-        StartCoroutine(ExtendBolt());
+        StartCoroutine(ExtendAndFadeBolt());
     }
     protected override void OnTriggerEnter2D(Collider2D other)
     {
@@ -19,7 +19,7 @@ public class ChainLightningTrigger : ProjectileTrigger
         }
     }
 
-    private IEnumerator ExtendBolt()
+    private IEnumerator ExtendAndFadeBolt()
     {
         while (lightningPivot.localScale.y <= 4)
         {
