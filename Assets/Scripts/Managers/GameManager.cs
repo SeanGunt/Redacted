@@ -9,6 +9,7 @@ public class GameManager : MonoBehaviour
     [HideInInspector] public GameObject player;
     private void Awake()
     {
+
         if (Instance == null)
         {
             Instance = this;
@@ -17,6 +18,7 @@ public class GameManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
+        Application.targetFrameRate = 60;
     }
 
     private void Start()

@@ -40,7 +40,6 @@ public class SwordGuy : PlayerBase
             HandleRotation(posToDash, transform);
             rb.AddForce(direction * 25, ForceMode2D.Impulse);
             sword.HandleSwordSwingAnim("Dash");
-            base.HandleEAbility();
             StartCoroutine(HandleECooldown(sword.clips[3].length));
         }
     }
