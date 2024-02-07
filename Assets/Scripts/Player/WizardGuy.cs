@@ -34,7 +34,7 @@ public class WizardGuy : PlayerBase
             staff.abilityType = WeaponBase.AbilityType.E;
             HandleRotation(GetMousePosition(), transform);
             staff.Iceball();
-            StartCoroutine(HandleECooldown(0f));
+            StartCoroutine(HandleECooldown(9f));
         }
     }
 

@@ -4286,10 +4286,10 @@ MonoBehaviour:
   damageMultiplier: 1
   canRotate: 1
   canMove: 1
-  qDamage: 40
-  wDamage: 20
-  eDamage: 15
-  rDamage: 100
+  qDamage: 20
+  wDamage: 15
+  eDamage: 10
+  rDamage: 80
   qLevel: 0
   wLevel: 0
   eLevel: 0
@@ -4298,7 +4298,7 @@ MonoBehaviour:
   wBaseScaling: 5
   eBaseScaling: 7.5
   rBaseScaling: 25
-  qPhysRatio: 0.1
+  qPhysRatio: 0
   wPhysRatio: 0
   ePhysRatio: 0.2
   rPhysRatio: 0

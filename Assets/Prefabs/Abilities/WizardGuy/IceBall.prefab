@@ -140,7 +140,7 @@ Rigidbody2D:
   m_UseAutoMass: 0
   m_Mass: 1
   m_LinearDrag: 0
-  m_AngularDrag: 0
+  m_AngularDrag: 0.3
   m_GravityScale: 0
   m_Material: {fileID: 0}
   m_Interpolate: 1
@@ -162,6 +162,8 @@ MonoBehaviour:
   initialSpeed: 10
   constantSpeed: 1
   decelerationRate: 6
+  initialRotationSpeed: 500
+  shadowRenderer: {fileID: 9100502109206435105}
   iceShardSpawnPositions:
   - {fileID: 5684264026862262812}
   - {fileID: 455209683231307292}
@@ -172,6 +174,7 @@ MonoBehaviour:
   - {fileID: 2121555534869604268}
   - {fileID: 1909786221871755163}
   iceShardPrefab: {fileID: 6216715753031834796, guid: 4251758a0507f9845b26f55a3c0f2c91, type: 3}
+  iceShardShotRate: 1
 --- !u!1 &2913984555928581362
 GameObject:
   m_ObjectHideFlags: 0
