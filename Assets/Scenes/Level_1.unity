@@ -535,9 +535,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ade22491609d62147b1b55b28c60b9f1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemy: {fileID: 5000602999480124611, guid: a3632eeb72e73404ebf7f09679beba3b, type: 3}
+  enemies:
+  - {fileID: 5000602999480124611, guid: a3632eeb72e73404ebf7f09679beba3b, type: 3}
   spawnArea: {x: 20, y: 14}
   spawnTimer: 3
+  timerManager: {fileID: 45057046}
 --- !u!1 &224142322
 GameObject:
   m_ObjectHideFlags: 0
@@ -2198,7 +2200,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1558521886}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.8922664, y: 5.2571473, z: -0.027275532}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
