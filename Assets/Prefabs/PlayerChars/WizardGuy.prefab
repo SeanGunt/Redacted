@@ -3491,10 +3491,10 @@ MonoBehaviour:
   speed: 3
   baseHealth: 400
   healthRegen: 3
-  qCooldownAmount: 1.5
+  qCooldownAmount: 2.5
   wCooldownAmount: 4
-  eCooldownAmount: 5
-  rCooldownAmount: 25
+  eCooldownAmount: 10
+  rCooldownAmount: 60
   pickupRange: 3
   health: 0
   physicalDamage: 25

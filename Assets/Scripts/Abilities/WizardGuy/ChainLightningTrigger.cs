@@ -6,6 +6,7 @@ using UnityEngine;
 public class ChainLightningTrigger : ProjectileTrigger
 {
     [SerializeField] private Transform lightningPivot;
+    [SerializeField] private Destroy destroy;
     private void Awake()
     {
         StartCoroutine(ExtendAndFadeBolt());
@@ -34,7 +35,6 @@ public class ChainLightningTrigger : ProjectileTrigger
             sr.color -= new Color(0f,0f,0f, Time.deltaTime);
             yield return null;
         }
-        yield return new WaitForSeconds(1);
-        Destroy(gameObject);
+        destroy.DestroyGameObject();
     }
 }

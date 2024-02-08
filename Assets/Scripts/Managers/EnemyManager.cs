@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class EnemyManager : MonoBehaviour
@@ -55,49 +56,47 @@ public class EnemyManager : MonoBehaviour
 
     private Vector3 SpawnPosition()
     {
-        int spawnArea = Random.Range(0,4);
+        int spawnEdge = Random.Range(0,4);
         Vector3 spawnPosition = Vector3.zero;
-        if (spawnArea == 0)
+
+        bool validSpawn = false;
+        while (!validSpawn)
         {
-            spawnPosition = SpawnLeft();
-        }
-        else if (spawnArea == 1)
-        {
-            spawnPosition = SpawnRight();
-        }
-        else if (spawnArea == 2)
-        {
-            spawnPosition = SpawnDown();
-        }
-        else if (spawnArea == 3)
-        {
-            spawnPosition = SpawnUp();
+            switch (spawnEdge)
+            {
+                case 0:
+                    spawnPosition = new Vector3(-20, Random.Range(-spawnArea.y, spawnArea.y), 0); 
+                    break;
+                case 1:
+                    spawnPosition = new Vector3(20, Random.Range(-spawnArea.y, spawnArea.y), 0);
+                    break;
+                case 2:
+                    spawnPosition = new Vector3(Random.Range(-spawnArea.x, spawnArea.x), -14, 0f);
+                    break;
+                case 3:
+                    spawnPosition = new Vector3(Random.Range(-spawnArea.x, spawnArea.x), 14f, 0f);
+                    break;
+            }
+
+            Collider2D[] colliders = Physics2D.OverlapCircleAll(spawnPosition, 0.5f, ~10);
+            bool insideUnwalkable = false;
+            foreach (Collider2D collider in colliders)
+            {
+                if (!collider.isTrigger)
+                {
+                    insideUnwalkable = true;
+                    Debug.Log("Spawning Enemy In Walkable Position");
+                }
+            }
+
+            validSpawn = !insideUnwalkable;
+
+            if (!validSpawn)
+            {
+                spawnEdge = Random.Range(0,4);
+            }
         }
 
         return spawnPosition + GameManager.Instance.player.transform.position;
-    }
-
-    private Vector3 SpawnLeft()
-    {
-        Vector3 positionToSpawn = new Vector3(-20, Random.Range(-spawnArea.y, spawnArea.y), 0);
-        return positionToSpawn;
-    }
-
-    private Vector3 SpawnRight()
-    {
-        Vector3 positionToSpawn = new Vector3(20, Random.Range(-spawnArea.y, spawnArea.y), 0);
-        return positionToSpawn;
-    }
-
-    private Vector3 SpawnDown()
-    {
-        Vector3 positionToSpawn = new Vector3(Random.Range(-spawnArea.x, spawnArea.x), -14, 0f);
-        return positionToSpawn;
-    }
-
-    private Vector3 SpawnUp()
-    {
-        Vector3 positionToSpawn = new Vector3(Random.Range(-spawnArea.x, spawnArea.x), 14f, 0f);
-        return positionToSpawn;
     }
 }

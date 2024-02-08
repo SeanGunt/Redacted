@@ -21,6 +21,7 @@ public class MapUpdate : MonoBehaviour
         collidableLayer = CreateTilemap("collidable", 1);
 
         collidableLayer.gameObject.AddComponent<TilemapCollider2D>();
+        collidableLayer.gameObject.layer = 10;
 
         offset = new Vector2Int(world.mapDimensions.x/2, world.mapDimensions.y/2);
     }
