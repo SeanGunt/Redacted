@@ -1,7 +1,6 @@
 using UnityEngine;
 using UnityEngine.Tilemaps;
 using NavMeshPlus.Components;
-using NavMeshPlus.Extensions;
 
 public class MapUpdate : MonoBehaviour
 {
@@ -10,7 +9,6 @@ public class MapUpdate : MonoBehaviour
     public TileBase[] BaseTiles;
     private Tilemap baseLayer, collidableLayer;
     [SerializeField] private NavMeshSurface navMeshSurface;
-    CollectSources2d collectSources2D;
     Vector2Int offset;
 
     void Awake()

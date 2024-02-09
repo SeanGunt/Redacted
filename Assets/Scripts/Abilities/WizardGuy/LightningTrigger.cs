@@ -7,6 +7,7 @@ public class LightningTrigger : ProjectileTrigger
     public Transform[] chainPoints;
     public GameObject chainLightningPrefab;
     private List<Transform> enemyList = new List<Transform>();
+    int enemyLayerMask = 1 << 9;
     protected override void OnTriggerEnter2D(Collider2D other)
     {
         IDamagable damagable = other.gameObject.GetComponent<IDamagable>();
@@ -14,7 +15,7 @@ public class LightningTrigger : ProjectileTrigger
         {
             damagable.TakeDamage(weaponBase.ApplyWDamage());
             enemyList.Clear();
-            Collider2D[] collider2Ds = Physics2D.OverlapCircleAll(other.gameObject.transform.position, 5f, ~9);
+            Collider2D[] collider2Ds = Physics2D.OverlapCircleAll(other.gameObject.transform.position, 5f, enemyLayerMask);
 
             foreach (Collider2D collider2D in collider2Ds)
             {

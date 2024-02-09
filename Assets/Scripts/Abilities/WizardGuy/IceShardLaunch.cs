@@ -39,7 +39,6 @@ public class IceShardLaunch : MonoBehaviour
         while (transform.localScale.x < 1f)
         {
             transform.localScale += new Vector3(2 * Time.deltaTime, 2 * Time.deltaTime, 0f);
-            Debug.Log("Expanding");
             yield return null;
         }
         Launch();

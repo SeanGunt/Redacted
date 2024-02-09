@@ -85,6 +85,7 @@ public class WeaponBase : MonoBehaviour
     protected float CalculateDamage(float abilityDamage, float abilityDamageScaling, float abilityLevel, float physRat, float magRat)
     {
         float finalDamage = BaseDamage(abilityDamage, abilityDamageScaling, abilityLevel) + DamageScaling(physRat, magRat);
+        playerBase.attacksUsed += 1;
         return finalDamage * damageMultiplier;
     }
 

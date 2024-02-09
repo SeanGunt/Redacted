@@ -1,6 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class EnemyManager : MonoBehaviour
@@ -11,6 +10,7 @@ public class EnemyManager : MonoBehaviour
     [SerializeField] float spawnTimer;
     [SerializeField] private TimerManager timerManager;
     private int phase = 1;
+    private int unwalkableLayerMask = 1 << 10;
     private float timer;
 
     private void Awake()
@@ -78,7 +78,7 @@ public class EnemyManager : MonoBehaviour
                     break;
             }
 
-            Collider2D[] colliders = Physics2D.OverlapCircleAll(spawnPosition, 0.5f, ~10);
+            Collider2D[] colliders = Physics2D.OverlapCircleAll(spawnPosition, 0.5f, unwalkableLayerMask);
             bool insideUnwalkable = false;
             foreach (Collider2D collider in colliders)
             {

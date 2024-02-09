@@ -5,13 +5,14 @@ using UnityEngine;
 public class BlackHole : MonoBehaviour
 {
     [SerializeField] private GameObject blackHoleExplosion;
+    int enemyLayerMask = 1 << 9;
     private void Awake()
     {
         StartCoroutine(Detonate());
     }
     private void Update()
     {
-        Collider2D[] collider2Ds = Physics2D.OverlapCircleAll(transform.position, 7f, ~9);
+        Collider2D[] collider2Ds = Physics2D.OverlapCircleAll(transform.position, 7f, enemyLayerMask);
         foreach (Collider2D collider2D in collider2Ds)
         {
             Transform enemyTransform = collider2D.gameObject.transform;

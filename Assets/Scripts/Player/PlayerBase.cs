@@ -204,7 +204,6 @@ public class PlayerBase : MonoBehaviour
         playerUI.qImage.color = Color.yellow;
         qCooldown = qCooldownAmount;
         yield return new WaitForSeconds(delay);
-        attacksUsed += 1;
         playerUI.qImage.color = playerUI.imageCooldownColor;
         playerUI.qImage.fillAmount = 0f;
         while(qCooldown >= 0)
@@ -221,7 +220,6 @@ public class PlayerBase : MonoBehaviour
         playerUI.wImage.color = Color.yellow;
         wCooldown = wCooldownAmount;
         yield return new WaitForSeconds(delay);
-        attacksUsed += 1;
         playerUI.wImage.color = playerUI.imageCooldownColor;
         playerUI.wImage.fillAmount = 0f;
         while(wCooldown >= 0)
@@ -238,7 +236,6 @@ public class PlayerBase : MonoBehaviour
         playerUI.eImage.color = Color.yellow;
         eCooldown = eCooldownAmount;
         yield return new WaitForSeconds(delay);
-        attacksUsed += 1;
         playerUI.eImage.color = playerUI.imageCooldownColor;
         playerUI.eImage.fillAmount = 0f;
         while(eCooldown >= 0)
@@ -255,7 +252,6 @@ public class PlayerBase : MonoBehaviour
         playerUI.rImage.color = Color.yellow;
         rCooldown = rCooldownAmount;
         yield return new WaitForSeconds(delay);
-        attacksUsed += 1;
         playerUI.rImage.color = playerUI.imageCooldownColor;
         playerUI.rImage.fillAmount = 0f;
         while(rCooldown >= 0)

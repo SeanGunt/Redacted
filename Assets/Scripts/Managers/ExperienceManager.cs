@@ -23,6 +23,9 @@ public class ExperienceManager : MonoBehaviour
     {
         HandleLevel();
         HandleExpBar();
+
+        //Instantly adds level, remove on launch
+        AddLevel();
     }
 
     private void HandleLevel()
@@ -35,7 +38,6 @@ public class ExperienceManager : MonoBehaviour
             abilityManager.numOfLevelsAvailable += 1;
             exp -= expTillNextLevel;
             expTillNextLevel = Mathf.Pow(expTillNextLevel, 1.1f);
-            Debug.Log(expTillNextLevel);
         }
     }
 
@@ -51,5 +53,13 @@ public class ExperienceManager : MonoBehaviour
     public void IncreaseExperience(float amountToIncrease)
     {
         exp += amountToIncrease;
+    }
+
+    private void AddLevel()
+    {
+        if (Input.GetKeyDown(KeyCode.Equals))
+        {
+            IncreaseExperience(expTillNextLevel);
+        }
     }
 }
