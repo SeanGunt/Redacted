@@ -9,7 +9,7 @@ public class EnemyMaster : MonoBehaviour, IDamagable
     [SerializeField] private float maxHealth, speed, damage;
     private float health;
     [SerializeField] private int moneyGainedOnKill;
-    [SerializeField] private RectTransform healhBar;
+    [SerializeField] private RectTransform healthBar;
     private GameObject player;
     private PlayerBase playerBase;
     private NavMeshAgent agent;
@@ -47,7 +47,7 @@ public class EnemyMaster : MonoBehaviour, IDamagable
         health -= damage;
         float ratio = maxHealth / 100;
         float damageToBar = damage / ratio;
-        healhBar.sizeDelta -= new Vector2(damageToBar, 0);
+        healthBar.sizeDelta -= new Vector2(damageToBar, 0);
         SpawnDamageNumber(damage);
 
         if (health <= 0)
@@ -100,5 +100,14 @@ public class EnemyMaster : MonoBehaviour, IDamagable
     protected virtual void Movement()
     {
         agent.SetDestination(new Vector3(player.transform.position.x, player.transform.position.y, transform.position.z));
+        HandleRotation(player.transform.position, transform);
+        
+    }
+
+    protected void HandleRotation(Vector3 pos, Transform thingToRotate)
+    {
+        Vector3 direction = (pos - thingToRotate.position).normalized;
+        float angle = Mathf.Atan2(-direction.x, direction.y) * Mathf.Rad2Deg;
+        thingToRotate.eulerAngles = new Vector3(0,0,angle);
     }
 }

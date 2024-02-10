@@ -536,7 +536,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemies:
-  - {fileID: 5000602999480124611, guid: a3632eeb72e73404ebf7f09679beba3b, type: 3}
+  - {fileID: 8081501030465915632, guid: ae5ea9e41212ea14e9fdfaf2f74dc594, type: 3}
   spawnArea: {x: 20, y: 14}
   spawnTimer: 3
   timerManager: {fileID: 45057046}

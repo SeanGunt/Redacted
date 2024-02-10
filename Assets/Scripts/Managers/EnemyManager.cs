@@ -30,7 +30,7 @@ public class EnemyManager : MonoBehaviour
                 timer -= Time.deltaTime;
                 if (timer <= 0f)
                 {
-                    SpawnEnemy("EnemyTest");
+                    SpawnEnemy("HammerBird");
                     timer = spawnTimer;
                 }
             break;
