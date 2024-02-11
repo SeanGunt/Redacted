@@ -7,50 +7,59 @@ public class EnemyManager : MonoBehaviour
     [SerializeField] private GameObject[] enemies;
     private Dictionary<string, GameObject> enemyPrefabs = new Dictionary<string, GameObject>{};
     [SerializeField] private Vector2 spawnArea;
-    [SerializeField] float spawnTimer;
     [SerializeField] private TimerManager timerManager;
     private int phase = 1;
     private int unwalkableLayerMask = 1 << 10;
-    private float timer;
+    private float spawnTimer;
+    private float timeToSpawnEnemy;
+    private float phaseTimer;
+    private float phaseDuration = 60f;
 
     private void Awake()
     {
-        timer = spawnTimer;
         foreach(GameObject enenmy in enemies)
         {
             enemyPrefabs.Add(enenmy.name, enenmy);
         }
+        UpdateSpawnSettings();
     }
 
     private void Update()
     {
+        phaseTimer += Time.deltaTime;
+
+        if (phaseTimer >= phaseDuration)
+        {
+            phase++;
+            phaseTimer = 0f;
+            UpdateSpawnSettings();
+        }
         switch (phase)
         {
             case 1:
-                timer -= Time.deltaTime;
-                if (timer <= 0f)
-                {
-                    SpawnEnemy("HammerBird");
-                    timer = spawnTimer;
-                }
+                SpawnEnemy("HammerBird");
             break;
             case 2:
-
+                SpawnEnemy("Robot");
             break;
         }
     }
     private void SpawnEnemy(string enemyType)
     {
-
-        if (enemyPrefabs.ContainsKey(enemyType))
+        spawnTimer += Time.deltaTime;
+        if (spawnTimer >= timeToSpawnEnemy)
         {
-            GameObject enemyPrefab = enemyPrefabs[enemyType];
-            GameObject newEnemy = Instantiate(enemyPrefab, SpawnPosition(), Quaternion.identity);
-            newEnemy.transform.SetParent(transform);
-        }
-        else
-        {
-            Debug.LogError("Enemy type " + enemyType + " not found!");
+            if (enemyPrefabs.ContainsKey(enemyType))
+            {
+                GameObject enemyPrefab = enemyPrefabs[enemyType];
+                GameObject newEnemy = Instantiate(enemyPrefab, SpawnPosition(), Quaternion.identity);
+                newEnemy.transform.SetParent(transform);
+                spawnTimer -= timeToSpawnEnemy;
+            }
+            else
+            {
+                Debug.LogError("Enemy type " + enemyType + " not found!");
+            }
         }
     }
 
@@ -98,5 +107,18 @@ public class EnemyManager : MonoBehaviour
         }
 
         return spawnPosition + GameManager.Instance.player.transform.position;
+    }
+
+    private void UpdateSpawnSettings()
+    {
+        switch (phase)
+        {
+            case 1:
+                timeToSpawnEnemy = 5f; 
+                break;
+            case 2:
+                timeToSpawnEnemy = 4f;
+                break;
+        }
     }
 }

@@ -10,9 +10,9 @@ public class EnemyMaster : MonoBehaviour, IDamagable
     private float health;
     [SerializeField] private int moneyGainedOnKill;
     [SerializeField] private RectTransform healthBar;
-    private GameObject player;
+    protected GameObject player;
     private PlayerBase playerBase;
-    private NavMeshAgent agent;
+    protected NavMeshAgent agent;
     private SpriteRenderer spriteRenderer;
     private Material material;
 
@@ -37,9 +37,10 @@ public class EnemyMaster : MonoBehaviour, IDamagable
         playerBase = player.GetComponent<PlayerBase>();
     }
 
-    private void Update()
+    protected virtual void Update()
     {
         Movement();
+        Rotation();
     }
 
     public void TakeDamage(float damage)
@@ -100,8 +101,12 @@ public class EnemyMaster : MonoBehaviour, IDamagable
     protected virtual void Movement()
     {
         agent.SetDestination(new Vector3(player.transform.position.x, player.transform.position.y, transform.position.z));
-        HandleRotation(player.transform.position, transform);
         
+    }
+
+    protected virtual void Rotation()
+    {
+        HandleRotation(player.transform.position, transform);
     }
 
     protected void HandleRotation(Vector3 pos, Transform thingToRotate)
