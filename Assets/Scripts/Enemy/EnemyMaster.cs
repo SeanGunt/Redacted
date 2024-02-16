@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 using TMPro;
+using Unity.VisualScripting;
 
 public class EnemyMaster : MonoBehaviour, IDamagable
 {
-    [SerializeField] private float maxHealth, speed, damage;
+    [SerializeField] protected float maxHealth, speed, damage;
     private float health;
     [SerializeField] private int moneyGainedOnKill;
     [SerializeField] private RectTransform healthBar;
@@ -114,5 +115,25 @@ public class EnemyMaster : MonoBehaviour, IDamagable
         Vector3 direction = (pos - thingToRotate.position).normalized;
         float angle = Mathf.Atan2(-direction.x, direction.y) * Mathf.Rad2Deg;
         thingToRotate.eulerAngles = new Vector3(0,0,angle);
+    }
+
+
+    public enum SpeedChange
+    {
+        increase, decrease
+    }
+    protected void ChangeSpeed(float changeAmount, SpeedChange speedChange)
+    {
+        switch (speedChange)
+        {
+            case SpeedChange.increase:
+                speed += changeAmount;
+                break;
+            case SpeedChange.decrease:
+                speed -= changeAmount;
+                break;
+        }
+
+        agent.speed = speed;
     }
 }

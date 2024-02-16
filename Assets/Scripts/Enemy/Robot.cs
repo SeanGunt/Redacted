@@ -7,6 +7,7 @@ public class Robot : EnemyMaster
     [Header("Robot Specifics")]
     [SerializeField] private GameObject laserPrefab;
     [SerializeField] private GameObject laserSpawnPoint;
+    RobotLaser robotLaser;
     private float laserTimer = 6f;
     private float timeTillLaser;
     private State state;
@@ -37,7 +38,7 @@ public class Robot : EnemyMaster
                 StartCoroutine(Laser());
                 break;
             case State.lasering:
-                Lasering();
+                agent.isStopped = true;
                 break;
         }
 
@@ -57,27 +58,33 @@ public class Robot : EnemyMaster
         return Vector2.Distance(transform.position, player.transform.position);
     }
 
-    private void Lasering()
+    private void OnDestroy()
     {
-        agent.isStopped = true;
+        if (robotLaser != null)
+        {
+            robotLaser.fadeStarted = true;
+        }
     }
 
     private IEnumerator Laser()
     {
+        ChangeSpeed(1.5f, SpeedChange.decrease);
         state = State.lasering;
-        yield return new WaitForSeconds(1.5f);
+        yield return new WaitForSeconds(1f);
         GameObject laser =  Instantiate(laserPrefab, laserSpawnPoint.transform.position, Quaternion.identity, GameManager.Instance.poolHolders[3].transform);
-        RobotLaser robotLaser = laser.GetComponentInChildren<RobotLaser>();
+        robotLaser = laser.GetComponentInChildren<RobotLaser>();
         HandleRotation(player.transform.position, laser.transform);
         laser.transform.localScale = new Vector3(0.25f, 0f, 1f);
         while (laser.transform.localScale.y <= 8f)
         {
-            laser.transform.localScale += new Vector3(0f, Time.deltaTime * 10f, 0f);
+            laser.transform.localScale += new Vector3(0f, Time.deltaTime * 12.5f, 0f);
             yield return null;
         }
         timeTillLaser = laserTimer;
         robotLaser.fadeStarted = true;
         agent.isStopped = false;
         state = State.moving;
+        yield return new WaitForSeconds(5f);
+        ChangeSpeed(1.5f, SpeedChange.increase);
     }
 }
