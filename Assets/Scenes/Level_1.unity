@@ -535,12 +535,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ade22491609d62147b1b55b28c60b9f1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemies:
-  - {fileID: 8081501030465915632, guid: ae5ea9e41212ea14e9fdfaf2f74dc594, type: 3}
-  - {fileID: 8081501030465915632, guid: 32ae82ed8bb4eaa46aa79470ca0b183b, type: 3}
+  waves:
+  - waveDuration: 20
+    enemies:
+    - enemyPrefab: {fileID: 8081501030465915632, guid: ae5ea9e41212ea14e9fdfaf2f74dc594, type: 3}
+      spawnRate: 5
+      spawnRateTimer: 5
+  - waveDuration: 40
+    enemies:
+    - enemyPrefab: {fileID: 8081501030465915632, guid: ae5ea9e41212ea14e9fdfaf2f74dc594, type: 3}
+      spawnRate: 5
+      spawnRateTimer: 5
+    - enemyPrefab: {fileID: 8081501030465915632, guid: 32ae82ed8bb4eaa46aa79470ca0b183b, type: 3}
+      spawnRate: 15
+      spawnRateTimer: 15
   spawnArea: {x: 20, y: 14}
-  spawnTimer: 3
-  timerManager: {fileID: 45057046}
 --- !u!1 &224142322
 GameObject:
   m_ObjectHideFlags: 0

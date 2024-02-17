@@ -70,7 +70,7 @@ public class Robot : EnemyMaster
     {
         ChangeSpeed(1.5f, SpeedChange.decrease);
         state = State.lasering;
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(0.6f);
         GameObject laser =  Instantiate(laserPrefab, laserSpawnPoint.transform.position, Quaternion.identity, GameManager.Instance.poolHolders[3].transform);
         robotLaser = laser.GetComponentInChildren<RobotLaser>();
         HandleRotation(player.transform.position, laser.transform);

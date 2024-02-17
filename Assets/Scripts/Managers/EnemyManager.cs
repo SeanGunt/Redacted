@@ -2,63 +2,66 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[System.Serializable]
+public class EnemySpawnInfo
+{
+    public GameObject enemyPrefab;
+    public float spawnRate;
+    public float spawnRateTimer;
+}
+
+[System.Serializable]
+public class Wave
+{
+    public float waveDuration;
+    public List<EnemySpawnInfo> enemies = new List<EnemySpawnInfo>();
+}
+
 public class EnemyManager : MonoBehaviour
 {
-    [SerializeField] private GameObject[] enemies;
-    private Dictionary<string, GameObject> enemyPrefabs = new Dictionary<string, GameObject>{};
+    [SerializeField] private List<Wave> waves = new List<Wave>();
     [SerializeField] private Vector2 spawnArea;
-    [SerializeField] private TimerManager timerManager;
-    private int phase = 1;
     private int unwalkableLayerMask = 1 << 10;
-    private float spawnTimer;
-    private float timeToSpawnEnemy;
-    private float phaseTimer;
-    private float phaseDuration = 60f;
+    private int currentWaveIndex = 0;
 
     private void Awake()
     {
-        foreach(GameObject enenmy in enemies)
-        {
-            enemyPrefabs.Add(enenmy.name, enenmy);
-        }
-        UpdateSpawnSettings();
+
     }
 
     private void Update()
     {
-        phaseTimer += Time.deltaTime;
+        HandleCurrentWave();
+        SpawnEnemyWaves();
+    }
 
-        if (phaseTimer >= phaseDuration)
+    private void HandleCurrentWave()
+    {
+        if (currentWaveIndex >= waves.Count)
         {
-            phase++;
-            phaseTimer = 0f;
-            UpdateSpawnSettings();
+            return;
         }
-        switch (phase)
+        waves[currentWaveIndex].waveDuration -= Time.deltaTime;
+        if (waves[currentWaveIndex].waveDuration <= 0)
         {
-            case 1:
-                SpawnEnemy("HammerBird");
-            break;
-            case 2:
-                SpawnEnemy("Robot");
-            break;
+            currentWaveIndex++;
         }
     }
-    private void SpawnEnemy(string enemyType)
+
+    private void SpawnEnemyWaves()
     {
-        spawnTimer += Time.deltaTime;
-        if (spawnTimer >= timeToSpawnEnemy)
+        if (currentWaveIndex >= waves.Count)
         {
-            if (enemyPrefabs.ContainsKey(enemyType))
+            return;
+        }
+        foreach (EnemySpawnInfo enemySpawnInfo in waves[currentWaveIndex].enemies)
+        {    
+            enemySpawnInfo.spawnRateTimer -= Time.deltaTime;
+            if (enemySpawnInfo.spawnRateTimer <= 0)
             {
-                GameObject enemyPrefab = enemyPrefabs[enemyType];
-                GameObject newEnemy = Instantiate(enemyPrefab, SpawnPosition(), Quaternion.identity);
+                GameObject newEnemy = Instantiate(enemySpawnInfo.enemyPrefab, SpawnPosition(), Quaternion.identity);
                 newEnemy.transform.SetParent(transform);
-                spawnTimer -= timeToSpawnEnemy;
-            }
-            else
-            {
-                Debug.LogError("Enemy type " + enemyType + " not found!");
+                enemySpawnInfo.spawnRateTimer =  enemySpawnInfo.spawnRate;
             }
         }
     }
@@ -107,18 +110,5 @@ public class EnemyManager : MonoBehaviour
         }
 
         return spawnPosition + GameManager.Instance.player.transform.position;
-    }
-
-    private void UpdateSpawnSettings()
-    {
-        switch (phase)
-        {
-            case 1:
-                timeToSpawnEnemy = 5f; 
-                break;
-            case 2:
-                timeToSpawnEnemy = 4f;
-                break;
-        }
     }
 }
