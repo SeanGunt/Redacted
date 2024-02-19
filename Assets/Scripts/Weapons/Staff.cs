@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class Staff : WeaponBase
 {
-    [SerializeField] private WizardGuy wizardGuy;
+    [SerializeField] private Wizard wizard;
     [HideInInspector] public BoxCollider2D weaponCollider;
     [HideInInspector] public bool inAnimation;
     public GameObject fireballPrefab;
@@ -28,7 +28,7 @@ public class Staff : WeaponBase
 
     public void SpawnFireball()
     {
-        GameObject fireball = Instantiate(fireballPrefab, staffSpawnPoint.transform.position, wizardGuy.transform.rotation, GameManager.Instance.poolHolders[3].transform);
+        GameObject fireball = Instantiate(fireballPrefab, staffSpawnPoint.transform.position, wizard.transform.rotation, GameManager.Instance.poolHolders[3].transform);
     }
 
     public void LightningBolt()
@@ -45,7 +45,7 @@ public class Staff : WeaponBase
 
     public void BlackHole()
     {
-        GameObject blackHole = Instantiate(blackHolePrefab, wizardGuy.GetMousePosition(), Quaternion.identity, GameManager.Instance.poolHolders[3].transform);
+        GameObject blackHole = Instantiate(blackHolePrefab, wizard.GetMousePosition(), Quaternion.identity, GameManager.Instance.poolHolders[3].transform);
     }
 
     private IEnumerator ExtendBolt(Transform lightning)
