@@ -35,12 +35,8 @@ public class Knight : PlayerBase
         {
             state = State.idle;
             sword.abilityType = WeaponBase.AbilityType.E;
-            Vector3 posToDash = GetMousePosition();
-            Vector3 direction = (posToDash - transform.position).normalized;
-            HandleRotation(posToDash, transform);
-            rb.AddForce(direction * 25, ForceMode2D.Impulse);
-            sword.HandleSwordSwingAnim("Dash");
-            StartCoroutine(HandleECooldown(sword.clips[3].length));
+            sword.shield.Bash();
+            StartCoroutine(HandleECooldown(sword.shield.BashLength()));
         }
     }
 
@@ -58,6 +54,14 @@ public class Knight : PlayerBase
             HandleRotation(enemiesToTarget[0].transform.position, transform);
             StartCoroutine(SendSwordToEnemies(enemiesToTarget));
         }
+    }
+
+    public void Dash()
+    {
+        Vector3 posToDash = GetMousePosition();
+        Vector3 direction = (posToDash - transform.position).normalized;
+        HandleRotation(posToDash, transform);
+        rb.AddForce(direction * 25, ForceMode2D.Impulse);
     }
 
     private void GetEnemiesOnScreen()

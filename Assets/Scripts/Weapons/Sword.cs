@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Sword : WeaponBase
 {
+    public Shield shield;
     private TrailRenderer trailRenderer;
     [HideInInspector] public BoxCollider2D weaponCollider;
     [HideInInspector] public bool inAnimation;
