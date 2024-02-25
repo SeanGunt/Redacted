@@ -33,6 +33,11 @@ public class Shield : MonoBehaviour
     {
         animator.SetTrigger("Bash");
     }
+
+    public void Protect(bool isProtecting)
+    {
+        animator.SetBool("isProtecting", isProtecting);
+    }
     public void ExecuteBash()
     {
         knight.Dash();

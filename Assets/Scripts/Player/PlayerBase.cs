@@ -31,8 +31,10 @@ public class PlayerBase : MonoBehaviour
     [SerializeField] [Range(0.0f, 100.0f)] public float lifeSteal;
     [SerializeField] [Range(0.0f, 100.0f)] public float critChance;
     [SerializeField] [Range(0.0f, 100.0f)] public float cooldownReduction;
+    [SerializeField] [Range(0.0f, 1.0f)] public float damageReduction;
     protected float qCooldown = 0f, wCooldown = 0f, eCooldown = 0f, rCooldown = 0f;
     protected float qBaseCooldown, wBaseCooldown, eBaseCooldown, rBaseCooldown;
+    
 
     [Header("Item Logic")]
     [HideInInspector] public int attacksUsed;
@@ -171,6 +173,12 @@ public class PlayerBase : MonoBehaviour
         }
     }
 
+    public void TakeDamage(float damageToTake, float resistanceType)
+    {
+        float initialResistance = damageToTake - (damageToTake * resistanceType);
+        health -= initialResistance - (initialResistance * damageReduction);
+    }
+
     private void HandleStatsUI()
     {
         playerUI.physicalDamageText.text =  physicalDamage.ToString();
@@ -212,6 +220,7 @@ public class PlayerBase : MonoBehaviour
             playerUI.qImage.fillAmount += Time.deltaTime / qCooldownAmount;
             yield return null;
         }
+        playerUI.qImage.fillAmount = 1f;
         playerUI.qImage.color = playerUI.imageStartColor;
     }
 
@@ -228,6 +237,7 @@ public class PlayerBase : MonoBehaviour
             playerUI.wImage.fillAmount += Time.deltaTime / wCooldownAmount;
             yield return null;
         }
+        playerUI.wImage.fillAmount = 1f;
         playerUI.wImage.color = playerUI.imageStartColor;
     }
 
@@ -244,6 +254,7 @@ public class PlayerBase : MonoBehaviour
             playerUI.eImage.fillAmount += Time.deltaTime / eCooldownAmount;
             yield return null;
         }
+        playerUI.eImage.fillAmount = 1f;
         playerUI.eImage.color = playerUI.imageStartColor;
     }
 
@@ -260,6 +271,7 @@ public class PlayerBase : MonoBehaviour
             playerUI.rImage.fillAmount += Time.deltaTime / rCooldownAmount;
             yield return null;
         }
+        playerUI.rImage.fillAmount = 1f;
         playerUI.rImage.color = playerUI.imageStartColor;
     }
 }

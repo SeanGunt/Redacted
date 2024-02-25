@@ -71,8 +71,7 @@ public class EnemyMaster : MonoBehaviour, IDamagable
     {
         if (other.gameObject == player)
         {
-            playerBase.health -= damage - (damage * Mathf.Log(playerBase.physicalResistance, 10000));
-            //Debug.Log(damage * Mathf.Log(playerBase.physicalResistance, 10000));
+            playerBase.TakeDamage(damage, Mathf.Log(playerBase.physicalResistance, 10000));
         }
     }
 

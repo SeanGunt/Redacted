@@ -22,7 +22,6 @@ public class Robot : EnemyMaster
     }
     protected override void Update()
     {
-        Rotation();
 
         switch (state)
         {
@@ -32,6 +31,7 @@ public class Robot : EnemyMaster
                 {
                     state = State.startLaser;
                 }
+                Rotation();
                 Movement();
                 break;
             case State.startLaser:

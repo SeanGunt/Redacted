@@ -18,7 +18,7 @@ public class EnemyProjectileTrigger : MonoBehaviour
     {
         if (other.gameObject == player)
         {
-            playerBase.health -= damage - (damage * Mathf.Log(playerBase.magicalResistance, 10000));
+            playerBase.TakeDamage(damage, Mathf.Log(playerBase.magicalResistance, 10000));
         }
     }
 }
