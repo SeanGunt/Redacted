@@ -1,33 +1,28 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 
 public class PauseMenu : MonoBehaviour
 {
-    private PlayerInput playerInput;
+    public static PauseMenu Instance;
     [SerializeField] private GameObject pauseMenuCanvas;
     private GameObject playerUI;
     private bool paused;
 
+    private void Awake()
+    {
+        Instance = this;
+    }
+
     private void Start()
     {
         playerUI =  GameObject.FindGameObjectWithTag("PlayerUI");
-        playerInput = GameManager.Instance.player.GetComponent<PlayerInput>();
-        HandlePause(1f, true, false, false);
+        UnPause();
     }
 
-    private void Update()
+    public bool IsPauseMenuOpen()
     {
-        if (!paused && playerInput.actions["Pause"].triggered)
-        {
-            Pause();
-        }
-        else if (paused && playerInput.actions["Pause"].triggered)
-        {
-            UnPause();
-        }
+        return paused;
     }
 
     public void Pause()

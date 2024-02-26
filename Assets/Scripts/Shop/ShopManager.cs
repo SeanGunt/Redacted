@@ -1,35 +1,15 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
-
-public class ShopManager : MonoBehaviour
+public class ShopManager : MonoBehaviour, IRay
 {
-    public bool shopActive;
-    [SerializeField] private GameObject[] items;
-    private InventoryPage inventoryPage;
-
-    private void Start()
+    public void HandleRaycastInteraction()
     {
-        inventoryPage = GameManager.Instance.player.GetComponentInChildren<InventoryPage>();
-    }
-
-    public void HandleShopUI(bool isActive, int timeScale)
-    {
-        gameObject.SetActive(isActive);
-        shopActive = isActive;
-        Time.timeScale = timeScale;
-    }
-
-    public void PurchaseItem(int index)
-    {
-        InventoryItem inventoryItem = inventoryPage.PurchaseInventoryItem();
-        if (inventoryItem != null)
+        if (!ShopUI.Instance.IsShopOpen())
         {
-            Image image = inventoryItem.gameObject.GetComponent<Image>();
-            GameObject itemToPurchase = Instantiate(items[index], inventoryItem.transform);
-            image.sprite = itemToPurchase.GetComponent<ItemBase>().imageSprite;
-            image.color = Color.white;
+            ShopUI.Instance.OpenUI();
+        }
+        else if (ShopUI.Instance.IsShopOpen())
+        {
+            ShopUI.Instance.CloseUI();
         }
     }
 }

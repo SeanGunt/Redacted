@@ -7,6 +7,7 @@ public class MapUpdate : MonoBehaviour
     private WorldSingleton world;
     public TileBase[] CollidableTiles;
     public TileBase[] BaseTiles;
+    [SerializeField] private GameObject shopPrefab;
     private Tilemap baseLayer, collidableLayer;
     [SerializeField] private NavMeshSurface navMeshSurface;
     Vector2Int offset;
@@ -26,6 +27,7 @@ public class MapUpdate : MonoBehaviour
 
     void Start()
     {
+        SpawnShops();
         PlaceTiles();
     }
 
@@ -68,6 +70,16 @@ public class MapUpdate : MonoBehaviour
         }
 
         navMeshSurface.BuildNavMesh();
+    }
+
+    private void SpawnShops()
+    {
+        Vector2Int[] shopPositions = world.GetShopPositions();
+        for (int i = 0; i < shopPositions.Length; i++)
+        {
+            Vector3 spawnPosition = new Vector3(shopPositions[i].x - offset.x, shopPositions[i].y - offset.y, 0);
+            GameObject shop = Instantiate(shopPrefab, spawnPosition, Quaternion.identity);
+        }
     }
 }
 

@@ -1,6 +1,6 @@
-using System.Security.Cryptography.X509Certificates;
-using Unity.VisualScripting;
 using UnityEngine;
+using System.Linq;
+using System.Collections.Generic;
 
 /*
     WORLD GENERATION AND HOW TO USE THIS SCRIPT:
@@ -70,6 +70,7 @@ public class WorldSingleton : MonoBehaviour
     public int[,] collidables;
 
     readonly public Vector2Int mapDimensions = new(500, 500);
+    private Vector2Int[] shopPositions = new Vector2Int[3];
     readonly private float collidableMin = -0.2f, collidableMax = 0.25f;
     readonly private float noiseScale = 20;
     readonly private int variantProbability = 20;
@@ -93,8 +94,9 @@ public class WorldSingleton : MonoBehaviour
     void Start()
     {
         GenerateBaseAndCollidableGrid();
-        AddEdgePieces();
         AddNoCollideSpawnZone();
+        AddEdgePieces();
+        GenerateShopPositions();
     }
 
     private void GenerateBaseAndCollidableGrid()
@@ -165,14 +167,83 @@ public class WorldSingleton : MonoBehaviour
         }
     }
 
+    private void GenerateShopPositions()
+    {
+        int offsetX = mapDimensions.x / 4;
+        int offsetY = mapDimensions.y / 4;
+
+        List<int> cornerIndices = new List<int>() {1,2,3,4};
+        cornerIndices = cornerIndices.OrderBy(x => Random.value).ToList();
+
+        int minDistanceFromEdge = 20;
+
+        for (int i = 0; i < 3; i++)
+        {
+            int cornerIndex = cornerIndices[i];
+
+            while(true)
+            {
+                switch (cornerIndex)
+                {
+                    case 0:
+                        shopPositions[i] = new Vector2Int(offsetX, offsetY);
+                        break;
+                    case 1:
+                        shopPositions[i] = new Vector2Int(mapDimensions.x - offsetX, offsetY);
+                        break;
+                    case 2:
+                        shopPositions[i] = new Vector2Int(offsetX, mapDimensions.y - offsetY);
+                        break;
+                    case 3:
+                        shopPositions[i] = new Vector2Int(mapDimensions.x - offsetX, mapDimensions.y - offsetY);
+                        break;
+                    default:
+                        shopPositions[i] = Vector2Int.zero;
+                        break;
+                }
+
+                int cornerOffsetX = Random.Range(-offsetX / 2, offsetX / 2);
+                int cornerOffsetY = Random.Range(-offsetY / 2, offsetY / 2);
+
+                shopPositions[i] += new Vector2Int(cornerOffsetX, cornerOffsetY);
+
+                if (shopPositions[i].x >= minDistanceFromEdge &&
+                shopPositions[i].x < mapDimensions.x - minDistanceFromEdge &&
+                shopPositions[i].y >= minDistanceFromEdge &&
+                shopPositions[i].y < mapDimensions.y - minDistanceFromEdge &&
+                IsNonCollidableTile(shopPositions[i]))
+                {
+                    break;
+                }
+            }
+
+        }
+        
+    }
+
+    public Vector2Int[] GetShopPositions()
+    {
+        return shopPositions;
+    }
+
+    private bool IsNonCollidableTile(Vector2Int position)
+    {
+        if (position.x < 0 || position.x >= mapDimensions.x || position.y < 0 || position.y >= mapDimensions.y)
+        return false;
+
+        return bases[position.x, position.y] != -1;
+    }
+
     void AddNoCollideSpawnZone()
     {
         int leftX = (mapDimensions.x/2)-6;
         int rightX = (mapDimensions.x/2)+6;
         int topY = (mapDimensions.y/2)-6;
         int botY = (mapDimensions.y/2)+6;
-        for (int x = leftX; x < rightX; x++) {
-            for (int y = topY; y < botY; y++) {
+        for (int x = leftX; x < rightX; x++) 
+        {
+            for (int y = topY; y < botY; y++) 
+            {
                 bases[x, y] = (int)Base.b_v_a;
             }
         }

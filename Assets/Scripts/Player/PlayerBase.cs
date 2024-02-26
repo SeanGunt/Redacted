@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -35,11 +34,11 @@ public class PlayerBase : MonoBehaviour
     protected float qCooldown = 0f, wCooldown = 0f, eCooldown = 0f, rCooldown = 0f;
     protected float qBaseCooldown, wBaseCooldown, eBaseCooldown, rBaseCooldown;
     
-
     [Header("Item Logic")]
     [HideInInspector] public int attacksUsed;
 
     [Header("Other")]
+    private int raycastLayerMask = 1 << 11;
     protected State state;
     private Vector3 positionToMove;
     protected Rigidbody2D rb;
@@ -70,6 +69,7 @@ public class PlayerBase : MonoBehaviour
         HandleStatsUI();
         RightClick();
         HandleAbilities();
+        HandleInteract();
         switch(state)
         {
             case State.idle:
@@ -83,6 +83,23 @@ public class PlayerBase : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D other)
     {
         state = State.idle;
+    }
+
+    private void HandleInteract()
+    {
+        if (playerInput.actions["Interact"].triggered)
+        {
+            RaycastHit2D hit = Physics2D.Raycast(transform.position, transform.up, 2f, raycastLayerMask);
+            if (hit.collider != null)
+            {   
+                IRay other = hit.transform.gameObject.GetComponent<IRay>();
+                if (other != null)
+                {
+                    Debug.Log(hit.collider.name);
+                    other.HandleRaycastInteraction();
+                }
+            }
+        }
     }
 
     protected virtual void HandleQAbility()
@@ -129,7 +146,7 @@ public class PlayerBase : MonoBehaviour
 
     private void RightClick()
     {
-        if (playerInput.actions["RightClick"].triggered)
+        if (playerInput.actions["RightClick"].triggered && Time.timeScale > 0f)
         {
             positionToMove = GetMousePosition();
             if (weaponBase.canRotate)

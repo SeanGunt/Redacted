@@ -1,0 +1,32 @@
+using UnityEngine;
+using UnityEngine.InputSystem;
+
+public class MenusManager : MonoBehaviour
+{
+    private PlayerInput playerInput;
+    private void Start()
+    {
+        playerInput = GameManager.Instance.player.GetComponent<PlayerInput>();
+    }
+    private void Update()
+    {
+        // Closes Shop
+        if (ShopUI.Instance.IsShopOpen() && playerInput.actions["Pause"].triggered)
+        {
+            ShopUI.Instance.CloseUI();
+            return;
+        }
+        // Pauses Game
+        if (!PauseMenu.Instance.IsPauseMenuOpen() && playerInput.actions["Pause"].triggered && !ShopUI.Instance.IsShopOpen())
+        {
+            PauseMenu.Instance.Pause();
+            return;
+        }
+        // Unpauses Game
+        else if (PauseMenu.Instance.IsPauseMenuOpen() && playerInput.actions["Pause"].triggered && !ShopUI.Instance.IsShopOpen())
+        {
+            PauseMenu.Instance.UnPause();
+            return;
+        }
+    }
+}
