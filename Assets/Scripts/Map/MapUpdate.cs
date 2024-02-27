@@ -1,19 +1,23 @@
 using UnityEngine;
 using UnityEngine.Tilemaps;
 using NavMeshPlus.Components;
+using System.Collections.Generic;
 
 public class MapUpdate : MonoBehaviour
 {
+    public static MapUpdate Instance;
     private WorldSingleton world;
     public TileBase[] CollidableTiles;
     public TileBase[] BaseTiles;
     [SerializeField] private GameObject shopPrefab;
     private Tilemap baseLayer, collidableLayer;
     [SerializeField] private NavMeshSurface navMeshSurface;
+    [HideInInspector] public List<Transform> shopsList = new List<Transform>();
     Vector2Int offset;
 
     void Awake()
     {
+        Instance = this;
         world = WorldSingleton.instance;
         
         baseLayer = CreateTilemap("base", 0);
@@ -79,6 +83,7 @@ public class MapUpdate : MonoBehaviour
         {
             Vector3 spawnPosition = new Vector3(shopPositions[i].x - offset.x, shopPositions[i].y - offset.y, 0);
             GameObject shop = Instantiate(shopPrefab, spawnPosition, Quaternion.identity);
+            shopsList.Add(shop.transform);
         }
     }
 }

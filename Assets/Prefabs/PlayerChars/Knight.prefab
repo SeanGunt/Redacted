@@ -4070,7 +4070,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bf0fd919e1db2624cab9134b5cf40955, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 10
+  speed: 3.25
   baseHealth: 500
   healthRegen: 1
   qCooldownAmount: 2
@@ -4086,7 +4086,7 @@ MonoBehaviour:
   healthPerLevel: 53
   physPerLevel: 5
   magPerLevel: 0
-  physResPerLevel: 1.5
+  physResPerLevel: 1.25
   magResPerLevel: 0.75
   lifeSteal: 0
   critChance: 0
@@ -4131,6 +4131,10 @@ MonoBehaviour:
   - {fileID: 5171474915002385260}
   - {fileID: 4699384546052221704}
   - {fileID: 130832244343742476}
+  shopArrows:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
 --- !u!114 &3276744826110593063
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -3490,7 +3490,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 3
   baseHealth: 400
-  healthRegen: 3
+  healthRegen: 1.5
   qCooldownAmount: 2.5
   wCooldownAmount: 4
   eCooldownAmount: 10
@@ -3501,14 +3501,15 @@ MonoBehaviour:
   magicalDamage: 31
   physicalResistance: 1
   magicalResistance: 4
-  healthPerLevel: 50
-  physPerLevel: 2
+  healthPerLevel: 34
+  physPerLevel: 1
   magPerLevel: 7
   physResPerLevel: 0.5
   magResPerLevel: 1
   lifeSteal: 0
   critChance: 0
   cooldownReduction: 0
+  damageReduction: 0
   attacksUsed: 0
   staff: {fileID: 7571425812173182767}
 --- !u!114 &4024712692425742683

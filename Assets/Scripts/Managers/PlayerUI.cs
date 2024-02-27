@@ -21,6 +21,7 @@ public class PlayerUI : MonoBehaviour
     [HideInInspector] public Color imageStartColor;
     public GameObject[] levelIconsGO;
     public Dictionary<string, GameObject> levelIconsDict = new Dictionary<string, GameObject>();
+    public List<Transform> shopArrows = new List<Transform>();
 
     private void Awake()
     {
