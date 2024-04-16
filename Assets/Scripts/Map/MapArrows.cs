@@ -6,7 +6,7 @@ public class MapArrows : MonoBehaviour
 {
     public List<Transform> shopArrows = new List<Transform>();
     private float arrowOffsetX = 11.5f;
-    private float arrowOffsetY = 6.5f;
+    private float arrowOffsetY = 6.3f;
 
     private void Update()
     {
