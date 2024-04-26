@@ -12,7 +12,7 @@ public class InventorySlot : MonoBehaviour
 
     private void Start()
     {
-        playerInput = GameManager.Instance.player.GetComponent<PlayerInput>();
+        playerInput = GetComponentInParent<PlayerInput>();
     }
 
     private void Update()

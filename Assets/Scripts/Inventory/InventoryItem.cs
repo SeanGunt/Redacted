@@ -15,7 +15,7 @@ public class InventoryItem : MonoBehaviour, IPointerClickHandler,
     private void Start()
     {
         itemImage = GetComponent<Image>();
-        playerInput = GameManager.Instance.player.GetComponent<PlayerInput>();
+        playerInput = GetComponentInParent<PlayerInput>();
     }
     public void OnBeginDrag(PointerEventData eventData)
     {
