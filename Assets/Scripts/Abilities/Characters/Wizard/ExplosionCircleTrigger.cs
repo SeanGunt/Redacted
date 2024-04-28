@@ -17,6 +17,8 @@ public class ExplosionCircleTrigger : ProjectileTrigger
         IDamagable damagable = other.gameObject.GetComponent<IDamagable>();
         if (damagable != null)
         {
+            player = GameManager.Instance.player;
+            weaponBase = player.GetComponentInChildren<WeaponBase>();
             damagable.TakeDamage(weaponBase.ApplyRDamage());
         }
     }

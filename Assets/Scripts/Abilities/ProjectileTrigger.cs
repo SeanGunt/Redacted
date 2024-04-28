@@ -4,19 +4,16 @@ using UnityEngine;
 
 public class ProjectileTrigger : MonoBehaviour
 {
-    private GameObject player;
+    protected GameObject player;
     protected WeaponBase weaponBase;
 
-    private void OnEnable()
-    {
-        player = GameManager.Instance.player;
-        weaponBase = player.GetComponentInChildren<WeaponBase>();
-    }
     protected virtual void OnTriggerEnter2D(Collider2D other)
     {
         IDamagable damagable = other.gameObject.GetComponent<IDamagable>();
         if (damagable != null)
         {
+            player = GameManager.Instance.player;
+            weaponBase = player.GetComponentInChildren<WeaponBase>();
             damagable.TakeDamage(weaponBase.ApplyDamage());
         }
     }

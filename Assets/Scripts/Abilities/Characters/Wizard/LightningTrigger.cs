@@ -13,6 +13,8 @@ public class LightningTrigger : ProjectileTrigger
         IDamagable damagable = other.gameObject.GetComponent<IDamagable>();
         if (damagable != null)
         {
+            player = GameManager.Instance.player;
+            weaponBase = player.GetComponentInChildren<WeaponBase>();
             damagable.TakeDamage(weaponBase.ApplyWDamage());
             enemyList.Clear();
             Collider2D[] collider2Ds = Physics2D.OverlapCircleAll(other.gameObject.transform.position, 5f, enemyLayerMask);
