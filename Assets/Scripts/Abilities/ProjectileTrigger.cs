@@ -6,6 +6,7 @@ public class ProjectileTrigger : MonoBehaviour
 {
     protected GameObject player;
     protected WeaponBase weaponBase;
+    protected float damageToApply;
 
     protected virtual void OnTriggerEnter2D(Collider2D other)
     {
@@ -14,7 +15,19 @@ public class ProjectileTrigger : MonoBehaviour
         {
             player = GameManager.Instance.player;
             weaponBase = player.GetComponentInChildren<WeaponBase>();
-            damagable.TakeDamage(weaponBase.ApplyDamage());
+            HandleDamageSelection(damageToApply);
+            damagable.TakeDamage(damageToApply);
+            HandleOtherOnHitLogic(other);
         }
+    }
+
+    protected virtual void HandleOtherOnHitLogic(Collider2D other)
+    {
+
+    }
+
+    protected virtual void HandleDamageSelection(float abilityDamage)
+    {
+        damageToApply = abilityDamage;
     }
 }

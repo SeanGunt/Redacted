@@ -4131,10 +4131,6 @@ MonoBehaviour:
   - {fileID: 5171474915002385260}
   - {fileID: 4699384546052221704}
   - {fileID: 130832244343742476}
-  shopArrows:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
 --- !u!114 &3276744826110593063
 MonoBehaviour:
   m_ObjectHideFlags: 0

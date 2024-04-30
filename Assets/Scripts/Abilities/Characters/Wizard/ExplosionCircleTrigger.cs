@@ -14,13 +14,12 @@ public class ExplosionCircleTrigger : ProjectileTrigger
     }
     protected override void OnTriggerEnter2D(Collider2D other)
     {
-        IDamagable damagable = other.gameObject.GetComponent<IDamagable>();
-        if (damagable != null)
-        {
-            player = GameManager.Instance.player;
-            weaponBase = player.GetComponentInChildren<WeaponBase>();
-            damagable.TakeDamage(weaponBase.ApplyRDamage());
-        }
+        base.OnTriggerEnter2D(other);
+    }
+
+    protected override void HandleDamageSelection(float abilityDamage)
+    {
+        base.HandleDamageSelection(weaponBase.ApplyRDamage());
     }
 
     private IEnumerator Expand()

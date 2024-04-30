@@ -10,25 +10,28 @@ public class LightningTrigger : ProjectileTrigger
     int enemyLayerMask = 1 << 9;
     protected override void OnTriggerEnter2D(Collider2D other)
     {
-        IDamagable damagable = other.gameObject.GetComponent<IDamagable>();
-        if (damagable != null)
+        base.OnTriggerEnter2D(other);
+    }
+
+    protected override void HandleOtherOnHitLogic(Collider2D other)
+    {
+        enemyList.Clear();
+        Collider2D[] collider2Ds = Physics2D.OverlapCircleAll(other.gameObject.transform.position, 5f, enemyLayerMask);
+
+        foreach (Collider2D collider2D in collider2Ds)
         {
-            player = GameManager.Instance.player;
-            weaponBase = player.GetComponentInChildren<WeaponBase>();
-            damagable.TakeDamage(weaponBase.ApplyWDamage());
-            enemyList.Clear();
-            Collider2D[] collider2Ds = Physics2D.OverlapCircleAll(other.gameObject.transform.position, 5f, enemyLayerMask);
-
-            foreach (Collider2D collider2D in collider2Ds)
+            if (collider2D.gameObject != other.gameObject)
             {
-                if (collider2D.gameObject != other.gameObject)
-                {
-                    enemyList.Add(collider2D.gameObject.transform);
-                }
+                enemyList.Add(collider2D.gameObject.transform);
             }
-
-            Invoke("Chain", 0.2f);
         }
+
+        Invoke("Chain", 0.2f);
+    }
+
+    protected override void HandleDamageSelection(float abilityDamage)
+    {
+        base.HandleDamageSelection(weaponBase.ApplyWDamage());
     }
 
     private void Chain()

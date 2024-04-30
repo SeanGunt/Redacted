@@ -6,12 +6,11 @@ public class FireballTrigger : ProjectileTrigger
 {
     protected override void OnTriggerEnter2D(Collider2D other)
     {
-        IDamagable damagable = other.gameObject.GetComponent<IDamagable>();
-        if (damagable != null)
-        {
-            player = GameManager.Instance.player;
-            weaponBase = player.GetComponentInChildren<WeaponBase>();
-            damagable.TakeDamage(weaponBase.ApplyQDamage());
-        }
+        base.OnTriggerEnter2D(other);
+    }
+
+    protected override void HandleDamageSelection(float abilityDamage)
+    {
+        base.HandleDamageSelection(weaponBase.ApplyQDamage());
     }
 }
