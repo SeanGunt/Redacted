@@ -19,6 +19,7 @@ public class GameManager : MonoBehaviour
             Destroy(gameObject);
         }
         Application.targetFrameRate = 144;
+        Time.timeScale = 1f;
     }
 
     private void Start()
