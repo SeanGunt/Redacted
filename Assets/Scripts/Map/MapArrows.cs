@@ -4,9 +4,20 @@ using UnityEngine;
 
 public class MapArrows : MonoBehaviour
 {
-    public List<Transform> shopArrows = new List<Transform>();
+    [SerializeField] private GameObject shopArrowPrefab;
+    private List<Transform> shopArrows = new List<Transform>();
     private float arrowOffsetX = 11.5f;
     private float arrowOffsetY = 6.3f;
+
+    private void Start()
+    {
+        for(int i = 0; i < 3; i++)
+        {
+            GameObject shopArrow = Instantiate(shopArrowPrefab, new Vector3(0f,0f,0f), Quaternion.identity, this.transform);
+            shopArrow.name = "ShopArrow_" + i.ToString();
+            shopArrows.Add(shopArrow.transform);
+        }
+    }
 
     private void Update()
     {
@@ -28,6 +39,12 @@ public class MapArrows : MonoBehaviour
                 Vector3 arrowPos = Camera.main.transform.position + new Vector3(direction.x * arrowOffsetX, direction.y * arrowOffsetY, 0f);
 
                 shopArrows[i].position = new Vector3(arrowPos.x, arrowPos.y, 0f);
+                
+                float distanceToShop = Vector2.Distance(assignedShop.position, shopArrows[i].position);
+                if (distanceToShop <= 11.5f)
+                {
+                    shopArrows[i].gameObject.SetActive(false);
+                }
         
             }
             else
