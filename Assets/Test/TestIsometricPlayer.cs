@@ -7,6 +7,7 @@ using UnityEngine.InputSystem;
 public class TestIsometricPlayer : MonoBehaviour
 {
     private PlayerInput playerInput;
+    private Animator animator;
     private Vector3 positionToMove;
     private float speed = 3f;
     private State state;
@@ -19,12 +20,15 @@ public class TestIsometricPlayer : MonoBehaviour
     private void Awake()
     {
         playerInput = GetComponent<PlayerInput>();
+        animator = GetComponent<Animator>();
+        state = State.idle;
     }
 
     private void Update()
     {   switch(state)
         {
             case State.idle:
+                HandleIdle();
             break;
             case State.moving:
                 HandleMoving();
@@ -57,10 +61,19 @@ public class TestIsometricPlayer : MonoBehaviour
        return mousePos;
     }
 
-
-
     private void HandleMoving()
     {
         transform.position = Vector3.MoveTowards(transform.position, positionToMove, speed * Time.deltaTime);
+        animator.SetBool("isWalking", true);
+        float distanceToWalkPosition = Vector2.Distance(transform.position, positionToMove);
+        if (distanceToWalkPosition < 0.01f)
+        {
+            state = State.idle;
+        }
+    }
+
+    private void HandleIdle()
+    {
+        animator.SetBool("isWalking", false);
     }
 }
