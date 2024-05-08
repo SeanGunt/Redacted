@@ -7,6 +7,7 @@ using UnityEngine.InputSystem;
 public class TestIsometricPlayer : MonoBehaviour
 {
     private PlayerInput playerInput;
+    private SpriteRenderer spriteRenderer;
     private Animator animator;
     private Vector3 positionToMove;
     private float speed = 3f;
@@ -16,11 +17,11 @@ public class TestIsometricPlayer : MonoBehaviour
         idle, moving
     }
 
-
     private void Awake()
     {
         playerInput = GetComponent<PlayerInput>();
         animator = GetComponent<Animator>();
+        spriteRenderer = GetComponent<SpriteRenderer>();
         state = State.idle;
     }
 
@@ -43,11 +44,11 @@ public class TestIsometricPlayer : MonoBehaviour
             positionToMove = GetMousePosition();
             if (positionToMove.x > transform.position.x)
             {
-                transform.eulerAngles = new Vector3(0f, 0f, 0f);
+                spriteRenderer.flipX = false;
             }
             else if (positionToMove.x < transform.position.x)
             {
-                transform.eulerAngles = new Vector3(0f, -180f, 0f);
+                spriteRenderer.flipX = true;
             }
             state = State.moving;
         }
