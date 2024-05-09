@@ -4,18 +4,6 @@ using UnityEngine;
 
 public class Sword : WeaponBase
 {
-    public Shield shield;
-    private TrailRenderer trailRenderer;
-    [HideInInspector] public BoxCollider2D weaponCollider;
-    [HideInInspector] public bool inAnimation;
-    private void Start()
-    {
-        weaponCollider = GetComponent<BoxCollider2D>();
-        trailRenderer = GetComponentInChildren<TrailRenderer>();
-        weaponCollider.enabled = false;
-        trailRenderer.emitting = false;
-    }
-
     private void OnTriggerEnter2D(Collider2D other)
     {
         IDamagable damagable = other.gameObject.GetComponent<IDamagable>();
@@ -25,32 +13,8 @@ public class Sword : WeaponBase
         }
     }
 
-    #region Animation Events
-    public void HandleSwordSwingAnim(string animToPlay)
+    public void HandleSwordAnims(string abilityName)
     {
-        animator.SetTrigger(animToPlay);
+        animator.SetTrigger(abilityName);
     }
-
-    public void EnableWeaponCollider()
-    {
-        weaponCollider.enabled = true;
-        trailRenderer.emitting = true;
-    }
-
-    public void DisableWeaponCollider()
-    {
-        weaponCollider.enabled = false;
-        trailRenderer.emitting = false;
-    }
-
-    public void StartAnim()
-    {
-        inAnimation = true;
-    }
-
-    public void EndAnim()
-    {
-        inAnimation = false;
-    }
-    #endregion
 }

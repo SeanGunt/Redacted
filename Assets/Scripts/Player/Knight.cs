@@ -8,43 +8,37 @@ public class Knight : PlayerBase
 
     protected override void HandleQAbility()
     {
-        if (CanUseAbility("QAttack", qCooldown, weaponBase.qLevel) && !sword.inAnimation)
+        if (CanUseAbility("QAttack", qCooldown, weaponBase.qLevel))
         {
             sword.abilityType = WeaponBase.AbilityType.Q;
-            HandleRotation(GetMousePosition(), transform);
-            sword.HandleSwordSwingAnim("Swing");
+            sword.HandleSwordAnims("Swipe");
             StartCoroutine(HandleQCooldown(sword.clips[1].length));
         }
     }
 
     protected override void HandleWAbility()
     {
-        if (CanUseAbility("WAttack", wCooldown, weaponBase.wLevel) && !sword.inAnimation)
+        if (CanUseAbility("WAttack", wCooldown, weaponBase.wLevel))
         {
             sword.abilityType = WeaponBase.AbilityType.W;
-            HandleRotation(GetMousePosition(), transform);
-            sword.HandleSwordSwingAnim("Spin");
+            sword.HandleSwordAnims("Spin");
             StartCoroutine(HandleWCooldown(sword.clips[2].length));
         }
     }
 
     protected override void HandleEAbility()
     {
-        if (CanUseAbility("EAttack", eCooldown, weaponBase.eLevel) && !sword.inAnimation)
+        if (CanUseAbility("EAttack", eCooldown, weaponBase.eLevel))
         {
-            state = State.idle;
-            sword.abilityType = WeaponBase.AbilityType.E;
-            sword.shield.Bash();
-            StartCoroutine(HandleECooldown(sword.shield.BashLength()));
+            
         }
     }
 
     protected override void HandleRAbility()
     {
-        if (CanUseAbility("RAttack", rCooldown, weaponBase.rLevel) && !sword.inAnimation)
+        if (CanUseAbility("RAttack", rCooldown, weaponBase.rLevel))
         {
-            StartCoroutine(ProtectAndServe());
-            StartCoroutine(HandleRCooldown(10f));
+           
         }
     }
 
@@ -54,22 +48,5 @@ public class Knight : PlayerBase
         Vector3 direction = (posToDash - transform.position).normalized;
         HandleRotation(posToDash, transform);
         rb.AddForce(direction * 25, ForceMode2D.Impulse);
-    }
-
-    private IEnumerator ProtectAndServe()
-    {
-        sword.shield.Protect(true);
-        qCooldownAmount *= 0.5f;
-        wCooldownAmount *=  0.5f;
-        eCooldownAmount *=  0.5f;
-        damageReduction += 0.75f;
-        speed /= 2;
-        yield return new WaitForSeconds(10);
-        sword.shield.Protect(false);
-        qCooldownAmount /=  0.5f;
-        wCooldownAmount /=  0.5f;
-        eCooldownAmount /=  0.5f;
-        damageReduction -= 0.75f;
-        speed *= 2;
     }
 }

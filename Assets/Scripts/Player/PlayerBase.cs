@@ -42,6 +42,8 @@ public class PlayerBase : MonoBehaviour
     protected State state;
     private Vector3 positionToMove;
     protected Rigidbody2D rb;
+    private Animator animator;
+    private SpriteRenderer spriteRenderer;
     protected bool canUseAbility = true;
     protected enum State
     {
@@ -56,6 +58,8 @@ public class PlayerBase : MonoBehaviour
         playerUI = GetComponent<PlayerUI>();
         experienceManager = GetComponent<ExperienceManager>();
         rb = GetComponent<Rigidbody2D>();
+        animator = GetComponent<Animator>();
+        spriteRenderer = GetComponent<SpriteRenderer>();
         health = baseHealth;
         state = State.idle;
         qBaseCooldown = qCooldownAmount;
@@ -73,6 +77,7 @@ public class PlayerBase : MonoBehaviour
         switch(state)
         {
             case State.idle:
+                HandleIdle();
             break;
             case State.moving:
                 HandleMoving();
@@ -149,13 +154,22 @@ public class PlayerBase : MonoBehaviour
         if (playerInput.actions["RightClick"].triggered && Time.timeScale > 0f)
         {
             positionToMove = GetMousePosition();
-            if (weaponBase.canRotate)
+            if (positionToMove.x > transform.position.x)
             {
-                HandleRotation(positionToMove, this.transform);
+                spriteRenderer.flipX = false;
+            }
+            else if (positionToMove.x < transform.position.x)
+            {
+                spriteRenderer.flipX = true;
             }
             movePointReticle.CreateReticle(positionToMove);
             state = State.moving;
         }
+    }
+
+    private void HandleIdle()
+    {
+        animator.SetBool("isWalking", false);
     }
 
     public Vector3 GetMousePosition()
@@ -175,8 +189,13 @@ public class PlayerBase : MonoBehaviour
 
     private void HandleMoving()
     {
-        if (!weaponBase.canMove) return;
         transform.position = Vector3.MoveTowards(transform.position, positionToMove, speed * Time.deltaTime);
+        animator.SetBool("isWalking", true);
+        float distanceToWalkPosition = Vector2.Distance(transform.position, positionToMove);
+        if (distanceToWalkPosition < 0.01f)
+        {
+            state = State.idle;
+        }
     }
 
     private void HandleHealth()

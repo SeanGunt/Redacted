@@ -45,7 +45,8 @@ public class MapUpdate : MonoBehaviour
         navMeshModifier.area = areaType;
 
         Tilemap tilemap = tilemapObject.AddComponent<Tilemap>();
-        tilemapObject.AddComponent<TilemapRenderer>();
+        TilemapRenderer tilemapRenderer = tilemapObject.AddComponent<TilemapRenderer>();
+        tilemapRenderer.sortingOrder = -1;
 
         return tilemap;
     }

@@ -37,8 +37,8 @@ public class WeaponBase : MonoBehaviour
     {
         playerBase = GetComponentInParent<PlayerBase>();
         animator = GetComponent<Animator>();
-        clips = animator.runtimeAnimatorController.animationClips;
         spriteRenderer = GetComponent<SpriteRenderer>();
+        clips = animator.runtimeAnimatorController.animationClips;
         defaultMaterial = spriteRenderer.material;
     }
 
