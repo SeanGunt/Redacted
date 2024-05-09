@@ -6,6 +6,7 @@ public class Staff : WeaponBase
     [SerializeField] private Wizard wizard;
     [HideInInspector] public BoxCollider2D weaponCollider;
     [HideInInspector] public bool inAnimation;
+    private Vector3 mousePos;
     public GameObject fireballPrefab;
     public GameObject lightningPrefab;
     public GameObject iceballPrefab;
@@ -24,9 +25,15 @@ public class Staff : WeaponBase
         animator.SetTrigger(animToPlay);
     }
 
+    public void GetMousePosition()
+    {
+        mousePos = wizard.GetMousePosition();
+    }
+
     public void SpawnFireball()
     {
-        GameObject fireball = Instantiate(fireballPrefab, staffSpawnPoint.transform.position, wizard.transform.rotation, GameManager.Instance.poolHolders[3].transform);
+        GameObject fireball = Instantiate(fireballPrefab, staffSpawnPoint.transform.position, transform.rotation, GameManager.Instance.poolHolders[3].transform);
+        wizard.HandleRotation(mousePos, fireball.transform);
     }
 
     public void LightningBolt()

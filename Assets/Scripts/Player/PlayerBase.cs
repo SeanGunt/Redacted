@@ -180,7 +180,7 @@ public class PlayerBase : MonoBehaviour
        return mousePos;
     }
  
-    protected void HandleRotation(Vector3 pos, Transform thingToRotate)
+    public void HandleRotation(Vector3 pos, Transform thingToRotate)
     {
         Vector3 direction = (pos - thingToRotate.position).normalized;
         float angle = Mathf.Atan2(-direction.x, direction.y) * Mathf.Rad2Deg;
