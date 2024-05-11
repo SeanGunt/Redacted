@@ -45,6 +45,8 @@ public class PlayerBase : MonoBehaviour
     private Animator animator;
     private SpriteRenderer spriteRenderer;
     protected bool canUseAbility = true;
+    protected bool canFlipSprite = true;
+    protected bool canMove = true;
     protected enum State
     {
         idle, moving
@@ -74,6 +76,7 @@ public class PlayerBase : MonoBehaviour
         RightClick();
         HandleAbilities();
         HandleInteract();
+        HandleSpriteFlipping();
         switch(state)
         {
             case State.idle:
@@ -151,19 +154,24 @@ public class PlayerBase : MonoBehaviour
 
     private void RightClick()
     {
-        if (playerInput.actions["RightClick"].triggered && Time.timeScale > 0f)
+        if (playerInput.actions["RightClick"].triggered && Time.timeScale > 0f && canMove)
         {
             positionToMove = GetMousePosition();
-            if (positionToMove.x > transform.position.x)
-            {
-                spriteRenderer.flipX = false;
-            }
-            else if (positionToMove.x < transform.position.x)
-            {
-                spriteRenderer.flipX = true;
-            }
             movePointReticle.CreateReticle(positionToMove);
             state = State.moving;
+        }
+    }
+
+    private void HandleSpriteFlipping()
+    {
+        if (!canFlipSprite) return;
+        if (GetMousePosition().x < transform.position.x)
+        {
+            spriteRenderer.flipX = true;
+        }
+        else
+        {
+            spriteRenderer.flipX = false;
         }
     }
 

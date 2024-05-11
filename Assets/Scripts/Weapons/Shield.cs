@@ -2,60 +2,28 @@ using UnityEngine;
 
 public class Shield : MonoBehaviour
 {
-    private BoxCollider2D weaponCollider;
-    private Animator animator;
-    [SerializeField] private Sword sword;
-    [SerializeField] private Knight knight;
+    private PlayerBase playerBase;
+    private SpriteRenderer spriteRenderer;
+    private SpriteRenderer playerSprite;
 
-    private void Start()
+    private void Awake()
     {
-        weaponCollider = GetComponent<BoxCollider2D>();
-        animator = GetComponent<Animator>();
-        weaponCollider.enabled = false;
+        playerBase = GetComponentInParent<PlayerBase>();
+        spriteRenderer = GetComponent<SpriteRenderer>();
+        playerSprite = playerBase.GetComponent<SpriteRenderer>();
     }
 
-    private void OnTriggerEnter2D(Collider2D other)
+    private void Update()
     {
-        IDamagable damagable = other.gameObject.GetComponent<IDamagable>();
-        if (damagable != null)
+        if (playerSprite.flipX == true)
         {
-            damagable.TakeDamage(sword.ApplyDamage());
+            transform.localPosition = new Vector3(-0.3f, transform.localPosition.y, 0f);
+            spriteRenderer.flipX = true;
+        }
+        else
+        {
+            transform.localPosition = new Vector3(0.3f, transform.localPosition.y, 0f);
+            spriteRenderer.flipX = false;
         }
     }
-
-    public float BashLength()
-    {
-        return animator.runtimeAnimatorController.animationClips[1].length;
-
-    }
-
-    public void Bash()
-    {
-        animator.SetTrigger("Bash");
-    }
-
-    public void Protect(bool isProtecting)
-    {
-        animator.SetBool("isProtecting", isProtecting);
-    }
-    public void ExecuteBash()
-    {
-        knight.Dash();
-    }
-
-    public void EnableCollider()
-    {
-        sword.CantRotate();
-        sword.CantMove();
-        weaponCollider.enabled = true;
-    }
-
-    public void DisableCollider()
-    {
-        sword.CanRotate();
-        sword.CanMove();
-        weaponCollider.enabled = false;
-    }
-
-
 }

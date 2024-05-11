@@ -10,7 +10,6 @@ public class IceballLaunch : MonoBehaviour
     [SerializeField] private float constantSpeed;
     [SerializeField] private float decelerationRate;
     [SerializeField] private float initialRotationSpeed;
-    [SerializeField] private SpriteRenderer shadowSpriteRenderer;
     private SpriteRenderer spriteRenderer;
     private bool fadeStarted;
     [Header("Iceshard Properties")]
@@ -67,7 +66,6 @@ public class IceballLaunch : MonoBehaviour
         while (spriteRenderer.color.a > 0)
         {
             spriteRenderer.color -= new Color(0,0,0, Time.deltaTime/3);
-            shadowSpriteRenderer.color -= new Color(0,0,0, Time.deltaTime/3);
             yield return null;
         }
     }

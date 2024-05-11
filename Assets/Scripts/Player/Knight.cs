@@ -30,7 +30,9 @@ public class Knight : PlayerBase
     {
         if (CanUseAbility("EAttack", eCooldown, weaponBase.eLevel))
         {
-            
+            sword.abilityType = WeaponBase.AbilityType.E;
+            StartCoroutine(HandleDashAbility());
+            StartCoroutine(HandleECooldown(0.7f));
         }
     }
 
@@ -42,11 +44,27 @@ public class Knight : PlayerBase
         }
     }
 
+    private IEnumerator HandleDashAbility()
+    {
+        Dash();
+        canFlipSprite = false;
+        sword.EnableWeaponCollider();
+        canUseAbility = false;
+        weaponBase.canRotate = false;
+        canMove = false;
+        state = State.idle;
+        yield return new WaitForSeconds(0.5f);
+        canFlipSprite = true;
+        sword.DisableWeaponCollider();
+        canUseAbility = true;
+        weaponBase.canRotate = true;
+        canMove = true;
+    }
+
     public void Dash()
     {
         Vector3 posToDash = GetMousePosition();
         Vector3 direction = (posToDash - transform.position).normalized;
-        HandleRotation(posToDash, transform);
         rb.AddForce(direction * 25, ForceMode2D.Impulse);
     }
 }
