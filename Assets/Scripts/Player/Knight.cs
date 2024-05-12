@@ -32,7 +32,7 @@ public class Knight : PlayerBase
         {
             sword.abilityType = WeaponBase.AbilityType.E;
             StartCoroutine(HandleDashAbility());
-            StartCoroutine(HandleECooldown(0.7f));
+            StartCoroutine(HandleECooldown(0.5f));
         }
     }
 
@@ -40,7 +40,8 @@ public class Knight : PlayerBase
     {
         if (CanUseAbility("RAttack", rCooldown, weaponBase.rLevel))
         {
-           
+           StartCoroutine(ProtectAndServe());
+           StartCoroutine(HandleRCooldown(10f));
         }
     }
 
@@ -59,6 +60,23 @@ public class Knight : PlayerBase
         canUseAbility = true;
         weaponBase.canRotate = true;
         canMove = true;
+    }
+
+    private IEnumerator ProtectAndServe()
+    {
+        qCooldownAmount *= 0.5f;
+        wCooldownAmount *=  0.5f;
+        eCooldownAmount *=  0.5f;
+        damageReduction += 0.75f;
+        speed /= 2;
+        animator.speed -= 0.5f;
+        yield return new WaitForSeconds(10);
+        qCooldownAmount /=  0.5f;
+        wCooldownAmount /=  0.5f;
+        eCooldownAmount /=  0.5f;
+        damageReduction -= 0.75f;
+        speed *= 2;
+        animator.speed += 0.5f;
     }
 
     public void Dash()

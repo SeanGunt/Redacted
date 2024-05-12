@@ -42,7 +42,7 @@ public class PlayerBase : MonoBehaviour
     protected State state;
     private Vector3 positionToMove;
     protected Rigidbody2D rb;
-    private Animator animator;
+    protected Animator animator;
     private SpriteRenderer spriteRenderer;
     protected bool canUseAbility = true;
     protected bool canFlipSprite = true;
