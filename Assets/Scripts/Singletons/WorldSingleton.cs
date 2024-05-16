@@ -221,6 +221,11 @@ public class WorldSingleton : MonoBehaviour
         
     }
 
+    private void GenerateTrees()
+    {
+        
+    }
+
     public Vector2Int[] GetShopPositions()
     {
         return shopPositions;
