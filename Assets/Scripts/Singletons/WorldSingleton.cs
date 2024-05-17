@@ -1,6 +1,7 @@
 using UnityEngine;
 using System.Linq;
 using System.Collections.Generic;
+using UnityEngine.UIElements;
 
 /*
     WORLD GENERATION AND HOW TO USE THIS SCRIPT:
@@ -71,9 +72,11 @@ public class WorldSingleton : MonoBehaviour
 
     readonly public Vector2Int mapDimensions = new(500, 500);
     private Vector2Int[] shopPositions = new Vector2Int[3];
+    private Vector2Int[] treePositions = new Vector2Int[250];
     readonly private float collidableMin = -0.2f, collidableMax = 0.25f;
     readonly private float noiseScale = 20;
     readonly private int variantProbability = 20;
+    private int unwalkableLayerMask = 1 << 10;
 
     void Awake()
     {
@@ -97,6 +100,7 @@ public class WorldSingleton : MonoBehaviour
         AddNoCollideSpawnZone();
         AddEdgePieces();
         GenerateShopPositions();
+        GenerateTrees();
     }
 
     private void GenerateBaseAndCollidableGrid()
@@ -172,7 +176,7 @@ public class WorldSingleton : MonoBehaviour
         int offsetX = mapDimensions.x / 4;
         int offsetY = mapDimensions.y / 4;
 
-        List<int> cornerIndices = new List<int>() {1,2,3,4};
+        List<int> cornerIndices = new() {1,2,3,4};
         cornerIndices = cornerIndices.OrderBy(x => Random.value).ToList();
 
         int minDistanceFromEdge = 20;
@@ -221,14 +225,28 @@ public class WorldSingleton : MonoBehaviour
         
     }
 
+    /*Map size is 500 x 500. If I want 250 trees, then I need to find random spaces in the map 250 times.
+        Some things to keep note are that I want the trees atleast 5 units apart from eachother and that
+        they cannot spawn on water tiles (collidables). Its fine if the trees extend across the water.
+        I also dont want trees to spawn in a 5x5 at 0,0 to ensure the player doesnt get spawn trapped */
     private void GenerateTrees()
     {
-        
+        for (int i = 0; i < treePositions.Length; i++)
+        {
+            int randomX = Random.Range(-245, 245);
+            int randomY = Random.Range(245, -245);
+            treePositions[i] = new Vector2Int(randomX, randomY);
+        }
     }
 
     public Vector2Int[] GetShopPositions()
     {
         return shopPositions;
+    }
+
+    public Vector2Int[] GetTreePositions()
+    {
+        return treePositions;
     }
 
     private bool IsNonCollidableTile(Vector2Int position)
