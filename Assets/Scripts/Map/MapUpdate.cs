@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEngine.Tilemaps;
 using NavMeshPlus.Components;
 using System.Collections.Generic;
+using System.Collections;
 
 public class MapUpdate : MonoBehaviour
 {
@@ -14,6 +15,7 @@ public class MapUpdate : MonoBehaviour
     private Tilemap baseLayer, collidableLayer;
     [SerializeField] private NavMeshSurface navMeshSurface;
     [HideInInspector] public List<Transform> shopsList = new List<Transform>();
+    private int unwalkableLayerMask = 1 << 10;
     Vector2Int offset;
 
     void Awake()
@@ -32,9 +34,16 @@ public class MapUpdate : MonoBehaviour
 
     void Start()
     {
+        StartCoroutine(InitializeMap());
+    }
+
+    private IEnumerator InitializeMap()
+    {
         SpawnShops();
-        SpawnTrees();
         PlaceTiles();
+        yield return new WaitForEndOfFrame();
+        SpawnTrees();
+        navMeshSurface.BuildNavMesh();
     }
 
     Tilemap CreateTilemap(string tilemapName, int areaType)
@@ -75,8 +84,6 @@ public class MapUpdate : MonoBehaviour
                 }
             }
         }
-
-        navMeshSurface.BuildNavMesh();
     }
 
     private void SpawnShops()
@@ -96,7 +103,7 @@ public class MapUpdate : MonoBehaviour
         for (int i = 0; i < treePositions.Length; i++)
         {
             Vector3 spawnPosition = new Vector3(treePositions[i].x, treePositions[i].y, 0);
-            GameObject tree = Instantiate(treePrefab, spawnPosition, Quaternion.identity);
+            Instantiate(treePrefab, spawnPosition, Quaternion.identity);
         }
     }
 }

@@ -1,7 +1,7 @@
 using UnityEngine;
 using System.Linq;
 using System.Collections.Generic;
-using UnityEngine.UIElements;
+using System.Collections;
 
 /*
     WORLD GENERATION AND HOW TO USE THIS SCRIPT:
@@ -76,7 +76,6 @@ public class WorldSingleton : MonoBehaviour
     readonly private float collidableMin = -0.2f, collidableMax = 0.25f;
     readonly private float noiseScale = 20;
     readonly private int variantProbability = 20;
-    private int unwalkableLayerMask = 1 << 10;
 
     void Awake()
     {
@@ -96,9 +95,15 @@ public class WorldSingleton : MonoBehaviour
 
     void Start()
     {
+        StartCoroutine(InitializePositions());
+    }
+
+    private IEnumerator InitializePositions()
+    {
         GenerateBaseAndCollidableGrid();
         AddNoCollideSpawnZone();
         AddEdgePieces();
+        yield return new WaitForEndOfFrame();
         GenerateShopPositions();
         GenerateTrees();
     }
@@ -227,16 +232,40 @@ public class WorldSingleton : MonoBehaviour
 
     /*Map size is 500 x 500. If I want 250 trees, then I need to find random spaces in the map 250 times.
         Some things to keep note are that I want the trees atleast 5 units apart from eachother and that
-        they cannot spawn on water tiles (collidables). Its fine if the trees extend across the water.
-        I also dont want trees to spawn in a 5x5 at 0,0 to ensure the player doesnt get spawn trapped */
+        they cannot spawn on water tiles (collidables). I also dont want trees to spawn in a 5x5 at 0,0 to ensure the player doesnt get spawn trapped */
     private void GenerateTrees()
     {
         for (int i = 0; i < treePositions.Length; i++)
         {
-            int randomX = Random.Range(-245, 245);
-            int randomY = Random.Range(245, -245);
-            treePositions[i] = new Vector2Int(randomX, randomY);
+            while (true)
+            {
+                int randomX = Random.Range(-245, 245);
+                int randomY = Random.Range(-245, 245);
+                Vector2Int randomPosition = new Vector2Int(randomX, randomY);
+
+                // Translate the logical coordinates to array indices
+                int arrayX = randomX + (mapDimensions.x / 2);
+                int arrayY = randomY + (mapDimensions.y / 2);
+
+                if (collidables[arrayX, arrayY] == -1 && IsTreePlacementValid(randomPosition))
+                {
+                    treePositions[i] = randomPosition;
+                    break;
+                }
+            }
         }
+    }
+
+    private bool IsTreePlacementValid(Vector2Int position)
+    {
+        for (int i = 0; i < treePositions.Length; i++)
+        {
+            if (treePositions[i] != Vector2Int.zero && Vector2Int.Distance(treePositions[i], position) < 5)
+            {
+                return false; // Ensures trees are at least 5 units apart
+            }
+        }
+        return true;
     }
 
     public Vector2Int[] GetShopPositions()
