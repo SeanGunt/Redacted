@@ -2996,7 +2996,10 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 3bd98e0966be1ce4e8fc2a86b8a4ee0c, type: 2}
   - {fileID: 11400000, guid: 53ce914013a97c7489d9b870434be4c6, type: 2}
   shopPrefab: {fileID: 6072300139523916857, guid: baaf765114284ba4bb3a50bc838e3e0a, type: 3}
-  treePrefab: {fileID: 3613611529941050488, guid: b302b8aacba7254478de4c3d9d348e49, type: 3}
+  treePrefabs:
+  - {fileID: 3613611529941050488, guid: b302b8aacba7254478de4c3d9d348e49, type: 3}
+  - {fileID: 3613611529941050488, guid: e06fa9e372b642b4894f4bc0ca71e0ad, type: 3}
+  - {fileID: 3613611529941050488, guid: ea3b61ad1eeefe749bf055f125f555fa, type: 3}
   navMeshSurface: {fileID: 1945219400}
   shopsList: []
 --- !u!114 &1882551442
