@@ -15,7 +15,6 @@ public class MapUpdate : MonoBehaviour
     private Tilemap baseLayer, collidableLayer;
     [SerializeField] private NavMeshSurface navMeshSurface;
     [HideInInspector] public List<Transform> shopsList = new List<Transform>();
-    private int unwalkableLayerMask = 1 << 10;
     Vector2Int offset;
 
     void Awake()
@@ -99,8 +98,8 @@ public class MapUpdate : MonoBehaviour
 
     private void SpawnTrees()
     {
-        Vector2Int[] treePositions = world.GetTreePositions();
-        for (int i = 0; i < treePositions.Length; i++)
+        List<Vector2Int> treePositions = world.GetTreePositions();
+        for (int i = 0; i < treePositions.Count; i++)
         {
             Vector3 spawnPosition = new Vector3(treePositions[i].x, treePositions[i].y, 0);
             int randomTree = Random.Range(0, treePrefabs.Length);

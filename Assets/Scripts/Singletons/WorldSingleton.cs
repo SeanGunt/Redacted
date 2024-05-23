@@ -32,6 +32,12 @@ using System.Collections;
     You can find all the variables that dictate how a map is generated inside this
     script. They must be adjusted from this script.
 */
+[System.Serializable]
+public class WorldObjects
+{
+    public List<Vector2Int> worldPositions;
+    public int amountOfObjects;
+}
 
 public class WorldSingleton : MonoBehaviour
 {
@@ -72,7 +78,7 @@ public class WorldSingleton : MonoBehaviour
 
     readonly public Vector2Int mapDimensions = new(500, 500);
     private Vector2Int[] shopPositions = new Vector2Int[3];
-    private Vector2Int[] treePositions = new Vector2Int[250];
+    public List<WorldObjects> worldObjects = new();
     readonly private float collidableMin = -0.2f, collidableMax = 0.25f;
     readonly private float noiseScale = 20;
     readonly private int variantProbability = 20;
@@ -105,7 +111,7 @@ public class WorldSingleton : MonoBehaviour
         AddEdgePieces();
         yield return new WaitForEndOfFrame();
         GenerateShopPositions();
-        GenerateTrees();
+        GenerateWorldObjects();
     }
 
     private void GenerateBaseAndCollidableGrid()
@@ -230,39 +236,57 @@ public class WorldSingleton : MonoBehaviour
         
     }
 
-    /*Map size is 500 x 500. If I want 250 trees, then I need to find random spaces in the map 250 times.
-        Some things to keep note are that I want the trees atleast 5 units apart from eachother and that
-        they cannot spawn on water tiles (collidables). I also dont want trees to spawn in a 5x5 at 0,0 to ensure the player doesnt get spawn trapped */
-    private void GenerateTrees()
+    private void GenerateWorldObjects()
     {
-        for (int i = 0; i < treePositions.Length; i++)
+        for (int i = 0; i < worldObjects.Count; i++)
         {
-            while (true)
+            if (worldObjects[i].worldPositions == null || worldObjects[i].worldPositions.Count != worldObjects[i].amountOfObjects)
             {
-                int randomX = Random.Range(-245, 245);
-                int randomY = Random.Range(-245, 245);
-                Vector2Int randomPosition = new Vector2Int(randomX, randomY);
+                Debug.Log("Initializing worldPositions for worldObject " + i + " with size " + worldObjects[i].amountOfObjects);
+                worldObjects[i].worldPositions = new List<Vector2Int>(new Vector2Int[worldObjects[i].amountOfObjects]);
+            }
 
-                // Translate the logical coordinates to array indices
-                int arrayX = randomX + (mapDimensions.x / 2);
-                int arrayY = randomY + (mapDimensions.y / 2);
-
-                if (collidables[arrayX, arrayY] == -1 && IsTreePlacementValid(randomPosition))
+            for (int j = 0; j < worldObjects[i].amountOfObjects; j++)
+            {
+                while (true)
                 {
-                    treePositions[i] = randomPosition;
-                    break;
+                    int randomX = Random.Range(-245, 245);
+                    int randomY = Random.Range(-245, 245);
+                    Vector2Int randomPosition = new Vector2Int(randomX, randomY);
+
+                    int arrayX = randomX + (mapDimensions.x / 2);
+                    int arrayY = randomY + (mapDimensions.y / 2);
+
+                    if (arrayX >= 0 && arrayX < mapDimensions.x && arrayY >= 0 && arrayY < mapDimensions.y)
+                    {
+                        if (collidables[arrayX, arrayY] == -1)
+                        {
+                            worldObjects[i].worldPositions[j] = randomPosition;
+                            Debug.Log("i equals: " + i + " and j equals " + j + " with position " + randomPosition);
+                            break;
+                        }
+                    }
+                    else
+                    {
+                        Debug.Log("Generated position out of bounds: " + randomPosition);
+                    }
                 }
             }
         }
     }
 
-    private bool IsTreePlacementValid(Vector2Int position)
+
+    private bool IsWorldObjectPlacementValid(Vector2Int position)
     {
-        for (int i = 0; i < treePositions.Length; i++)
+        for (int i = 0; i < worldObjects.Count; i++)
         {
-            if (treePositions[i] != Vector2Int.zero && Vector2Int.Distance(treePositions[i], position) < 5)
+            for (int j = 0; j < worldObjects[i].amountOfObjects; j++)
             {
-                return false; // Ensures trees are at least 5 units apart
+                if (worldObjects[i].worldPositions[j] != Vector2Int.zero && Vector2Int.Distance(worldObjects[i].worldPositions[j], position) < 5)
+                {
+                    Debug.Log("Objects spawned too close, moving to a different position");
+                    return false; 
+                }
             }
         }
         return true;
@@ -273,9 +297,9 @@ public class WorldSingleton : MonoBehaviour
         return shopPositions;
     }
 
-    public Vector2Int[] GetTreePositions()
+    public List<Vector2Int> GetTreePositions()
     {
-        return treePositions;
+        return worldObjects[0].worldPositions;
     }
 
     private bool IsNonCollidableTile(Vector2Int position)
