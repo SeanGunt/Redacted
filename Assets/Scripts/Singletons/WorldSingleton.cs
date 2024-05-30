@@ -297,9 +297,9 @@ public class WorldSingleton : MonoBehaviour
         return shopPositions;
     }
 
-    public List<Vector2Int> GetTreePositions()
+    public List<Vector2Int> GetWorldObjectPositionsByIndex(int index)
     {
-        return worldObjects[0].worldPositions;
+        return worldObjects[index].worldPositions;
     }
 
     private bool IsNonCollidableTile(Vector2Int position)

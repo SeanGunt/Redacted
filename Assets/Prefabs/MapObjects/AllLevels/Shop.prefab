@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 222875459445563960}
-  - component: {fileID: 1164845800400586951}
+  - component: {fileID: 2991173390018880627}
   m_Layer: 11
   m_Name: Shadow
   m_TagString: Untagged
@@ -24,15 +24,15 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2009945308723861687}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.2, y: -0.2, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.037, y: -0.11, z: 0}
+  m_LocalScale: {x: 2.2, y: 0.16, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 7798233794069720914}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!212 &1164845800400586951
+--- !u!212 &2991173390018880627
 SpriteRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -72,13 +72,13 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 2
-  m_Sprite: {fileID: 21300000, guid: 2368a968bc164d84bafabead8bbcea9c, type: 3}
-  m_Color: {r: 0, g: 0, b: 0, a: 0.4745098}
+  m_SortingOrder: 0
+  m_Sprite: {fileID: 21300000, guid: e0cc1a5223788fd4aa9978c8d49c8732, type: 3}
+  m_Color: {r: 0, g: 0, b: 0, a: 0.5019608}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1.6, y: 1.6}
+  m_Size: {x: 1, y: 1}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -96,7 +96,8 @@ GameObject:
   - component: {fileID: 5321707593499389053}
   - component: {fileID: 1483103078426282264}
   - component: {fileID: 5383461200385856609}
-  - component: {fileID: 3440095455598891650}
+  - component: {fileID: 3904506777594508903}
+  - component: {fileID: 591778787591873991}
   m_Layer: 11
   m_Name: Shop
   m_TagString: Untagged
@@ -160,18 +161,18 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 3
-  m_Sprite: {fileID: 21300000, guid: 2368a968bc164d84bafabead8bbcea9c, type: 3}
+  m_SortingOrder: 1
+  m_Sprite: {fileID: -1831937697, guid: 2368a968bc164d84bafabead8bbcea9c, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1.6, y: 1.6}
+  m_Size: {x: 4, y: 4}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
-  m_SpriteSortPoint: 0
+  m_SpriteSortPoint: 1
 --- !u!114 &1483103078426282264
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -200,8 +201,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 186ac553e4bfe91488f7aad4bcf23d92, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!60 &3440095455598891650
-PolygonCollider2D:
+--- !u!95 &3904506777594508903
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6072300139523916857}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: bad0e5c744e1e8045a2b97d6c6114bb2, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!61 &591778787591873991
+BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -213,21 +234,16 @@ PolygonCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0.03, y: 0.81}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 5, y: 5}
-    newSize: {x: 1.6, y: 1.6}
+    pivot: {x: 0.41, y: 0.11}
+    oldSize: {x: 4, y: 4}
+    newSize: {x: 4, y: 4}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Points:
-    m_Paths:
-    - - {x: -2.5, y: 2.5}
-      - {x: -2.5, y: -0.125}
-      - {x: -0.034976006, y: -0.13729107}
-      - {x: -0.03125, y: -2.5}
-      - {x: 2.5, y: -2.5}
-      - {x: 2.5, y: 2.5}
+  serializedVersion: 2
+  m_Size: {x: 2.5, y: 1.65}
+  m_EdgeRadius: 0

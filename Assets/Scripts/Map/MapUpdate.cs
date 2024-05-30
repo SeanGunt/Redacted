@@ -98,7 +98,7 @@ public class MapUpdate : MonoBehaviour
 
     private void SpawnTrees()
     {
-        List<Vector2Int> treePositions = world.GetTreePositions();
+        List<Vector2Int> treePositions = world.GetWorldObjectPositionsByIndex(0);
         for (int i = 0; i < treePositions.Count; i++)
         {
             Vector3 spawnPosition = new Vector3(treePositions[i].x, treePositions[i].y, 0);
