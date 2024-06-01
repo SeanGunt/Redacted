@@ -14,6 +14,7 @@ public class EnemyMaster : MonoBehaviour, IDamagable
     protected GameObject player;
     private PlayerBase playerBase;
     protected NavMeshAgent agent;
+    protected Vector3 target;
     private SpriteRenderer spriteRenderer;
     private Material material;
 
@@ -100,22 +101,21 @@ public class EnemyMaster : MonoBehaviour, IDamagable
     }
     protected virtual void Movement()
     {
-        agent.SetDestination(new Vector3(player.transform.position.x, player.transform.position.y, transform.position.z));
-        
+        target = new Vector3(player.transform.position.x, player.transform.position.y, 1f);
+        agent.SetDestination(target);
     }
 
     protected virtual void Rotation()
     {
-        HandleRotation(player.transform.position, transform);
+        if (player.transform.position.x < transform.position.x)
+        {
+            spriteRenderer.flipX = true;
+        }
+        else
+        {
+            spriteRenderer.flipX = false;
+        }
     }
-
-    protected void HandleRotation(Vector3 pos, Transform thingToRotate)
-    {
-        Vector3 direction = (pos - thingToRotate.position).normalized;
-        float angle = Mathf.Atan2(-direction.x, direction.y) * Mathf.Rad2Deg;
-        thingToRotate.eulerAngles = new Vector3(0,0,angle);
-    }
-
 
     public enum SpeedChange
     {

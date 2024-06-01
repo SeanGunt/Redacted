@@ -7,7 +7,8 @@ public class Robot : EnemyMaster
     [Header("Robot Specifics")]
     [SerializeField] private GameObject laserPrefab;
     [SerializeField] private GameObject laserSpawnPoint;
-    RobotLaser robotLaser;
+    private RobotLaser robotLaser;
+    private Animator animator;
     private float laserTimer = 6f;
     private float timeTillLaser;
     private State state;
@@ -19,6 +20,7 @@ public class Robot : EnemyMaster
     private void OnEnable()
     {
         state = State.moving;
+        animator = GetComponent<Animator>();
     }
     protected override void Update()
     {
@@ -30,7 +32,9 @@ public class Robot : EnemyMaster
                 if (DistanceToPlayer() <= 6f && state != State.lasering && timeTillLaser <= 0)
                 {
                     state = State.startLaser;
+                    animator.SetTrigger("Laser");
                 }
+                animator.SetBool("Moving", true);
                 Rotation();
                 Movement();
                 break;
@@ -42,15 +46,6 @@ public class Robot : EnemyMaster
                 break;
         }
 
-    }
-    protected override void Movement()
-    {
-        agent.SetDestination(new Vector3(player.transform.position.x, player.transform.position.y, transform.position.z));
-    }
-
-    protected override void Rotation()
-    {
-        HandleRotation(player.transform.position, transform);
     }
 
     private float DistanceToPlayer()
@@ -73,8 +68,8 @@ public class Robot : EnemyMaster
         yield return new WaitForSeconds(0.6f);
         GameObject laser =  Instantiate(laserPrefab, laserSpawnPoint.transform.position, Quaternion.identity, GameManager.Instance.poolHolders[3].transform);
         robotLaser = laser.GetComponentInChildren<RobotLaser>();
-        HandleRotation(player.transform.position, laser.transform);
         laser.transform.localScale = new Vector3(0.25f, 0f, 1f);
+        Utilities.instance.HandleRotation(player.transform.position, laser.transform);
         while (laser.transform.localScale.y <= 8f)
         {
             laser.transform.localScale += new Vector3(0f, Time.deltaTime * 12.5f, 0f);
@@ -84,6 +79,7 @@ public class Robot : EnemyMaster
         robotLaser.fadeStarted = true;
         agent.isStopped = false;
         state = State.moving;
+        animator.SetBool("Moving", false);
         yield return new WaitForSeconds(5f);
         ChangeSpeed(1.5f, SpeedChange.increase);
     }
