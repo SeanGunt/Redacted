@@ -7,6 +7,14 @@ public class ProjectileTrigger : MonoBehaviour
     protected GameObject player;
     protected WeaponBase weaponBase;
     protected float damageToApply;
+    protected Rigidbody2D rb;
+    protected BoxCollider2D bc;
+
+    private void Awake()
+    {
+        rb = GetComponent<Rigidbody2D>();
+        bc = GetComponent<BoxCollider2D>();
+    }
 
     protected virtual void OnTriggerEnter2D(Collider2D other)
     {

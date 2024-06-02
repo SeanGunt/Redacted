@@ -2357,10 +2357,10 @@ RectTransform:
   m_Father: {fileID: 7267330641457286915}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 73, y: -28}
-  m_SizeDelta: {x: 40, y: 40}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1569639460524050421
 CanvasRenderer:
@@ -2789,10 +2789,10 @@ RectTransform:
   m_Father: {fileID: 3203936301951530317}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 28, y: -28}
-  m_SizeDelta: {x: 40, y: 40}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &5741688137567304535
 MonoBehaviour:
@@ -2999,10 +2999,10 @@ RectTransform:
   m_Father: {fileID: 3203936301951530317}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 73, y: -73}
-  m_SizeDelta: {x: 40, y: 40}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &7207874854164542150
 MonoBehaviour:
@@ -3355,7 +3355,7 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
-  m_SpriteSortPoint: 1
+  m_SpriteSortPoint: 0
 --- !u!114 &2651119155473598889
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3369,23 +3369,23 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 3
-  baseHealth: 300
+  baseHealth: 425
   healthRegen: 2
-  qCooldownAmount: 5
+  qCooldownAmount: 1.5
   wCooldownAmount: 0
   eCooldownAmount: 0
   rCooldownAmount: 0
-  pickupRange: 0
+  pickupRange: 2
   health: 0
-  physicalDamage: 10
-  magicalDamage: 0
-  physicalResistance: 0
-  magicalResistance: 0
-  healthPerLevel: 0
+  physicalDamage: 26
+  magicalDamage: 10
+  physicalResistance: 1.25
+  magicalResistance: 1.5
+  healthPerLevel: 23
   physPerLevel: 4
   magPerLevel: 0
-  physResPerLevel: 0
-  magResPerLevel: 0
+  physResPerLevel: 0.75
+  magResPerLevel: 0.8
   lifeSteal: 0
   critChance: 10
   cooldownReduction: 0
@@ -4592,7 +4592,7 @@ GameObject:
   - component: {fileID: 5062037917727502169}
   m_Layer: 0
   m_Name: Bow
-  m_TagString: Staff
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4653,7 +4653,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 2
+  m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: 45b9c740a66ad1c4eaf5090ca5a317a4, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -4726,7 +4726,7 @@ MonoBehaviour:
   damageMultiplier: 1
   canRotate: 1
   canMove: 1
-  qDamage: 16
+  qDamage: 20
   wDamage: 0
   eDamage: 0
   rDamage: 0
@@ -4749,7 +4749,6 @@ MonoBehaviour:
   arrowSpawnPoint: {fileID: 6607393480723204330}
   arrowPrefab: {fileID: 6868337946219877856, guid: d076b77926f2e4743a4af393ff77c6cf, type: 3}
   archer: {fileID: 2651119155473598889}
-  rotationPoint: {fileID: 4796774223767108557}
 --- !u!1 &3636714172054185574
 GameObject:
   m_ObjectHideFlags: 0
@@ -5014,10 +5013,10 @@ RectTransform:
   m_Father: {fileID: 3203936301951530317}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 73, y: -28}
-  m_SizeDelta: {x: 40, y: 40}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &4577873263109893341
 MonoBehaviour:
@@ -5545,10 +5544,10 @@ RectTransform:
   m_Father: {fileID: 7267330641457286915}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 28, y: -28}
-  m_SizeDelta: {x: 40, y: 40}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &813574278601372121
 CanvasRenderer:
@@ -5621,10 +5620,10 @@ RectTransform:
   m_Father: {fileID: 7267330641457286915}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 28, y: -73}
-  m_SizeDelta: {x: 40, y: 40}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2367167983482892938
 CanvasRenderer:
@@ -5900,10 +5899,10 @@ RectTransform:
   m_Father: {fileID: 7267330641457286915}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 73, y: -73}
-  m_SizeDelta: {x: 40, y: 40}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1112386035768782384
 CanvasRenderer:
@@ -6194,10 +6193,10 @@ RectTransform:
   m_Father: {fileID: 3203936301951530317}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 28, y: -73}
-  m_SizeDelta: {x: 40, y: 40}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &7933508809677203721
 MonoBehaviour:

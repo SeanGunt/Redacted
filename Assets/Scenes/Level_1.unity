@@ -3475,6 +3475,7 @@ MonoBehaviour:
   characters:
   - {fileID: 3884314428910866150, guid: fc62ff03dc418b84ca43e39107de425a, type: 3}
   - {fileID: 3884314428910866150, guid: 92a9c92259ba7904bb7e63b7abef7c99, type: 3}
+  - {fileID: 3636714170361015137, guid: a49dc667444817943b71d636426c89fc, type: 3}
 --- !u!4 &2089179221
 Transform:
   m_ObjectHideFlags: 0

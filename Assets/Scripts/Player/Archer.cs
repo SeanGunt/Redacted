@@ -11,8 +11,8 @@ public class Archer : PlayerBase
         if (CanUseAbility("QAttack", qCooldown, weaponBase.qLevel))
         {
             bow.abilityType = WeaponBase.AbilityType.Q;
-            bow.ShootArrow();
-            StartCoroutine(HandleQCooldown(0.5f));
+            bow.HandleBowAnims("Fire");
+            StartCoroutine(HandleQCooldown(bow.clips[1].length));
         }
     }
 }
