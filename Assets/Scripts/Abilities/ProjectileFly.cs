@@ -21,8 +21,11 @@ public class ProjectileFly : MonoBehaviour
     private void OnBecameInvisible()
     {
         if (!gameObject.activeInHierarchy) return;
-        particles.transform.parent = GameManager.Instance.poolHolders[4].transform;
-        particles.Stop();
+        if (particles != null)
+        {
+            particles.transform.parent = GameManager.Instance.poolHolders[4].transform;
+            particles.Stop();
+        }
         Destroy(gameObject);
     }
     
