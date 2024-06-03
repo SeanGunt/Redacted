@@ -101,8 +101,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   particles: {fileID: 0}
-  speed: 10
-  isProjectileMoving: 0
+  speed: 15
 --- !u!114 &-1438346178099138167
 MonoBehaviour:
   m_ObjectHideFlags: 0

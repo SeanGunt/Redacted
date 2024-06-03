@@ -45,7 +45,7 @@ public class PlayerBase : MonoBehaviour
     protected Animator animator;
     private SpriteRenderer spriteRenderer;
     protected bool canUseAbility = true;
-    protected bool canFlipSprite = true;
+    [HideInInspector] public bool canFlipSprite = true;
     protected bool canMove = true;
     protected enum State
     {

@@ -15,4 +15,14 @@ public class Archer : PlayerBase
             StartCoroutine(HandleQCooldown(bow.clips[1].length));
         }
     }
+
+    protected override void HandleWAbility()
+    {
+        if (CanUseAbility("WAttack", wCooldown, weaponBase.wLevel))
+        {
+            bow.abilityType = WeaponBase.AbilityType.W;
+            bow.HandleBowAnims("RapidFire");
+            StartCoroutine(HandleWCooldown(bow.clips[2].length));
+        }
+    }
 }

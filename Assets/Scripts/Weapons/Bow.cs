@@ -6,7 +6,7 @@ public class Bow : WeaponBase
 {
     [SerializeField] private Transform arrowSpawnPoint;
     [SerializeField] private GameObject arrowPrefab;
-    [SerializeField] private Archer archer;
+    public Archer archer;
     private Vector3 mousePos;
 
     public void GetMousePosition()

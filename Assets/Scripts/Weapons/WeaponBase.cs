@@ -101,6 +101,16 @@ public class WeaponBase : MonoBehaviour
         return baseDamage;
     }
 
+    public void CanFlipSprite()
+    {
+        playerBase.canFlipSprite = true;
+    }
+
+    public void CantFlipSprite()
+    {
+        playerBase.canFlipSprite = false;
+    }
+
     public void CanMove()
     {
         canMove = true;
