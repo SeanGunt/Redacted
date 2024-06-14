@@ -3372,9 +3372,9 @@ MonoBehaviour:
   baseHealth: 425
   healthRegen: 2
   qCooldownAmount: 1.5
-  wCooldownAmount: 0
-  eCooldownAmount: 0
-  rCooldownAmount: 0
+  wCooldownAmount: 4
+  eCooldownAmount: 5
+  rCooldownAmount: 30
   pickupRange: 2
   health: 0
   physicalDamage: 26
@@ -3599,7 +3599,7 @@ Rigidbody2D:
   m_AngularDrag: 1
   m_GravityScale: 0
   m_Material: {fileID: 0}
-  m_Interpolate: 0
+  m_Interpolate: 1
   m_SleepingMode: 1
   m_CollisionDetection: 1
   m_Constraints: 4

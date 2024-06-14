@@ -22,8 +22,8 @@ TagManager:
   - Unwalkable
   - Raycast
   - Player
-  - IgnorePlayer
-  - 
+  - Projectile
+  - IgnoreProjectiles
   - 
   - 
   - 

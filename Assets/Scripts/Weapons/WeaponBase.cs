@@ -33,7 +33,7 @@ public class WeaponBase : MonoBehaviour
         Q, W, E, R
     }
 
-    private void Awake()
+    protected virtual void Awake()
     {
         playerBase = GetComponentInParent<PlayerBase>();
         animator = GetComponent<Animator>();

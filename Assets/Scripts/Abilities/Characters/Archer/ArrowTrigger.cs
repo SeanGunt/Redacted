@@ -4,6 +4,16 @@ using UnityEngine;
 
 public class ArrowTrigger : ProjectileTrigger
 {
+
+    private void Start()
+    {
+        bc.enabled = false;
+    }
+
+    private void OnBecameVisible()
+    {
+        bc.enabled = true;
+    }
     protected override void HandleOtherOnHitLogic(Collider2D other)
     {
         transform.parent = other.transform;

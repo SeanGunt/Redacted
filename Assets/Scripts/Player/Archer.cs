@@ -25,5 +25,47 @@ public class Archer : PlayerBase
             StartCoroutine(HandleWCooldown(bow.clips[2].length));
         }
     }
+
+    protected override void HandleEAbility()
+    {
+        if (CanUseAbility("EAttack", eCooldown, weaponBase.eLevel))
+        {
+            bow.abilityType = WeaponBase.AbilityType.E;
+            StartCoroutine(HandleDashAbility());
+            StartCoroutine(HandleECooldown(1f));
+        }
+    }
+
+    protected override void HandleRAbility()
+    {
+        if (CanUseAbility("RAttack", rCooldown, weaponBase.rLevel))
+        {
+            bow.abilityType = WeaponBase.AbilityType.R;
+            bow.HandleBowAnims("ArrowRain");
+            StartCoroutine(HandleRCooldown(bow.clips[3].length));
+        }
+    }
+
+    public void Dash()
+    {
+        Vector3 posToDash = GetMousePosition();
+        Vector3 direction = (posToDash - transform.position).normalized;
+        rb.AddForce(direction * 18, ForceMode2D.Impulse);
+    }
+
+    private IEnumerator HandleDashAbility()
+    {
+        Dash();
+        canFlipSprite = false;
+        canUseAbility = false;
+        weaponBase.canRotate = false;
+        canMove = false;
+        state = State.idle;
+        yield return new WaitForSeconds(0.3f);
+        canFlipSprite = true;
+        canUseAbility = true;
+        weaponBase.canRotate = true;
+        canMove = true;
+    }
 }
  
