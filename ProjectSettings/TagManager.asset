@@ -21,8 +21,8 @@ TagManager:
   - Enemy
   - Unwalkable
   - Raycast
-  - 
-  - 
+  - Player
+  - IgnorePlayer
   - 
   - 
   - 
