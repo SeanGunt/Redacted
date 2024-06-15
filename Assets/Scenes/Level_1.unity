@@ -575,6 +575,14 @@ MonoBehaviour:
     - enemyPrefab: {fileID: 8081501030465915632, guid: 32ae82ed8bb4eaa46aa79470ca0b183b, type: 3}
       spawnRate: 15
       spawnRateTimer: 15
+  - waveDuration: 60
+    enemies:
+    - enemyPrefab: {fileID: 8081501030465915632, guid: ae5ea9e41212ea14e9fdfaf2f74dc594, type: 3}
+      spawnRate: 3
+      spawnRateTimer: 3
+    - enemyPrefab: {fileID: 8081501030465915632, guid: 32ae82ed8bb4eaa46aa79470ca0b183b, type: 3}
+      spawnRate: 10
+      spawnRateTimer: 10
   spawnArea: {x: 20, y: 14}
 --- !u!1 &224142322
 GameObject:

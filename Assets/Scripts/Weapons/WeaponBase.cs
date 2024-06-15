@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class WeaponBase : MonoBehaviour
 {
@@ -14,6 +15,7 @@ public class WeaponBase : MonoBehaviour
     [HideInInspector] public float damageMultiplier = 1.0f;
     [HideInInspector] public bool canRotate = true;
     [HideInInspector] public bool canMove = true;
+    [HideInInspector] public bool wasCriticalHit;
     public float qDamage;
     public float wDamage;
     public float eDamage;
@@ -86,6 +88,12 @@ public class WeaponBase : MonoBehaviour
     {
         float finalDamage = BaseDamage(abilityDamage, abilityDamageScaling, abilityLevel) + DamageScaling(physRat, magRat);
         playerBase.attacksUsed += 1;
+
+        if (CriticalHit())
+        {
+            float critMultiplier = 2.0f;
+            finalDamage *= critMultiplier;
+        }
         return finalDamage * damageMultiplier;
     }
 
@@ -99,6 +107,22 @@ public class WeaponBase : MonoBehaviour
     {
         float baseDamage = abilityDamage + (abilityLevel * abilityDamageScaling);
         return baseDamage;
+    }
+
+    public bool CriticalHit()
+    {
+        if (playerBase.critChance > 0)
+        {
+            float randomValue = Random.Range(0f, 100f);
+            Debug.Log("Crit value rolled is " + randomValue + " current crit chance is " + playerBase.critChance);
+            if (randomValue < playerBase.critChance)
+            {
+                wasCriticalHit = true;
+                return true;
+            }
+        }
+        wasCriticalHit = false;
+        return false;
     }
 
     public void CanFlipSprite()
