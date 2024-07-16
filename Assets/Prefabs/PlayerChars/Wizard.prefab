@@ -3361,6 +3361,7 @@ GameObject:
   - component: {fileID: 3884314428910866144}
   - component: {fileID: 8630143700321514251}
   - component: {fileID: 2646469712690398504}
+  - component: {fileID: 5396114773812674566}
   m_Layer: 12
   m_Name: Wizard
   m_TagString: Player
@@ -3731,6 +3732,14 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.5, y: 0.33808416}
   m_EdgeRadius: 0
+--- !u!81 &5396114773812674566
+AudioListener:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3884314428910866150}
+  m_Enabled: 1
 --- !u!1 &3884314429084726794
 GameObject:
   m_ObjectHideFlags: 0
@@ -4267,6 +4276,7 @@ MonoBehaviour:
   damageMultiplier: 1
   canRotate: 1
   canMove: 1
+  wasCriticalHit: 0
   qDamage: 20
   wDamage: 15
   eDamage: 10

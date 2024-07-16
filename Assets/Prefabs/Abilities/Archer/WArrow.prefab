@@ -11,11 +11,11 @@ GameObject:
   - component: {fileID: 5764006087495102357}
   - component: {fileID: 523926576775630147}
   - component: {fileID: -6939619130520200267}
-  - component: {fileID: -1438346178099138167}
+  - component: {fileID: -7727277376928259135}
   - component: {fileID: -5696682721526657117}
   - component: {fileID: 4028840367946848315}
   m_Layer: 13
-  m_Name: Arrow
+  m_Name: WArrow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -102,7 +102,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   particles: {fileID: 0}
   speed: 15
---- !u!114 &-1438346178099138167
+--- !u!114 &-7727277376928259135
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -111,7 +111,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 6868337946219877856}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 963ec4acdc533004d8f5e67d84419dd3, type: 3}
+  m_Script: {fileID: 11500000, guid: 38b7523cb90573e40b6bab566e234eca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!61 &-5696682721526657117

@@ -17,11 +17,6 @@ public class ExplosionCircleTrigger : ProjectileTrigger
         base.OnTriggerEnter2D(other);
     }
 
-    protected override void HandleDamageSelection(float abilityDamage)
-    {
-        base.HandleDamageSelection(weaponBase.ApplyRDamage());
-    }
-
     private IEnumerator Expand()
     {
         while (transform.localScale.x <= radius - 0.5f)

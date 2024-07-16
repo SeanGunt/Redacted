@@ -123,24 +123,31 @@ AnimationClip:
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
+  - time: 0
+    functionName: InArrowAttack
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
   - time: 0.41666666
     functionName: SpawnArrow
     data: 
-    objectReferenceParameter: {fileID: 0}
+    objectReferenceParameter: {fileID: 6868337946219877856, guid: ad736fa5438e30b489eadc045f38916c, type: 3}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
   - time: 0.6666667
     functionName: SpawnArrow
     data: 
-    objectReferenceParameter: {fileID: 0}
+    objectReferenceParameter: {fileID: 6868337946219877856, guid: ad736fa5438e30b489eadc045f38916c, type: 3}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
   - time: 0.9166667
     functionName: SpawnArrow
     data: 
-    objectReferenceParameter: {fileID: 0}
+    objectReferenceParameter: {fileID: 6868337946219877856, guid: ad736fa5438e30b489eadc045f38916c, type: 3}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
@@ -153,6 +160,13 @@ AnimationClip:
     messageOptions: 0
   - time: 1
     functionName: CanRotate
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 1
+    functionName: NotInArrowAttack
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0

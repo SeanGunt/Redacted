@@ -105,10 +105,17 @@ AnimationClip:
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
+  - time: 0
+    functionName: InArrowAttack
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
   - time: 0.625
     functionName: SpawnArrow
     data: 
-    objectReferenceParameter: {fileID: 0}
+    objectReferenceParameter: {fileID: 6868337946219877856, guid: d076b77926f2e4743a4af393ff77c6cf, type: 3}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
@@ -121,6 +128,13 @@ AnimationClip:
     messageOptions: 0
   - time: 0.75
     functionName: CanFlipSprite
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 0.875
+    functionName: NotInArrowAttack
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0

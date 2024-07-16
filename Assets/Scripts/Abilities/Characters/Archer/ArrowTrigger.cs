@@ -22,11 +22,6 @@ public class ArrowTrigger : ProjectileTrigger
         StartCoroutine(StartFade());
     }
 
-    protected override void HandleDamageSelection(float abilityDamage)
-    {
-        base.HandleDamageSelection(weaponBase.ApplyQDamage());
-    }
-
     private void OnCollisionEnter2D(Collision2D other)
     {
         if (other != null)

@@ -31,6 +31,7 @@ public class Archer : PlayerBase
         if (CanUseAbility("EAttack", eCooldown, weaponBase.eLevel))
         {
             bow.abilityType = WeaponBase.AbilityType.E;
+            bow.SpawnBomb();
             StartCoroutine(HandleDashAbility());
             StartCoroutine(HandleECooldown(1f));
         }
