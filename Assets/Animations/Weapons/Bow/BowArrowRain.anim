@@ -113,9 +113,9 @@ AnimationClip:
     intParameter: 0
     messageOptions: 0
   - time: 0.75
-    functionName: SpawnArrowRain
+    functionName: SpawnNoCollisionArrow
     data: 
-    objectReferenceParameter: {fileID: 0}
+    objectReferenceParameter: {fileID: 6868337946219877856, guid: 88916e8f2627b7e4b8c2bcb285630345, type: 3}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0

@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: -7727277376928259135}
   - component: {fileID: -5696682721526657117}
   - component: {fileID: 4028840367946848315}
+  - component: {fileID: -4051815599383768412}
   m_Layer: 13
   m_Name: WArrow
   m_TagString: Untagged
@@ -100,7 +101,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 62991bb2f5d828640a7ca755e36bccce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  particles: {fileID: 0}
   speed: 15
 --- !u!114 &-7727277376928259135
 MonoBehaviour:
@@ -161,3 +161,16 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
+--- !u!114 &-4051815599383768412
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6868337946219877856}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b76ccaf85d26f344cbf8b2b9e3acc377, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  particles: {fileID: 0}

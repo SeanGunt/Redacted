@@ -4827,6 +4827,7 @@ GameObject:
   - component: {fileID: 83522852933834414}
   - component: {fileID: 844738850717050709}
   - component: {fileID: -8820504774877106765}
+  - component: {fileID: 2439416838823992092}
   m_Layer: 0
   m_Name: Fireball
   m_TagString: Untagged
@@ -4952,7 +4953,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 759c882901f96fc489b994895cf4229b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  collided: 0
 --- !u!114 &844738850717050709
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4965,7 +4965,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 62991bb2f5d828640a7ca755e36bccce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  particles: {fileID: 5131190289870732204}
   speed: 10
 --- !u!95 &-8820504774877106765
 Animator:
@@ -4987,6 +4986,19 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &2439416838823992092
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6471252855280025352}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b76ccaf85d26f344cbf8b2b9e3acc377, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  particles: {fileID: 5131190289870732204}
 --- !u!1 &9209953472212922116
 GameObject:
   m_ObjectHideFlags: 0

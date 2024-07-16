@@ -163,6 +163,8 @@ MonoBehaviour:
   - {fileID: 404142593}
   - {fileID: 224142322}
   - {fileID: 1558521886}
+  cursorSelectedTexture: {fileID: 2800000, guid: b7905dfe4cd63c3498e1a93416301afe, type: 3}
+  cursorDefaultTexture: {fileID: 2800000, guid: 8024902dbdd60784dba03a8cf51c37bb, type: 3}
   player: {fileID: 0}
 --- !u!4 &45057044
 Transform:

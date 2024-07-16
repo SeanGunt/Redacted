@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 3056912734425909320}
   - component: {fileID: -4097633864742642753}
   - component: {fileID: 6114586067015933122}
+  - component: {fileID: 2621386881080197342}
   m_Layer: 0
   m_Name: IceShard
   m_TagString: Untagged
@@ -161,6 +162,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 855e0dc3e868c0c409190a48bc230235, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &2621386881080197342
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6216715753031834796}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b76ccaf85d26f344cbf8b2b9e3acc377, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  particles: {fileID: 0}
 --- !u!1 &7737858776748352389
 GameObject:
   m_ObjectHideFlags: 0

@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -76,6 +77,7 @@ public class PlayerBase : MonoBehaviour
         RightClick();
         HandleAbilities();
         HandleInteract();
+        HandleHover();
         HandleSpriteFlipping();
         switch(state)
         {
@@ -97,7 +99,7 @@ public class PlayerBase : MonoBehaviour
     {
         if (playerInput.actions["Interact"].triggered)
         {
-            RaycastHit2D hit = Physics2D.Raycast(transform.position, transform.up, 2f, raycastLayerMask);
+            RaycastHit2D hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(playerInput.actions["PointerPosition"].ReadValue<Vector2>()), Vector2.zero, Mathf.Infinity, raycastLayerMask);
             if (hit.collider != null)
             {   
                 IRay other = hit.transform.gameObject.GetComponent<IRay>();
@@ -108,6 +110,27 @@ public class PlayerBase : MonoBehaviour
                 }
             }
         }
+    }
+
+    private void HandleHover()
+    {
+        RaycastHit2D hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(playerInput.actions["PointerPosition"].ReadValue<Vector2>()), Vector2.zero, Mathf.Infinity, raycastLayerMask);
+            if (hit.collider != null)
+            {   
+                IRay other = hit.transform.gameObject.GetComponent<IRay>();
+                if (other != null)
+                {
+                    Cursor.SetCursor(GameManager.Instance.cursorSelectedTexture, Vector2.zero, CursorMode.Auto);
+                }
+                else
+                {
+                    Cursor.SetCursor(GameManager.Instance.cursorDefaultTexture, Vector2.zero, CursorMode.Auto);
+                }
+            }
+            else
+            {
+                Cursor.SetCursor(GameManager.Instance.cursorDefaultTexture, Vector2.zero, CursorMode.Auto);
+            }
     }
 
     protected virtual void HandleQAbility()

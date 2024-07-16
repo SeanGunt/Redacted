@@ -3600,7 +3600,7 @@ Rigidbody2D:
   m_AngularDrag: 1
   m_GravityScale: 0
   m_Material: {fileID: 0}
-  m_Interpolate: 1
+  m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 1
   m_Constraints: 4
@@ -4761,6 +4761,7 @@ MonoBehaviour:
   arrowRPrefab: {fileID: 6868337946219877856, guid: f055c3f6199e0d744b8619f7f25ea2a3, type: 3}
   bombPrefab: {fileID: 4661471467187519504, guid: 20e9a20027a2b974f9abb77b84bde74c, type: 3}
   archer: {fileID: 2651119155473598889}
+  mousePos: {x: 0, y: 0, z: 0}
 --- !u!1 &3636714172054185574
 GameObject:
   m_ObjectHideFlags: 0
