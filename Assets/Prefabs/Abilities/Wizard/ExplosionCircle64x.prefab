@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 6318637560476902962}
   - component: {fileID: 3132375214433160482}
   - component: {fileID: 6346763477692115994}
-  - component: {fileID: 7157463162186717964}
+  - component: {fileID: -8557164835735874514}
   m_Layer: 0
   m_Name: ExplosionCircle64x
   m_TagString: Untagged
@@ -166,7 +166,7 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!114 &7157463162186717964
+--- !u!114 &-8557164835735874514
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -175,9 +175,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 5821311491293941765}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 373db7f320ef6ab4a925d36ff5d48e12, type: 3}
+  m_Script: {fileID: 11500000, guid: e745e1a5dc4626444a3a618f98cc9f5b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  collided: 0
   radius: 10
   growthSpeed: 5

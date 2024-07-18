@@ -15,6 +15,8 @@ public class MapUpdate : MonoBehaviour
     private Tilemap baseLayer, collidableLayer;
     [SerializeField] private NavMeshSurface navMeshSurface;
     [HideInInspector] public List<Transform> shopsList = new List<Transform>();
+    [SerializeField] private Transform worldObjectHolder;
+    [SerializeField] private Transform shopsHolder;
     Vector2Int offset;
 
     void Awake()
@@ -91,7 +93,7 @@ public class MapUpdate : MonoBehaviour
         for (int i = 0; i < shopPositions.Length; i++)
         {
             Vector3 spawnPosition = new Vector3(shopPositions[i].x - offset.x, shopPositions[i].y - offset.y, 0);
-            GameObject shop = Instantiate(shopPrefab, spawnPosition, Quaternion.identity);
+            GameObject shop = Instantiate(shopPrefab, spawnPosition, Quaternion.identity, shopsHolder);
             shopsList.Add(shop.transform);
         }
     }
@@ -103,7 +105,7 @@ public class MapUpdate : MonoBehaviour
         {
             Vector3 spawnPosition = new Vector3(treePositions[i].x, treePositions[i].y, 0);
             int randomTree = Random.Range(0, treePrefabs.Length);
-            Instantiate(treePrefabs[randomTree], spawnPosition, Quaternion.identity);
+            Instantiate(treePrefabs[randomTree], spawnPosition, Quaternion.identity, worldObjectHolder);
         }
     }
 }

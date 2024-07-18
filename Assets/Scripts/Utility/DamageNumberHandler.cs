@@ -16,10 +16,10 @@ public class DamageNumberHandler : MonoBehaviour
         numText = GetComponent<TextMeshProUGUI>();
         normalColor = numText.color;
         critColor = Color.red;
-        weaponBase = GameManager.Instance.player.GetComponentInChildren<WeaponBase>();
     }
     private void OnEnable()
     {
+        weaponBase = GameManager.Instance.player.GetComponentInChildren<WeaponBase>();
         transform.localScale = initialSize;
         if (weaponBase.wasCriticalHit)
         {

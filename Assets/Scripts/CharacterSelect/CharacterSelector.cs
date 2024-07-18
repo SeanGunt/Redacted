@@ -18,7 +18,8 @@ public class CharacterSelector : MonoBehaviour, IRay
         GameObject player = GameObject.FindGameObjectWithTag("Player");
         Transform playerTransform = player.transform;
         Destroy(player);
-        Instantiate(characterToSwap, playerTransform.position, playerTransform.rotation);
+        player = Instantiate(characterToSwap, playerTransform.position, playerTransform.rotation);
+        GameManager.Instance.player = player;
     }
 
     public void HandleRaycastInteraction()

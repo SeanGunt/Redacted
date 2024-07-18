@@ -6,10 +6,12 @@ public class ExplosionCircleTrigger : ProjectileTrigger
 {
     [SerializeField] private float radius;
     [SerializeField] private float growthSpeed;
+    private PolygonCollider2D polygonCollider2D;
     private SpriteRenderer spriteRenderer;
     private void Awake()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
+        polygonCollider2D = GetComponent<PolygonCollider2D>();
         StartCoroutine(Expand());
     }
     protected override void OnTriggerEnter2D(Collider2D other)
@@ -25,6 +27,7 @@ public class ExplosionCircleTrigger : ProjectileTrigger
 
             yield return null;
         }
+        polygonCollider2D.enabled = false;
         while (spriteRenderer.color.a >= 0)
         {
             spriteRenderer.color -= new Color(0,0,0, Time.deltaTime * 2);

@@ -33,7 +33,7 @@ public class EnemyMaster : MonoBehaviour, IDamagable
         material.SetColor("_Color", Color.black);
     }
 
-    private void Start()
+    protected virtual void Start()
     {
         player = GameManager.Instance.player;
         playerBase = player.GetComponent<PlayerBase>();
@@ -50,7 +50,10 @@ public class EnemyMaster : MonoBehaviour, IDamagable
         health -= damage;
         float ratio = maxHealth / 100;
         float damageToBar = damage / ratio;
-        healthBar.sizeDelta -= new Vector2(damageToBar, 0);
+        if (healthBar != null)
+        {
+            healthBar.sizeDelta -= new Vector2(damageToBar, 0);
+        }
         SpawnDamageNumber(damage);
 
         if (health <= 0)

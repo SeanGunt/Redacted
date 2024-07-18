@@ -9,7 +9,8 @@ public class CharacterSpawner : MonoBehaviour
     private void Awake()
     {
         characterIndex = PlayerPrefs.GetInt("characterIndex");
-        Instantiate(characters[characterIndex], Vector2.zero, Quaternion.identity);
+        GameObject character = Instantiate(characters[characterIndex], Vector2.zero, Quaternion.identity);
+        GameManager.Instance.player = character;
     }
 
 }
