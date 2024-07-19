@@ -100,7 +100,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   destroy: {fileID: 4222241083913304418}
-  boxCollider2D: {fileID: 5005559055846385714}
   fadeStarted: 0
 --- !u!61 &5005559055846385714
 BoxCollider2D:
@@ -140,7 +139,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aff35e93d38624544ab4e3c770594a0d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 50
+  damage: 150
 --- !u!1 &6184728313668757947
 GameObject:
   m_ObjectHideFlags: 0

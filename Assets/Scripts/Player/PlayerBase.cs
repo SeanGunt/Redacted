@@ -63,12 +63,14 @@ public class PlayerBase : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
         spriteRenderer = GetComponent<SpriteRenderer>();
+
         health = baseHealth;
         state = State.idle;
         qBaseCooldown = qCooldownAmount;
         wBaseCooldown = wCooldownAmount;
         eBaseCooldown = eCooldownAmount;
         rBaseCooldown = rCooldownAmount;
+        HandleMetaProgressionStats();
     }
     virtual protected void Update()
     {
@@ -264,6 +266,12 @@ public class PlayerBase : MonoBehaviour
         magicalDamage += magPerLevel;
         physicalResistance += physResPerLevel;
         magicalResistance += magResPerLevel;
+    }
+
+    private void HandleMetaProgressionStats()
+    {
+        physicalDamage += SaveManager.instance._gameData.extraPhysicalDamage;
+        magicalDamage += SaveManager.instance._gameData.extraMagicDamage;
     }
 
     private void HandleCoolDownReduction()
