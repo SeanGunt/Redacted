@@ -3,22 +3,21 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 using TMPro;
-using Unity.VisualScripting;
 
 public class EnemyMaster : MonoBehaviour, IDamagable
 {
     [SerializeField] protected float maxHealth, speed, damage;
-    private float health;
+    protected float health;
     [SerializeField] private int moneyGainedOnKill;
     [SerializeField] private RectTransform healthBar;
     protected GameObject player;
-    private PlayerBase playerBase;
+    protected PlayerBase playerBase;
     protected NavMeshAgent agent;
     protected Vector3 target;
-    private SpriteRenderer spriteRenderer;
-    private Material material;
+    protected SpriteRenderer spriteRenderer;
+    protected Material material;
 
-    private void Awake()
+    protected virtual void Awake()
     {
         agent = GetComponent<NavMeshAgent>();
         agent.speed = speed;

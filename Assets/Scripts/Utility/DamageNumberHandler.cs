@@ -6,6 +6,8 @@ using TMPro;
 public class DamageNumberHandler : MonoBehaviour
 {
     private Vector3 initialSize;
+    private Vector3 initialPosition;
+    private Vector3 initialRotation;
     private TextMeshProUGUI numText;
     private Color normalColor;
     private Color critColor;
@@ -13,6 +15,8 @@ public class DamageNumberHandler : MonoBehaviour
     private void Awake()
     {
         initialSize = transform.localScale;
+        initialPosition = transform.position;
+        initialRotation = transform.eulerAngles;
         numText = GetComponent<TextMeshProUGUI>();
         normalColor = numText.color;
         critColor = Color.red;
@@ -21,6 +25,14 @@ public class DamageNumberHandler : MonoBehaviour
     {
         weaponBase = GameManager.Instance.player.GetComponentInChildren<WeaponBase>();
         transform.localScale = initialSize;
+
+        float randomOffsetX = Random.Range(-0.5f, 0.5f);
+        float randomOffsetY = Random.Range(-0.5f, 0.5f);
+        float randomRotation = Random.Range(-25f, 25f);
+
+        transform.position = new Vector3(transform.position.x + randomOffsetX, transform.position.y + randomOffsetY, 0f);
+        transform.eulerAngles = new Vector3(0f, 0f, transform.eulerAngles.z + randomRotation);
+
         if (weaponBase.wasCriticalHit)
         {
             numText.color = critColor;
@@ -30,6 +42,13 @@ public class DamageNumberHandler : MonoBehaviour
             numText.color = normalColor;
         }
         StartCoroutine(HandleShrink());
+    }
+
+    private void OnDisable()
+    {
+        transform.localScale = initialSize;
+        transform.eulerAngles = initialRotation;
+        transform.position = initialPosition;
     }
 
     private IEnumerator HandleShrink()
