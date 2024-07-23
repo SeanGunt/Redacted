@@ -11,6 +11,7 @@ public class CharacterSpawner : MonoBehaviour
         characterIndex = PlayerPrefs.GetInt("characterIndex");
         GameObject character = Instantiate(characters[characterIndex], Vector2.zero, Quaternion.identity);
         GameManager.Instance.player = character;
+        GameManager.Instance.gameObject.GetComponent<MenusManager>().GetPlayerInput();
     }
 
 }

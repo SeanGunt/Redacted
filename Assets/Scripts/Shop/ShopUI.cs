@@ -13,10 +13,6 @@ public class ShopUI : MonoBehaviour
     {
         Instance = this;
     }
-    private void Start()
-    {
-        inventoryPage = GameManager.Instance.player.GetComponentInChildren<InventoryPage>();
-    }
 
     public void OpenUI()
     {
@@ -39,6 +35,7 @@ public class ShopUI : MonoBehaviour
 
     public void PurchaseItem(int index)
     {
+        inventoryPage = GameManager.Instance.player.GetComponentInChildren<InventoryPage>();
         InventoryItem inventoryItem = inventoryPage.PurchaseInventoryItem();
         if (inventoryItem != null)
         {

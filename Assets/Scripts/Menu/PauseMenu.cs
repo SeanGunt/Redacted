@@ -27,6 +27,7 @@ public class PauseMenu : MonoBehaviour
 
     public void Pause()
     {
+        playerUI =  GameObject.FindGameObjectWithTag("PlayerUI");
         HandlePause(0f, false, true, true);
     }
 
@@ -38,6 +39,11 @@ public class PauseMenu : MonoBehaviour
     public void ReturnToMainMenu()
     {
         SceneManager.LoadScene("MainMenu");
+    }
+
+    public void ExitToDesktop()
+    {
+        Application.Quit();
     }
 
     private void HandlePause(float timeScale, bool playerUIActive, bool pauseMenuCanvasActive, bool isPaused)

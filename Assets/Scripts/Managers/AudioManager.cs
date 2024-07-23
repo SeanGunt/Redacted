@@ -7,7 +7,7 @@ public class AudioManager : MonoBehaviour
 {
     [SerializeField] private Slider musicVolumeSlider;
     [SerializeField] private AudioSource musicAudioSource;
-    private void Awake()
+    private void Start()
     {
         musicVolumeSlider.value = SaveManager.instance._settingsData.musicVolume;
         musicAudioSource.volume = SaveManager.instance._settingsData.musicVolume;

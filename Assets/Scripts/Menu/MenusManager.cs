@@ -4,10 +4,6 @@ using UnityEngine.InputSystem;
 public class MenusManager : MonoBehaviour
 {
     private PlayerInput playerInput;
-    private void Start()
-    {
-        playerInput = GameManager.Instance.player.GetComponent<PlayerInput>();
-    }
     private void Update()
     {
         // Closes Shop
@@ -28,5 +24,10 @@ public class MenusManager : MonoBehaviour
             PauseMenu.Instance.UnPause();
             return;
         }
+    }
+
+    public void GetPlayerInput()
+    {
+        playerInput = GameManager.Instance.player.GetComponent<PlayerInput>();
     }
 }
