@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 87f818b2906590e46b237910782ef80f
+guid: b00daf76cbc045b43a2f95cb299d0e59
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -69,7 +69,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 1
     textureFormat: 4
-    textureCompression: 0
+    textureCompression: 1
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -104,7 +104,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Bow_Fire_0
+      name: Bow_Fire_Emission_0
       rect:
         serializedVersion: 2
         x: 0
@@ -118,14 +118,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b0f054d162a42204b928e311e51b966c
-      internalID: 664633832
+      spriteID: 1b83dfc7eb5e5954383591bc2ef94e50
+      internalID: 1274184822
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Bow_Fire_1
+      name: Bow_Fire_Emission_1
       rect:
         serializedVersion: 2
         x: 32
@@ -139,14 +139,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 27894f0f76e70474e9989739b0397062
-      internalID: 336037728
+      spriteID: dd10424ad9d6dcd41bf8f95d743a26de
+      internalID: 793884134
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Bow_Fire_2
+      name: Bow_Fire_Emission_2
       rect:
         serializedVersion: 2
         x: 64
@@ -160,14 +160,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d42634a428e74c24eb75630d132b396d
-      internalID: 1883074092
+      spriteID: 691a9327bab91824cbf749104f90d174
+      internalID: 1845259357
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Bow_Fire_3
+      name: Bow_Fire_Emission_3
       rect:
         serializedVersion: 2
         x: 96
@@ -181,14 +181,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7b7764f831730e447ab8687f11003eaf
-      internalID: -1527467198
+      spriteID: 5123a63fa0b5e3241a6f8281e5506e2b
+      internalID: -1599361608
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Bow_Fire_4
+      name: Bow_Fire_Emission_4
       rect:
         serializedVersion: 2
         x: 128
@@ -202,14 +202,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 9814c33560f23674fa309f9339ed463b
-      internalID: -163303157
+      spriteID: cfb72ff39ddef66478e750bd6c769ce7
+      internalID: -1398446120
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Bow_Fire_5
+      name: Bow_Fire_Emission_5
       rect:
         serializedVersion: 2
         x: 160
@@ -223,14 +223,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 472dfef5fbc11564798b2dfa8a741637
-      internalID: 1155730240
+      spriteID: 0508a0a448c925b4691f09d8136dfe33
+      internalID: 724855259
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Bow_Fire_6
+      name: Bow_Fire_Emission_6
       rect:
         serializedVersion: 2
         x: 192
@@ -244,8 +244,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7f745270a736eee46aaf7a9a963ce1de
-      internalID: 1150649654
+      spriteID: 2c097018f78aff9499561de435f0a00b
+      internalID: 1836328779
       vertices: []
       indices: 
       edges: []
@@ -259,17 +259,15 @@ TextureImporter:
     indices: 
     edges: []
     weights: []
-    secondaryTextures:
-    - texture: {fileID: 2800000, guid: b00daf76cbc045b43a2f95cb299d0e59, type: 3}
-      name: _Emission
+    secondaryTextures: []
     nameFileIdTable:
-      Bow_Fire_3: -1527467198
-      Bow_Fire_4: -163303157
-      Bow_Fire_2: 1883074092
-      Bow_Fire_6: 1150649654
-      Bow_Fire_5: 1155730240
-      Bow_Fire_0: 664633832
-      Bow_Fire_1: 336037728
+      Bow_Fire_Emission_5: 724855259
+      Bow_Fire_Emission_3: -1599361608
+      Bow_Fire_Emission_1: 793884134
+      Bow_Fire_Emission_0: 1274184822
+      Bow_Fire_Emission_4: -1398446120
+      Bow_Fire_Emission_2: 1845259357
+      Bow_Fire_Emission_6: 1836328779
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0
