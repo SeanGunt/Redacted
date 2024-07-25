@@ -70,7 +70,7 @@ public class EnemyMaster : MonoBehaviour, IDamagable
         yield break;
     }
 
-    private void OnTriggerStay2D(Collider2D other)
+    protected virtual void OnTriggerStay2D(Collider2D other)
     {
         if (other.gameObject == player)
         {

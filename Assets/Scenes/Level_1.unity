@@ -603,9 +603,6 @@ MonoBehaviour:
     - enemyPrefab: {fileID: 8081501030465915632, guid: ae5ea9e41212ea14e9fdfaf2f74dc594, type: 3}
       spawnRate: 5
       spawnRateTimer: 5
-    - enemyPrefab: {fileID: 6962506296399666357, guid: 5cff817b921f2c14ea4e766d3fb8bcc3, type: 3}
-      spawnRate: 3
-      spawnRateTimer: 3
   - waveDuration: 40
     enemies:
     - enemyPrefab: {fileID: 8081501030465915632, guid: ae5ea9e41212ea14e9fdfaf2f74dc594, type: 3}
@@ -622,6 +619,14 @@ MonoBehaviour:
     - enemyPrefab: {fileID: 8081501030465915632, guid: 32ae82ed8bb4eaa46aa79470ca0b183b, type: 3}
       spawnRate: 10
       spawnRateTimer: 10
+    - enemyPrefab: {fileID: 6962506296399666357, guid: 5cff817b921f2c14ea4e766d3fb8bcc3, type: 3}
+      spawnRate: 20
+      spawnRateTimer: 20
+  - waveDuration: 20
+    enemies:
+    - enemyPrefab: {fileID: 6962506296399666357, guid: 5cff817b921f2c14ea4e766d3fb8bcc3, type: 3}
+      spawnRate: 0
+      spawnRateTimer: 4
   spawnArea: {x: 20, y: 14}
 --- !u!1 &224142322
 GameObject:

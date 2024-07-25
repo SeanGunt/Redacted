@@ -5,13 +5,12 @@ using UnityEngine.AI;
 
 public class Snake : EnemyMaster
 {
-    private bool closeToPlayer;
-    [SerializeField] private GameObject shadow;
-    [SerializeField] private GameObject fullHealthbar;
     private SnakeAnimation snakeAnimation;
     private Animator animator;
     private Vector2 dashLocation;
-    private Vector2 dashStartPosition;
+    private bool dashing;
+    private float dashCooldown = 15f;
+    [Range(0f, 15f)] private float timeTillDash = 0f;
     private State state;
     private enum State
     {
@@ -23,14 +22,11 @@ public class Snake : EnemyMaster
         animator = GetComponentInChildren<Animator>();
         snakeAnimation = GetComponentInChildren<SnakeAnimation>();
         state = State.moving;
-
         agent = GetComponent<NavMeshAgent>();
         agent.speed = speed;
         agent.updateUpAxis = false;
         agent.updateRotation = false;
-
         health = maxHealth;
-
         spriteRenderer = GetComponentInChildren<SpriteRenderer>();
         material = Instantiate(spriteRenderer.sharedMaterial);
         spriteRenderer.material = material;
@@ -44,7 +40,8 @@ public class Snake : EnemyMaster
             case State.moving:
                 Rotation();
                 Movement();
-                if (DistanceToPlayer() <= 10f)
+                HandleDashCooldown();
+                if (DistanceToPlayer() <= 6f && timeTillDash <= 0)
                 {
                     state = State.openingJaw;
                     animator.SetTrigger("Attacking");
@@ -60,15 +57,38 @@ public class Snake : EnemyMaster
             break;
             case State.startDash:
                 GetPlayersPosition();
+                HandleDashParams(10f, SpeedChange.increase, true, ObstacleAvoidanceType.NoObstacleAvoidance, 250f);
+                agent.SetDestination(dashLocation);
                 state = State.dashing;
             break;
             case State.dashing:
-                agent.enabled = false;
-                Dash();
+                if (Vector2.Distance(transform.position, dashLocation) <= 0.5f)
+                {
+                    animator.SetTrigger("FinishedAttacking");
+                    state = State.tired;
+                }
             break;
             case State.tired:
-
+                HandleDashParams(10f, SpeedChange.decrease, false, ObstacleAvoidanceType.HighQualityObstacleAvoidance, 8f);
+                timeTillDash = dashCooldown;
+                state = State.moving;
             break;
+        }
+    }
+
+    protected override void OnTriggerStay2D(Collider2D other)
+    {
+        if (other.gameObject == player && !dashing)
+        {
+            playerBase.TakeDamage(damage, Mathf.Log(playerBase.physicalResistance, 10000));
+        }
+    }
+
+    protected void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.gameObject == player && dashing)
+        {
+            playerBase.TakeDamage(75f, Mathf.Log(playerBase.physicalResistance, 10000));
         }
     }
 
@@ -84,20 +104,25 @@ public class Snake : EnemyMaster
         }
     }
 
-    private void Dash()
-    {
-        transform.position = Vector3.Lerp(transform.position, dashLocation, Time.deltaTime * 2f);
-        Debug.Log("Dashing! at position: " + transform.position);
-    }
-
     private void GetPlayersPosition()
     {
-        dashStartPosition = transform.position;
         Vector2 direction = (player.transform.position - transform.position).normalized;
-        float dashDistance = Vector2.Distance(transform.position, player.transform.position) * 3;
+        float dashDistance = Vector2.Distance(transform.position, player.transform.position) * 1.5f;
         dashLocation = (Vector2)transform.position + direction * dashDistance;
     }
 
+    private void HandleDashParams(float speedToChange, SpeedChange speedChange, bool isDashing, ObstacleAvoidanceType obstacleAvoidanceType, float acceleration)
+    {
+        ChangeSpeed(speedToChange, speedChange);
+        dashing = isDashing;
+        agent.obstacleAvoidanceType = obstacleAvoidanceType;
+        agent.acceleration = acceleration;
+    }
+
+    private void HandleDashCooldown()
+    {
+        timeTillDash -= Time.deltaTime;
+    }
 
     protected override void Movement()
     {

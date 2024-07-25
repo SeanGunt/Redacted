@@ -257,7 +257,7 @@ NavMeshAgent:
   m_AngularSpeed: 120
   m_StoppingDistance: 0
   m_AutoTraverseOffMeshLink: 1
-  m_AutoBraking: 1
+  m_AutoBraking: 0
   m_AutoRepath: 1
   m_Height: 0.48
   m_BaseOffset: 0.23
@@ -276,12 +276,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 50
-  speed: 5
+  speed: 2
   damage: 4
   moneyGainedOnKill: 27
   healthBar: {fileID: 4161016463585382541}
-  shadow: {fileID: 7464216291847699337}
-  fullHealthbar: {fileID: 8020850773527120617}
 --- !u!1 &7464216291847699337
 GameObject:
   m_ObjectHideFlags: 0
@@ -484,7 +482,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cfea794c04add3a438338ebe40faefcd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  finishedOpeningJaw: 0
+  jawOpened: 0
 --- !u!1 &8020850773527120617
 GameObject:
   m_ObjectHideFlags: 0
