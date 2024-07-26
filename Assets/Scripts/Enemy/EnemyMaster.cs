@@ -7,6 +7,7 @@ using TMPro;
 public class EnemyMaster : MonoBehaviour, IDamagable
 {
     [SerializeField] protected float maxHealth, speed, damage;
+    [SerializeField] private int expIndex;
     protected float health;
     [SerializeField] private int moneyGainedOnKill;
     [SerializeField] private RectTransform healthBar;
@@ -80,7 +81,7 @@ public class EnemyMaster : MonoBehaviour, IDamagable
 
     protected virtual void Die()
     {
-        GameObject exp = ObjectPool.instance.GetPooledObject(ObjectPool.instance.prefabsToPool[1]);
+        GameObject exp = ObjectPool.instance.GetPooledObject(ObjectPool.instance.prefabsToPool[expIndex]);
         if (exp != null)
         {
             exp.transform.position = transform.position;

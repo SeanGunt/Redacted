@@ -9,6 +9,7 @@ public class DropsManager : MonoBehaviour
         foreach (GameObject prefab in ObjectPool.instance.prefabsToPool)
         {
             ObjectPool.instance.InitiaizePool(ObjectPool.instance.prefabsToPool[1], 20, GameManager.Instance.poolHolders, 1);
+            ObjectPool.instance.InitiaizePool(ObjectPool.instance.prefabsToPool[3], 20, GameManager.Instance.poolHolders, 1);
         }
     }
 }

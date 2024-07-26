@@ -199,6 +199,7 @@ MonoBehaviour:
   - {fileID: 6995438670468304949, guid: beda4f50c42c5bc43b58563ba42a91d2, type: 3}
   - {fileID: 731891583094075925, guid: 77b2ebf051814284c8990542a60646df, type: 3}
   - {fileID: 7968502177984088920, guid: 2c2ba32d7ac3067409e1502f07388134, type: 3}
+  - {fileID: 731891583094075925, guid: a894b182dd3a5e24f8c05cf30559e308, type: 3}
 --- !u!114 &45057046
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -625,8 +626,8 @@ MonoBehaviour:
   - waveDuration: 20
     enemies:
     - enemyPrefab: {fileID: 6962506296399666357, guid: 5cff817b921f2c14ea4e766d3fb8bcc3, type: 3}
-      spawnRate: 0
-      spawnRateTimer: 4
+      spawnRate: 2.5
+      spawnRateTimer: 2.5
   spawnArea: {x: 20, y: 14}
 --- !u!1 &224142322
 GameObject:

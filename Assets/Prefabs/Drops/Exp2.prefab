@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 224523035884421140}
   - component: {fileID: -3421176780615629067}
   m_Layer: 0
-  m_Name: Experience
+  m_Name: Exp2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -77,7 +77,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 2
   m_Sprite: {fileID: 21300000, guid: 2bfe07945ee108b41bb4206552d27a38, type: 3}
-  m_Color: {r: 1, g: 0.89019614, b: 0, a: 1}
+  m_Color: {r: 1, g: 0.14877309, b: 0, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -102,7 +102,7 @@ MonoBehaviour:
   bobSpeed: 3.5
   amplitude: 0.15
   vacuumSpeed: 6
-  expAmount: 35
+  expAmount: 125
 --- !u!61 &-3421176780615629067
 BoxCollider2D:
   m_ObjectHideFlags: 0

@@ -32,7 +32,8 @@ public class Knight : PlayerBase
         {
             sword.abilityType = WeaponBase.AbilityType.E;
             StartCoroutine(HandleDashAbility());
-            StartCoroutine(HandleECooldown(0.5f));
+            sword.HandleSwordAnims("SlashAndDash");
+            StartCoroutine(HandleECooldown(0.5f + sword.clips[3].length));
         }
     }
 
@@ -47,6 +48,7 @@ public class Knight : PlayerBase
 
     private IEnumerator HandleDashAbility()
     {
+        yield return new WaitForSeconds(sword.clips[3].length);
         Dash();
         canFlipSprite = false;
         sword.EnableWeaponCollider();

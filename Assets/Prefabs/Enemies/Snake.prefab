@@ -188,8 +188,8 @@ GameObject:
   m_Component:
   - component: {fileID: 4841618349537431252}
   - component: {fileID: 4483479586708578053}
-  - component: {fileID: 5849693654029472556}
   - component: {fileID: 8510310480292672774}
+  - component: {fileID: 5849693654029472556}
   m_Layer: 9
   m_Name: Snake
   m_TagString: Enemy
@@ -241,6 +241,24 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1.8265318, y: 0.3039653}
   m_EdgeRadius: 0
+--- !u!114 &8510310480292672774
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6962506296399666357}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b38a12a9fb3dff469f4c1ec00129466, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 50
+  speed: 2.2
+  damage: 4
+  expIndex: 1
+  moneyGainedOnKill: 27
+  healthBar: {fileID: 4161016463585382541}
 --- !u!195 &5849693654029472556
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -263,23 +281,6 @@ NavMeshAgent:
   m_BaseOffset: 0.23
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
---- !u!114 &8510310480292672774
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6962506296399666357}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5b38a12a9fb3dff469f4c1ec00129466, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  maxHealth: 50
-  speed: 2
-  damage: 4
-  moneyGainedOnKill: 27
-  healthBar: {fileID: 4161016463585382541}
 --- !u!1 &7464216291847699337
 GameObject:
   m_ObjectHideFlags: 0

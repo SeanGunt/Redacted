@@ -21,7 +21,6 @@ public class Snake : EnemyMaster
     {
         animator = GetComponentInChildren<Animator>();
         snakeAnimation = GetComponentInChildren<SnakeAnimation>();
-        state = State.moving;
         agent = GetComponent<NavMeshAgent>();
         agent.speed = speed;
         agent.updateUpAxis = false;
@@ -31,6 +30,7 @@ public class Snake : EnemyMaster
         material = Instantiate(spriteRenderer.sharedMaterial);
         spriteRenderer.material = material;
         material.SetColor("_Color", Color.black);
+        state = State.moving;
     }
 
     protected override void Update()
