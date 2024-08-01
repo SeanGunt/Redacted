@@ -11,10 +11,10 @@ Material:
   m_Shader: {fileID: -6465566751694194690, guid: c2899bcd5641347459d838b0c5acd7f5, type: 3}
   m_ValidKeywords: []
   m_InvalidKeywords: []
-  m_LightmapFlags: 2
+  m_LightmapFlags: 1
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
-  m_CustomRenderQueue: -1
+  m_CustomRenderQueue: 3000
   stringTagMap: {}
   disabledShaderPasses: []
   m_SavedProperties:
@@ -42,10 +42,10 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _QueueControl: 0
-    - _QueueOffset: 0
+    - _QueueControl: 1
+    - _QueueOffset: -50
     m_Colors:
-    - _Color: {r: 1, g: 0, b: 0, a: 1}
+    - _Color: {r: 766.9961, g: 0, b: 0, a: 1}
   m_BuildTextureStacks: []
 --- !u!114 &3323366907719398892
 MonoBehaviour:

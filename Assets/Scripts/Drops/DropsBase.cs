@@ -7,21 +7,23 @@ public class DropsBase : MonoBehaviour
 {
     [SerializeField] private float bobSpeed;
     [SerializeField] private float amplitude;
-    [SerializeField] private float vacuumSpeed;
+    [SerializeField] protected float vacuumSpeed;
     private float timeOffset;
-    private bool vacuuming;
+    protected bool vacuuming;
     private Vector3 startPos;
+    protected SpriteRenderer spriteRenderer;
     protected GameObject player;
     protected PlayerBase playerBase;
 
 
-    private void Awake()
+    protected virtual void Awake()
     {
         player = GameManager.Instance.player;
         playerBase = player.GetComponent<PlayerBase>();
+        spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
-    private void OnEnable()
+    protected virtual void OnEnable()
     {
         startPos = transform.position;
         timeOffset = Random.Range(0f, Mathf.PI * 2f);
@@ -49,7 +51,7 @@ public class DropsBase : MonoBehaviour
         transform.position = newPos;
     }
 
-    private void HandleVacuum()
+    protected virtual void HandleVacuum()
     {
         float distanceToPlayer = Vector3.Distance(transform.position, player.transform.position);
         if (distanceToPlayer <= playerBase.pickupRange)

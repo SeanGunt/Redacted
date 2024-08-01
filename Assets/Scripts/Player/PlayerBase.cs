@@ -48,6 +48,7 @@ public class PlayerBase : MonoBehaviour
     protected bool canUseAbility = true;
     [HideInInspector] public bool canFlipSprite = true;
     protected bool canMove = true;
+    protected bool isInvincible;
     protected enum State
     {
         idle, moving
@@ -244,6 +245,7 @@ public class PlayerBase : MonoBehaviour
 
     public void TakeDamage(float damageToTake, float resistanceType)
     {
+        if (isInvincible) return;
         float initialResistance = damageToTake - (damageToTake * resistanceType);
         health -= initialResistance - (initialResistance * damageReduction);
     }
