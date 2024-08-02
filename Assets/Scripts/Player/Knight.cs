@@ -56,12 +56,14 @@ public class Knight : PlayerBase
         weaponBase.canRotate = false;
         canMove = false;
         state = State.idle;
+        isInvincible = true;
         yield return new WaitForSeconds(0.5f);
         canFlipSprite = true;
         sword.DisableWeaponCollider();
         canUseAbility = true;
         weaponBase.canRotate = true;
         canMove = true;
+        isInvincible = false;
     }
 
     private IEnumerator ProtectAndServe()
