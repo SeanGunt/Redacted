@@ -15,4 +15,14 @@ public class ProjectileInvisible : MonoBehaviour
         }
         Destroy(gameObject);
     }
+
+    public void StopParticles()
+    {
+        if (!gameObject.activeInHierarchy) return;
+        if (particles != null)
+        {
+            particles.transform.parent = GameManager.Instance.poolHolders[4].transform;
+            particles.Stop();
+        }
+    }
 }

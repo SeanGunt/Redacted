@@ -8,9 +8,12 @@ public class EnemyMaster : MonoBehaviour, IDamagable
 {
     [SerializeField] protected float maxHealth, speed, damage;
     [SerializeField] private int expIndex;
+    public int enemyID;
+    protected static int nextID = 0;
     protected float health;
     [SerializeField] private int moneyGainedOnKill;
     [SerializeField] private RectTransform healthBar;
+    private bool dead;
     protected GameObject player;
     protected PlayerBase playerBase;
     protected NavMeshAgent agent;
@@ -26,6 +29,7 @@ public class EnemyMaster : MonoBehaviour, IDamagable
         agent.updateRotation = false;
 
         health = maxHealth;
+        enemyID = nextID++;
 
         spriteRenderer = GetComponent<SpriteRenderer>();
         material = Instantiate(spriteRenderer.sharedMaterial);
@@ -56,9 +60,9 @@ public class EnemyMaster : MonoBehaviour, IDamagable
         }
         SpawnDamageNumber(damage);
 
-        if (health <= 0)
+        if (health <= 0 && !dead)
         {
-            Die();
+            StartCoroutine(Die());
         }
         StartCoroutine(ChangeColor());
     }
@@ -79,8 +83,9 @@ public class EnemyMaster : MonoBehaviour, IDamagable
         }
     }
 
-    protected virtual void Die()
+    protected virtual IEnumerator Die()
     {
+        dead = true;
         GameObject exp = ObjectPool.instance.GetPooledObject(ObjectPool.instance.prefabsToPool[expIndex]);
         if (exp != null)
         {
@@ -89,6 +94,7 @@ public class EnemyMaster : MonoBehaviour, IDamagable
         }
         MoneyManager.instance.AddMoney(moneyGainedOnKill);
         Destroy(gameObject);
+        yield return null;
     }
 
     protected virtual void SpawnDamageNumber(float damage)

@@ -9,6 +9,7 @@ public class Dummy : EnemyMaster
     protected override void Awake()
     {
         health = maxHealth;
+        enemyID = nextID++;
 
         spriteRenderer = GetComponent<SpriteRenderer>();
         material = Instantiate(spriteRenderer.sharedMaterial);

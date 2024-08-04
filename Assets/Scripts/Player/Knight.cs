@@ -10,7 +10,6 @@ public class Knight : PlayerBase
     {
         if (CanUseAbility("QAttack", qCooldown, weaponBase.qLevel))
         {
-            sword.abilityType = WeaponBase.AbilityType.Q;
             sword.HandleSwordAnims("Swipe");
             StartCoroutine(HandleQCooldown(sword.clips[1].length));
         }
@@ -20,7 +19,6 @@ public class Knight : PlayerBase
     {
         if (CanUseAbility("WAttack", wCooldown, weaponBase.wLevel))
         {
-            sword.abilityType = WeaponBase.AbilityType.W;
             sword.HandleSwordAnims("Spin");
             StartCoroutine(HandleWCooldown(sword.clips[2].length));
         }
@@ -30,7 +28,6 @@ public class Knight : PlayerBase
     {
         if (CanUseAbility("EAttack", eCooldown, weaponBase.eLevel))
         {
-            sword.abilityType = WeaponBase.AbilityType.E;
             StartCoroutine(HandleDashAbility());
             sword.HandleSwordAnims("SlashAndDash");
             StartCoroutine(HandleECooldown(0.5f + sword.clips[3].length));
@@ -52,6 +49,7 @@ public class Knight : PlayerBase
         Dash();
         canFlipSprite = false;
         sword.EnableWeaponCollider();
+        sword.ChangeEMultiplier(1.5f);
         canUseAbility = false;
         weaponBase.canRotate = false;
         canMove = false;
@@ -60,6 +58,7 @@ public class Knight : PlayerBase
         yield return new WaitForSeconds(0.5f);
         canFlipSprite = true;
         sword.DisableWeaponCollider();
+        sword.ChangeEMultiplier(1.0f);
         canUseAbility = true;
         weaponBase.canRotate = true;
         canMove = true;
