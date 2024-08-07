@@ -69,20 +69,10 @@ public class Knight : PlayerBase
     private IEnumerator ProtectAndServe()
     {
         shield.HandleShieldAnims("ShieldSpin", true);
-        qCooldownAmount *= 0.5f;
-        wCooldownAmount *=  0.5f;
-        eCooldownAmount *=  0.5f;
-        damageReduction += 0.75f;
-        speed /= 2;
-        animator.speed -= 0.5f;
+        damageReduction += 0.5f;
         yield return new WaitForSeconds(10);
         shield.HandleShieldAnims("ShieldSpin", false);
-        qCooldownAmount /=  0.5f;
-        wCooldownAmount /=  0.5f;
-        eCooldownAmount /=  0.5f;
-        damageReduction -= 0.75f;
-        speed *= 2;
-        animator.speed += 0.5f;
+        damageReduction -= 0.5f;
     }
 
     public void Dash()

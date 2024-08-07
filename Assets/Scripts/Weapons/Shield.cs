@@ -10,6 +10,7 @@ public class Shield : MonoBehaviour
     private SpriteRenderer playerSprite;
     private BoxCollider2D bc;
     private Animator animator;
+    private TrailRenderer trailRenderer;
 
     private void Awake()
     {
@@ -18,7 +19,9 @@ public class Shield : MonoBehaviour
         playerSprite = playerBase.GetComponent<SpriteRenderer>();
         animator = GetComponent<Animator>();
         bc = GetComponent<BoxCollider2D>();
+        trailRenderer = GetComponentInChildren<TrailRenderer>();
         bc.enabled = false;
+        trailRenderer.emitting = false;
     }
 
     private void Update()
@@ -49,5 +52,6 @@ public class Shield : MonoBehaviour
         animator.SetBool(animName, isTrue);
         isRotating = isTrue;
         bc.enabled = isTrue;
+        trailRenderer.emitting = isTrue;
     }
 }

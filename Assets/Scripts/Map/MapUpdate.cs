@@ -12,6 +12,7 @@ public class MapUpdate : MonoBehaviour
     public TileBase[] BaseTiles;
     [SerializeField] private GameObject shopPrefab;
     [SerializeField] private GameObject[] treePrefabs;
+    [SerializeField] private GameObject ruinsPrefab;
     private Tilemap baseLayer, collidableLayer;
     [SerializeField] private NavMeshSurface navMeshSurface;
     [HideInInspector] public List<Transform> shopsList = new List<Transform>();
@@ -44,6 +45,7 @@ public class MapUpdate : MonoBehaviour
         PlaceTiles();
         yield return new WaitForEndOfFrame();
         SpawnTrees();
+        SpawnRuins();
         navMeshSurface.BuildNavMesh();
     }
 
@@ -106,6 +108,16 @@ public class MapUpdate : MonoBehaviour
             Vector3 spawnPosition = new Vector3(treePositions[i].x, treePositions[i].y, 0);
             int randomTree = Random.Range(0, treePrefabs.Length);
             Instantiate(treePrefabs[randomTree], spawnPosition, Quaternion.identity, worldObjectHolder);
+        }
+    }
+
+    private void SpawnRuins()
+    {
+        List<Vector2Int> ruinsPositions = world.GetWorldObjectPositionsByIndex(1);
+        for (int i = 0; i < ruinsPositions.Count; i++)
+        {
+            Vector3 spawnPosition = new Vector3(ruinsPositions[i].x, ruinsPositions[i].y, 0);
+            Instantiate (ruinsPrefab, spawnPosition, Quaternion.identity, worldObjectHolder);
         }
     }
 }

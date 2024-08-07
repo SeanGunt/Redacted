@@ -4364,22 +4364,28 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CollidableTiles:
-  - {fileID: 11400000, guid: 4f8a9ec26fec68b4d93a9eb630a7746f, type: 2}
-  - {fileID: 11400000, guid: c6f3a289642474b4789bda8be5590e4e, type: 2}
-  - {fileID: 11400000, guid: 758131a1d77effc47901df1b5a7d1fff, type: 2}
+  - {fileID: 11400000, guid: 1a8cd38760993f8439f87caa5c6fa4f0, type: 2}
+  - {fileID: 11400000, guid: c469182b2a20a3f40982a03c7d2cc046, type: 2}
+  - {fileID: 11400000, guid: 1a8cd38760993f8439f87caa5c6fa4f0, type: 2}
   BaseTiles:
-  - {fileID: 11400000, guid: 831296b349314a245bf1e3cfae58b8a4, type: 2}
-  - {fileID: 11400000, guid: 1974c8ddba63feb4aa19f6fea230b901, type: 2}
-  - {fileID: 11400000, guid: 99d0e507a14a7d74fb623effa5d91e6d, type: 2}
-  - {fileID: 11400000, guid: b101e6bc38d5ff444bda9841ad8eae84, type: 2}
-  - {fileID: 11400000, guid: 44930ac9c72cb9640abe1f613959ab44, type: 2}
-  - {fileID: 11400000, guid: 3bd98e0966be1ce4e8fc2a86b8a4ee0c, type: 2}
-  - {fileID: 11400000, guid: 53ce914013a97c7489d9b870434be4c6, type: 2}
+  - {fileID: 11400000, guid: b87e681ebc3f99243955f6e38a1692a3, type: 2}
+  - {fileID: 11400000, guid: 4e2405900f28e2246b5d1a8455d8f3de, type: 2}
+  - {fileID: 11400000, guid: bcabcfd32d879414697fd230ac23af20, type: 2}
+  - {fileID: 11400000, guid: bdf8f4d58f1109441983e9480f760ef1, type: 2}
+  - {fileID: 11400000, guid: bea9f7cef3c5bbe469787f4d2924f978, type: 2}
+  - {fileID: 11400000, guid: 1fbae8f284517644293f24e3f7ff4b64, type: 2}
+  - {fileID: 11400000, guid: 1ade4f929ae117f49a829bd513546002, type: 2}
+  - {fileID: 11400000, guid: be8c9cb99f9cec34188360d7baa21012, type: 2}
+  - {fileID: 11400000, guid: 0c045afe1a9638e46bbe044d9b67acae, type: 2}
+  - {fileID: 11400000, guid: 8c25057e7ee527f4bb2f637cc4327697, type: 2}
+  - {fileID: 11400000, guid: eeed0176f1ff9604a8926b74a9604ac5, type: 2}
+  - {fileID: 11400000, guid: a89b8f468acfa0d429cdef3cb4a9e936, type: 2}
   shopPrefab: {fileID: 6072300139523916857, guid: baaf765114284ba4bb3a50bc838e3e0a, type: 3}
   treePrefabs:
   - {fileID: 3613611529941050488, guid: b302b8aacba7254478de4c3d9d348e49, type: 3}
   - {fileID: 3613611529941050488, guid: e06fa9e372b642b4894f4bc0ca71e0ad, type: 3}
   - {fileID: 3613611529941050488, guid: ea3b61ad1eeefe749bf055f125f555fa, type: 3}
+  ruinsPrefab: {fileID: 3877112762399221945, guid: 2546bab5edfbae9469341d423024c2df, type: 3}
   navMeshSurface: {fileID: 1945219400}
   shopsList: []
   worldObjectHolder: {fileID: 301429811}
