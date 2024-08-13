@@ -47,10 +47,9 @@ public class WorldSingleton : MonoBehaviour
         b_v_a = 0,      // base_variant_A
         b_v_b,          // base_variant_B
         b_v_c,          // base_variant_C
-        b_e_b,          // base_edge_bottom
-        b_e_l,          // base_edge_left
-        b_c,            // base_corner
-        b_i_c           // base_inverted_corner
+        b_v_d,          // base variant_D
+        b_v_e,          // base variant_E
+        b_v_f,          // base variant_F
     }
 
     // Tiles that are collidable AND provide a base to the map
@@ -58,7 +57,11 @@ public class WorldSingleton : MonoBehaviour
     {
         c_v_a = 0,      // collidable_variant_A
         c_v_b,          // collidable_variant_B
-        c_v_c           // collidable_variant_C
+        c_v_c,          // collidable_variant_C
+        c_e_b,          // collidable_edge_bottom
+        c_e_l,          // collidable_edge_left
+        c_c,            // collidable_corner
+        c_i_c           // collidable_inverted_corner
     }
 
     // Tiles that are collidable
@@ -81,7 +84,7 @@ public class WorldSingleton : MonoBehaviour
     public List<WorldObjects> worldObjects = new();
     readonly private float collidableMin = -0.2f, collidableMax = 0.25f;
     readonly private float noiseScale = 20;
-    readonly private int variantProbability = 20;
+    readonly private int variantProbability = 35;
 
     void Awake()
     {
@@ -108,7 +111,6 @@ public class WorldSingleton : MonoBehaviour
     {
         GenerateBaseAndCollidableGrid();
         AddNoCollideSpawnZone();
-        AddEdgePieces();
         yield return new WaitForEndOfFrame();
         GenerateShopPositions();
         GenerateWorldObjects();
@@ -128,17 +130,27 @@ public class WorldSingleton : MonoBehaviour
                 
                 float perlinValue = Mathf.PerlinNoise(rng + sampleX, rng + sampleY);
 
-                int variant = Random.Range(0, 3);
+                int baseVariant = Random.Range(0, 6);
+                int collidableVariant = Random.Range(0, 3);
                 bool addVariant = Random.Range(0, 100) < variantProbability ? true : false;
 
                 if (perlinValue > collidableMin && perlinValue < collidableMax)
                 {
-                    collidables[x, y] = (int)Collidable.c_v_a + (addVariant ? variant : 0);
+                    collidables[x, y] = (int)Collidable.c_v_a + (addVariant ? collidableVariant : 0);
+
+                    if (bases[x,y] == -1) continue;
+                    if (x == 0 || x == mapDimensions.x-1 || y == 0 || y == mapDimensions.y-1) continue;
+
+                    if (bases[x-1, y] != -1 && collidables[x, y+1] != -1 && collidables[x, y-1] != -1)
+                    {
+                        collidables[x, y] = (int)Collidable.c_e_l;
+                    }
+
                     bases[x, y] = -1;
                 }
                 else
                 {
-                    bases[x, y] = (int)Base.b_v_a + (addVariant ? variant : 0);
+                    bases[x, y] = (int)Base.b_v_a + (addVariant ? baseVariant : 0);
                     collidables[x, y] = -1;
                 }
             }
@@ -155,28 +167,9 @@ public class WorldSingleton : MonoBehaviour
                 if (bases[x,y] == -1) continue;
                 if (x == 0 || x == mapDimensions.x-1 || y == 0 || y == mapDimensions.y-1) continue;
 
-                // if left-most tile is a collidable and bot-most tile is collidable
-                if (bases[x-1, y] == -1 && bases[x, y-1] == -1)
+                if (bases[x-1, y] != -1)
                 {
-                    bases[x, y] = (int)Base.b_i_c;
-                }
-
-                // if left-most tile is not collidable and bot-most tile is collidable
-                if (bases[x-1, y] != -1 && bases[x, y-1] == -1)
-                {
-                    bases[x, y] = (int)Base.b_e_b;
-                }
-
-                // if left most tile is collidable and bot-most tile is collidable
-                if (bases[x-1, y] == -1 && bases[x, y-1] != -1)
-                {
-                    bases[x, y] = (int)Base.b_e_l;
-                }
-
-                // if bot-left-corner tile is collidable and the left-most and bot-most tiles are non-collidable
-                if (bases[x-1, y-1] == -1 && bases[x-1, y] != -1 && bases[x, y-1] != -1)
-                {
-                    bases[x, y] = (int)Base.b_c;
+                    collidables[x, y] = (int)Collidable.c_e_l;
                 }
             }
         }
