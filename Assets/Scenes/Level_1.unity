@@ -4364,13 +4364,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CollidableTiles:
-  - {fileID: 11400000, guid: 6c00731ec0ed1614d8948966cc8546f4, type: 2}
-  - {fileID: 11400000, guid: 6c00731ec0ed1614d8948966cc8546f4, type: 2}
-  - {fileID: 11400000, guid: 6c00731ec0ed1614d8948966cc8546f4, type: 2}
-  - {fileID: 11400000, guid: 1617fc9348c56dc489692d819a87387e, type: 2}
-  - {fileID: 11400000, guid: f646db78d16453f47981d3513beba466, type: 2}
-  - {fileID: 11400000, guid: 627eb39f5cb552f4db6484b7425c58df, type: 2}
-  - {fileID: 11400000, guid: 72dc6016f33edc747aeb99e0f2dd787f, type: 2}
+  - {fileID: 11400000, guid: 54e8b63d468fba242b5a59c0b4041030, type: 2}
   BaseTiles:
   - {fileID: 11400000, guid: fd59b4b27fc774f42aa4b72307411066, type: 2}
   - {fileID: 11400000, guid: ca13a60ab836bd846af8cdd3e0758876, type: 2}
@@ -4378,6 +4372,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 26a4aeca4ca27eb4f83e04dbf69fd6c6, type: 2}
   - {fileID: 11400000, guid: dbf538c049103ae43994d50460a7d4f4, type: 2}
   - {fileID: 11400000, guid: 670cda5cad095604e897256e66983d6f, type: 2}
+  - {fileID: 11400000, guid: 97a1b9a56b764e1469ea8a4c96114092, type: 2}
   shopPrefab: {fileID: 6072300139523916857, guid: baaf765114284ba4bb3a50bc838e3e0a, type: 3}
   treePrefabs:
   - {fileID: 3613611529941050488, guid: b302b8aacba7254478de4c3d9d348e49, type: 3}
