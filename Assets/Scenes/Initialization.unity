@@ -485,8 +485,6 @@ MonoBehaviour:
   worldObjects:
   - worldPositions: []
     amountOfObjects: 1000
-  - worldPositions: []
-    amountOfObjects: 250
 --- !u!4 &1320570082
 Transform:
   m_ObjectHideFlags: 0

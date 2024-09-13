@@ -45,7 +45,7 @@ public class MapUpdate : MonoBehaviour
         PlaceTiles();
         yield return new WaitForEndOfFrame();
         SpawnTrees();
-        SpawnRuins();
+        //SpawnRuins();
         navMeshSurface.BuildNavMesh();
     }
 
