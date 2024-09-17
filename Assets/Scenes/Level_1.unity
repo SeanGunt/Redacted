@@ -4366,13 +4366,13 @@ MonoBehaviour:
   CollidableTiles:
   - {fileID: 11400000, guid: 54e8b63d468fba242b5a59c0b4041030, type: 2}
   BaseTiles:
-  - {fileID: 11400000, guid: fd59b4b27fc774f42aa4b72307411066, type: 2}
-  - {fileID: 11400000, guid: ca13a60ab836bd846af8cdd3e0758876, type: 2}
-  - {fileID: 11400000, guid: dc9457dd66be5424ba14938e910d2dd8, type: 2}
-  - {fileID: 11400000, guid: 26a4aeca4ca27eb4f83e04dbf69fd6c6, type: 2}
-  - {fileID: 11400000, guid: dbf538c049103ae43994d50460a7d4f4, type: 2}
-  - {fileID: 11400000, guid: 670cda5cad095604e897256e66983d6f, type: 2}
-  - {fileID: 11400000, guid: 97a1b9a56b764e1469ea8a4c96114092, type: 2}
+  - {fileID: 11400000, guid: 847b3e857e8a3f144b30d826c6e1250a, type: 2}
+  - {fileID: 11400000, guid: f77443d9381209f4d984b27624cb06a1, type: 2}
+  - {fileID: 11400000, guid: f228673e275b0e84aaeebbeba3593cb2, type: 2}
+  - {fileID: 11400000, guid: ef18e143673f7744cbebea57d728f809, type: 2}
+  - {fileID: 11400000, guid: 9c124968446758344b260e8070140f48, type: 2}
+  - {fileID: 11400000, guid: 4f4397cc4e4c87347aa39bd49e56c60d, type: 2}
+  - {fileID: 11400000, guid: 7f2d4ea15cfdef54eb016060d7ff64f8, type: 2}
   shopPrefab: {fileID: 6072300139523916857, guid: baaf765114284ba4bb3a50bc838e3e0a, type: 3}
   treePrefabs:
   - {fileID: 3613611529941050488, guid: b302b8aacba7254478de4c3d9d348e49, type: 3}
