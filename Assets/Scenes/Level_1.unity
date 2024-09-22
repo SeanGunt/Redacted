@@ -4373,6 +4373,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 9c124968446758344b260e8070140f48, type: 2}
   - {fileID: 11400000, guid: 4f4397cc4e4c87347aa39bd49e56c60d, type: 2}
   - {fileID: 11400000, guid: 7f2d4ea15cfdef54eb016060d7ff64f8, type: 2}
+  - {fileID: 11400000, guid: c9bf9c84ae611a54e91b028604b0e0a2, type: 2}
   shopPrefab: {fileID: 6072300139523916857, guid: baaf765114284ba4bb3a50bc838e3e0a, type: 3}
   treePrefabs:
   - {fileID: 3613611529941050488, guid: b302b8aacba7254478de4c3d9d348e49, type: 3}

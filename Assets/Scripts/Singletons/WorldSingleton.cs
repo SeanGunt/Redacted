@@ -51,7 +51,8 @@ public class WorldSingleton : MonoBehaviour
         b_v_d,          // base variant_D
         b_v_e,          // base variant_E
         b_v_f,          // base variant_F
-        b_v_g           // base varient_G
+        b_v_g,           // base varient_G
+        b_v_h
     }
 
     // Tiles that are collidable AND provide a base to the map

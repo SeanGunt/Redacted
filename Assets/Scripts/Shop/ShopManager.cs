@@ -1,6 +1,16 @@
+using System;
 using UnityEngine;
 public class ShopManager : MonoBehaviour, IRay
 {
+    private GameObject playerGO;
+    [SerializeField] SpriteRenderer faceSpriteRenderer;
+    [SerializeField] private Sprite[] faceSprites;  
+
+    private void Start()
+    {
+        playerGO = GameManager.Instance.player.gameObject;
+        faceSpriteRenderer.sprite = faceSprites[1];
+    }
     public void HandleRaycastInteraction()
     {
         if (!ShopUI.Instance.IsShopOpen())
@@ -11,5 +21,22 @@ public class ShopManager : MonoBehaviour, IRay
         {
             ShopUI.Instance.CloseUI();
         }
+    }
+
+    private void Update()
+    {
+        if (playerGO.transform.position.x < transform.position.x && playerGO.transform.position.x < transform.position.x - 1.2f)
+        {
+            faceSpriteRenderer.sprite = faceSprites[0];
+        }
+        else if (playerGO.transform.position.x >= transform.position.x - 1.2f && playerGO.transform.position.x <= transform.position.x + 1.2f)
+        {
+            faceSpriteRenderer.sprite = faceSprites[1];
+        }
+        else if (playerGO.transform.position.x > transform.position.x && playerGO.transform.position.x > transform.position.x + 1.2f)
+        {
+            faceSpriteRenderer.sprite = faceSprites[2];
+        }
+        
     }
 }
