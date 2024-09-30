@@ -8,8 +8,12 @@ public class ShopManager : MonoBehaviour, IRay
 
     private void Start()
     {
-        playerGO = GameManager.Instance.player.gameObject;
+        GetPlayer();
         faceSpriteRenderer.sprite = faceSprites[1];
+    }
+    public void GetPlayer()
+    {
+        playerGO = GameManager.Instance.player.gameObject;
     }
     public void HandleRaycastInteraction()
     {

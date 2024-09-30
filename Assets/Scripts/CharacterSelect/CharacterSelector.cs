@@ -6,6 +6,7 @@ public class CharacterSelector : MonoBehaviour, IRay
 {
     [SerializeField] private int index;
     [SerializeField] private GameObject characterToSwap;
+    [SerializeField] private ShopManager shopManager;
     public void SetCharacterIndex()
     {
         PlayerPrefs.SetInt("characterIndex", index);
@@ -21,6 +22,7 @@ public class CharacterSelector : MonoBehaviour, IRay
         player = Instantiate(characterToSwap, playerTransform.position, playerTransform.rotation);
         GameManager.Instance.player = player;
         GameManager.Instance.gameObject.GetComponent<MenusManager>().GetPlayerInput();
+        shopManager.GetPlayer();
     }
 
     public void HandleRaycastInteraction()
