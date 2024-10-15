@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: b430c217d0315ff468fd7f25fbe5af35
+guid: df88ea98a2fb3ea4eb1c515daac7a236
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -67,7 +67,7 @@ TextureImporter:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
     maxTextureSize: 2048
-    resizeAlgorithm: 1
+    resizeAlgorithm: 0
     textureFormat: 4
     textureCompression: 0
     compressionQuality: 50
@@ -104,7 +104,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Fireball_0
+      name: FireballEmission_0
       rect:
         serializedVersion: 2
         x: 0
@@ -112,20 +112,20 @@ TextureImporter:
         width: 32
         height: 32
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b5f521fdc8f72724abe957d30a543f46
-      internalID: 1125677769
+      spriteID: 97980dc137f3462459dd838281042cd7
+      internalID: 1345874775
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Fireball_1
+      name: FireballEmission_1
       rect:
         serializedVersion: 2
         x: 32
@@ -133,20 +133,20 @@ TextureImporter:
         width: 32
         height: 32
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c38d019f98be4474eae64eb533bf6184
-      internalID: 477446032
+      spriteID: 6074b1e6676763f42b94c2a7d38706db
+      internalID: 138551647
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Fireball_2
+      name: FireballEmission_2
       rect:
         serializedVersion: 2
         x: 64
@@ -154,20 +154,20 @@ TextureImporter:
         width: 32
         height: 32
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3f3efa68fe286ba4eaaf839898171fb6
-      internalID: -1139280265
+      spriteID: c48e41b8a6743764fbf5da721e9c958b
+      internalID: 1110701804
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Fireball_3
+      name: FireballEmission_3
       rect:
         serializedVersion: 2
         x: 96
@@ -175,14 +175,14 @@ TextureImporter:
         width: 32
         height: 32
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a614e891d671aec42b981b010cb01055
-      internalID: -123807107
+      spriteID: c0baf746aed870f45855d2b2dfebf24e
+      internalID: 623142722
       vertices: []
       indices: 
       edges: []
@@ -196,14 +196,12 @@ TextureImporter:
     indices: 
     edges: []
     weights: []
-    secondaryTextures:
-    - texture: {fileID: 2800000, guid: df88ea98a2fb3ea4eb1c515daac7a236, type: 3}
-      name: _Emission
+    secondaryTextures: []
     nameFileIdTable:
-      Fireball_3: -123807107
-      Fireball_2: -1139280265
-      Fireball_0: 1125677769
-      Fireball_1: 477446032
+      FireballEmission_3: 623142722
+      FireballEmission_1: 138551647
+      FireballEmission_2: 1110701804
+      FireballEmission_0: 1345874775
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0
