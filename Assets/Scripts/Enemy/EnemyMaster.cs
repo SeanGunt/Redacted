@@ -13,7 +13,8 @@ public class EnemyMaster : MonoBehaviour, IDamagable
     protected float health;
     [SerializeField] private int moneyGainedOnKill;
     [SerializeField] private RectTransform healthBar;
-    private bool dead;
+    protected bool dead;
+    protected bool damagingPlayer;
     protected GameObject player;
     protected PlayerBase playerBase;
     protected NavMeshAgent agent;
@@ -75,11 +76,20 @@ public class EnemyMaster : MonoBehaviour, IDamagable
         yield break;
     }
 
-    protected virtual void OnTriggerStay2D(Collider2D other)
+    protected virtual void OnTriggerEnter2D(Collider2D other)
     {
         if (other.gameObject == player)
         {
-            playerBase.TakeDamage(damage, Mathf.Log(playerBase.physicalResistance, 10000));
+            damagingPlayer = true;
+            StartCoroutine(DoDamage());
+        }
+    }
+
+    protected virtual void OnTriggerExit2D(Collider2D other)
+    {
+        if (other.gameObject == player)
+        {
+            damagingPlayer = false;
         }
     }
 
@@ -94,6 +104,23 @@ public class EnemyMaster : MonoBehaviour, IDamagable
         }
         MoneyManager.instance.AddMoney(moneyGainedOnKill);
         Destroy(gameObject);
+        yield return null;
+    }
+
+    protected virtual IEnumerator DoDamage()
+    {
+        float damageInterval = 0f;
+        while (damagingPlayer)
+        {
+            damageInterval -= Time.deltaTime;
+            if (damageInterval <= 0)
+            {
+                playerBase.TakeDamage(damage, Mathf.Log(playerBase.physicalResistance, 10000));
+                damageInterval = 0.2f;
+                yield return null;
+            }
+            yield return null;
+        }
         yield return null;
     }
 

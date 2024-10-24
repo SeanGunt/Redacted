@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: M_Enhanced
+  m_Name: M_Enchanced_R
   m_Shader: {fileID: -6465566751694194690, guid: c2899bcd5641347459d838b0c5acd7f5, type: 3}
   m_ValidKeywords: []
   m_InvalidKeywords: []

@@ -76,15 +76,7 @@ public class Snake : EnemyMaster
         }
     }
 
-    protected override void OnTriggerStay2D(Collider2D other)
-    {
-        if (other.gameObject == player && !dashing)
-        {
-            playerBase.TakeDamage(damage, Mathf.Log(playerBase.physicalResistance, 10000));
-        }
-    }
-
-    protected void OnTriggerEnter2D(Collider2D other)
+    protected override void OnTriggerEnter2D(Collider2D other)
     {
         if (other.gameObject == player && dashing)
         {
