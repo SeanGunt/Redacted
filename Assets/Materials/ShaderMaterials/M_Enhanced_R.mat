@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: M_Enchanced_R
+  m_Name: M_Enhanced_R
   m_Shader: {fileID: -6465566751694194690, guid: c2899bcd5641347459d838b0c5acd7f5, type: 3}
   m_ValidKeywords: []
   m_InvalidKeywords: []
@@ -42,6 +42,7 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
+    - _Alpha: 1
     - _QueueControl: 1
     - _QueueOffset: -50
     m_Colors:

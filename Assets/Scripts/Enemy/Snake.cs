@@ -10,6 +10,7 @@ public class Snake : EnemyMaster
     private Vector2 dashLocation;
     private bool dashing;
     private float dashCooldown = 15f;
+    [SerializeField] private float dashDamage;
     [Range(0f, 15f)] private float timeTillDash = 0f;
     private State state;
     private enum State
@@ -80,9 +81,16 @@ public class Snake : EnemyMaster
     {
         if (other.gameObject == player && dashing)
         {
-            playerBase.TakeDamage(75f, Mathf.Log(playerBase.physicalResistance, 10000));
+            playerBase.TakeDamage(dashDamage, Mathf.Log(playerBase.physicalResistance, 10000));
+        }
+
+        if (other.gameObject == player && !dashing)
+        {
+            damagingPlayer = true;
+            StartCoroutine(DoDamage());
         }
     }
+
 
     protected override void Rotation()
     {

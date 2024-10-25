@@ -257,8 +257,10 @@ MonoBehaviour:
   speed: 2.2
   damage: 4
   expIndex: 1
+  enemyID: 0
   moneyGainedOnKill: 27
   healthBar: {fileID: 4161016463585382541}
+  dashDamage: 75
 --- !u!195 &5849693654029472556
 NavMeshAgent:
   m_ObjectHideFlags: 0
