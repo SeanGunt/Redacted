@@ -7,6 +7,7 @@ public class ChainLightningTrigger : ProjectileTrigger
 {
     [SerializeField] private Transform lightningPivot;
     [SerializeField] private Destroy destroy;
+    private SpriteRenderer spriteRenderer;
     private void Awake()
     {
         StartCoroutine(ExtendAndFadeBolt());
@@ -22,6 +23,10 @@ public class ChainLightningTrigger : ProjectileTrigger
 
     private IEnumerator ExtendAndFadeBolt()
     {
+
+        spriteRenderer = GetComponent<SpriteRenderer>();
+        float alphaVar = 1f;
+        spriteRenderer.material.SetFloat("_Alpha", alphaVar);
         while (lightningPivot.localScale.y <= 4)
         {
             lightningPivot.transform.localScale += new Vector3(0f, 25f * Time.deltaTime, 0f);
@@ -29,10 +34,10 @@ public class ChainLightningTrigger : ProjectileTrigger
         }
         BoxCollider2D bc = GetComponent<BoxCollider2D>();
         bc.enabled = false;
-        SpriteRenderer sr = GetComponent<SpriteRenderer>();
-        while (sr.color.a >= 0)
+        while (alphaVar >= 0)
         {
-            sr.color -= new Color(0f,0f,0f, Time.deltaTime);
+            alphaVar -= Time.deltaTime;
+            spriteRenderer.material.SetFloat("_Alpha", alphaVar);
             yield return null;
         }
         destroy.DestroyGameObject();
