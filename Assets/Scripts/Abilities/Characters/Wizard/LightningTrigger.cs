@@ -6,8 +6,15 @@ public class LightningTrigger : ProjectileTrigger
 {
     public Transform[] chainPoints;
     public GameObject chainLightningPrefab;
+    [SerializeField] private Transform lightningPivot;
     private List<Transform> enemyList = new List<Transform>();
+    private SpriteRenderer spriteRenderer;
     int enemyLayerMask = 1 << 9;
+
+    private void OnEnable()
+    {
+        StartCoroutine(ExtendBolt());
+    }
     protected override void OnTriggerEnter2D(Collider2D other)
     {
         base.OnTriggerEnter2D(other);
@@ -52,5 +59,27 @@ public class LightningTrigger : ProjectileTrigger
         Vector3 direction = (pos - thingToRotate.position).normalized;
         float angle = Mathf.Atan2(-direction.x, direction.y) * Mathf.Rad2Deg;
         thingToRotate.eulerAngles = new Vector3(0,0,angle);
+    }
+
+    private IEnumerator ExtendBolt()
+    {
+        spriteRenderer = GetComponent<SpriteRenderer>();
+        float alphaVar = 1f;
+        spriteRenderer.material.SetFloat("_Alpha", alphaVar);
+        lightningPivot.transform.localScale = new Vector3(1f,0,1f);
+        while (lightningPivot.localScale.y <= 4)
+        {
+            lightningPivot.transform.localScale += new Vector3(0f, 25f * Time.deltaTime, 0f);
+            yield return null;
+        }
+        BoxCollider2D bc = GetComponent<BoxCollider2D>();
+        bc.enabled = false;
+        while (alphaVar >= 0)
+        {
+            alphaVar -= Time.deltaTime;
+            spriteRenderer.material.SetFloat("_Alpha", alphaVar);
+            yield return null;
+        }
+        Destroy(lightningPivot.transform.gameObject);
     }
 }
