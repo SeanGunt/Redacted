@@ -130,7 +130,7 @@ public class WorldSingleton : MonoBehaviour
                 float perlinValue = Mathf.PerlinNoise(rng + sampleX, rng + sampleY);
 
                 int baseVariant = UnityEngine.Random.Range(0, basesLength);
-                bool addVariant = UnityEngine.Random.Range(0, 100) < variantProbability ? true : false;
+                bool addVariant = UnityEngine.Random.Range(0, 100) < variantProbability;
 
                 if (perlinValue > collidableMin && perlinValue < collidableMax)
                 {
@@ -285,7 +285,9 @@ public class WorldSingleton : MonoBehaviour
         {
             for (int y = topY; y < botY; y++) 
             {
-                bases[x, y] = (int)Base.b_v_a;
+                int baseVariant = UnityEngine.Random.Range(0, basesLength);
+                bool addVariant = UnityEngine.Random.Range(0, 100) < variantProbability;
+                bases[x, y] = (int)Base.b_v_a + (addVariant ? baseVariant : 0);
             }
         }
     }

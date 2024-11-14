@@ -113,7 +113,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 5
+  m_SortingOrder: 2
   m_Sprite: {fileID: 21300000, guid: 1dfe12874b6827f4a9b9261ff79062d8, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -162,7 +162,6 @@ MonoBehaviour:
   constantSpeed: 1
   decelerationRate: 6
   initialRotationSpeed: 500
-  shadowSpriteRenderer: {fileID: 0}
   iceShardSpawnPositions:
   - {fileID: 5684264026862262812}
   - {fileID: 455209683231307292}

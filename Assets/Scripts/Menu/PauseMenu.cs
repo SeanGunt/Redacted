@@ -1,11 +1,13 @@
 using UnityEngine;
-using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
+using UnityEngine.Rendering.Universal;
+using UnityEngine.Rendering;
 
 public class PauseMenu : MonoBehaviour
 {
     public static PauseMenu Instance;
     [SerializeField] private GameObject pauseMenuCanvas;
+    [SerializeField] private Volume globalVolume;
     private GameObject playerUI;
     private bool paused;
 
@@ -52,5 +54,9 @@ public class PauseMenu : MonoBehaviour
         Time.timeScale = timeScale;
         playerUI.SetActive(playerUIActive);
         pauseMenuCanvas.SetActive(pauseMenuCanvasActive);
+        if (globalVolume.profile.TryGet(out DepthOfField depthOfField))
+        {
+            depthOfField.active = isPaused;
+        }
     }
 }
