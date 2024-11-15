@@ -1,8 +1,11 @@
 using System;
+using Unity.VisualScripting;
 using UnityEngine;
 public class ShopManager : MonoBehaviour, IRay
 {
     private GameObject playerGO;
+    private ParticleSystem eerieParticles;
+    private bool eerieParticlesPlaying;
     [SerializeField] SpriteRenderer faceSpriteRenderer;
     [SerializeField] private Sprite[] faceSprites;  
 
@@ -10,6 +13,8 @@ public class ShopManager : MonoBehaviour, IRay
     {
         GetPlayer();
         faceSpriteRenderer.sprite = faceSprites[1];
+        eerieParticles = GetComponentInChildren<ParticleSystem>();
+        eerieParticlesPlaying = false;
     }
     public void GetPlayer()
     {
@@ -29,6 +34,12 @@ public class ShopManager : MonoBehaviour, IRay
 
     private void Update()
     {
+        HandleShopEyes();
+        HandleEerieParticles();
+    }
+
+    private void HandleShopEyes()
+    {
         if (playerGO.transform.position.x < transform.position.x && playerGO.transform.position.x < transform.position.x - 1.2f)
         {
             faceSpriteRenderer.sprite = faceSprites[0];
@@ -41,6 +52,20 @@ public class ShopManager : MonoBehaviour, IRay
         {
             faceSpriteRenderer.sprite = faceSprites[2];
         }
-        
+    }
+
+    private void HandleEerieParticles()
+    {
+        float distanceToPlayer = Vector2.Distance(playerGO.transform.position, transform.position);
+        if (distanceToPlayer <= 2.25f && !eerieParticlesPlaying)
+        {
+            eerieParticles.Play();
+            eerieParticlesPlaying = true;
+        }
+        else if (distanceToPlayer > 3 && eerieParticlesPlaying)
+        {
+            eerieParticles.Stop();
+            eerieParticlesPlaying = false;
+        }
     }
 }
