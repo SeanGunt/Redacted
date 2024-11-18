@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Rendering.Universal;
 
 public class GameManager : MonoBehaviour
 {
@@ -8,6 +9,7 @@ public class GameManager : MonoBehaviour
     public GameObject[] poolHolders;
     public Texture2D cursorSelectedTexture;
     public Texture2D cursorDefaultTexture;
+    public Light2D globalLight;
     [HideInInspector] public GameObject player;
     private void Awake()
     {

@@ -1,11 +1,13 @@
 using System;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Rendering.Universal;
 public class ShopManager : MonoBehaviour, IRay
 {
     private GameObject playerGO;
     private ParticleSystem eerieParticles;
     private bool eerieParticlesPlaying;
+    private Light2D shopLight;
     [SerializeField] SpriteRenderer faceSpriteRenderer;
     [SerializeField] private Sprite[] faceSprites;  
 
@@ -15,6 +17,7 @@ public class ShopManager : MonoBehaviour, IRay
         faceSpriteRenderer.sprite = faceSprites[1];
         eerieParticles = GetComponentInChildren<ParticleSystem>();
         eerieParticlesPlaying = false;
+        shopLight = GetComponentInChildren<Light2D>();
     }
     public void GetPlayer()
     {
@@ -36,6 +39,7 @@ public class ShopManager : MonoBehaviour, IRay
     {
         HandleShopEyes();
         HandleEerieParticles();
+        HandleShopLighting();
     }
 
     private void HandleShopEyes()
@@ -67,5 +71,13 @@ public class ShopManager : MonoBehaviour, IRay
             eerieParticles.Stop();
             eerieParticlesPlaying = false;
         }
+    }
+
+    private void HandleShopLighting()
+    {
+        float distanceToPlayer = Vector2.Distance(playerGO.transform.position, transform.position);
+        float normalizedDistance = Mathf.Clamp01(distanceToPlayer / 4f);
+        GameManager.Instance.globalLight.intensity = normalizedDistance;
+        shopLight.intensity = Mathf.Clamp(6f - distanceToPlayer, 0f, 5f);
     }
 }
