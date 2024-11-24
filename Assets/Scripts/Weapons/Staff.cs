@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class Staff : WeaponBase
 {
-    [SerializeField] private Wizard wizard;
+    private Wizard wizard;
     [HideInInspector] public BoxCollider2D weaponCollider;
     [HideInInspector] public bool inAnimation;
     private Vector3 mousePos;
@@ -17,6 +17,12 @@ public class Staff : WeaponBase
     {   
         weaponCollider = GetComponent<BoxCollider2D>();
         weaponCollider.enabled = false;
+    }
+
+    protected override void Awake()
+    {
+        base.Awake();
+        wizard =  GetComponentInParent<Wizard>();
     }
 
     #region Animation Events
