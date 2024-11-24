@@ -8,6 +8,7 @@ public class ShopManager : MonoBehaviour, IRay
     private ParticleSystem eerieParticles;
     private bool eerieParticlesPlaying;
     private Light2D shopLight;
+    private AudioClip trackToFadeBackInto;
     [SerializeField] SpriteRenderer faceSpriteRenderer;
     [SerializeField] private Sprite[] faceSprites;  
 
@@ -65,11 +66,14 @@ public class ShopManager : MonoBehaviour, IRay
         {
             eerieParticles.Play();
             eerieParticlesPlaying = true;
+            trackToFadeBackInto = MusicManager.instance.backgroundAudioSource.clip;
+            MusicManager.instance.FadeTracks(MusicManager.instance.tracks[1]);
         }
         else if (distanceToPlayer > 3 && eerieParticlesPlaying)
         {
             eerieParticles.Stop();
             eerieParticlesPlaying = false;
+            MusicManager.instance.FadeTracks(trackToFadeBackInto);
         }
     }
 
