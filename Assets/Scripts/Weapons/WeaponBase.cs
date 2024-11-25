@@ -123,7 +123,6 @@ public class WeaponBase : MonoBehaviour
         if (playerBase.critChance > 0)
         {
             int randomValue = Random.Range(0, 101);
-            Debug.Log("Crit value rolled is " + randomValue + " current crit chance is " + playerBase.critChance);
             if (randomValue < playerBase.critChance)
             {
                 wasCriticalHit = true;

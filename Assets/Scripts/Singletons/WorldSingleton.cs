@@ -4,35 +4,7 @@ using System.Collections.Generic;
 using System.Collections;
 using System;
 
-/*
-    WORLD GENERATION AND HOW TO USE THIS SCRIPT:
 
-    This script has the very important role of setting the initial positions of
-    world tiles and structure tiles. This is done using Perlin noise. For any map,
-    we define a few tile types that will not change.
-
-    Collidable types:
-
-    - collision-variant-<A, B, C> 
-        (most prominent collidable type such as water)
-    - natural-variant-<A, B, C> 
-        (any object such as a rock or a tree)
-    - structural-variant-<A, B, C>
-        (any object such as a fire, or lightpost)
-
-    Base types:
-
-    - base-variant-<A, B, C>
-        (most prominent non-collidable type such as grass or brick)
-
-    As you can see there can be either an A, B, or C variant of any particular tile
-    for any level. This will allow us to store folders containing certain sprites for
-    particular levels, and dynamically load the right assets at run-time WHILE still
-    being able to make the map look interesting procedurally generated.
-
-    You can find all the variables that dictate how a map is generated inside this
-    script. They must be adjusted from this script.
-*/
 [System.Serializable]
 public class WorldObjects
 {
@@ -42,7 +14,6 @@ public class WorldObjects
 
 public class WorldSingleton : MonoBehaviour
 {
-    // Tiles that are non-collidable and provide a base to the map
     public enum Base
     {
         b_v_a = 0,      // base_variant_A
@@ -54,22 +25,9 @@ public class WorldSingleton : MonoBehaviour
         b_v_g,           // base varient_G
         b_v_h
     }
-
-    // Tiles that are collidable AND provide a base to the map
     public enum Collidable
     {
         c_v_a = 0,      // collidable_variant_A
-    }
-
-    // Tiles that are collidable
-    public enum Object
-    {
-        n_v_a = 0,      // natural_variant_A
-        n_v_b,          // natural_variant_B
-        n_v_c,          // natural_variant_C
-        s_v_a,          // structural_variant_A
-        s_v_b,          // structural_variant_B
-        s_v_c           // structural_variant_C
     }
 
     public static WorldSingleton instance;
@@ -227,7 +185,6 @@ public class WorldSingleton : MonoBehaviour
                         if (collidables[arrayX, arrayY] == -1)
                         {
                             worldObjects[i].worldPositions[j] = randomPosition;
-                            Debug.Log("i equals: " + i + " and j equals " + j + " with position " + randomPosition);
                             break;
                         }
                     }
