@@ -96,6 +96,7 @@ public class MapUpdate : MonoBehaviour
             Vector3 spawnPosition = new Vector3(shopPositions[i].x - offset.x, shopPositions[i].y - offset.y, 0);
             GameObject shop = Instantiate(shopPrefab, spawnPosition, Quaternion.identity, shopsHolder);
             shopsList.Add(shop.transform);
+            world.DebugThis();
         }
     }
 

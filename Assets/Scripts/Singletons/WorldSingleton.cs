@@ -8,7 +8,7 @@ using System;
 [System.Serializable]
 public class WorldObjects
 {
-    public List<Vector2Int> worldPositions;
+    [HideInInspector] public List<Vector2Int> worldPositions;
     public int amountOfObjects;
 }
 
@@ -230,6 +230,11 @@ public class WorldSingleton : MonoBehaviour
         return false;
 
         return bases[position.x, position.y] != -1;
+    }
+
+    public void DebugThis()
+    {
+        Debug.Log("Check");
     }
 
     void AddNoCollideSpawnZone()
