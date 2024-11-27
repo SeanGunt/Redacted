@@ -10,6 +10,7 @@ public class WorldObjects
 {
     [HideInInspector] public List<Vector2Int> worldPositions;
     public int amountOfObjects;
+    public GameObject objectToSpawn;
 }
 
 public class WorldSingleton : MonoBehaviour

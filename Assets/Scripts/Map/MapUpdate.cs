@@ -3,6 +3,7 @@ using UnityEngine.Tilemaps;
 using NavMeshPlus.Components;
 using System.Collections.Generic;
 using System.Collections;
+using TMPro;
 
 public class MapUpdate : MonoBehaviour
 {
@@ -11,8 +12,6 @@ public class MapUpdate : MonoBehaviour
     public TileBase[] CollidableTiles;
     public TileBase[] BaseTiles;
     [SerializeField] private GameObject shopPrefab;
-    [SerializeField] private GameObject[] treePrefabs;
-    [SerializeField] private GameObject ruinsPrefab;
     private Tilemap baseLayer, collidableLayer;
     [SerializeField] private NavMeshSurface navMeshSurface;
     [HideInInspector] public List<Transform> shopsList = new List<Transform>();
@@ -44,7 +43,7 @@ public class MapUpdate : MonoBehaviour
         SpawnShops();
         PlaceTiles();
         yield return new WaitForEndOfFrame();
-        SpawnTrees();
+        SpawnWorldObjects();
         navMeshSurface.BuildNavMesh();
     }
 
@@ -100,14 +99,16 @@ public class MapUpdate : MonoBehaviour
         }
     }
 
-    private void SpawnTrees()
+    public void SpawnWorldObjects()
     {
-        List<Vector2Int> treePositions = world.GetWorldObjectPositionsByIndex(0);
-        for (int i = 0; i < treePositions.Count; i++)
+        foreach (WorldObjects worldObject in world.worldObjects)
         {
-            Vector3 spawnPosition = new Vector3(treePositions[i].x, treePositions[i].y, 0);
-            int randomTree = Random.Range(0, treePrefabs.Length);
-            Instantiate(treePrefabs[randomTree], spawnPosition, Quaternion.identity, worldObjectHolder);
+            for (int i = 0; i < worldObject.amountOfObjects; i++)
+            {
+                Vector2Int position = worldObject.worldPositions[i];
+                Vector3 spawnPosition = new Vector3(position.x, position.y, 0);
+                Instantiate(worldObject.objectToSpawn, spawnPosition, Quaternion.identity, worldObjectHolder);
+            }
         }
     }
 }
