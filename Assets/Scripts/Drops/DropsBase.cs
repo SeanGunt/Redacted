@@ -5,15 +5,23 @@ using UnityEngine;
 
 public class DropsBase : MonoBehaviour
 {
-    [SerializeField] private float bobSpeed;
-    [SerializeField] private float amplitude;
+    [SerializeField] protected float bobSpeed;
+    [SerializeField] protected float amplitude;
     [SerializeField] protected float vacuumSpeed;
-    private float timeOffset;
+    protected float timeOffset;
+    protected float vacuumSpeedChange;
     protected bool vacuuming;
-    private Vector3 startPos;
+    protected Vector3 startPos;
+    protected Vector3 awayPosition;
+    protected State state;
+    protected TrailRenderer trailRenderer;
     protected SpriteRenderer spriteRenderer;
     protected GameObject player;
     protected PlayerBase playerBase;
+    protected enum State
+    {
+        away, towards
+    }
 
 
     protected virtual void Awake()
@@ -21,11 +29,15 @@ public class DropsBase : MonoBehaviour
         player = GameManager.Instance.player;
         playerBase = player.GetComponent<PlayerBase>();
         spriteRenderer = GetComponent<SpriteRenderer>();
+        trailRenderer = GetComponent<TrailRenderer>();
+        trailRenderer.startColor = GetComponent<SpriteRenderer>().color;
+        trailRenderer.endColor = GetComponent<SpriteRenderer>().color;
     }
 
     protected virtual void OnEnable()
     {
         startPos = transform.position;
+        vacuumSpeedChange = 0f;
         timeOffset = Random.Range(0f, Mathf.PI * 2f);
     }
 
@@ -34,10 +46,6 @@ public class DropsBase : MonoBehaviour
         vacuuming = false;
     }
 
-    protected virtual void Start()
-    {
-
-    }
     private void Update()
     {
         HandleBobbing();
@@ -54,19 +62,40 @@ public class DropsBase : MonoBehaviour
     protected virtual void HandleVacuum()
     {
         float distanceToPlayer = Vector3.Distance(transform.position, player.transform.position);
-        if (distanceToPlayer <= playerBase.pickupRange)
+        if (distanceToPlayer <= playerBase.pickupRange && !vacuuming)
         {
+            Vector3 direction = (transform.position - player.transform.position).normalized;
+            trailRenderer.enabled = true;
+            awayPosition = transform.position + direction * (distanceToPlayer * 1.2f);
+            state = State.away;
             vacuuming = true;
         }
 
         if (vacuuming)
         {
-            transform.position = Vector3.Lerp(transform.position, player.transform.position, Time.deltaTime * vacuumSpeed);
+            switch (state)
+            {
+                case State.away:
+                    transform.position = Vector3.Lerp(transform.position, awayPosition, Time.deltaTime * vacuumSpeed);
+                    float distance = Vector3.Distance(transform.position, awayPosition);
+                    if (distance <= 0.6f)
+                    {
+                        state = State.towards;
+                    }
+                break;
+                case State.towards:
+                    vacuumSpeedChange += Time.deltaTime;
+                    transform.position = Vector3.MoveTowards(transform.position, player.transform.position, Time.deltaTime * (vacuumSpeed + vacuumSpeedChange));
+                break;
+            }
         }
     }
 
     protected virtual void OnTriggerEnter2D(Collider2D other)
     {
-
+        if (other.gameObject == GameManager.Instance.player)
+        {
+            gameObject.SetActive(false);
+        }
     } 
 }
