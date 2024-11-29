@@ -13,7 +13,8 @@ public class PlayerBase : MonoBehaviour
     private PlayerUI playerUI;
 
     [Header("Stats")]
-    [SerializeField] public float speed;
+    [SerializeField] public float baseSpeed;
+    [HideInInspector] public float speed;
     [SerializeField] public float baseHealth;
     [SerializeField] public float healthRegen;
     [SerializeField] protected float qCooldownAmount, wCooldownAmount, eCooldownAmount, rCooldownAmount;
@@ -66,6 +67,7 @@ public class PlayerBase : MonoBehaviour
         spriteRenderer = GetComponent<SpriteRenderer>();
 
         health = baseHealth;
+        speed = baseSpeed;
         state = State.idle;
         qBaseCooldown = qCooldownAmount;
         wBaseCooldown = wCooldownAmount;

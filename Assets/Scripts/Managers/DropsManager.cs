@@ -4,7 +4,18 @@ using UnityEngine;
 
 public class DropsManager : MonoBehaviour
 {
-    void Start()
+    public static DropsManager instance;
+    [HideInInspector] public bool speedPickupActive;
+    [HideInInspector] public bool vacuumPickupActive;
+    [HideInInspector] public bool voidPickupActive;
+    [HideInInspector] public float speedTimer;
+    [HideInInspector] public float vacuumTimer;
+    [HideInInspector] public float voidTimer;
+    private void Awake()
+    {
+        instance = this;
+    }
+    private void Start()
     {
         foreach (GameObject prefab in ObjectPool.instance.prefabsToPool)
         {

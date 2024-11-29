@@ -1242,7 +1242,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canvas: {fileID: 7701744547425193182}
-  playerInput: {fileID: 0}
 --- !u!1 &1784297343646429740
 GameObject:
   m_ObjectHideFlags: 0
@@ -2789,6 +2788,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e809635f5b453546920797cbe34b02d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  baseSpeed: 2.35
   speed: 2.85
   baseHealth: 425
   healthRegen: 1
