@@ -2,6 +2,8 @@ using NavMeshPlus.Extensions;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using System;
+
 #if UNITY_EDITOR
 using UnityEditor;
 using UnityEditor.SceneManagement;
@@ -537,6 +539,11 @@ namespace NavMeshPlus.Components
                 if (m_TileSize > kMaxTileSize)
                     m_TileSize = kMaxTileSize;
             }
+        }
+
+        public Bounds CalculateWorldBounds(NavMeshBuildSource sources)
+        {
+            throw new NotImplementedException();
         }
 #endif
     }

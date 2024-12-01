@@ -12,9 +12,9 @@ GameObject:
   - component: {fileID: 523926576775630147}
   - component: {fileID: -6939619130520200267}
   - component: {fileID: -2866170922316582637}
+  - component: {fileID: -3108263311111355217}
   - component: {fileID: -5696682721526657117}
   - component: {fileID: 4028840367946848315}
-  - component: {fileID: -3108263311111355217}
   m_Layer: 13
   m_Name: QArrow
   m_TagString: Untagged
@@ -114,6 +114,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: be16e6c9c86a2dd479cf9ba8e00e022b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &-3108263311111355217
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6868337946219877856}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b76ccaf85d26f344cbf8b2b9e3acc377, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  particles: {fileID: 0}
 --- !u!61 &-5696682721526657117
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -161,16 +174,3 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
---- !u!114 &-3108263311111355217
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6868337946219877856}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b76ccaf85d26f344cbf8b2b9e3acc377, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  particles: {fileID: 0}

@@ -44,7 +44,7 @@ public class MapUpdate : MonoBehaviour
         PlaceTiles();
         yield return new WaitForEndOfFrame();
         SpawnWorldObjects();
-        navMeshSurface.BuildNavMesh();
+        navMeshSurface.BuildNavMeshAsync();
     }
 
     Tilemap CreateTilemap(string tilemapName, int areaType)

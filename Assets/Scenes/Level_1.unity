@@ -141,6 +141,7 @@ GameObject:
   - component: {fileID: 45057051}
   - component: {fileID: 45057052}
   - component: {fileID: 45057053}
+  - component: {fileID: 45057054}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -183,7 +184,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &45057045
 MonoBehaviour:
@@ -303,6 +304,19 @@ MonoBehaviour:
   - {fileID: 8300000, guid: cd133d5a9eff67a479ff3e1f08254af9, type: 3}
   - {fileID: 8300000, guid: aa9db3638d926d6448ed396943142390, type: 3}
   - {fileID: 8300000, guid: a69ccc3190be04b439b38cbde78c62b2, type: 3}
+--- !u!114 &45057054
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 45057042}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b6fbb90342a85c44c80d54b28d8fa158, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  surface: {fileID: 1945219400}
 --- !u!1 &93670257
 GameObject:
   m_ObjectHideFlags: 0
@@ -1663,6 +1677,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b791046d5023d3b4b9f29f59fb218594, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  speedPickupActive: 0
+  vacuumPickupActive: 0
+  voidPickupActive: 0
+  speedTimer: 0
+  vacuumTimer: 0
+  voidTimer: 0
 --- !u!1 &1096489168
 GameObject:
   m_ObjectHideFlags: 0
@@ -1848,7 +1868,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!82 &1359411888
 AudioSource:
@@ -2546,11 +2566,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 7f2d4ea15cfdef54eb016060d7ff64f8, type: 2}
   - {fileID: 11400000, guid: c9bf9c84ae611a54e91b028604b0e0a2, type: 2}
   shopPrefab: {fileID: 6072300139523916857, guid: baaf765114284ba4bb3a50bc838e3e0a, type: 3}
-  treePrefabs:
-  - {fileID: 3613611529941050488, guid: b302b8aacba7254478de4c3d9d348e49, type: 3}
-  - {fileID: 3613611529941050488, guid: e06fa9e372b642b4894f4bc0ca71e0ad, type: 3}
-  - {fileID: 3613611529941050488, guid: ea3b61ad1eeefe749bf055f125f555fa, type: 3}
-  ruinsPrefab: {fileID: 3877112762399221945, guid: 2546bab5edfbae9469341d423024c2df, type: 3}
   navMeshSurface: {fileID: 1945219400}
   shopsList: []
   worldObjectHolder: {fileID: 301429811}
@@ -2983,7 +2998,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &4883224895538465836
 GameObject:

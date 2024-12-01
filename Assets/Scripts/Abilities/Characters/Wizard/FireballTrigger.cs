@@ -6,6 +6,7 @@ public class FireballTrigger : ProjectileTrigger
 {
     [SerializeField] private float damageMultiplier;
     [SerializeField] private GameObject smallerFireball;
+    private bool hasFireballSplit;
     private HashSet<int> hitEnemies = new HashSet<int>();
     
     protected override void OnTriggerEnter2D(Collider2D other)
@@ -40,11 +41,13 @@ public class FireballTrigger : ProjectileTrigger
             return;
         }
 
+        if (hasFireballSplit) return;
         GameObject newFireball = Instantiate(smallerFireball, transform.position, transform.rotation, GameManager.Instance.poolHolders[3].transform);
+        hasFireballSplit = true;
         FireballTrigger newFireballTrigger = newFireball.GetComponent<FireballTrigger>();
         if (newFireballTrigger != null)
         {
-            newFireballTrigger.hitEnemies = new HashSet<int>(hitEnemies);
+            newFireballTrigger.hitEnemies = hitEnemies;
         }
 
         GetComponent<ProjectileInvisible>().StopParticles();
