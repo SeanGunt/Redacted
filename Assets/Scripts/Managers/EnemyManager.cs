@@ -77,13 +77,13 @@ public class EnemyManager : MonoBehaviour
             switch (spawnEdge)
             {
                 case 0:
-                    spawnPosition = new Vector3(-20, Random.Range(-spawnArea.y, spawnArea.y), 0); 
+                    spawnPosition = new Vector3(-20f, Random.Range(-spawnArea.y, spawnArea.y), 0); 
                     break;
                 case 1:
-                    spawnPosition = new Vector3(20, Random.Range(-spawnArea.y, spawnArea.y), 0);
+                    spawnPosition = new Vector3(20f, Random.Range(-spawnArea.y, spawnArea.y), 0);
                     break;
                 case 2:
-                    spawnPosition = new Vector3(Random.Range(-spawnArea.x, spawnArea.x), -14, 0f);
+                    spawnPosition = new Vector3(Random.Range(-spawnArea.x, spawnArea.x), -14f, 0f);
                     break;
                 case 3:
                     spawnPosition = new Vector3(Random.Range(-spawnArea.x, spawnArea.x), 14f, 0f);
@@ -97,7 +97,6 @@ public class EnemyManager : MonoBehaviour
                 if (!collider.isTrigger)
                 {
                     insideUnwalkable = true;
-                    Debug.Log("Spawning Enemy In Walkable Position");
                 }
             }
 
@@ -106,6 +105,7 @@ public class EnemyManager : MonoBehaviour
             if (!validSpawn)
             {
                 spawnEdge = Random.Range(0,4);
+                Debug.Log("Spawn position not valid, trying another position");
             }
         }
 

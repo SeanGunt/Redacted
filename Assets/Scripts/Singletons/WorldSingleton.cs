@@ -42,6 +42,8 @@ public class WorldSingleton : MonoBehaviour
     readonly private float noiseScale = 20;
     readonly private int variantProbability = 35;
     private int basesLength;
+    private HashSet<Vector2Int> occupiedPositions = new HashSet<Vector2Int>();
+    private int placementRadius = 2;
 
     void Awake()
     {
@@ -152,6 +154,7 @@ public class WorldSingleton : MonoBehaviour
                 shopPositions[i].y < mapDimensions.y - minDistanceFromEdge &&
                 IsNonCollidableTile(shopPositions[i]))
                 {
+                    MarkAreaAsOccupied(shopPositions[i]);
                     break;
                 }
             }
@@ -159,7 +162,6 @@ public class WorldSingleton : MonoBehaviour
         }
         
     }
-
     private void GenerateWorldObjects()
     {
         for (int i = 0; i < worldObjects.Count; i++)
@@ -178,42 +180,60 @@ public class WorldSingleton : MonoBehaviour
                     int randomY = UnityEngine.Random.Range(-245, 245);
                     Vector2Int randomPosition = new Vector2Int(randomX, randomY);
 
-                    int arrayX = randomX + (mapDimensions.x / 2);
-                    int arrayY = randomY + (mapDimensions.y / 2);
-
-                    if (arrayX >= 0 && arrayX < mapDimensions.x && arrayY >= 0 && arrayY < mapDimensions.y)
+                    if (IsWorldObjectPlacementValid(randomPosition))
                     {
-                        if (collidables[arrayX, arrayY] == -1)
-                        {
-                            worldObjects[i].worldPositions[j] = randomPosition;
-                            break;
-                        }
-                    }
-                    else
-                    {
-                        Debug.Log("Generated position out of bounds: " + randomPosition);
+                        worldObjects[i].worldPositions[j] = randomPosition;
+                        MarkAreaAsOccupied(randomPosition);
+                        break;
                     }
                 }
             }
         }
     }
-
 
     private bool IsWorldObjectPlacementValid(Vector2Int position)
     {
-        for (int i = 0; i < worldObjects.Count; i++)
+        int arrayX = position.x + (mapDimensions.x / 2);
+        int arrayY = position.y + (mapDimensions.y / 2);
+
+        if (arrayX < 0 || arrayX >= mapDimensions.x || arrayY < 0 || arrayY >= mapDimensions.y)
         {
-            for (int j = 0; j < worldObjects[i].amountOfObjects; j++)
+            Debug.Log("Position out of bounds: " + position);
+            return false;
+        }
+
+        for (int xOffset = -placementRadius; xOffset <= placementRadius; xOffset++)
+        {
+            for (int yOffset = -placementRadius; yOffset <= placementRadius; yOffset++)
             {
-                if (worldObjects[i].worldPositions[j] != Vector2Int.zero && Vector2Int.Distance(worldObjects[i].worldPositions[j], position) < 5)
+                Vector2Int nearbyPosition = new Vector2Int(position.x + xOffset, position.y + yOffset);
+                if (occupiedPositions.Contains(nearbyPosition))
                 {
-                    Debug.Log("Objects spawned too close, moving to a different position");
-                    return false; 
+                    return false;
                 }
             }
         }
+
+        if (collidables[arrayX, arrayY] != -1)
+        {
+            return false;
+        }
+
         return true;
     }
+
+    private void MarkAreaAsOccupied(Vector2Int position)
+    {
+        for (int xOffset = -placementRadius; xOffset <= placementRadius; xOffset++)
+        {
+            for (int yOffset = -placementRadius; yOffset <= placementRadius; yOffset++)
+            {
+                Vector2Int nearbyPosition = new Vector2Int(position.x + xOffset, position.y + yOffset);
+                occupiedPositions.Add(nearbyPosition);
+            }
+        }
+    }
+
 
     public Vector2Int[] GetShopPositions()
     {
