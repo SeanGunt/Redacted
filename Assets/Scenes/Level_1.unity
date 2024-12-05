@@ -132,8 +132,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 45057044}
-  - component: {fileID: 45057043}
   - component: {fileID: 45057045}
+  - component: {fileID: 45057043}
   - component: {fileID: 45057046}
   - component: {fileID: 45057047}
   - component: {fileID: 45057049}
@@ -197,11 +197,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5b87e412f0f23614e8222179d5f8ebd8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  prefabsToPool:
-  - {fileID: 6995438670468304949, guid: beda4f50c42c5bc43b58563ba42a91d2, type: 3}
-  - {fileID: 731891583094075925, guid: 77b2ebf051814284c8990542a60646df, type: 3}
-  - {fileID: 7968502177984088920, guid: 2c2ba32d7ac3067409e1502f07388134, type: 3}
-  - {fileID: 731891583094075925, guid: a894b182dd3a5e24f8c05cf30559e308, type: 3}
+  listOfPooledObjects:
+  - prefabsToPool:
+    - prefab: {fileID: 6995438670468304949, guid: beda4f50c42c5bc43b58563ba42a91d2, type: 3}
+      amountToPool: 3
+  - prefabsToPool:
+    - prefab: {fileID: 731891583094075925, guid: 77b2ebf051814284c8990542a60646df, type: 3}
+      amountToPool: 100
+    - prefab: {fileID: 731891583094075925, guid: a894b182dd3a5e24f8c05cf30559e308, type: 3}
+      amountToPool: 100
+  - prefabsToPool:
+    - prefab: {fileID: 7968502177984088920, guid: 2c2ba32d7ac3067409e1502f07388134, type: 3}
+      amountToPool: 100
 --- !u!114 &45057046
 MonoBehaviour:
   m_ObjectHideFlags: 0

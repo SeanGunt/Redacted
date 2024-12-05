@@ -25,8 +25,6 @@ public class DropsBase : MonoBehaviour
 
     protected virtual void Awake()
     {
-        player = GameManager.Instance.player;
-        playerBase = player.GetComponent<PlayerBase>();
         spriteRenderer = GetComponent<SpriteRenderer>();
         trailRenderer = GetComponent<TrailRenderer>();
         trailRenderer.startColor = GetComponent<SpriteRenderer>().color;
@@ -35,6 +33,8 @@ public class DropsBase : MonoBehaviour
 
     protected virtual void OnEnable()
     {
+        player = GameManager.Instance.player;
+        playerBase = player.GetComponent<PlayerBase>();
         startPos = transform.position;
         vacuumSpeedChange = 0f;
         timeOffset = Random.Range(0f, Mathf.PI * 2f);
@@ -50,6 +50,19 @@ public class DropsBase : MonoBehaviour
         HandleBobbing();
         HandleVacuum();
     }
+
+    public void StartVacuuming()
+    {
+        vacuuming = true;
+    }
+
+    protected virtual void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.gameObject == GameManager.Instance.player)
+        {
+            gameObject.SetActive(false);
+        }
+    } 
     private void HandleBobbing()
     {
         if (vacuuming) return;
@@ -89,12 +102,4 @@ public class DropsBase : MonoBehaviour
             }
         }
     }
-
-    protected virtual void OnTriggerEnter2D(Collider2D other)
-    {
-        if (other.gameObject == GameManager.Instance.player)
-        {
-            gameObject.SetActive(false);
-        }
-    } 
 }

@@ -256,7 +256,7 @@ MonoBehaviour:
   maxHealth: 50
   speed: 2.2
   damage: 4
-  expIndex: 1
+  expIndex: 0
   enemyID: 0
   moneyGainedOnKill: 27
   healthBar: {fileID: 4161016463585382541}

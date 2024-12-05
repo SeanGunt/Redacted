@@ -495,6 +495,9 @@ MonoBehaviour:
   - worldPositions: []
     amountOfObjects: 500
     objectToSpawn: {fileID: 7022864139410141646, guid: f97695c6004a3d044b3ca5206f989df1, type: 3}
+  - worldPositions: []
+    amountOfObjects: 400
+    objectToSpawn: {fileID: 5639472042998169705, guid: b913e597de7a2ee41bff1444943849fd, type: 3}
 --- !u!4 &1320570082
 Transform:
   m_ObjectHideFlags: 0

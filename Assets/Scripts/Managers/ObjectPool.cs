@@ -1,11 +1,25 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
+
+[System.Serializable]
+public class PooledObjectsInfo
+{
+    public GameObject prefab;
+    public float amountToPool;
+}
+
+[System.Serializable]
+public class PooledObjects
+{
+    public List<PooledObjectsInfo> prefabsToPool = new List<PooledObjectsInfo>();
+}
 
 public class ObjectPool : MonoBehaviour
 {
     public static ObjectPool instance;
-    public GameObject[] prefabsToPool;
+    public List<PooledObjects> listOfPooledObjects;
     private Dictionary<GameObject, List<GameObject>> pooledObjectsDict = new Dictionary<GameObject, List<GameObject>>();
 
     private void Awake()
@@ -13,19 +27,31 @@ public class ObjectPool : MonoBehaviour
         instance = this;
     }
 
-    public void InitiaizePool(GameObject prefab, int amountToPool, GameObject[] poolHolder, int index)
+    private void Start()
     {
-        if (!pooledObjectsDict.ContainsKey(prefab))
+        InitiaizePool();
+    }
+
+    public void InitiaizePool()
+    {
+        for (int i = 0; i < listOfPooledObjects.Count; i++)
         {
-            List<GameObject> pooledObjects = new List<GameObject>();
-            for (int i = 0; i < amountToPool; i++)
+            for (int j = 0; j < listOfPooledObjects[i].prefabsToPool.Count; j++)
             {
-                GameObject obj = Instantiate(prefab);
-                obj.transform.SetParent(poolHolder[index].transform);
-                obj.SetActive(false);
-                pooledObjects.Add(obj);
+                if (!pooledObjectsDict.ContainsKey(listOfPooledObjects[i].prefabsToPool[j].prefab))
+                {
+                    List<GameObject> pooledObjects = new List<GameObject>();
+                    for (int k = 0; k < listOfPooledObjects[i].prefabsToPool[j].amountToPool; k++)
+                    {
+                        GameObject obj = Instantiate(listOfPooledObjects[i].prefabsToPool[j].prefab);
+                        obj.transform.SetParent(GameManager.Instance.poolHolders[i].transform);
+                        obj.SetActive(false);
+                        pooledObjects.Add(obj);
+                    }
+                
+                    pooledObjectsDict.Add(listOfPooledObjects[i].prefabsToPool[j].prefab, pooledObjects);
+                }
             }
-            pooledObjectsDict.Add(prefab, pooledObjects);
         }
     }
 

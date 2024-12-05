@@ -1,7 +1,6 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using NavMeshPlus.Components;
 using UnityEngine;
 
 [Serializable]
@@ -15,12 +14,14 @@ public class BarrelPickups
 public class CosmicBarrel : EnemyMaster
 {
     public List<BarrelPickups> pickupsList;
+    private Animator animator;
     protected override void Awake()
     {
         health = maxHealth;
         enemyID = nextID++;
 
         spriteRenderer = GetComponent<SpriteRenderer>();
+        animator = GetComponent<Animator>();
         material = Instantiate(spriteRenderer.sharedMaterial);
         spriteRenderer.material = material;
         material.SetColor("_Color", Color.black);
@@ -32,6 +33,8 @@ public class CosmicBarrel : EnemyMaster
 
     protected override IEnumerator Die()
     {
+        animator.SetTrigger("Die");
+        yield return new WaitForSeconds(animator.runtimeAnimatorController.animationClips[1].length);
         int randomSpawn = UnityEngine.Random.Range(1, 101); 
         float baseSpawnChance = 100f / pickupsList.Count; //Divide spawn chances evenly for all pickups in list
 
@@ -57,9 +60,13 @@ public class CosmicBarrel : EnemyMaster
         foreach (BarrelPickups pickup in pickupsList)
         {
             if (randomSpawn <= pickup.spawnChance) //The items are spawned by checking to see if the random number generated is less than or equal to the pickups spawn chances. It iterates through all of the items in the pickups
-                                                   //For exmaple if the randomSpawn var is 70, it would first check the first index being 35 and !70 <= 35 so it would move on to the next index until it gets to the right item to spawn
-            {
-                Instantiate(pickup.prefab, transform.position, Quaternion.identity);
+            {                                      //For exmaple if the randomSpawn var is 70, it would first check the first index being 35 and !70 <= 35 so it would move on to the next index until it gets to the right item to spawn
+                GameObject drop = ObjectPool.instance.GetPooledObject(pickup.prefab);
+                if (drop != null)
+                {
+                    drop.transform.position = transform.position;
+                    drop.SetActive(true);
+                }
                 Debug.Log("Number rolled was " + randomSpawn + ", therefore spawning " + pickup.prefab.name);
                 break;
             }

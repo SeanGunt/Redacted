@@ -96,7 +96,7 @@ public class EnemyMaster : MonoBehaviour, IDamagable
     protected virtual IEnumerator Die()
     {
         dead = true;
-        GameObject exp = ObjectPool.instance.GetPooledObject(ObjectPool.instance.prefabsToPool[expIndex]);
+        GameObject exp = ObjectPool.instance.GetPooledObject(ObjectPool.instance.listOfPooledObjects[1].prefabsToPool[expIndex].prefab);
         if (exp != null)
         {
             exp.transform.position = transform.position;
@@ -126,7 +126,7 @@ public class EnemyMaster : MonoBehaviour, IDamagable
 
     protected virtual void SpawnDamageNumber(float damage)
     {
-        GameObject num = ObjectPool.instance.GetPooledObject(ObjectPool.instance.prefabsToPool[2]);
+        GameObject num = ObjectPool.instance.GetPooledObject(ObjectPool.instance.listOfPooledObjects[2].prefabsToPool[0].prefab);
         TextMeshProUGUI numText =  num.GetComponent<TextMeshProUGUI>();
         if (num != null)
         {
