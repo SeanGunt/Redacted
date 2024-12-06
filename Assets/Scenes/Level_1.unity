@@ -206,9 +206,21 @@ MonoBehaviour:
       amountToPool: 100
     - prefab: {fileID: 731891583094075925, guid: a894b182dd3a5e24f8c05cf30559e308, type: 3}
       amountToPool: 100
+    - prefab: {fileID: 7961660892212716164, guid: 3a60e61e13e7f3947a9b382dfd430114, type: 3}
+      amountToPool: 10
+    - prefab: {fileID: 7961660892212716164, guid: 51235361b4a0e90429f23dfbabbc1e98, type: 3}
+      amountToPool: 10
+    - prefab: {fileID: 7961660892212716164, guid: 1888b09f2d6d37445b48f4650898e2e7, type: 3}
+      amountToPool: 10
+    - prefab: {fileID: 7961660892212716164, guid: 2231cd9dfcc504b4e93510de2ab2847b, type: 3}
+      amountToPool: 10
   - prefabsToPool:
     - prefab: {fileID: 7968502177984088920, guid: 2c2ba32d7ac3067409e1502f07388134, type: 3}
       amountToPool: 100
+  - prefabsToPool: []
+  - prefabsToPool:
+    - prefab: {fileID: 752809393815127493, guid: 779531337320ebd4ab1490f1d897dceb, type: 3}
+      amountToPool: 5
 --- !u!114 &45057046
 MonoBehaviour:
   m_ObjectHideFlags: 0

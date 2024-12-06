@@ -5,12 +5,15 @@ using UnityEngine;
 public class ShrinkReticle : MonoBehaviour
 {
     private Vector3 initialSize;
+    private SpriteRenderer spriteRenderer;
     private void Awake()
     {
         initialSize = transform.localScale;
+        spriteRenderer = GetComponent<SpriteRenderer>();
     }
     private void OnEnable()
     {
+        spriteRenderer.color = SaveManager.instance._settingsData.reticleColor;
         transform.localScale = initialSize;
         StartCoroutine(HandleShrink());
     }

@@ -54,6 +54,13 @@ public class CosmicBarrel : EnemyMaster
             previousRange = pickup.spawnChance + 1; 
         }
 
+        GameObject particles = ObjectPool.instance.GetPooledObject(ObjectPool.instance.listOfPooledObjects[4].prefabsToPool[0].prefab);
+        if (particles != null)
+        {
+            particles.transform.position = transform.position + new Vector3(0f, 0.3f, 0f);
+            particles.SetActive(true);
+        }
+
         //This is neccessary because it ensures that that the last item in the index only goes to 100 so we dont go over which would cause nothing to get spawned
         pickupsList[^1].spawnChance = 100;
 
@@ -64,7 +71,7 @@ public class CosmicBarrel : EnemyMaster
                 GameObject drop = ObjectPool.instance.GetPooledObject(pickup.prefab);
                 if (drop != null)
                 {
-                    drop.transform.position = transform.position;
+                    drop.transform.position = transform.position + new Vector3(0f, 0.3f, 0f);
                     drop.SetActive(true);
                 }
                 Debug.Log("Number rolled was " + randomSpawn + ", therefore spawning " + pickup.prefab.name);
