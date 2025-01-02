@@ -9,6 +9,7 @@ public class VacuumDrop : DropsBase
         if (other.gameObject == GameManager.Instance.player)
         {
             DropsBase[] allDrops = FindObjectsOfType<DropsBase>();
+            if (allDrops == null) return;
             foreach(DropsBase dropsBase in allDrops)
             {
                 dropsBase.StartVacuuming();
