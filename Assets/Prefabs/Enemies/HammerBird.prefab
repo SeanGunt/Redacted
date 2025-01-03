@@ -492,6 +492,7 @@ MonoBehaviour:
   enemyID: 0
   moneyGainedOnKill: 17
   healthBar: {fileID: 8538788436067313046}
+  animator: {fileID: 3210473947308583146}
 --- !u!61 &7461042900292513888
 BoxCollider2D:
   m_ObjectHideFlags: 0

@@ -7,17 +7,20 @@ using TMPro;
 public class EnemyMaster : MonoBehaviour, IDamagable
 {
     [SerializeField] protected float maxHealth, speed, damage;
+    [HideInInspector] public float baseSpeed;
     [SerializeField] private int expIndex;
     public int enemyID;
     protected static int nextID = 0;
     protected float health;
     [SerializeField] private int moneyGainedOnKill;
     [SerializeField] private RectTransform healthBar;
+    public Animator animator;
+    [HideInInspector] public bool frozen;
     protected bool dead;
     protected bool damagingPlayer;
     protected GameObject player;
     protected PlayerBase playerBase;
-    protected NavMeshAgent agent;
+    [HideInInspector] public NavMeshAgent agent;
     protected Vector3 target;
     protected SpriteRenderer spriteRenderer;
     protected Material material;
@@ -28,6 +31,7 @@ public class EnemyMaster : MonoBehaviour, IDamagable
         agent.speed = speed;
         agent.updateUpAxis = false;
         agent.updateRotation = false;
+        baseSpeed = speed;
 
         health = maxHealth;
         enemyID = nextID++;
@@ -46,6 +50,7 @@ public class EnemyMaster : MonoBehaviour, IDamagable
 
     protected virtual void Update()
     {
+        if (frozen) return;
         Movement();
         Rotation();
     }

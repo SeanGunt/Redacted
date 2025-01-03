@@ -14,14 +14,12 @@ public class BarrelPickups
 public class CosmicBarrel : EnemyMaster
 {
     public List<BarrelPickups> pickupsList;
-    private Animator animator;
     protected override void Awake()
     {
         health = maxHealth;
         enemyID = nextID++;
 
         spriteRenderer = GetComponent<SpriteRenderer>();
-        animator = GetComponent<Animator>();
         material = Instantiate(spriteRenderer.sharedMaterial);
         spriteRenderer.material = material;
         material.SetColor("_Color", Color.black);

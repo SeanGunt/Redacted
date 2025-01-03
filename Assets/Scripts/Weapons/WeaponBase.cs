@@ -6,7 +6,7 @@ using TMPro;
 public class WeaponBase : MonoBehaviour
 {
     protected PlayerBase playerBase;
-    protected Animator animator;
+    [HideInInspector] public Animator animator;
     [HideInInspector] public AnimationClip[] clips;
     [HideInInspector] public Material defaultMaterial;
     [HideInInspector] public SpriteRenderer spriteRenderer;

@@ -6,7 +6,6 @@ using UnityEngine.AI;
 public class Snake : EnemyMaster
 {
     private SnakeAnimation snakeAnimation;
-    private Animator animator;
     private Vector2 dashLocation;
     private bool dashing;
     private float dashCooldown = 15f;
@@ -20,10 +19,10 @@ public class Snake : EnemyMaster
 
     protected override void Awake()
     {
-        animator = GetComponentInChildren<Animator>();
         snakeAnimation = GetComponentInChildren<SnakeAnimation>();
         agent = GetComponent<NavMeshAgent>();
         agent.speed = speed;
+        baseSpeed = speed;
         agent.updateUpAxis = false;
         agent.updateRotation = false;
         health = maxHealth;
@@ -36,6 +35,7 @@ public class Snake : EnemyMaster
 
     protected override void Update()
     {
+        if (frozen) return;
         switch(state)
         {
             case State.moving:

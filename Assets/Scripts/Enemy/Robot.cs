@@ -8,7 +8,6 @@ public class Robot : EnemyMaster
     [SerializeField] private GameObject laserPrefab;
     [SerializeField] private GameObject laserSpawnPoint;
     private RobotLaser robotLaser;
-    private Animator animator;
     private float laserTimer = 6f;
     private float timeTillLaser;
     private State state;
@@ -20,11 +19,10 @@ public class Robot : EnemyMaster
     private void OnEnable()
     {
         state = State.moving;
-        animator = GetComponent<Animator>();
     }
     protected override void Update()
     {
-
+        if (frozen) return;
         switch (state)
         {
             case State.moving:
