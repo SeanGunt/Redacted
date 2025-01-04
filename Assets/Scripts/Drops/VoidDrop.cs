@@ -11,6 +11,7 @@ public class VoidDrop : DropsBase
     {
         base.OnEnable();
         voidVolume = GetComponentInChildren<Volume>();
+        spriteRenderer.color = new(spriteRenderer.color.r, spriteRenderer.color.g, spriteRenderer.color.b, 1f);
     }
     protected override void OnTriggerEnter2D(Collider2D other)
     {

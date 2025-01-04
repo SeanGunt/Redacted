@@ -4,6 +4,11 @@ using UnityEngine;
 
 public class SpeedDrop : DropsBase
 {
+    protected override void OnEnable()
+    {
+        base.OnEnable();
+        spriteRenderer.color = new(spriteRenderer.color.r, spriteRenderer.color.g, spriteRenderer.color.b, 1f);
+    }
     protected override void OnTriggerEnter2D(Collider2D other)
     {
         if (other.gameObject == GameManager.Instance.player)
