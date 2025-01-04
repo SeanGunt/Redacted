@@ -2945,7 +2945,7 @@ GameObject:
   - component: {fileID: 7571425812173182767}
   m_Layer: 0
   m_Name: Staff
-  m_TagString: Staff
+  m_TagString: Weapon
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3097,6 +3097,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0ec8e2aa5fefec4eaa434d76b07f61e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  animator: {fileID: 0}
   clips: []
   defaultMaterial: {fileID: 0}
   spriteRenderer: {fileID: 0}

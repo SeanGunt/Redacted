@@ -34,7 +34,7 @@ public class VoidDrop : DropsBase
         DropsManager.instance.voidPickupActive = true;
         while (voidVolume.weight <= 1f)
         {
-            voidVolume.weight += Time.deltaTime;
+            voidVolume.weight += Time.deltaTime * 2f;
             yield return null;
         }
         DropsManager.instance.voidTimer = 10f;

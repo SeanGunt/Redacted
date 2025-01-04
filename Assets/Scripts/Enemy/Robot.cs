@@ -22,12 +22,12 @@ public class Robot : EnemyMaster
     }
     protected override void Update()
     {
-        if (frozen) return;
+        HandleFrozen();
         switch (state)
         {
             case State.moving:
                 timeTillLaser -= Time.deltaTime;
-                if (DistanceToPlayer() <= 6f && state != State.lasering && timeTillLaser <= 0)
+                if (DistanceToPlayer() <= 6f && state != State.lasering && timeTillLaser <= 0 && !frozen)
                 {
                     state = State.startLaser;
                     animator.SetTrigger("Laser");

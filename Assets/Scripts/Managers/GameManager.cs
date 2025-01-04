@@ -1,7 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using NavMeshPlus.Components;
+using UnityEditor.Tilemaps;
 using UnityEngine;
+using UnityEngine.Rendering;
 using UnityEngine.Rendering.Universal;
 
 public class GameManager : MonoBehaviour
@@ -34,45 +37,19 @@ public class GameManager : MonoBehaviour
 
     public void FreezeTime()
     {
-        EnemyMaster[] enemies = FindObjectsOfType<EnemyMaster>();
-        if (enemies == null) return;
-        foreach (EnemyMaster enemy in enemies)
+        var freezables = FindObjectsOfType<MonoBehaviour>().OfType<IFreezable>();
+        foreach(var freezable in freezables)
         {
-            enemy.frozen = true;
-            if (enemy.agent != null)
-            {
-                enemy.agent.speed = 0f;
-            }
-        }
-
-        Animator weaponAnimator = player.GetComponentInChildren<WeaponBase>().animator;
-        Animator playerAnimator = player.GetComponent<Animator>();
-        Animator[] animators = FindObjectsOfType<Animator>();
-        foreach (Animator animator in animators)
-        {
-            if (animator == weaponAnimator) continue;
-            if (animator == playerAnimator) continue;
-            animator.speed = 0f;
+            freezable.HandleOnFreeze();
         }
     }
 
     public void UnFreezeTime()
     {
-        EnemyMaster[] enemies = FindObjectsOfType<EnemyMaster>();
-        if (enemies == null) return;
-        foreach (EnemyMaster enemy in enemies)
+        var freezables = FindObjectsOfType<MonoBehaviour>().OfType<IFreezable>();
+        foreach(var freezable in freezables)
         {
-            enemy.frozen = false;
-            if (enemy.agent != null)
-            {
-                enemy.agent.speed = enemy.baseSpeed;
-            }
-        }
-
-        Animator[] animators = FindObjectsOfType<Animator>();
-        foreach (Animator animator in animators)
-        {
-            animator.speed = 1f;
+            freezable.HandleOnUnfreeze();
         }
     }
 }

@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 7957921498164770510}
   m_Layer: 13
   m_Name: RArrow_NoCollision
-  m_TagString: Untagged
+  m_TagString: Ability
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -99,7 +99,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 62991bb2f5d828640a7ca755e36bccce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  particles: {fileID: 0}
   speed: 30
 --- !u!50 &4028840367946848315
 Rigidbody2D:

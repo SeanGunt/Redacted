@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 8282557871060904832}
   m_Layer: 0
   m_Name: Lightning_Sprite
-  m_TagString: Untagged
+  m_TagString: Ability
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -160,7 +160,7 @@ GameObject:
   - component: {fileID: -1265488704439387380}
   m_Layer: 0
   m_Name: ChainLightning
-  m_TagString: Untagged
+  m_TagString: Ability
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

@@ -233,7 +233,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4796a261667902b43abcbd5d29c3ec25, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timer: 1800
+  timer: 1200
   timerText: {fileID: 174604263}
 --- !u!114 &45057047
 MonoBehaviour:
@@ -293,6 +293,7 @@ MonoBehaviour:
   _settingsData:
     musicVolume: 50
     sfxVolume: 50
+    reticleColor: {r: 0, g: 1, b: 0, a: 1}
 --- !u!114 &45057052
 MonoBehaviour:
   m_ObjectHideFlags: 0

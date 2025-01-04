@@ -7,7 +7,8 @@ TagManager:
   - Enemy
   - PlayerUI
   - LoadingBar
-  - Staff
+  - Weapon
+  - Ability
   layers:
   - Default
   - TransparentFX

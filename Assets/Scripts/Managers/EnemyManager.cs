@@ -17,12 +17,13 @@ public class Wave
     public List<EnemySpawnInfo> enemies = new List<EnemySpawnInfo>();
 }
 
-public class EnemyManager : MonoBehaviour
+public class EnemyManager : MonoBehaviour, IFreezable
 {
     [SerializeField] private List<Wave> waves = new List<Wave>();
     [SerializeField] private Vector2 spawnArea;
     private int unwalkableLayerMask = 1 << 10;
     private int currentWaveIndex = 0;
+    private bool frozen;
 
     private void Awake()
     {
@@ -31,6 +32,7 @@ public class EnemyManager : MonoBehaviour
 
     private void Update()
     {
+        if (frozen) return;
         HandleCurrentWave();
         SpawnEnemyWaves();
     }
@@ -110,5 +112,15 @@ public class EnemyManager : MonoBehaviour
         }
 
         return spawnPosition + GameManager.Instance.player.transform.position;
+    }
+
+    public void HandleOnFreeze()
+    {
+        frozen = true;
+    }
+
+    public void HandleOnUnfreeze()
+    {
+        frozen = false;
     }
 }

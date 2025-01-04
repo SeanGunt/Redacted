@@ -17,7 +17,7 @@ GameObject:
   - component: {fileID: -4051815599383768412}
   m_Layer: 13
   m_Name: WArrow
-  m_TagString: Untagged
+  m_TagString: Ability
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

@@ -3223,6 +3223,7 @@ GameObject:
   - component: {fileID: 1070430283}
   - component: {fileID: 1070430282}
   - component: {fileID: 1070430281}
+  - component: {fileID: 1070430284}
   - component: {fileID: 1070430280}
   m_Layer: 11
   m_Name: Archer
@@ -3361,6 +3362,18 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1070430284
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1070430278}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7e92c3a9406147648bf2ca309815de92, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1106313999
 GameObject:
   m_ObjectHideFlags: 0
@@ -6390,7 +6403,7 @@ GameObject:
   - component: {fileID: 1846883951}
   m_Layer: 0
   m_Name: Bow
-  m_TagString: Staff
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -10984,7 +10997,7 @@ GameObject:
   - component: {fileID: 5226211726235049783}
   m_Layer: 0
   m_Name: Staff
-  m_TagString: Staff
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -11137,6 +11150,7 @@ GameObject:
   - component: {fileID: 5226211727820702640}
   - component: {fileID: 766893401427607134}
   - component: {fileID: 5226211727820702646}
+  - component: {fileID: 5226211727820702648}
   - component: {fileID: 5226211727820702647}
   m_Layer: 11
   m_Name: Wizard
@@ -11186,6 +11200,18 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.5, y: 0.31221247}
   m_EdgeRadius: 0
+--- !u!114 &5226211727820702648
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5226211727820702643}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7e92c3a9406147648bf2ca309815de92, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &5318299691140718185
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -11422,6 +11448,7 @@ GameObject:
   - component: {fileID: 6424336790527918011}
   - component: {fileID: 1614191216510857788}
   - component: {fileID: 6424336790527918015}
+  - component: {fileID: 6424336790527918016}
   - component: {fileID: 1061459469967696700}
   m_Layer: 11
   m_Name: Knight
@@ -11515,6 +11542,18 @@ MonoBehaviour:
   index: 0
   characterToSwap: {fileID: 3884314428910866150, guid: fc62ff03dc418b84ca43e39107de425a, type: 3}
   shopManager: {fileID: 1901920408}
+--- !u!114 &6424336790527918016
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6424336790527918008}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7e92c3a9406147648bf2ca309815de92, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &7022864138570260678
 PrefabInstance:
   m_ObjectHideFlags: 0

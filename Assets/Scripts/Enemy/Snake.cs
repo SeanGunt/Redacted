@@ -35,7 +35,7 @@ public class Snake : EnemyMaster
 
     protected override void Update()
     {
-        if (frozen) return;
+        HandleFrozen();
         switch(state)
         {
             case State.moving:

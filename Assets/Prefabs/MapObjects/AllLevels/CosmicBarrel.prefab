@@ -375,11 +375,14 @@ MonoBehaviour:
   maxHealth: 1
   speed: 0
   damage: 0
+  baseSpeed: 0
   expIndex: 0
   enemyID: 0
   moneyGainedOnKill: 0
   healthBar: {fileID: 0}
   animator: {fileID: 7022864139410141647}
+  frozen: 0
+  agent: {fileID: 0}
   pickupsList:
   - prefab: {fileID: 7961660892212716164, guid: 3a60e61e13e7f3947a9b382dfd430114, type: 3}
     chanceToSpawnModifier: 10

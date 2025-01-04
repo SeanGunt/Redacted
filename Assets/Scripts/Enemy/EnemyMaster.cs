@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 using TMPro;
+using UnityEngine.Analytics;
 
-public class EnemyMaster : MonoBehaviour, IDamagable
+public class EnemyMaster : MonoBehaviour, IDamagable, IFreezable
 {
     [SerializeField] protected float maxHealth, speed, damage;
     [HideInInspector] public float baseSpeed;
@@ -50,7 +51,7 @@ public class EnemyMaster : MonoBehaviour, IDamagable
 
     protected virtual void Update()
     {
-        if (frozen) return;
+        HandleFrozen();
         Movement();
         Rotation();
     }
@@ -71,6 +72,40 @@ public class EnemyMaster : MonoBehaviour, IDamagable
             StartCoroutine(Die());
         }
         StartCoroutine(ChangeColor());
+    }
+
+    public void HandleFrozen()
+    {
+        if (frozen)
+        {
+            return;
+        }
+    }
+
+    public void HandleOnFreeze()
+    {
+        frozen = true;
+        if (agent != null)
+        {
+            agent.speed = 0;
+        }
+        if (animator != null)
+        {
+            animator.speed = 0;
+        }
+    }
+
+    public void HandleOnUnfreeze()
+    {
+        frozen = false;
+        if (agent != null)
+        {
+            agent.speed = baseSpeed;
+        }
+        if (animator != null)
+        {
+            animator.speed = 1;
+        }
     }
 
     private IEnumerator ChangeColor()

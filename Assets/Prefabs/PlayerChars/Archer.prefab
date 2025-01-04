@@ -3093,7 +3093,7 @@ GameObject:
   - component: {fileID: 5062037917727502169}
   m_Layer: 0
   m_Name: Bow
-  m_TagString: Untagged
+  m_TagString: Weapon
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3219,6 +3219,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9816d165529e8844cafac59b5a7be1c4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  animator: {fileID: 0}
   clips: []
   defaultMaterial: {fileID: 0}
   spriteRenderer: {fileID: 0}
