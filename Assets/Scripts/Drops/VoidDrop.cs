@@ -3,9 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Rendering;
 using UnityEngine.Rendering.Universal;
+using UnityEngine.UI;
 
 public class VoidDrop : DropsBase
 {
+    [SerializeField] private GameObject timerBar;
     private Volume voidVolume;
     protected override void OnEnable()
     {
@@ -32,6 +34,10 @@ public class VoidDrop : DropsBase
 
     private IEnumerator HandleVoidEffects()
     {
+        GameObject timer = Instantiate(timerBar, Vector3.zero, Quaternion.identity, GameManager.Instance.player.GetComponent<PlayerUI>().pickupTimerHolder.transform);
+        Image[] timerImage = timer.GetComponentsInChildren<Image>();
+        timerImage[1].color = new Color(spriteRenderer.color.r, spriteRenderer.color.g, spriteRenderer.color.b, 1f);
+        timerImage[1].fillAmount = 1f;
         DropsManager.instance.voidPickupActive = true;
         while (voidVolume.weight <= 1f)
         {
@@ -39,9 +45,11 @@ public class VoidDrop : DropsBase
             yield return null;
         }
         DropsManager.instance.voidTimer = 10f;
+        float imageTimer = DropsManager.instance.voidTimer;
         while (DropsManager.instance.voidTimer >= 0f)
         {
             DropsManager.instance.voidTimer -= Time.deltaTime;
+            timerImage[1].fillAmount -= Time.deltaTime / imageTimer;
             GameManager.Instance.FreezeTime();
             yield return null;
         }
@@ -53,6 +61,7 @@ public class VoidDrop : DropsBase
             yield return null;
         }
         DropsManager.instance.voidPickupActive = false;
+        Destroy(timer);
         gameObject.SetActive(false);
     }
 

@@ -1,9 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
+using System;
 using UnityEngine;
+using UnityEngine.UI;
+using System.Linq;
 
 public class SpeedDrop : DropsBase
 {
+    [SerializeField] private GameObject timerBar;
     protected override void OnEnable()
     {
         base.OnEnable();
@@ -29,16 +33,24 @@ public class SpeedDrop : DropsBase
 
     private IEnumerator IncreaseSpeed()
     {
+        GameObject timer = Instantiate(timerBar, Vector3.zero, Quaternion.identity, GameManager.Instance.player.GetComponent<PlayerUI>().pickupTimerHolder.transform);
+        Image[] timerImage = timer.GetComponentsInChildren<Image>();
+        timerImage[1].color = new Color(spriteRenderer.color.r, spriteRenderer.color.g, spriteRenderer.color.b, 1f);
+        timerImage[1].fillAmount = 1f;
         DropsManager.instance.speedPickupActive = true;
         DropsManager.instance.speedTimer += 3.0f;
+        float imageTimer = DropsManager.instance.speedTimer;
         playerBase.speed += playerBase.baseSpeed * 1f;
         while (DropsManager.instance.speedTimer > 0f)
         {
             DropsManager.instance.speedTimer -= Time.deltaTime;
+            timerImage[1].fillAmount -= Time.deltaTime / imageTimer;
+            
             yield return null;
         }
         playerBase.speed -= playerBase.baseSpeed * 1f;
         DropsManager.instance.speedPickupActive = false;
+        Destroy(timer);
         gameObject.SetActive(false);
     }
 

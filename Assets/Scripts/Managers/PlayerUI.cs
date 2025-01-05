@@ -19,6 +19,7 @@ public class PlayerUI : MonoBehaviour
     public Image healthBar;
     [HideInInspector] public Color imageCooldownColor = new Color(0.5f, 0.5f, 0.5f, 1.0f);
     [HideInInspector] public Color imageStartColor;
+    public GameObject pickupTimerHolder;
     public GameObject[] levelIconsGO;
     public Dictionary<string, GameObject> levelIconsDict = new Dictionary<string, GameObject>();
 

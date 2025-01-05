@@ -237,6 +237,7 @@ MonoBehaviour:
   bobSpeed: 3.5
   amplitude: 0.15
   vacuumSpeed: 6
+  timerBar: {fileID: 717105294690077747, guid: 763cb07f54256dc4db4fdf2fbdea173d, type: 3}
 --- !u!96 &3283582778697485565
 TrailRenderer:
   serializedVersion: 2
