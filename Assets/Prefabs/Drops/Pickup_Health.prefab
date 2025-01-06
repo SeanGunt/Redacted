@@ -187,6 +187,7 @@ MonoBehaviour:
   bobSpeed: 3.5
   amplitude: 0.15
   vacuumSpeed: 6
+  healParticlesGO: {fileID: 2183260827065142279, guid: 32661b25dd0f06444870e094a7396661, type: 3}
   amountToHeal: 50
 --- !u!96 &7035753690222752045
 TrailRenderer:

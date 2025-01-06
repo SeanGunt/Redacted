@@ -103,6 +103,7 @@ MonoBehaviour:
   bobSpeed: 3.5
   amplitude: 0.15
   vacuumSpeed: 6
+  vacuumParticlesGO: {fileID: 8744118380014376916, guid: afea623bac3e03f4eb9cb13c7705da31, type: 3}
 --- !u!96 &8050918856884150067
 TrailRenderer:
   serializedVersion: 2

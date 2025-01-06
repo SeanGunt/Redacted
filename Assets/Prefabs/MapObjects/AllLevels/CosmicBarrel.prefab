@@ -385,14 +385,14 @@ MonoBehaviour:
   agent: {fileID: 0}
   pickupsList:
   - prefab: {fileID: 7961660892212716164, guid: 3a60e61e13e7f3947a9b382dfd430114, type: 3}
-    chanceToSpawnModifier: -25
+    chanceToSpawnModifier: 10
     spawnChance: 0
   - prefab: {fileID: 7961660892212716164, guid: 51235361b4a0e90429f23dfbabbc1e98, type: 3}
-    chanceToSpawnModifier: -25
+    chanceToSpawnModifier: 0
     spawnChance: 0
   - prefab: {fileID: 7961660892212716164, guid: 1888b09f2d6d37445b48f4650898e2e7, type: 3}
-    chanceToSpawnModifier: -25
+    chanceToSpawnModifier: 0
     spawnChance: 0
   - prefab: {fileID: 7961660892212716164, guid: 2231cd9dfcc504b4e93510de2ab2847b, type: 3}
-    chanceToSpawnModifier: 25
+    chanceToSpawnModifier: -10
     spawnChance: 0

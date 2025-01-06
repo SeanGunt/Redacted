@@ -2745,7 +2745,7 @@ MonoBehaviour:
   speed: 2.75
   baseHealth: 400
   healthRegen: 1.5
-  qCooldownAmount: 2.5
+  qCooldownAmount: 2
   wCooldownAmount: 4
   eCooldownAmount: 10
   rCooldownAmount: 60

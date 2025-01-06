@@ -4,10 +4,12 @@ using UnityEngine;
 
 public class VacuumDrop : DropsBase
 {
+    [SerializeField] private GameObject vacuumParticlesGO;
     protected override void OnTriggerEnter2D(Collider2D other)
     {
         if (other.gameObject == GameManager.Instance.player)
         {
+            Instantiate(vacuumParticlesGO, player.transform.position, Quaternion.Euler(-90f, 0f, 0f), player.transform);
             DropsBase[] allDrops = FindObjectsOfType<DropsBase>();
             if (allDrops == null) return;
             foreach(DropsBase dropsBase in allDrops)
