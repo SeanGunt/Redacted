@@ -35,7 +35,7 @@ public class WorldSingleton : MonoBehaviour
     public int[,] bases;
     public int[,] collidables;
 
-    readonly public Vector2Int mapDimensions = new(500, 500);
+    readonly public Vector2Int mapDimensions = new(250, 250);
     private Vector2Int[] shopPositions = new Vector2Int[3];
     public List<WorldObjects> worldObjects = new();
     readonly private float collidableMin = -0.2f, collidableMax = 0.25f;
@@ -176,8 +176,8 @@ public class WorldSingleton : MonoBehaviour
             {
                 while (true)
                 {
-                    int randomX = UnityEngine.Random.Range(-245, 245);
-                    int randomY = UnityEngine.Random.Range(-245, 245);
+                    int randomX = UnityEngine.Random.Range(-120, 120);
+                    int randomY = UnityEngine.Random.Range(-120, 120);
                     Vector2Int randomPosition = new Vector2Int(randomX, randomY);
 
                     if (IsWorldObjectPlacementValid(randomPosition))

@@ -488,11 +488,15 @@ MonoBehaviour:
   maxHealth: 100
   speed: 2.65
   damage: 3
+  baseSpeed: 0
   expIndex: 0
+  deathAnimName: HammerBird_Death
   enemyID: 0
   moneyGainedOnKill: 17
   healthBar: {fileID: 8538788436067313046}
   animator: {fileID: 3210473947308583146}
+  frozen: 0
+  agent: {fileID: 0}
 --- !u!61 &7461042900292513888
 BoxCollider2D:
   m_ObjectHideFlags: 0

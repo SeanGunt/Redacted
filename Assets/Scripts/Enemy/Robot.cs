@@ -22,6 +22,7 @@ public class Robot : EnemyMaster
     }
     protected override void Update()
     {
+        if (dead) return;
         HandleFrozen();
         switch (state)
         {
@@ -70,6 +71,10 @@ public class Robot : EnemyMaster
         Utilities.instance.HandleRotation(player.transform.position, laser.transform);
         while (laser.transform.localScale.y <= 8f)
         {
+            if (frozen || dead)
+            {
+                break;
+            }
             laser.transform.localScale += new Vector3(0f, Time.deltaTime * 12.5f, 0f);
             yield return null;
         }

@@ -507,11 +507,15 @@ MonoBehaviour:
   maxHealth: 75
   speed: 3.5
   damage: 2
+  baseSpeed: 0
   expIndex: 1
+  deathAnimName: Robot_Death
   enemyID: 0
   moneyGainedOnKill: 9
   healthBar: {fileID: 8538788436067313046}
   animator: {fileID: -758007753833564812}
+  frozen: 0
+  agent: {fileID: 0}
   laserPrefab: {fileID: 6184728313668757947, guid: 4fc721f12f9631d47938c6db00d5ce01, type: 3}
   laserSpawnPoint: {fileID: 5023469351176907816}
 --- !u!61 &7461042900292513888

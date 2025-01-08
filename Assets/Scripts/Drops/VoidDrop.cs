@@ -45,11 +45,11 @@ public class VoidDrop : DropsBase
             yield return null;
         }
         DropsManager.instance.voidTimer = 10f;
-        float imageTimer = DropsManager.instance.voidTimer;
+        DropsManager.instance.voidImageTimer = DropsManager.instance.voidTimer;
         while (DropsManager.instance.voidTimer >= 0f)
         {
             DropsManager.instance.voidTimer -= Time.deltaTime;
-            timerImage[1].fillAmount -= Time.deltaTime / imageTimer;
+            timerImage[1].fillAmount -= Time.deltaTime / DropsManager.instance.voidImageTimer;
             GameManager.Instance.FreezeTime();
             yield return null;
         }
@@ -67,6 +67,9 @@ public class VoidDrop : DropsBase
 
     private void ExtendTimer()
     {
+        DropsManager.instance.voidImageTimer = 10f + DropsManager.instance.voidTimer;
         DropsManager.instance.voidTimer += 10f;
+        Image[] timerImage = GameManager.Instance.player.GetComponent<PlayerUI>().pickupTimerHolder.GetComponentsInChildren<Image>();
+        timerImage[1].fillAmount = 1f;
     }
 }

@@ -21,6 +21,7 @@ public class Snake : EnemyMaster
     {
         snakeAnimation = GetComponentInChildren<SnakeAnimation>();
         agent = GetComponent<NavMeshAgent>();
+        collider2d = GetComponent<BoxCollider2D>();
         agent.speed = speed;
         baseSpeed = speed;
         agent.updateUpAxis = false;
@@ -35,6 +36,7 @@ public class Snake : EnemyMaster
 
     protected override void Update()
     {
+        if (dead) return;
         HandleFrozen();
         switch(state)
         {

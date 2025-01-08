@@ -36,26 +36,32 @@ public class SpeedDrop : DropsBase
         GameObject timer = Instantiate(timerBar, Vector3.zero, Quaternion.identity, GameManager.Instance.player.GetComponent<PlayerUI>().pickupTimerHolder.transform);
         Image[] timerImage = timer.GetComponentsInChildren<Image>();
         timerImage[1].color = new Color(spriteRenderer.color.r, spriteRenderer.color.g, spriteRenderer.color.b, 1f);
-        timerImage[1].fillAmount = 1f;
+
         DropsManager.instance.speedPickupActive = true;
         DropsManager.instance.speedTimer += 3.0f;
-        float imageTimer = DropsManager.instance.speedTimer;
+        DropsManager.instance.speedImageTimer = DropsManager.instance.speedTimer;
         playerBase.speed += playerBase.baseSpeed * 1f;
         while (DropsManager.instance.speedTimer > 0f)
         {
             DropsManager.instance.speedTimer -= Time.deltaTime;
-            timerImage[1].fillAmount -= Time.deltaTime / imageTimer;
-            
+            timerImage[1].fillAmount -= Time.deltaTime / DropsManager.instance.speedImageTimer;
+
             yield return null;
         }
+
         playerBase.speed -= playerBase.baseSpeed * 1f;
         DropsManager.instance.speedPickupActive = false;
+
         Destroy(timer);
         gameObject.SetActive(false);
     }
 
     private void ExtendTimer()
     {
+        DropsManager.instance.speedImageTimer = 3.0f + DropsManager.instance.speedTimer;
         DropsManager.instance.speedTimer += 3.0f;
+        Image[] timerImage = GameManager.Instance.player.GetComponent<PlayerUI>().pickupTimerHolder.GetComponentsInChildren<Image>();
+        timerImage[1].fillAmount = 1f;
     }
+
 }

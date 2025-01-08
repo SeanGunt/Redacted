@@ -484,19 +484,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   worldObjects:
   - worldPositions: []
-    amountOfObjects: 333
+    amountOfObjects: 150
     objectToSpawn: {fileID: 3613611529941050488, guid: b302b8aacba7254478de4c3d9d348e49, type: 3}
   - worldPositions: []
-    amountOfObjects: 333
+    amountOfObjects: 150
     objectToSpawn: {fileID: 3613611529941050488, guid: e06fa9e372b642b4894f4bc0ca71e0ad, type: 3}
   - worldPositions: []
-    amountOfObjects: 333
+    amountOfObjects: 150
     objectToSpawn: {fileID: 3613611529941050488, guid: ea3b61ad1eeefe749bf055f125f555fa, type: 3}
   - worldPositions: []
-    amountOfObjects: 500
+    amountOfObjects: 250
     objectToSpawn: {fileID: 7022864139410141646, guid: f97695c6004a3d044b3ca5206f989df1, type: 3}
   - worldPositions: []
-    amountOfObjects: 400
+    amountOfObjects: 200
     objectToSpawn: {fileID: 5639472042998169705, guid: b913e597de7a2ee41bff1444943849fd, type: 3}
 --- !u!4 &1320570082
 Transform:

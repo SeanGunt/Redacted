@@ -10,6 +10,8 @@ public class EnemyMaster : MonoBehaviour, IDamagable, IFreezable
     [SerializeField] protected float maxHealth, speed, damage;
     [HideInInspector] public float baseSpeed;
     [SerializeField] private int expIndex;
+    [SerializeField] protected string deathAnimName;
+    protected AnimationClip deathClip;
     public int enemyID;
     protected static int nextID = 0;
     protected float health;
@@ -25,6 +27,7 @@ public class EnemyMaster : MonoBehaviour, IDamagable, IFreezable
     protected Vector3 target;
     protected SpriteRenderer spriteRenderer;
     protected Material material;
+    protected BoxCollider2D collider2d;
 
     protected virtual void Awake()
     {
@@ -38,6 +41,7 @@ public class EnemyMaster : MonoBehaviour, IDamagable, IFreezable
         enemyID = nextID++;
 
         spriteRenderer = GetComponent<SpriteRenderer>();
+        collider2d = GetComponent<BoxCollider2D>();
         material = Instantiate(spriteRenderer.sharedMaterial);
         spriteRenderer.material = material;
         material.SetColor("_Color", Color.black);
@@ -51,6 +55,7 @@ public class EnemyMaster : MonoBehaviour, IDamagable, IFreezable
 
     protected virtual void Update()
     {
+        if (dead) return;
         HandleFrozen();
         Movement();
         Rotation();
@@ -136,6 +141,18 @@ public class EnemyMaster : MonoBehaviour, IDamagable, IFreezable
     protected virtual IEnumerator Die()
     {
         dead = true;
+        agent.isStopped = true;
+        collider2d.enabled = false;
+        animator.SetTrigger("Die");
+        AnimationClip[] clips = animator.runtimeAnimatorController.animationClips;
+        foreach (AnimationClip clip in clips)
+        {
+            if (clip.name == deathAnimName)
+            {
+                deathClip = clip;
+            }
+        }
+        yield return new WaitForSeconds(deathClip.length);
         GameObject exp = ObjectPool.instance.GetPooledObject(ObjectPool.instance.listOfPooledObjects[1].prefabsToPool[expIndex].prefab);
         if (exp != null)
         {
