@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 using TMPro;
-using UnityEngine.Analytics;
 
 public class EnemyMaster : MonoBehaviour, IDamagable, IFreezable
 {

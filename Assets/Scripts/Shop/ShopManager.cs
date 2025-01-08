@@ -6,6 +6,7 @@ public class ShopManager : MonoBehaviour, IRay
 {
     private GameObject playerGO;
     private ParticleSystem eerieParticles;
+    private float defaultGlobalLightValue;
     private bool eerieParticlesPlaying;
     private Light2D shopLight;
     private AudioClip trackToFadeBackInto;
@@ -19,6 +20,7 @@ public class ShopManager : MonoBehaviour, IRay
         eerieParticles = GetComponentInChildren<ParticleSystem>();
         eerieParticlesPlaying = false;
         shopLight = GetComponentInChildren<Light2D>();
+        defaultGlobalLightValue = GameManager.Instance.globalLight.intensity;
     }
     public void GetPlayer()
     {
@@ -80,8 +82,8 @@ public class ShopManager : MonoBehaviour, IRay
     private void HandleShopLighting()
     {
         float distanceToPlayer = Vector2.Distance(playerGO.transform.position, transform.position);
-        if (distanceToPlayer >= 20f) return;
-        float normalizedDistance = Mathf.Clamp01(distanceToPlayer / 4f);
+        if (distanceToPlayer >= 8f) return;
+        float normalizedDistance = Mathf.Clamp(distanceToPlayer / 4f, 0f, defaultGlobalLightValue);
         GameManager.Instance.globalLight.intensity = Mathf.Pow(normalizedDistance, 2);
         shopLight.intensity = Mathf.Clamp(6f - distanceToPlayer, 0f, 5f);
     }
