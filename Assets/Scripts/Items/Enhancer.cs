@@ -12,13 +12,17 @@ public class Enhancer : ItemBase
 
     public override void ActiveAbility()
     {
-        if (activeCooldown <= 0)
+        if (activeCooldown <= 0 && !enhancerActivated)
         {
             currNumOfAttacks = playerBase.attacksUsed;
             enhancerActivated = true;
-            weaponBase.damageMultiplier = weaponBase.damageMultiplier * 2.0f;
+            weaponBase.damageMultiplier *= 2.0f;
             weaponBase.spriteRenderer.material = enhancerMaterial;
             StartCoroutine(HandleItemCooldown());
+        }
+        else if (activeCooldown <= 0 && enhancerActivated)
+        {
+            numOfDoubleDamageAttacks += 3;
         }
         
     }
@@ -26,7 +30,7 @@ public class Enhancer : ItemBase
     private void DeactivateAbility()
     {
         enhancerActivated = false;
-        weaponBase.damageMultiplier = weaponBase.damageMultiplier / 2.0f;
+        weaponBase.damageMultiplier /= 2.0f;
         weaponBase.spriteRenderer.material = weaponBase.defaultMaterial;
     }
 

@@ -492,7 +492,7 @@ MonoBehaviour:
   expIndex: 0
   deathAnimName: HammerBird_Death
   enemyID: 0
-  moneyGainedOnKill: 17
+  moneyGainedOnKill: 33
   healthBar: {fileID: 8538788436067313046}
   animator: {fileID: 3210473947308583146}
   frozen: 0

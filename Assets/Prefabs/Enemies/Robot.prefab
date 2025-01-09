@@ -511,7 +511,7 @@ MonoBehaviour:
   expIndex: 1
   deathAnimName: Robot_Death
   enemyID: 0
-  moneyGainedOnKill: 9
+  moneyGainedOnKill: 55
   healthBar: {fileID: 8538788436067313046}
   animator: {fileID: -758007753833564812}
   frozen: 0

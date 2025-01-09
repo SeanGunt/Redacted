@@ -37,11 +37,13 @@ public class ShopUI : MonoBehaviour
     {
         inventoryPage = GameManager.Instance.player.GetComponentInChildren<InventoryPage>();
         InventoryItem inventoryItem = inventoryPage.PurchaseInventoryItem();
-        if (inventoryItem != null)
+        if (inventoryItem != null && items[index].GetComponent<ItemBase>().price < MoneyManager.instance.money)
         {
             Image image = inventoryItem.gameObject.GetComponent<Image>();
             GameObject itemToPurchase = Instantiate(items[index], inventoryItem.transform);
-            image.sprite = itemToPurchase.GetComponent<ItemBase>().imageSprite;
+            ItemBase itemBase = itemToPurchase.GetComponent<ItemBase>();
+            image.sprite = itemBase.imageSprite;
+            MoneyManager.instance.money -= itemBase.price;
             image.color = Color.white;
         }
     }

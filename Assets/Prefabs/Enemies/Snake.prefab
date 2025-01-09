@@ -260,7 +260,7 @@ MonoBehaviour:
   expIndex: 0
   deathAnimName: Snake_Death
   enemyID: 0
-  moneyGainedOnKill: 27
+  moneyGainedOnKill: 42
   healthBar: {fileID: 4161016463585382541}
   animator: {fileID: 1837189023454896785}
   frozen: 0

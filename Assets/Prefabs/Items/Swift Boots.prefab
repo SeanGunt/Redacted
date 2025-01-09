@@ -94,6 +94,7 @@ MonoBehaviour:
   coolDownReduction: 15
   imageSprite: {fileID: 21300000, guid: 4c5efa4b438d0b74b816b4023fd59501, type: 3}
   itemName: SwiftBoots
+  price: 1000
   activeBaseCooldown: 25
   speedBuffDurationAmount: 3
   speedBuffAmount: 2
