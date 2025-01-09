@@ -82,8 +82,7 @@ public class ShopManager : MonoBehaviour, IRay
     private void HandleShopLighting()
     {
         float distanceToPlayer = Vector2.Distance(playerGO.transform.position, transform.position);
-        if (distanceToPlayer >= 8f) return;
-        float normalizedDistance = Mathf.Clamp(distanceToPlayer / 4f, 0f, defaultGlobalLightValue);
+        float normalizedDistance = Mathf.Clamp(distanceToPlayer / 4f, 0f, 1f);
         GameManager.Instance.globalLight.intensity = Mathf.Pow(normalizedDistance, 2);
         shopLight.intensity = Mathf.Clamp(6f - distanceToPlayer, 0f, 5f);
     }
