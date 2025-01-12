@@ -14,7 +14,7 @@ public class PlayerUI : MonoBehaviour
     public TextMeshProUGUI curHealthNumText;
     public TextMeshProUGUI levelText;
     public TextMeshProUGUI physicalDamageText, magicalDamageText, physicalResistanceText, magicalResistanceText;
-    public TextMeshProUGUI criticalChanceText, cooldownReductionText;
+    public TextMeshProUGUI criticalChanceText, cooldownReductionText, speedText;
     public TextMeshProUGUI qLevelText, wLevelText, eLevelText, rLevelText;
     public Image healthBar;
     [HideInInspector] public Color imageCooldownColor = new Color(0.5f, 0.5f, 0.5f, 1.0f);

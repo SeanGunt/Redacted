@@ -260,6 +260,7 @@ public class PlayerBase : MonoBehaviour
         playerUI.magicalResistanceText.text = magicalResistance.ToString();
         playerUI.criticalChanceText.text = critChance.ToString() + "%";
         playerUI.cooldownReductionText.text = cooldownReduction.ToString() + "%";
+        playerUI.speedText.text = speed.ToString();
     }
 
     public void HandleOnlevel()
