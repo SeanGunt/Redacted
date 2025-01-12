@@ -2690,6 +2690,7 @@ GameObject:
   - component: {fileID: 4883224895819266835}
   - component: {fileID: 4883224895819266832}
   - component: {fileID: 4883224895819266833}
+  - component: {fileID: 4883224895819266840}
   m_Layer: 5
   m_Name: ResumeButton
   m_TagString: Untagged
@@ -2697,6 +2698,18 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &4883224895819266840
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4883224895819266839}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 049d8893648084348900f000972830ac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!222 &4883224895954195173
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2738,6 +2751,7 @@ GameObject:
   - component: {fileID: 4883224895954195173}
   - component: {fileID: 4883224895954195178}
   - component: {fileID: 4883224895954195179}
+  - component: {fileID: 4883224895954195180}
   m_Layer: 5
   m_Name: SettingsButton
   m_TagString: Untagged
@@ -2843,6 +2857,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
+--- !u!114 &4883224895954195180
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4883224895954195177}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 049d8893648084348900f000972830ac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!222 &4883224896225371557
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -3342,6 +3368,7 @@ GameObject:
   - component: {fileID: 4883224896882415762}
   - component: {fileID: 4883224896882415763}
   - component: {fileID: 4883224896882415760}
+  - component: {fileID: 4883224896882415767}
   m_Layer: 5
   m_Name: QuitButton
   m_TagString: Untagged
@@ -3349,6 +3376,18 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &4883224896882415767
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4883224896882415766}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 049d8893648084348900f000972830ac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &4883224897158229572
 Transform:
   m_ObjectHideFlags: 0

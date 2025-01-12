@@ -752,6 +752,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8858190630886129850}
   - component: {fileID: 8858190630886129853}
+  - component: {fileID: 462175695}
   m_Layer: 5
   m_Name: GreenSlider
   m_TagString: Untagged
@@ -833,6 +834,18 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &462175695
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8858190630886129851}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d2a89508bbcf3604cac505bd6c65ed0f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &8858190630887554189
 GameObject:
   m_ObjectHideFlags: 0
@@ -1169,6 +1182,7 @@ GameObject:
   - component: {fileID: 8858190631314363053}
   - component: {fileID: 8858190631314363050}
   - component: {fileID: 8858190631314363051}
+  - component: {fileID: 1839012742}
   m_Layer: 5
   m_Name: ReturnButton
   m_TagString: Untagged
@@ -1315,6 +1329,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
+--- !u!114 &1839012742
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8858190631314363049}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 049d8893648084348900f000972830ac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &8858190631390867575
 GameObject:
   m_ObjectHideFlags: 0
@@ -1477,6 +1503,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8858190631450148222}
   - component: {fileID: 8858190631450148209}
+  - component: {fileID: 1104416512}
   m_Layer: 5
   m_Name: MusicVolumeSlider
   m_TagString: Untagged
@@ -1571,6 +1598,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &1104416512
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8858190631450148223}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d2a89508bbcf3604cac505bd6c65ed0f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &8858190631557336385
 GameObject:
   m_ObjectHideFlags: 0
@@ -1807,6 +1846,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8858190631816448875}
   - component: {fileID: 8858190631816448874}
+  - component: {fileID: 16943796}
   m_Layer: 5
   m_Name: BlueSlider
   m_TagString: Untagged
@@ -1888,6 +1928,18 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &16943796
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8858190631816448872}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d2a89508bbcf3604cac505bd6c65ed0f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &8858190632006975496
 GameObject:
   m_ObjectHideFlags: 0
@@ -2011,6 +2063,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8858190632050374802}
   - component: {fileID: 8858190632050374805}
+  - component: {fileID: 2041736717}
   m_Layer: 5
   m_Name: RedSlider
   m_TagString: Untagged
@@ -2092,6 +2145,18 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &2041736717
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8858190632050374803}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d2a89508bbcf3604cac505bd6c65ed0f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &8858190632065327784
 GameObject:
   m_ObjectHideFlags: 0

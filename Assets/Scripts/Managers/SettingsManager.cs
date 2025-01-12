@@ -16,7 +16,6 @@ public class SettingsManager : MonoBehaviour
         redSlider.value = SaveManager.instance._settingsData.reticleColor.r;
         greenSlider.value = SaveManager.instance._settingsData.reticleColor.g;
         blueSlider.value = SaveManager.instance._settingsData.reticleColor.b;
-        Debug.Log("Settings Manager Awake Called");
     }
 
     private void OnEnable()
@@ -24,7 +23,6 @@ public class SettingsManager : MonoBehaviour
         redSlider.onValueChanged.AddListener(ChangeReticleColor);
         blueSlider.onValueChanged.AddListener(ChangeReticleColor);
         greenSlider.onValueChanged.AddListener(ChangeReticleColor);
-        Debug.Log("Settings Manager OnEnable Called");
     }
 
     private void OnDisable()
@@ -33,7 +31,7 @@ public class SettingsManager : MonoBehaviour
         redSlider.onValueChanged.RemoveListener(ChangeReticleColor);
         blueSlider.onValueChanged.RemoveListener(ChangeReticleColor);
         greenSlider.onValueChanged.RemoveListener(ChangeReticleColor);
-        Debug.Log("Settings Manager OnDisable Called");
+        SaveManager.instance.SaveSettingsData(SaveManager.instance._settingsData);
     }
 
 

@@ -112,6 +112,7 @@ public class PlayerBase : MonoBehaviour
                 {
                     Debug.Log(hit.collider.name);
                     other.HandleRaycastInteraction();
+                    Cursor.SetCursor(GameManager.Instance.cursorDefaultTexture, Vector2.zero, CursorMode.Auto);
                 }
             }
         }
@@ -119,6 +120,7 @@ public class PlayerBase : MonoBehaviour
 
     private void HandleHover()
     {
+        if (Time.timeScale == 0) return;
         RaycastHit2D hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(playerInput.actions["PointerPosition"].ReadValue<Vector2>()), Vector2.zero, Mathf.Infinity, raycastLayerMask);
             if (hit.collider != null)
             {   
@@ -137,7 +139,6 @@ public class PlayerBase : MonoBehaviour
                 Cursor.SetCursor(GameManager.Instance.cursorDefaultTexture, Vector2.zero, CursorMode.Auto);
             }
     }
-
     protected virtual void HandleQAbility()
     {
         

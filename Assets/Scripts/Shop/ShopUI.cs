@@ -35,9 +35,13 @@ public class ShopUI : MonoBehaviour
 
     public void PurchaseItem(int index)
     {
+        if (items[index].GetComponent<ItemBase>().price >= MoneyManager.instance.money)
+        {
+            return;
+        }
         inventoryPage = GameManager.Instance.player.GetComponentInChildren<InventoryPage>();
         InventoryItem inventoryItem = inventoryPage.PurchaseInventoryItem();
-        if (inventoryItem != null && items[index].GetComponent<ItemBase>().price < MoneyManager.instance.money)
+        if (inventoryItem != null)
         {
             Image image = inventoryItem.gameObject.GetComponent<Image>();
             GameObject itemToPurchase = Instantiate(items[index], inventoryItem.transform);
