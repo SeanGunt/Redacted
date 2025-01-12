@@ -5,7 +5,7 @@ public class ShopUI : MonoBehaviour
 {
     public static ShopUI Instance {get; private set;}
     private bool shopActive;
-    [SerializeField] private GameObject[] items;
+    public GameObject[] items;
     [SerializeField] private GameObject shopUI;
     private InventoryPage inventoryPage;
 

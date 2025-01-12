@@ -20,6 +20,8 @@ public class ItemBase : MonoBehaviour, IItem
     
     [Header("Item Information")]
     public string itemName;
+    public string activeAbilityText;
+    public string passiveAbilityText;
     public int price;
     public float activeBaseCooldown;
     protected float activeCooldown;
