@@ -10,7 +10,7 @@ public class OnHoverEvent : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
     [SerializeField] private Image itemImageShowcase;
     [SerializeField] private int itemIndex;
     [SerializeField] private TextMeshProUGUI physicalDamageText, magicalDamageText, physicalDefenceText, magicDefenceText, critChanceText, cdrText, speedText,
-    bonusHealthText, healthRegenText, itemNameText, activeAbilityText, passiveAbilityText;
+    bonusHealthText, healthRegenText, pickupRangeText, itemNameText, activeAbilityText, passiveAbilityText;
     private ShopUI shopUI;
     private Image imageToShowcase;
     private void Awake()
@@ -31,6 +31,7 @@ public class OnHoverEvent : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
         speedText.text = shopUI.items[itemIndex].GetComponent<ItemBase>().moveSpeed.ToString();
         bonusHealthText.text = shopUI.items[itemIndex].GetComponent<ItemBase>().health.ToString();
         healthRegenText.text = shopUI.items[itemIndex].GetComponent<ItemBase>().healthRegen.ToString();
+        pickupRangeText.text = shopUI.items[itemIndex].GetComponent<ItemBase>().pickupRange.ToString();
         activeAbilityText.text = shopUI.items[itemIndex].GetComponent<ItemBase>().activeAbilityText;
         passiveAbilityText.text = shopUI.items[itemIndex].GetComponent<ItemBase>().passiveAbilityText;
     }
@@ -47,6 +48,7 @@ public class OnHoverEvent : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
         speedText.text = 0f.ToString();
         bonusHealthText.text = 0f.ToString();
         healthRegenText.text = 0f.ToString();
+        pickupRangeText.text = 0f.ToString();
         activeAbilityText.text = "Active Ability: ";
         passiveAbilityText.text = "Passive Ability: ";
         itemImageShowcase.sprite = null;

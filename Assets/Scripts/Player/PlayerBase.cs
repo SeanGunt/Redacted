@@ -262,6 +262,7 @@ public class PlayerBase : MonoBehaviour
         playerUI.criticalChanceText.text = critChance.ToString() + "%";
         playerUI.cooldownReductionText.text = cooldownReduction.ToString() + "%";
         playerUI.speedText.text = speed.ToString();
+        playerUI.pickupRangeText.text = pickupRange.ToString();
     }
 
     public void HandleOnlevel()

@@ -31,6 +31,7 @@ public class ExperienceManager : MonoBehaviour
     private void HandleLevel()
     {
         playerUI.levelText.text = level.ToString();
+        playerUI.levelTextShadow.text = level.ToString();
         if (exp >= expTillNextLevel && level < maxLevel)
         {
             level += 1;
