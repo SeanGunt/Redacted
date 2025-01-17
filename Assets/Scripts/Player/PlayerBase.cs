@@ -17,7 +17,7 @@ public class PlayerBase : MonoBehaviour
     [HideInInspector] public float speed;
     [SerializeField] public float baseHealth;
     [SerializeField] public float healthRegen;
-    [SerializeField] protected float qCooldownAmount, wCooldownAmount, eCooldownAmount, rCooldownAmount;
+    [SerializeField] public float qCooldownAmount, wCooldownAmount, eCooldownAmount, rCooldownAmount;
     [SerializeField] public float pickupRange;
     [HideInInspector] public float health;
     [SerializeField] public float physicalDamage;
