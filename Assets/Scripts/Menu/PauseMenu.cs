@@ -18,6 +18,7 @@ public class PauseMenu : MonoBehaviour
 
     private void Start()
     {
+        if (playerUI == null) return;
         playerUI =  GameObject.FindGameObjectWithTag("PlayerUI");
         UnPause();
     }

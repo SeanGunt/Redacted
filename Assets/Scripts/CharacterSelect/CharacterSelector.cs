@@ -26,6 +26,7 @@ public class CharacterSelector : MonoBehaviour, IRay
         GameManager.Instance.player = player;
         GameManager.Instance.gameObject.GetComponent<MenusManager>().GetPlayerInput();
         mainCamera.GetUniversalAdditionalCameraData().volumeTrigger = player.transform;
+        CinamachineManager.instance.SwapCharacter();
         shopManager.GetPlayer();
     }
 
