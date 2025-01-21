@@ -274,8 +274,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1cf30caaa02cf064c8be3f7864274a2a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  masterVolumeSlider: {fileID: 294989828}
   musicVolumeSlider: {fileID: 294989826}
-  musicAudioSource: {fileID: 1359411888}
+  sfxVolumeSlider: {fileID: 294989827}
+  mixer: {fileID: 24100000, guid: 653542e9a11ba614a859ea0c921a57fe, type: 2}
 --- !u!114 &45057051
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -291,7 +293,9 @@ MonoBehaviour:
   _gameData:
     extraPhysicalDamage: 0
     extraMagicDamage: 0
+    tutorialCompleted: 0
   _settingsData:
+    masterVolume: 0.5
     musicVolume: 50
     sfxVolume: 50
     reticleColor: {r: 0, g: 1, b: 0, a: 1}
@@ -319,11 +323,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cff867821c6f5af47bb55fb4946136ad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  backgroundAudioSource: {fileID: 1359411888}
+  mixer: {fileID: 24100000, guid: 653542e9a11ba614a859ea0c921a57fe, type: 2}
   tracks:
   - {fileID: 8300000, guid: cd133d5a9eff67a479ff3e1f08254af9, type: 3}
   - {fileID: 8300000, guid: aa9db3638d926d6448ed396943142390, type: 3}
   - {fileID: 8300000, guid: a69ccc3190be04b439b38cbde78c62b2, type: 3}
+  musicSource: {fileID: 1359411888}
 --- !u!1 &93670257
 GameObject:
   m_ObjectHideFlags: 0
@@ -815,6 +820,28 @@ GameObject:
 --- !u!114 &294989826 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 8858190631450148209, guid: f376a2bd8075d484ab249e57bf70f9c4, type: 3}
+  m_PrefabInstance: {fileID: 294989823}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 67db9e8f0e2ae9c40bc1e2b64352a6b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &294989827 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1507404373, guid: f376a2bd8075d484ab249e57bf70f9c4, type: 3}
+  m_PrefabInstance: {fileID: 294989823}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 67db9e8f0e2ae9c40bc1e2b64352a6b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &294989828 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1044407403, guid: f376a2bd8075d484ab249e57bf70f9c4, type: 3}
   m_PrefabInstance: {fileID: 294989823}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
@@ -1674,7 +1701,7 @@ AudioSource:
   m_GameObject: {fileID: 1359411886}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: -1172823599187777894, guid: 653542e9a11ba614a859ea0c921a57fe, type: 2}
   m_audioClip: {fileID: 8300000, guid: a69ccc3190be04b439b38cbde78c62b2, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1

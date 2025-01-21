@@ -1,12 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Audio;
 
 public class MusicManager : MonoBehaviour
 {
     public static MusicManager instance;
-    public AudioSource backgroundAudioSource;
+    public AudioMixer mixer;
     public List<AudioClip> tracks;
+    public AudioSource musicSource;
     private bool currentlyFading;
 
     private void Awake()
@@ -24,18 +26,17 @@ public class MusicManager : MonoBehaviour
 
     private IEnumerator FadeTracksTogether(AudioClip tracktoFadeInto)
     {
-        float currentVolume = backgroundAudioSource.volume;
         currentlyFading = true;
-        while (backgroundAudioSource.volume > 0)
+        while (musicSource.volume > 0)
         {
-            backgroundAudioSource.volume -= Time.deltaTime;
+            musicSource.volume -= Time.deltaTime * 3f;
             yield return null;
         }
-        backgroundAudioSource.clip = tracktoFadeInto;
-        backgroundAudioSource.Play();
-        while (backgroundAudioSource.volume <= currentVolume)
+        musicSource.clip = tracktoFadeInto;
+        musicSource.Play();
+        while (musicSource.volume < 1f)
         {
-            backgroundAudioSource.volume += Time.deltaTime;
+            musicSource.volume += Time.deltaTime * 3f;
             yield return null;
         }
         currentlyFading = false;

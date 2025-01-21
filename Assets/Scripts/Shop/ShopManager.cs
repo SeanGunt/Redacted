@@ -6,21 +6,21 @@ public class ShopManager : MonoBehaviour, IRay
 {
     private GameObject playerGO;
     private ParticleSystem eerieParticles;
-    private float defaultGlobalLightValue;
     private bool eerieParticlesPlaying;
+    private bool shopMusicPlaying;
+    private AudioClip defaultBackgroundClip;
     private Light2D shopLight;
-    private AudioClip trackToFadeBackInto;
     [SerializeField] SpriteRenderer faceSpriteRenderer;
     [SerializeField] private Sprite[] faceSprites;  
 
     private void Start()
     {
         GetPlayer();
-        faceSpriteRenderer.sprite = faceSprites[1];
         eerieParticles = GetComponentInChildren<ParticleSystem>();
-        eerieParticlesPlaying = false;
         shopLight = GetComponentInChildren<Light2D>();
-        defaultGlobalLightValue = GameManager.Instance.globalLight.intensity;
+        eerieParticlesPlaying = false;
+        faceSpriteRenderer.sprite = faceSprites[1];
+        defaultBackgroundClip = MusicManager.instance.musicSource.clip;
     }
     public void GetPlayer()
     {
@@ -43,6 +43,7 @@ public class ShopManager : MonoBehaviour, IRay
         HandleShopEyes();
         HandleEerieParticles();
         HandleShopLighting();
+        HandleMusicFade();
     }
 
     private void HandleShopEyes()
@@ -68,14 +69,26 @@ public class ShopManager : MonoBehaviour, IRay
         {
             eerieParticles.Play();
             eerieParticlesPlaying = true;
-            trackToFadeBackInto = MusicManager.instance.backgroundAudioSource.clip;
-            MusicManager.instance.FadeTracks(MusicManager.instance.tracks[1]);
         }
         else if (distanceToPlayer > 3 && eerieParticlesPlaying)
         {
             eerieParticles.Stop();
             eerieParticlesPlaying = false;
-            MusicManager.instance.FadeTracks(trackToFadeBackInto);
+        }
+    }
+
+    private void HandleMusicFade()
+    {
+        float distanceToPlayer = Vector2.Distance(playerGO.transform.position, transform.position);
+        if (distanceToPlayer <= 2f && !shopMusicPlaying)
+        {
+            MusicManager.instance.FadeTracks(MusicManager.instance.tracks[1]);
+            shopMusicPlaying = true;
+        }
+        else if (distanceToPlayer > 3f && shopMusicPlaying)
+        {
+            MusicManager.instance.FadeTracks(defaultBackgroundClip);
+            shopMusicPlaying = false;
         }
     }
 
