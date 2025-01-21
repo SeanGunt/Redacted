@@ -1,14 +1,21 @@
 using System.Collections;
 using System.Collections.Generic;
+using System;
 using UnityEngine;
 using UnityEngine.Rendering.Universal;
 
-public class CharacterSelector : MonoBehaviour, IRay
+public class CharacterSelector : MonoBehaviour, IDistanceInteractable
 {
     [SerializeField] private int index;
     [SerializeField] private GameObject characterToSwap;
+    [SerializeField] private GameObject interactCanvas;
     [SerializeField] private ShopManager shopManager;
     private Camera mainCamera;
+
+    private void Awake()
+    {
+        interactCanvas.SetActive(false);
+    }
     public void SetCharacterIndex()
     {
         PlayerPrefs.SetInt("characterIndex", index);
@@ -30,10 +37,15 @@ public class CharacterSelector : MonoBehaviour, IRay
         shopManager.GetPlayer();
     }
 
-    public void HandleRaycastInteraction()
+    public void HandleDistanceInteraction()
     {
         SetCharacterIndex();
         SwapCharacter();
+    }
+
+    public void HandleDisplayInteractKey(bool value)
+    {
+        interactCanvas.SetActive(value);
     }
 
 }

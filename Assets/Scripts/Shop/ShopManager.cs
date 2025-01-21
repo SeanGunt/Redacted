@@ -1,8 +1,7 @@
 using System;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Rendering.Universal;
-public class ShopManager : MonoBehaviour, IRay
+public class ShopManager : MonoBehaviour, IDistanceInteractable
 {
     private GameObject playerGO;
     private ParticleSystem eerieParticles;
@@ -11,7 +10,8 @@ public class ShopManager : MonoBehaviour, IRay
     private AudioClip defaultBackgroundClip;
     private Light2D shopLight;
     [SerializeField] SpriteRenderer faceSpriteRenderer;
-    [SerializeField] private Sprite[] faceSprites;  
+    [SerializeField] private Sprite[] faceSprites;
+    [SerializeField] private GameObject interactCanvas;
 
     private void Start()
     {
@@ -21,12 +21,13 @@ public class ShopManager : MonoBehaviour, IRay
         eerieParticlesPlaying = false;
         faceSpriteRenderer.sprite = faceSprites[1];
         defaultBackgroundClip = MusicManager.instance.musicSource.clip;
+        interactCanvas.SetActive(false);
     }
     public void GetPlayer()
     {
         playerGO = GameManager.Instance.player.gameObject;
     }
-    public void HandleRaycastInteraction()
+    public void HandleDistanceInteraction()
     {
         if (!ShopUI.Instance.IsShopOpen())
         {
@@ -36,6 +37,11 @@ public class ShopManager : MonoBehaviour, IRay
         {
             ShopUI.Instance.CloseUI();
         }
+    }
+
+    public void HandleDisplayInteractKey(bool value)
+    {
+        interactCanvas.SetActive(value);
     }
 
     private void Update()

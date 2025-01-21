@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.InputSystem.iOS;
 
 public class PlayerBase : MonoBehaviour
 {
@@ -9,6 +10,7 @@ public class PlayerBase : MonoBehaviour
     private PlayerInput playerInput;
     private MovePointReticle movePointReticle;
     private ExperienceManager experienceManager;
+    protected AudioSource audioSource;
     protected WeaponBase weaponBase;
     private PlayerUI playerUI;
 
@@ -50,6 +52,7 @@ public class PlayerBase : MonoBehaviour
     [HideInInspector] public bool canFlipSprite = true;
     protected bool canMove = true;
     protected bool isInvincible;
+    protected Collider2D cachedCollider;
     protected enum State
     {
         idle, moving
@@ -65,6 +68,7 @@ public class PlayerBase : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
         spriteRenderer = GetComponent<SpriteRenderer>();
+        audioSource = GetComponent<AudioSource>();
 
         health = baseHealth;
         speed = baseSpeed;
@@ -81,8 +85,7 @@ public class PlayerBase : MonoBehaviour
         HandleStatsUI();
         RightClick();
         HandleAbilities();
-        HandleInteract();
-        HandleHover();
+        HandleDistanceInteract();
         HandleSpriteFlipping();
         switch(state)
         {
@@ -100,45 +103,36 @@ public class PlayerBase : MonoBehaviour
         state = State.idle;
     }
 
-    private void HandleInteract()
+    private void HandleDistanceInteract()
     {
-        if (playerInput.actions["Interact"].triggered)
+        Collider2D overlappedCollider = Physics2D.OverlapCircle(transform.position, 1.25f, raycastLayerMask);
+        if (overlappedCollider != null)
         {
-            RaycastHit2D hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(playerInput.actions["PointerPosition"].ReadValue<Vector2>()), Vector2.zero, Mathf.Infinity, raycastLayerMask);
-            if (hit.collider != null)
-            {   
-                IRay other = hit.transform.gameObject.GetComponent<IRay>();
+            cachedCollider = overlappedCollider;
+            Debug.Log("Overlapping Collider");
+            IDistanceInteractable other = overlappedCollider.transform.gameObject.GetComponent<IDistanceInteractable>();
+            other.HandleDisplayInteractKey(true);
+            if (playerInput.actions["Interact"].triggered)
+            {
                 if (other != null)
                 {
-                    Debug.Log(hit.collider.name);
-                    other.HandleRaycastInteraction();
-                    Cursor.SetCursor(GameManager.Instance.cursorDefaultTexture, Vector2.zero, CursorMode.Auto);
+                    Debug.Log(overlappedCollider.name);
+                    other.HandleDistanceInteraction();
                 }
+            }
+        }
+        else if (overlappedCollider == null)
+        {
+            if (cachedCollider != null)
+            {
+                Debug.Log("Hello");
+                IDistanceInteractable other = cachedCollider.transform.gameObject.GetComponent<IDistanceInteractable>();
+                other.HandleDisplayInteractKey(false);
+                cachedCollider = null;
             }
         }
     }
 
-    private void HandleHover()
-    {
-        if (Time.timeScale == 0) return;
-        RaycastHit2D hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(playerInput.actions["PointerPosition"].ReadValue<Vector2>()), Vector2.zero, Mathf.Infinity, raycastLayerMask);
-            if (hit.collider != null)
-            {   
-                IRay other = hit.transform.gameObject.GetComponent<IRay>();
-                if (other != null)
-                {
-                    Cursor.SetCursor(GameManager.Instance.cursorSelectedTexture, Vector2.zero, CursorMode.Auto);
-                }
-                else
-                {
-                    Cursor.SetCursor(GameManager.Instance.cursorDefaultTexture, Vector2.zero, CursorMode.Auto);
-                }
-            }
-            else
-            {
-                Cursor.SetCursor(GameManager.Instance.cursorDefaultTexture, Vector2.zero, CursorMode.Auto);
-            }
-    }
     protected virtual void HandleQAbility()
     {
         
@@ -355,5 +349,11 @@ public class PlayerBase : MonoBehaviour
         }
         playerUI.rImage.fillAmount = 1f;
         playerUI.rImage.color = playerUI.imageStartColor;
+    }
+
+    public void PlayAudio(AudioClip clip)
+    {
+        audioSource.clip = clip;
+        audioSource.Play();
     }
 }
