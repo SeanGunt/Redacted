@@ -120,6 +120,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   explosionCirclePrefab: {fileID: 5821311491293941765, guid: e73c29e43c46b4c4ca7a3eb954bfcec7, type: 3}
+  explosionAudioClip: {fileID: 8300000, guid: 33d9e776755748e46a008d54751bab41, type: 3}
 --- !u!1 &4911371385605354131
 GameObject:
   m_ObjectHideFlags: 0

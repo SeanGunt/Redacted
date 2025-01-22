@@ -16,6 +16,7 @@ public class Exp : DropsBase
     {
         if (other.gameObject == GameManager.Instance.player)
         {
+            SFXManager.instance.PlayOneShotAtPoint(transform.position, pickupAudioClip);
             experienceManager.IncreaseExperience(expAmount);
             gameObject.SetActive(false);
         }

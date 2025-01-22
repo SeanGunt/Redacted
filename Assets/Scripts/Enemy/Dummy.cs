@@ -12,6 +12,7 @@ public class Dummy : EnemyMaster
         enemyID = nextID++;
 
         spriteRenderer = GetComponent<SpriteRenderer>();
+        audioSource = GetComponent<AudioSource>();
         material = Instantiate(spriteRenderer.sharedMaterial);
         spriteRenderer.material = material;
         material.SetColor("_Color", Color.black);

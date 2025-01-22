@@ -27,6 +27,9 @@ public class EnemyMaster : MonoBehaviour, IDamagable, IFreezable
     protected SpriteRenderer spriteRenderer;
     protected Material material;
     protected BoxCollider2D collider2d;
+    protected AudioSource audioSource;
+    [SerializeField] protected AudioClip hitAudioClip;
+    [SerializeField] protected AudioClip deathAudioClip;
 
     protected virtual void Awake()
     {
@@ -41,6 +44,7 @@ public class EnemyMaster : MonoBehaviour, IDamagable, IFreezable
 
         spriteRenderer = GetComponent<SpriteRenderer>();
         collider2d = GetComponent<BoxCollider2D>();
+        audioSource = GetComponent<AudioSource>();
         material = Instantiate(spriteRenderer.sharedMaterial);
         spriteRenderer.material = material;
         material.SetColor("_Color", Color.black);
@@ -62,6 +66,7 @@ public class EnemyMaster : MonoBehaviour, IDamagable, IFreezable
 
     public void TakeDamage(float damage)
     {
+        audioSource.PlayOneShot(hitAudioClip);
         health -= damage;
         float ratio = maxHealth / 100;
         float damageToBar = damage / ratio;
@@ -70,7 +75,6 @@ public class EnemyMaster : MonoBehaviour, IDamagable, IFreezable
             healthBar.sizeDelta -= new Vector2(damageToBar, 0);
         }
         SpawnDamageNumber(damage);
-
         if (health <= 0 && !dead)
         {
             StartCoroutine(Die());
@@ -144,6 +148,7 @@ public class EnemyMaster : MonoBehaviour, IDamagable, IFreezable
         collider2d.enabled = false;
         animator.SetTrigger("Die");
         AnimationClip[] clips = animator.runtimeAnimatorController.animationClips;
+        SFXManager.instance.PlayOneShotAtPoint(transform.position, deathAudioClip);
         foreach (AnimationClip clip in clips)
         {
             if (clip.name == deathAnimName)
@@ -227,4 +232,5 @@ public class EnemyMaster : MonoBehaviour, IDamagable, IFreezable
 
         agent.speed = speed;
     }
+    
 }

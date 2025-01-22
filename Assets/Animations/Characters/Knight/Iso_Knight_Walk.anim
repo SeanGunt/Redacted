@@ -256,18 +256,4 @@ AnimationClip:
     script: {fileID: 0}
   m_HasGenericRootTransform: 1
   m_HasMotionFloatCurves: 0
-  m_Events:
-  - time: 0.125
-    functionName: PlayAudio
-    data: 
-    objectReferenceParameter: {fileID: 8300000, guid: d8f2a4eaf44d3ba4db1c0e3ff02e720c, type: 3}
-    floatParameter: 0
-    intParameter: 0
-    messageOptions: 0
-  - time: 0.375
-    functionName: PlayAudio
-    data: 
-    objectReferenceParameter: {fileID: 8300000, guid: 6de2baba0c3d07c41b3387a78e804d01, type: 3}
-    floatParameter: 0
-    intParameter: 0
-    messageOptions: 0
+  m_Events: []

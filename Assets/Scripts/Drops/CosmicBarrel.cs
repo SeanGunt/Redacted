@@ -20,6 +20,7 @@ public class CosmicBarrel : EnemyMaster
         enemyID = nextID++;
 
         spriteRenderer = GetComponent<SpriteRenderer>();
+        audioSource = GetComponent<AudioSource>();
         material = Instantiate(spriteRenderer.sharedMaterial);
         spriteRenderer.material = material;
         material.SetColor("_Color", Color.black);
@@ -33,6 +34,7 @@ public class CosmicBarrel : EnemyMaster
     {
         animator.SetTrigger("Die");
         yield return new WaitForSeconds(animator.runtimeAnimatorController.animationClips[1].length);
+        SFXManager.instance.PlayOneShotAtPoint(transform.position, deathAudioClip);
         int randomSpawn = UnityEngine.Random.Range(1, 101); 
         float baseSpawnChance = 100f / pickupsList.Count; //Divide spawn chances evenly for all pickups in list
 

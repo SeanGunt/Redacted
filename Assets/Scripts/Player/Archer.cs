@@ -5,6 +5,7 @@ using UnityEngine;
 public class Archer : PlayerBase
 {
     [SerializeField] private Bow bow;
+    [SerializeField] private AudioClip dashAudioClip;
 
     protected override void HandleQAbility()
     {
@@ -57,6 +58,7 @@ public class Archer : PlayerBase
     private IEnumerator HandleDashAbility()
     {
         Dash();
+        audioSource.PlayOneShot(dashAudioClip);
         canFlipSprite = false;
         canUseAbility = false;
         weaponBase.canRotate = false;

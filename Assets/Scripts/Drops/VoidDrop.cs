@@ -9,6 +9,7 @@ public class VoidDrop : DropsBase
 {
     [SerializeField] private GameObject timerBar;
     private Volume voidVolume;
+    private bool activated;
     protected override void OnEnable()
     {
         base.OnEnable();
@@ -17,12 +18,14 @@ public class VoidDrop : DropsBase
     }
     protected override void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.gameObject == GameManager.Instance.player)
+        if (other.gameObject == GameManager.Instance.player && !activated)
         {
+            SFXManager.instance.PlayOneShotAtPoint(transform.position, pickupAudioClip);
             spriteRenderer.color = new(spriteRenderer.color.r, spriteRenderer.color.g, spriteRenderer.color.b, 0.0f); //This must happen otherwise the pickup will remain rendered
             trailRenderer.enabled = false;
             if (!DropsManager.instance.voidPickupActive)
             {
+                activated = true;
                 StartCoroutine(HandleVoidEffects());
             }
             else

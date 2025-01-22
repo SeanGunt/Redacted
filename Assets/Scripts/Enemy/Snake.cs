@@ -22,6 +22,7 @@ public class Snake : EnemyMaster
         snakeAnimation = GetComponentInChildren<SnakeAnimation>();
         agent = GetComponent<NavMeshAgent>();
         collider2d = GetComponent<BoxCollider2D>();
+        audioSource = GetComponent<AudioSource>();
         agent.speed = speed;
         baseSpeed = speed;
         agent.updateUpAxis = false;

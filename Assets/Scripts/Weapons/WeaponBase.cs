@@ -6,6 +6,7 @@ using TMPro;
 public class WeaponBase : MonoBehaviour
 {
     protected PlayerBase playerBase;
+    protected AudioSource audioSource;
     [HideInInspector] public Animator animator;
     [HideInInspector] public AnimationClip[] clips;
     [HideInInspector] public Material defaultMaterial;
@@ -49,6 +50,7 @@ public class WeaponBase : MonoBehaviour
         playerBase = GetComponentInParent<PlayerBase>();
         animator = GetComponent<Animator>();
         spriteRenderer = GetComponent<SpriteRenderer>();
+        audioSource = GetComponent<AudioSource>();
         clips = animator.runtimeAnimatorController.animationClips;
         defaultMaterial = spriteRenderer.material;
     }
@@ -201,5 +203,10 @@ public class WeaponBase : MonoBehaviour
     public void CantRotate()
     {
         canRotate = false;
+    }
+
+    public void PlayAudioClip(AudioClip clip)
+    {
+        audioSource.PlayOneShot(clip);
     }
 }

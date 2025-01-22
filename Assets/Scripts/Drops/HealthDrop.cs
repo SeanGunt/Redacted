@@ -11,6 +11,7 @@ public class HealthDrop : DropsBase
     {
         if (other.gameObject == GameManager.Instance.player)
         {
+            SFXManager.instance.PlayOneShotAtPoint(transform.position, pickupAudioClip);
             Instantiate(healParticlesGO, player.transform.position, Quaternion.Euler(-90f, 0f, 0f), player.transform);
             playerBase.health =  Mathf.Min(playerBase.health + amountToHeal, playerBase.baseHealth);
             gameObject.SetActive(false);

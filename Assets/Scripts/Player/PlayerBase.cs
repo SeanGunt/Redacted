@@ -350,10 +350,4 @@ public class PlayerBase : MonoBehaviour
         playerUI.rImage.fillAmount = 1f;
         playerUI.rImage.color = playerUI.imageStartColor;
     }
-
-    public void PlayAudio(AudioClip clip)
-    {
-        audioSource.clip = clip;
-        audioSource.Play();
-    }
 }

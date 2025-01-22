@@ -137,6 +137,13 @@ AnimationClip:
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
+  - time: 0.41666666
+    functionName: PlayAudioClip
+    data: 
+    objectReferenceParameter: {fileID: 8300000, guid: d1cb9ba224884c04ca22a3a81cdfa0d9, type: 3}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
   - time: 0.6666667
     functionName: SpawnArrow
     data: 
@@ -144,10 +151,24 @@ AnimationClip:
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
+  - time: 0.6666667
+    functionName: PlayAudioClip
+    data: 
+    objectReferenceParameter: {fileID: 8300000, guid: d1cb9ba224884c04ca22a3a81cdfa0d9, type: 3}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
   - time: 0.9166667
     functionName: SpawnArrow
     data: 
     objectReferenceParameter: {fileID: 6868337946219877856, guid: ad736fa5438e30b489eadc045f38916c, type: 3}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 0.9166667
+    functionName: PlayAudioClip
+    data: 
+    objectReferenceParameter: {fileID: 8300000, guid: d1cb9ba224884c04ca22a3a81cdfa0d9, type: 3}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0

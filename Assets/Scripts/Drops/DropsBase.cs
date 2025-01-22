@@ -7,6 +7,7 @@ public class DropsBase : MonoBehaviour
     [SerializeField] protected float bobSpeed;
     [SerializeField] protected float amplitude;
     [SerializeField] protected float vacuumSpeed;
+    [SerializeField] protected AudioClip pickupAudioClip;
     protected float timeOffset;
     protected float vacuumSpeedChange;
     protected bool vacuuming;
@@ -60,7 +61,7 @@ public class DropsBase : MonoBehaviour
     {
         if (other.gameObject == GameManager.Instance.player)
         {
-            gameObject.SetActive(false);
+            
         }
     } 
     private void HandleBobbing()
