@@ -5,6 +5,7 @@ using UnityEngine;
 public class BlackHole : MonoBehaviour
 {
     [SerializeField] private GameObject blackHoleExplosion;
+    [SerializeField] private AudioClip blackholeExplosionAudioClip;
     int enemyLayerMask = 1 << 9;
     private void Awake()
     {
@@ -29,6 +30,7 @@ public class BlackHole : MonoBehaviour
             detonateTimer -=  Time.deltaTime;
             yield return null;
         }
+        SFXManager.instance.PlayOneShotAtPoint(transform.position, blackholeExplosionAudioClip);
         Instantiate(blackHoleExplosion, transform.position, Quaternion.identity, GameManager.Instance.poolHolders[3].transform);
         Destroy(gameObject);
         yield return null;

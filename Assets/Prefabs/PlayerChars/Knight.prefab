@@ -5407,6 +5407,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bf0fd919e1db2624cab9134b5cf40955, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  audioSource: {fileID: 0}
   baseSpeed: 3
   speed: 3.35
   baseHealth: 500
@@ -5488,6 +5489,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   level: 1
+  levelUpSoundClip: {fileID: 8300000, guid: 033fde3b58e628742ab6bdb71427d82c, type: 3}
 --- !u!114 &3884314428910866146
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5714,7 +5716,7 @@ AudioSource:
   SpatializePostEffects: 0
   Priority: 128
   DopplerLevel: 1
-  MinDistance: 1
+  MinDistance: 2.5
   MaxDistance: 500
   Pan2D: 0
   rolloffMode: 0
@@ -6416,7 +6418,7 @@ AudioSource:
   SpatializePostEffects: 0
   Priority: 128
   DopplerLevel: 1
-  MinDistance: 1
+  MinDistance: 2.5
   MaxDistance: 500
   Pan2D: 0
   rolloffMode: 0

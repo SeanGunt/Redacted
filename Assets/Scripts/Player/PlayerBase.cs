@@ -10,7 +10,7 @@ public class PlayerBase : MonoBehaviour
     private PlayerInput playerInput;
     private MovePointReticle movePointReticle;
     private ExperienceManager experienceManager;
-    protected AudioSource audioSource;
+    [HideInInspector] public AudioSource audioSource;
     protected WeaponBase weaponBase;
     private PlayerUI playerUI;
 

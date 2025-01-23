@@ -7,6 +7,7 @@ public class SFXManager : MonoBehaviour
     public static SFXManager instance;
     [SerializeField] private GameObject soundObject;
     [SerializeField] private Transform soundHolder;
+    public AudioSource generalAudioSource;
 
     private void Awake()
     {

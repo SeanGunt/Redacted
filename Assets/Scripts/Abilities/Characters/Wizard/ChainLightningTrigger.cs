@@ -8,9 +8,13 @@ public class ChainLightningTrigger : ProjectileTrigger
     [SerializeField] private Transform lightningPivot;
     [SerializeField] private Destroy destroy;
     private SpriteRenderer spriteRenderer;
+    private AudioSource audioSource;
+    [SerializeField] AudioClip lightningAudioClip;
     private void Awake()
     {
         StartCoroutine(ExtendAndFadeBolt());
+        audioSource = GetComponent<AudioSource>();
+        audioSource.PlayOneShot(lightningAudioClip);
     }
     protected override void OnTriggerEnter2D(Collider2D other)
     {

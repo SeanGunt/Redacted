@@ -11,6 +11,7 @@ public class ExperienceManager : MonoBehaviour
     private float expTillNextLevel = 100f;
     [HideInInspector] public int level = 1;
     private readonly int maxLevel = 20;
+    [SerializeField] private AudioClip levelUpSoundClip;
 
     private void Awake()
     {
@@ -36,6 +37,7 @@ public class ExperienceManager : MonoBehaviour
         {
             level += 1;
             playerBase.HandleOnlevel();
+            playerBase.audioSource.PlayOneShot(levelUpSoundClip);
             abilityManager.numOfLevelsAvailable += 1;
             exp -= expTillNextLevel;
             expTillNextLevel = Mathf.Pow(expTillNextLevel, 1.1f);

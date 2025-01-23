@@ -5,6 +5,7 @@ using UnityEngine;
 public class IceballLaunch : MonoBehaviour
 {
     private Rigidbody2D rb;
+    private AudioSource audioSource;
     [Header("Iceball Properties")]
     [SerializeField] private float initialSpeed;
     [SerializeField] private float constantSpeed;
@@ -16,12 +17,14 @@ public class IceballLaunch : MonoBehaviour
     [SerializeField] private Transform[] iceShardSpawnPositions;
     [SerializeField] private GameObject iceShardPrefab;
     [SerializeField] private float iceShardShotRate;
+    [SerializeField] private AudioClip iceShardAudioClip;
     private float iceShardTimer;
     private int totalShardClustersShotSinceBirth = 0;
 
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
+        audioSource = GetComponent<AudioSource>();
         spriteRenderer = GetComponent<SpriteRenderer>();
         rb.velocity = transform.up * initialSpeed;
         iceShardTimer =  iceShardShotRate;
@@ -55,6 +58,7 @@ public class IceballLaunch : MonoBehaviour
 
     private void SpawnShards()
     {
+        StartCoroutine(DelayIceShardAudioClip());
         for (int i = 0; i < iceShardSpawnPositions.Length; i++)
         {
             GameObject iceShard = Instantiate(iceShardPrefab, iceShardSpawnPositions[i].transform.position, iceShardSpawnPositions[i].transform.rotation, transform);
@@ -68,6 +72,12 @@ public class IceballLaunch : MonoBehaviour
             spriteRenderer.color -= new Color(0,0,0, Time.deltaTime/3);
             yield return null;
         }
+    }
+
+    private IEnumerator DelayIceShardAudioClip()
+    {
+        yield return new WaitForSeconds(0.5f);
+        audioSource.PlayOneShot(iceShardAudioClip);
     }
 
     private bool CanStartFade()

@@ -1035,7 +1035,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_BindingMode: 1
-  m_FollowOffset: {x: 0, y: 0, z: -10}
+  m_FollowOffset: {x: 0, y: 0, z: -5}
   m_XDamping: 2
   m_YDamping: 2
   m_ZDamping: 2
@@ -9620,6 +9620,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   soundObject: {fileID: 8208111827105304749, guid: f0c4dec0b3071354e8188cf4766c2924, type: 3}
   soundHolder: {fileID: 1921546193}
+  generalAudioSource: {fileID: 0}
 --- !u!1 &1461268676
 GameObject:
   m_ObjectHideFlags: 0
@@ -11192,7 +11193,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1921546192}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.85994655, y: -0.3990958, z: 0.0084238835}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

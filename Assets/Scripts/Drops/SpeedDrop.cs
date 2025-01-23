@@ -8,22 +8,23 @@ using System.Linq;
 public class SpeedDrop : DropsBase
 {
     [SerializeField] private GameObject timerBar;
-    private bool acivated;
+    private bool activated;
     protected override void OnEnable()
     {
         base.OnEnable();
+        activated = false;
         spriteRenderer.color = new(spriteRenderer.color.r, spriteRenderer.color.g, spriteRenderer.color.b, 1f);
     }
     protected override void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.gameObject == GameManager.Instance.player && !acivated)
+        if (other.gameObject == GameManager.Instance.player && !activated)
         {
             SFXManager.instance.PlayOneShotAtPoint(transform.position, pickupAudioClip);
             spriteRenderer.color = new(spriteRenderer.color.r, spriteRenderer.color.g, spriteRenderer.color.b, 0.0f); //This must happen otherwise the pickup will remain rendered
             trailRenderer.enabled = false;
             if (!DropsManager.instance.speedPickupActive)
             {
-                acivated = true;
+                activated = true;
                 StartCoroutine(IncreaseSpeed());
             }
             else

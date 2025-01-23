@@ -152,6 +152,7 @@ MonoBehaviour:
   - {fileID: 2379373739830331554}
   chainLightningPrefab: {fileID: 2842863288066496263, guid: c7e44356111f9dc4fa2d03b4e2b663ce, type: 3}
   lightningPivot: {fileID: 808771827629316562}
+  lighningAudioClip: {fileID: 8300000, guid: 6bf0b0a002026264bbdf81e4e397f144, type: 3}
 --- !u!1 &2842863288066496263
 GameObject:
   m_ObjectHideFlags: 0
