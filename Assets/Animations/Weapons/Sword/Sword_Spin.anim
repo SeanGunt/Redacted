@@ -962,13 +962,6 @@ AnimationClip:
   m_HasMotionFloatCurves: 0
   m_Events:
   - time: 0
-    functionName: CantRotate
-    data: 
-    objectReferenceParameter: {fileID: 0}
-    floatParameter: 0
-    intParameter: 0
-    messageOptions: 0
-  - time: 0
     functionName: CantFlipSprite
     data: 
     objectReferenceParameter: {fileID: 0}
@@ -982,10 +975,31 @@ AnimationClip:
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
+  - time: 0
+    functionName: CantRotate
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
   - time: 0.05
     functionName: EnableWeaponCollider
     data: 
     objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 0.21666667
+    functionName: PlayAudioClip
+    data: 
+    objectReferenceParameter: {fileID: 8300000, guid: 9caa2dd306acb884abaca354650adb99, type: 3}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 0.5833333
+    functionName: PlayAudioClip
+    data: 
+    objectReferenceParameter: {fileID: 8300000, guid: 787f0a7f0ffdb0b49bc3f34d54159e6d, type: 3}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
@@ -997,14 +1011,14 @@ AnimationClip:
     intParameter: 0
     messageOptions: 0
   - time: 0.9166667
-    functionName: CanFlipSprite
+    functionName: CanRotate
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
   - time: 0.9166667
-    functionName: CanRotate
+    functionName: CanFlipSprite
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0

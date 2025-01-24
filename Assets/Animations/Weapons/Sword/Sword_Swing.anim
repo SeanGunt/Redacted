@@ -629,6 +629,13 @@ AnimationClip:
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
+  - time: 0.13333334
+    functionName: PlayAudioClip
+    data: 
+    objectReferenceParameter: {fileID: 8300000, guid: 9caa2dd306acb884abaca354650adb99, type: 3}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
   - time: 0.3
     functionName: DisableWeaponCollider
     data: 

@@ -11,6 +11,7 @@ public class Shield : MonoBehaviour
     private BoxCollider2D bc;
     private Animator animator;
     private TrailRenderer trailRenderer;
+    private AudioSource audioSource;
 
     private void Awake()
     {
@@ -20,6 +21,7 @@ public class Shield : MonoBehaviour
         animator = GetComponent<Animator>();
         bc = GetComponent<BoxCollider2D>();
         trailRenderer = GetComponentInChildren<TrailRenderer>();
+        audioSource = GetComponent<AudioSource>();
         bc.enabled = false;
         trailRenderer.emitting = false;
     }
@@ -53,5 +55,10 @@ public class Shield : MonoBehaviour
         isRotating = isTrue;
         bc.enabled = isTrue;
         trailRenderer.emitting = isTrue;
+    }
+
+    public void PlayAudioClip(AudioClip clip)
+    {
+        audioSource.PlayOneShot(clip);
     }
 }

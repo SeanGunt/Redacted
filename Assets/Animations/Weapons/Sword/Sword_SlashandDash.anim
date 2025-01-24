@@ -773,6 +773,20 @@ AnimationClip:
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
+  - time: 0.05
+    functionName: PlayAudioClip
+    data: 
+    objectReferenceParameter: {fileID: 8300000, guid: 9caa2dd306acb884abaca354650adb99, type: 3}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 0.21666667
+    functionName: PlayAudioClip
+    data: 
+    objectReferenceParameter: {fileID: 8300000, guid: 9caa2dd306acb884abaca354650adb99, type: 3}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
   - time: 0.36666667
     functionName: CanRotate
     data: 
@@ -791,6 +805,13 @@ AnimationClip:
     functionName: DisableWeaponCollider
     data: 
     objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 0.4
+    functionName: PlayAudioClip
+    data: 
+    objectReferenceParameter: {fileID: 8300000, guid: a7d41bfb726f1ee43939828a36b6abc8, type: 3}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
