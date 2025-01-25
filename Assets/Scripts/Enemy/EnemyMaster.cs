@@ -232,5 +232,10 @@ public class EnemyMaster : MonoBehaviour, IDamagable, IFreezable
 
         agent.speed = speed;
     }
+
+    public void PlaySoundEffect(AudioClip clip)
+    {
+        audioSource.PlayOneShot(clip);
+    }
     
 }

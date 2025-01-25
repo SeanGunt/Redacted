@@ -58,7 +58,7 @@ public class MapUpdate : MonoBehaviour
 
         Tilemap tilemap = tilemapObject.AddComponent<Tilemap>();
         TilemapRenderer tilemapRenderer = tilemapObject.AddComponent<TilemapRenderer>();
-        tilemapRenderer.sortingOrder = -1;
+        tilemapRenderer.sortingOrder = -2;
 
         return tilemap;
     }

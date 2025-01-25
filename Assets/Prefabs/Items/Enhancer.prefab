@@ -97,7 +97,7 @@ MonoBehaviour:
   activeAbilityText: 'Active Ability: Enhances next (3) hits with abilties to deal
     2x damage'
   passiveAbilityText: 'Passive Ability: None'
-  price: 1000
+  price: 2000
   activeBaseCooldown: 30
   enhancerMaterial: {fileID: 2100000, guid: d835bd1ffcb212f4289ab38a3c09bf59, type: 2}
 --- !u!222 &4537578084548061848

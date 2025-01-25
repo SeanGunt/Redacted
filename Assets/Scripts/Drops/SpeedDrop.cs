@@ -37,6 +37,7 @@ public class SpeedDrop : DropsBase
 
     private IEnumerator IncreaseSpeed()
     {
+        trailRenderer.enabled = false;
         GameObject timer = Instantiate(timerBar, Vector3.zero, Quaternion.identity, GameManager.Instance.player.GetComponent<PlayerUI>().pickupTimerHolder.transform);
         Image[] timerImage = timer.GetComponentsInChildren<Image>();
         timerImage[1].color = new Color(spriteRenderer.color.r, spriteRenderer.color.g, spriteRenderer.color.b, 1f);

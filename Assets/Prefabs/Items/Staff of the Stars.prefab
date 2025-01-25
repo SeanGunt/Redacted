@@ -10,10 +10,10 @@ GameObject:
   m_Component:
   - component: {fileID: 2807989740772640157}
   - component: {fileID: 1703813370328746879}
-  - component: {fileID: 5243718034763070764}
   - component: {fileID: 4537578084548061848}
+  - component: {fileID: 5564176554374749872}
   m_Layer: 0
-  m_Name: Swift Boots
+  m_Name: Staff of the Stars
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -69,37 +69,6 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &5243718034763070764
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3730327886647879648}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8531cc46f400fe346a6f010a7beba983, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  health: 0
-  healthRegen: 2
-  moveSpeed: 0.25
-  pickupRange: 2
-  physicalDamage: 0
-  magicalDamage: 0
-  physicalResistance: 0
-  magicalResistance: 0
-  lifeSteal: 0
-  critChance: 0
-  coolDownReduction: 15
-  imageSprite: {fileID: 21300000, guid: 4c5efa4b438d0b74b816b4023fd59501, type: 3}
-  itemName: SwiftBoots
-  activeAbilityText: 'Active Ability: 2x current movement speed for (3) seconds'
-  passiveAbilityText: 'Passive Ability: None'
-  price: 2000
-  activeBaseCooldown: 25
-  speedBuffDurationAmount: 3
-  speedBuffAmount: 2
 --- !u!222 &4537578084548061848
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -108,3 +77,37 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3730327886647879648}
   m_CullTransparentMesh: 1
+--- !u!114 &5564176554374749872
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3730327886647879648}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0c3c5e1bc798f934bb71280980a696ba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 0
+  healthRegen: 0
+  moveSpeed: 0
+  pickupRange: 1
+  physicalDamage: 0
+  magicalDamage: 60
+  physicalResistance: 0
+  magicalResistance: 0
+  lifeSteal: 0
+  critChance: 15
+  coolDownReduction: 0
+  imageSprite: {fileID: 21300000, guid: 16f40ae6c6fc5844992504143b3d7ec8, type: 3}
+  itemName: Staff of the Stars
+  activeAbilityText: 'Active Ability: Spawns a random cosmic barrel drop'
+  passiveAbilityText: 'Passive Ability: '
+  price: 2000
+  activeBaseCooldown: 30
+  barrelDrops:
+  - {fileID: 7961660892212716164, guid: 3a60e61e13e7f3947a9b382dfd430114, type: 3}
+  - {fileID: 7961660892212716164, guid: 51235361b4a0e90429f23dfbabbc1e98, type: 3}
+  - {fileID: 7961660892212716164, guid: 1888b09f2d6d37445b48f4650898e2e7, type: 3}
+  - {fileID: 7961660892212716164, guid: 2231cd9dfcc504b4e93510de2ab2847b, type: 3}
