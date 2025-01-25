@@ -6,14 +6,17 @@ using UnityEngine.Rendering;
 public class PauseMenu : MonoBehaviour
 {
     public static PauseMenu Instance;
+    [HideInInspector] public AudioSource audioSource;
     [SerializeField] private GameObject pauseMenuCanvas;
     [SerializeField] private Volume globalVolume;
+    public AudioClip menuHoverAudioClip;
     private GameObject playerUI;
     private bool paused;
 
     private void Awake()
     {
         Instance = this;
+        audioSource = GetComponent<AudioSource>();
     }
 
     private void Start()

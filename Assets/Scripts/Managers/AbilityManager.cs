@@ -11,6 +11,7 @@ public class AbilityManager : MonoBehaviour
     private PlayerInput playerInput;
     private PlayerUI playerUI;
     public int numOfLevelsAvailable;
+    [SerializeField] private AudioClip levelUpAbilityAudioClip;
     public enum AbilityType
     {
         LevelQ, LevelE, LevelW, LevelR
@@ -52,6 +53,7 @@ public class AbilityManager : MonoBehaviour
     private void LevelUpAbility(string abilityType)
     {
         int maxLevel = GetMaxAbilityLevel(abilityType);
+        GameManager.Instance.audioSource.PlayOneShot(levelUpAbilityAudioClip);
 
         switch (abilityType)
         {

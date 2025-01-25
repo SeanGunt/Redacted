@@ -507,7 +507,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 75
   speed: 3.5
-  damage: 2
+  damage: 10
   baseSpeed: 0
   expIndex: 1
   deathAnimName: Robot_Death

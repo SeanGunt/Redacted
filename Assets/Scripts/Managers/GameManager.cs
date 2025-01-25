@@ -13,6 +13,7 @@ public class GameManager : MonoBehaviour
     public Texture2D cursorSelectedTexture;
     public Texture2D cursorDefaultTexture;
     public Light2D globalLight;
+    [HideInInspector] public AudioSource audioSource;
     [HideInInspector] public GameObject player;
     private void Awake()
     {
@@ -32,6 +33,7 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player");
+        audioSource = GetComponent<AudioSource>();
     }
 
     public void FreezeTime()

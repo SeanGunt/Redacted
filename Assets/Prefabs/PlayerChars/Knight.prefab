@@ -5515,6 +5515,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   numOfLevelsAvailable: 0
+  levelUpAbilityAudioClip: {fileID: 8300000, guid: 008a09a44793ba84f92785368b6753a1, type: 3}
 --- !u!50 &3884314428910866144
 Rigidbody2D:
   serializedVersion: 4

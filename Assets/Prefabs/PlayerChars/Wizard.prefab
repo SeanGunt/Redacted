@@ -4976,6 +4976,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   numOfLevelsAvailable: 0
+  levelUpAbilityAudioClip: {fileID: 8300000, guid: 008a09a44793ba84f92785368b6753a1, type: 3}
 --- !u!114 &1636167505
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -37,7 +37,7 @@ public class ExperienceManager : MonoBehaviour
         {
             level += 1;
             playerBase.HandleOnlevel();
-            playerBase.audioSource.PlayOneShot(levelUpSoundClip);
+            GameManager.Instance.audioSource.PlayOneShot(levelUpSoundClip);
             abilityManager.numOfLevelsAvailable += 1;
             exp -= expTillNextLevel;
             expTillNextLevel = Mathf.Pow(expTillNextLevel, 1.1f);

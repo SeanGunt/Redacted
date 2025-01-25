@@ -8,6 +8,7 @@ public class UIMouseHoverButton : MonoBehaviour, IPointerEnterHandler, IPointerE
     public void OnPointerEnter(PointerEventData eventData)
     {
         Cursor.SetCursor(GameManager.Instance.cursorSelectedTexture, Vector2.zero, CursorMode.Auto);
+        PauseMenu.Instance.audioSource.PlayOneShot(PauseMenu.Instance.menuHoverAudioClip);
     }
 
     public void OnPointerExit(PointerEventData eventData)
