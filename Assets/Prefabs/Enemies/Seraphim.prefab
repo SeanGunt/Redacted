@@ -195,7 +195,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a81d4f72df880d64dbcb12c11e6da520, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  seraphimFlyAudioClip: {fileID: 8300000, guid: 8605037f5f761e74d844f2312d57d331, type: 3}
 --- !u!1 &696691363
 GameObject:
   m_ObjectHideFlags: 0
@@ -602,6 +601,7 @@ MonoBehaviour:
   hitAudioClip: {fileID: 8300000, guid: 08f19eb7b1d55644fa37e4e058989500, type: 3}
   deathAudioClip: {fileID: 8300000, guid: 88723662453b3254c9ecae752d7274f5, type: 3}
   saltBeamIndicatorGO: {fileID: 1298634365030965109, guid: a09c48a32e2f95642b1e29b3360ea662, type: 3}
+  angelMusic: {fileID: 8300000, guid: e536b496598cc8a41b3a89beb84838d5, type: 3}
 --- !u!82 &6695315988120740781
 AudioSource:
   m_ObjectHideFlags: 0

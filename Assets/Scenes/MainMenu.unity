@@ -9717,6 +9717,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: cd133d5a9eff67a479ff3e1f08254af9, type: 3}
   - {fileID: 8300000, guid: aa9db3638d926d6448ed396943142390, type: 3}
   - {fileID: 8300000, guid: a69ccc3190be04b439b38cbde78c62b2, type: 3}
+  - {fileID: 8300000, guid: e536b496598cc8a41b3a89beb84838d5, type: 3}
   musicSource: {fileID: 522655746}
 --- !u!114 &1407384855
 MonoBehaviour:
