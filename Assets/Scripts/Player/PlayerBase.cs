@@ -249,14 +249,14 @@ public class PlayerBase : MonoBehaviour
 
     private void HandleStatsUI()
     {
-        playerUI.physicalDamageText.text =  physicalDamage.ToString();
-        playerUI.magicalDamageText.text = magicalDamage.ToString();
-        playerUI.physicalResistanceText.text = physicalResistance.ToString();
-        playerUI.magicalResistanceText.text = magicalResistance.ToString();
-        playerUI.criticalChanceText.text = critChance.ToString() + "%";
-        playerUI.cooldownReductionText.text = cooldownReduction.ToString() + "%";
-        playerUI.speedText.text = speed.ToString();
-        playerUI.pickupRangeText.text = pickupRange.ToString();
+        playerUI.physicalDamageText.text =  physicalDamage.ToString("0.##");
+        playerUI.magicalDamageText.text = magicalDamage.ToString("0.##");
+        playerUI.physicalResistanceText.text = physicalResistance.ToString("0.##");
+        playerUI.magicalResistanceText.text = magicalResistance.ToString("0.##");
+        playerUI.criticalChanceText.text = critChance.ToString("0.##") + "%";
+        playerUI.cooldownReductionText.text = cooldownReduction.ToString("0.##") + "%";
+        playerUI.speedText.text = speed.ToString("0.##");
+        playerUI.pickupRangeText.text = pickupRange.ToString("0.##");
     }
 
     public void HandleOnlevel()

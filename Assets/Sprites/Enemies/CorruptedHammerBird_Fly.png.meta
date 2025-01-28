@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 16d439e23e09978439bf4db9bb7d67c6
+guid: 89ae4d24b884c624dbcf083722aad150
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -69,7 +69,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 1
     textureFormat: 4
-    textureCompression: 0
+    textureCompression: 1
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -104,85 +104,85 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Robot_Death_0
+      name: CorruptedHammerBird_Fly_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 31
-        height: 48
-      alignment: 9
-      pivot: {x: 0.5, y: 0.2}
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 527940f4e1c0e564aa581d1836600fd2
-      internalID: 1478228326
+      spriteID: d49aca4a9fce32e489e31871196c9eed
+      internalID: -1868986951
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Robot_Death_1
+      name: CorruptedHammerBird_Fly_1
       rect:
         serializedVersion: 2
-        x: 31
+        x: 32
         y: 0
-        width: 31
-        height: 48
-      alignment: 9
-      pivot: {x: 0.5, y: 0.2}
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 68a8595f0eea0ac4e967fbe2cfbf669d
-      internalID: 1722608084
+      spriteID: 6e7005d26036bf3439537bb68a761adc
+      internalID: 1476791671
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Robot_Death_2
+      name: CorruptedHammerBird_Fly_2
       rect:
         serializedVersion: 2
-        x: 62
+        x: 64
         y: 0
-        width: 31
-        height: 48
-      alignment: 9
-      pivot: {x: 0.5, y: 0.2}
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7bdea0af01c9eb949adcbeb3a787f3db
-      internalID: 1007122884
+      spriteID: 4f676dfe72954154d8c43f17e80184b5
+      internalID: -398619412
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Robot_Death_3
+      name: CorruptedHammerBird_Fly_3
       rect:
         serializedVersion: 2
-        x: 93
+        x: 96
         y: 0
-        width: 31
-        height: 48
-      alignment: 9
-      pivot: {x: 0.5, y: 0.2}
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: af554693268ed6349a12d2c547dbff65
-      internalID: 1907115537
+      spriteID: 5bbc3fc931b812e4485212ea287f97f7
+      internalID: 1711253284
       vertices: []
       indices: 
       edges: []
@@ -198,10 +198,10 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Robot_Death_2: 1007122884
-      Robot_Death_1: 1722608084
-      Robot_Death_0: 1478228326
-      Robot_Death_3: 1907115537
+      CorruptedHammerBird_Fly_2: -398619412
+      CorruptedHammerBird_Fly_3: 1711253284
+      CorruptedHammerBird_Fly_0: -1868986951
+      CorruptedHammerBird_Fly_1: 1476791671
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

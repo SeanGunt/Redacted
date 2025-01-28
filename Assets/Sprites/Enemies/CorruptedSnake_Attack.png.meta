@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 16d439e23e09978439bf4db9bb7d67c6
+guid: c74d1143b07b0d54888d1e680cfd6b31
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -104,85 +104,190 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Robot_Death_0
+      name: CorruptedSnake_Attack_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 31
-        height: 48
-      alignment: 9
-      pivot: {x: 0.5, y: 0.2}
+        width: 64
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 527940f4e1c0e564aa581d1836600fd2
-      internalID: 1478228326
+      spriteID: 7ba6bd02174ff9346a90dead61debefd
+      internalID: -1328293422
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Robot_Death_1
+      name: CorruptedSnake_Attack_1
       rect:
         serializedVersion: 2
-        x: 31
+        x: 64
         y: 0
-        width: 31
-        height: 48
-      alignment: 9
-      pivot: {x: 0.5, y: 0.2}
+        width: 64
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 68a8595f0eea0ac4e967fbe2cfbf669d
-      internalID: 1722608084
+      spriteID: aa7b99353456ea34893d879e7946b8b8
+      internalID: -981959194
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Robot_Death_2
+      name: CorruptedSnake_Attack_2
       rect:
         serializedVersion: 2
-        x: 62
+        x: 128
         y: 0
-        width: 31
-        height: 48
-      alignment: 9
-      pivot: {x: 0.5, y: 0.2}
+        width: 64
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7bdea0af01c9eb949adcbeb3a787f3db
-      internalID: 1007122884
+      spriteID: 3e12a5b6514bcdc4e82ead1c8143c201
+      internalID: 962896140
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Robot_Death_3
+      name: CorruptedSnake_Attack_3
       rect:
         serializedVersion: 2
-        x: 93
+        x: 192
         y: 0
-        width: 31
-        height: 48
-      alignment: 9
-      pivot: {x: 0.5, y: 0.2}
+        width: 64
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: af554693268ed6349a12d2c547dbff65
-      internalID: 1907115537
+      spriteID: 725c3c61978161446b5476d447e14249
+      internalID: -2029999672
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CorruptedSnake_Attack_4
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 0
+        width: 64
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f6a173a098c0c714598b46c891b2f9b9
+      internalID: -693927598
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CorruptedSnake_Attack_5
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 0
+        width: 64
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b3ebd1ca1060d4d4f82aef3319018fb8
+      internalID: 498623940
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CorruptedSnake_Attack_6
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 0
+        width: 64
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fd0f9be512267a44dbb2153b3a96a352
+      internalID: -1102052952
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CorruptedSnake_Attack_7
+      rect:
+        serializedVersion: 2
+        x: 448
+        y: 0
+        width: 64
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 324f0a9eed6821d4e86d9f4048d3f05c
+      internalID: 325632075
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CorruptedSnake_Attack_8
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 0
+        width: 64
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c49479aec23e44648a4b68d353012e4f
+      internalID: 516682893
       vertices: []
       indices: 
       edges: []
@@ -198,10 +303,15 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Robot_Death_2: 1007122884
-      Robot_Death_1: 1722608084
-      Robot_Death_0: 1478228326
-      Robot_Death_3: 1907115537
+      CorruptedSnake_Attack_4: -693927598
+      CorruptedSnake_Attack_0: -1328293422
+      CorruptedSnake_Attack_7: 325632075
+      CorruptedSnake_Attack_1: -981959194
+      CorruptedSnake_Attack_8: 516682893
+      CorruptedSnake_Attack_5: 498623940
+      CorruptedSnake_Attack_2: 962896140
+      CorruptedSnake_Attack_3: -2029999672
+      CorruptedSnake_Attack_6: -1102052952
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

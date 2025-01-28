@@ -7,6 +7,8 @@ public class Seraphim : EnemyMaster
     [Header("Seraphim Specifics")]
     [SerializeField] private GameObject saltBeamIndicatorGO;
     private bool pillarsBeingSpawned;
+    private bool enraged;
+
 
     protected override void Awake()
     {
@@ -37,6 +39,11 @@ public class Seraphim : EnemyMaster
             StartCoroutine(PillarsOfSalt());
             pillarsBeingSpawned = true;
         }
+
+        if (health <= maxHealth/2)
+        {
+            enraged = true;
+        }
     }
 
     private IEnumerator PillarsOfSalt()
@@ -48,7 +55,14 @@ public class Seraphim : EnemyMaster
             if (pillarTimer <= 0f)
             {
                 Instantiate(saltBeamIndicatorGO, RandomLocationAroundPlayer(), Quaternion.identity, GameManager.Instance.poolHolders[3].transform);
-                pillarTimer = 1f;
+                if (enraged)
+                {
+                    pillarTimer = 0.5f;
+                }
+                else
+                {
+                    pillarTimer = 1f;
+                }
             }
             yield return null;
         }
