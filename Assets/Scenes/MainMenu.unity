@@ -285,6 +285,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   audioSource: {fileID: 0}
   pauseMenuCanvas: {fileID: 1060161760}
+  deathMenuCanvas: {fileID: 0}
   globalVolume: {fileID: 43023467}
   menuHoverAudioClip: {fileID: 8300000, guid: 2e7ec8efeb3702b45884b7873d1f7283, type: 3}
 --- !u!4 &115165337
@@ -9718,6 +9719,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: aa9db3638d926d6448ed396943142390, type: 3}
   - {fileID: 8300000, guid: a69ccc3190be04b439b38cbde78c62b2, type: 3}
   - {fileID: 8300000, guid: b5a7b3e5b0d60444b80f6a7edb79c56c, type: 3}
+  - {fileID: 8300000, guid: e404b877f0a33e0429b00adf4812f8be, type: 3}
   musicSource: {fileID: 522655746}
 --- !u!114 &1407384855
 MonoBehaviour:

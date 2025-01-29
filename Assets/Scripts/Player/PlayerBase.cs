@@ -50,12 +50,13 @@ public class PlayerBase : MonoBehaviour
     private SpriteRenderer spriteRenderer;
     protected bool canUseAbility = true;
     [HideInInspector] public bool canFlipSprite = true;
+    [HideInInspector] public bool dead = false;
     protected bool canMove = true;
     protected bool isInvincible;
     protected Collider2D cachedCollider;
     protected enum State
     {
-        idle, moving
+        idle, moving, dead
     }
 
     private void Awake()
@@ -94,6 +95,9 @@ public class PlayerBase : MonoBehaviour
             break;
             case State.moving:
                 HandleMoving();
+            break;
+            case State.dead:
+            
             break;
         }
     }
@@ -231,6 +235,13 @@ public class PlayerBase : MonoBehaviour
 
     private void HandleHealth()
     {
+        if (health < 0)
+        {
+            Debug.Log("Dead");
+            state = State.dead;
+            dead = true;
+            return;
+        }
         playerUI.curHealthNumText.text = health.ToString("n0");
         float ratio = 1 / baseHealth;
         playerUI.healthBar.fillAmount = health * ratio;

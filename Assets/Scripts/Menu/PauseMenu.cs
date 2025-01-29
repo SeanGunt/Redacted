@@ -8,10 +8,12 @@ public class PauseMenu : MonoBehaviour
     public static PauseMenu Instance;
     [HideInInspector] public AudioSource audioSource;
     [SerializeField] private GameObject pauseMenuCanvas;
+    [SerializeField] private GameObject deathMenuCanvas;
     [SerializeField] private Volume globalVolume;
     public AudioClip menuHoverAudioClip;
     private GameObject playerUI;
     private bool paused;
+    private bool deathScreenActive;
 
     private void Awake()
     {
@@ -24,6 +26,18 @@ public class PauseMenu : MonoBehaviour
         if (playerUI == null) return;
         playerUI =  GameObject.FindGameObjectWithTag("PlayerUI");
         UnPause();
+    }
+
+    private void Update()
+    {
+        if (GameManager.Instance.player.GetComponent<PlayerBase>().dead && !deathScreenActive)
+        {
+            deathMenuCanvas.SetActive(true);
+            playerUI =  GameObject.FindGameObjectWithTag("PlayerUI");
+            playerUI.SetActive(false);
+            MusicManager.instance.FadeTracks(MusicManager.instance.tracks[4]);
+            deathScreenActive = true;
+        }
     }
 
     public bool IsPauseMenuOpen()
@@ -54,6 +68,7 @@ public class PauseMenu : MonoBehaviour
 
     private void HandlePause(float timeScale, bool playerUIActive, bool pauseMenuCanvasActive, bool isPaused)
     {
+        if (GameManager.Instance.player.GetComponent<PlayerBase>().dead) return;
         paused = isPaused;
         Time.timeScale = timeScale;
         playerUI.SetActive(playerUIActive);

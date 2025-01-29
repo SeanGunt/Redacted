@@ -4536,6 +4536,7 @@ MonoBehaviour:
   damageReduction: 0
   attacksUsed: 0
   canFlipSprite: 1
+  dead: 0
   bow: {fileID: 5062037917727502169}
   dashAudioClip: {fileID: 8300000, guid: 039109c7c50db0c41b83db159d6d5dce, type: 3}
 --- !u!114 &3478267646810373340
@@ -4618,7 +4619,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   numOfLevelsAvailable: 0
-  levelUpAbilityAudioClip: {fileID: 8300000, guid: 008a09a44793ba84f92785368b6753a1, type: 3}
+  levelUpAbilityAudioClip: {fileID: 8300000, guid: 96b0234dc605f7643b31d2be449d19c8, type: 3}
 --- !u!114 &549420608120851158
 MonoBehaviour:
   m_ObjectHideFlags: 0

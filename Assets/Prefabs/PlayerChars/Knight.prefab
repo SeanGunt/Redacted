@@ -5433,6 +5433,7 @@ MonoBehaviour:
   damageReduction: 0
   attacksUsed: 0
   canFlipSprite: 1
+  dead: 0
   sword: {fileID: 2304729474940142067}
   shield: {fileID: 3840680238470609555}
 --- !u!114 &4024712692425742683
@@ -5515,7 +5516,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   numOfLevelsAvailable: 0
-  levelUpAbilityAudioClip: {fileID: 8300000, guid: 008a09a44793ba84f92785368b6753a1, type: 3}
+  levelUpAbilityAudioClip: {fileID: 8300000, guid: 96b0234dc605f7643b31d2be449d19c8, type: 3}
 --- !u!50 &3884314428910866144
 Rigidbody2D:
   serializedVersion: 4

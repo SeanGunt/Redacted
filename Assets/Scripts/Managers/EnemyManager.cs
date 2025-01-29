@@ -79,10 +79,10 @@ public class EnemyManager : MonoBehaviour, IFreezable
             switch (spawnEdge)
             {
                 case 0:
-                    spawnPosition = new Vector3(-20f, Random.Range(-spawnArea.y, spawnArea.y), 0); 
+                    spawnPosition = new Vector3(-20f, Random.Range(-spawnArea.y, spawnArea.y), 0f); 
                     break;
                 case 1:
-                    spawnPosition = new Vector3(20f, Random.Range(-spawnArea.y, spawnArea.y), 0);
+                    spawnPosition = new Vector3(20f, Random.Range(-spawnArea.y, spawnArea.y), 0f);
                     break;
                 case 2:
                     spawnPosition = new Vector3(Random.Range(-spawnArea.x, spawnArea.x), -14f, 0f);
@@ -96,6 +96,7 @@ public class EnemyManager : MonoBehaviour, IFreezable
             bool insideUnwalkable = false;
             foreach (Collider2D collider in colliders)
             {
+                Debug.Log(collider.gameObject.name);
                 if (!collider.isTrigger)
                 {
                     insideUnwalkable = true;
