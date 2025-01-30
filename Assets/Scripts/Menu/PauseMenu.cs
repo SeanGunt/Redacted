@@ -9,11 +9,13 @@ public class PauseMenu : MonoBehaviour
     [HideInInspector] public AudioSource audioSource;
     [SerializeField] private GameObject pauseMenuCanvas;
     [SerializeField] private GameObject deathMenuCanvas;
+    [SerializeField] private GameObject winMenuCanvas;
     [SerializeField] private Volume globalVolume;
     public AudioClip menuHoverAudioClip;
     private GameObject playerUI;
     private bool paused;
     private bool deathScreenActive;
+    private bool winScreenActive;
 
     private void Awake()
     {
@@ -38,6 +40,15 @@ public class PauseMenu : MonoBehaviour
             playerUI.SetActive(false);
             MusicManager.instance.FadeTracks(MusicManager.instance.tracks[4]);
             deathScreenActive = true;
+        }
+
+        if (TimerManager.instance != null && TimerManager.instance.wonRun && !winScreenActive)
+        {
+            Time.timeScale = 0f;
+            winMenuCanvas.SetActive(true);
+            playerUI =  GameObject.FindGameObjectWithTag("PlayerUI");
+            playerUI.SetActive(false);
+            winScreenActive = true;
         }
     }
 
