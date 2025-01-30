@@ -92,7 +92,7 @@ public class EnemyManager : MonoBehaviour, IFreezable
                     break;
             }
 
-            Collider2D[] colliders = Physics2D.OverlapCircleAll(spawnPosition, 0.5f, unwalkableLayerMask);
+            Collider2D[] colliders = Physics2D.OverlapCircleAll(spawnPosition, 0.1f, unwalkableLayerMask);
             bool insideUnwalkable = false;
             foreach (Collider2D collider in colliders)
             {

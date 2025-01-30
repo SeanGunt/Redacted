@@ -32,6 +32,7 @@ public class PauseMenu : MonoBehaviour
     {
         if (GameManager.Instance.player.GetComponent<PlayerBase>().dead && !deathScreenActive)
         {
+            Time.timeScale = 0f;
             deathMenuCanvas.SetActive(true);
             playerUI =  GameObject.FindGameObjectWithTag("PlayerUI");
             playerUI.SetActive(false);
@@ -58,6 +59,7 @@ public class PauseMenu : MonoBehaviour
 
     public void ReturnToMainMenu()
     {
+        Time.timeScale = 1f;
         SceneManager.LoadScene("MainMenu");
     }
 
