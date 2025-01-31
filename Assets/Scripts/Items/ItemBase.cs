@@ -33,7 +33,7 @@ public class ItemBase : MonoBehaviour, IItem
     protected PlayerBase playerBase;
     
 
-    private void Start()
+    private void Awake()
     {
         player = GameManager.Instance.player;
         weaponBase = player.GetComponentInChildren<WeaponBase>();

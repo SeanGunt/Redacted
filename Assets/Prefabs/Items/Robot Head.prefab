@@ -10,10 +10,10 @@ GameObject:
   m_Component:
   - component: {fileID: 2807989740772640157}
   - component: {fileID: 1703813370328746879}
-  - component: {fileID: 5243718034763070764}
   - component: {fileID: 4537578084548061848}
+  - component: {fileID: 4272885022641612952}
   m_Layer: 0
-  m_Name: Swift Boots
+  m_Name: Robot Head
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -69,37 +69,6 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &5243718034763070764
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3730327886647879648}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8531cc46f400fe346a6f010a7beba983, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  health: 0
-  healthRegen: 2
-  moveSpeed: 0.25
-  pickupRange: 2
-  physicalDamage: 0
-  magicalDamage: 0
-  physicalResistance: 0
-  magicalResistance: 0
-  lifeSteal: 0
-  critChance: 0
-  coolDownReduction: 15
-  imageSprite: {fileID: 21300000, guid: 4c5efa4b438d0b74b816b4023fd59501, type: 3}
-  itemName: Swift Boots
-  activeAbilityText: 'Active Ability: 2x current movement speed for (3) seconds'
-  passiveAbilityText: 'Passive Ability: None'
-  price: 2000
-  activeBaseCooldown: 25
-  speedBuffDurationAmount: 3
-  speedBuffAmount: 2
 --- !u!222 &4537578084548061848
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -108,3 +77,34 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3730327886647879648}
   m_CullTransparentMesh: 1
+--- !u!114 &4272885022641612952
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3730327886647879648}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2cd7573ca179029408771f0ba51f8705, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 0
+  healthRegen: 0
+  moveSpeed: 0.2
+  pickupRange: 0
+  physicalDamage: 0
+  magicalDamage: 80
+  physicalResistance: 0
+  magicalResistance: 0
+  lifeSteal: 0
+  critChance: 0
+  coolDownReduction: 25
+  imageSprite: {fileID: 21300000, guid: 68cd92470204f64459e96c8133c7a8a0, type: 3}
+  itemName: Robot Head
+  activeAbilityText: 'Active Ability: Shoot a robot laser out of your head towards
+    your current mouse position dealing 200 damage'
+  passiveAbilityText: 'Passive Ability: None'
+  price: 6000
+  activeBaseCooldown: 15
+  laserGO: {fileID: 6184728313668757947, guid: 38851f9018e1ff44cb2ad4bf4cd62a94, type: 3}

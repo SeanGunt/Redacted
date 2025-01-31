@@ -104,7 +104,7 @@ MonoBehaviour:
   amplitude: 0.15
   vacuumSpeed: 6
   pickupAudioClip: {fileID: 8300000, guid: c805dfb145296ce49844d8e67e95c346, type: 3}
-  expAmount: 125
+  expAmount: 275
 --- !u!61 &-3421176780615629067
 BoxCollider2D:
   m_ObjectHideFlags: 0

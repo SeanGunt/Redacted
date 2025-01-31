@@ -286,6 +286,7 @@ MonoBehaviour:
   audioSource: {fileID: 0}
   pauseMenuCanvas: {fileID: 1060161760}
   deathMenuCanvas: {fileID: 0}
+  winMenuCanvas: {fileID: 0}
   globalVolume: {fileID: 43023467}
   menuHoverAudioClip: {fileID: 8300000, guid: 2e7ec8efeb3702b45884b7873d1f7283, type: 3}
 --- !u!4 &115165337

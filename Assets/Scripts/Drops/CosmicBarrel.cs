@@ -30,6 +30,10 @@ public class CosmicBarrel : EnemyMaster
         
     }
 
+    protected override void OnTriggerEnter2D(Collider2D other)
+    {
+        //This needs to be here otherwise there will be problems lmao
+    }
     protected override IEnumerator Die()
     {
         animator.SetTrigger("Die");
