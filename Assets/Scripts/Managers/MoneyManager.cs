@@ -4,13 +4,14 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.SceneManagement;
 
-public class MoneyManager : MonoBehaviour
+public class MoneyManager : MonoBehaviour, IFreezable
 {
     public static MoneyManager instance;
     [HideInInspector] public float money;
     public float moneyPerSecondMultiplier;
     public TextMeshProUGUI timerText;
     Scene currentScene;
+    private bool frozen;
 
     private void Awake()
     {
@@ -25,7 +26,10 @@ public class MoneyManager : MonoBehaviour
         }
         else
         {
-            money += Time.deltaTime * moneyPerSecondMultiplier;
+            if (!frozen)
+            {
+                money += Time.deltaTime * moneyPerSecondMultiplier;
+            }
         }
         timerText.text = money.ToString("n0");
     }
@@ -33,5 +37,15 @@ public class MoneyManager : MonoBehaviour
     public void AddMoney(int moneyToAdd)
     {
         money += moneyToAdd;
+    }
+
+    public void HandleOnFreeze()
+    {
+        frozen = true;
+    }
+
+    public void HandleOnUnfreeze()
+    {
+        frozen = false;
     }
 }
