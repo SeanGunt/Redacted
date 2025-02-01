@@ -82,7 +82,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 0
-  healthRegen: 2
+  healthRegen: 1
   moveSpeed: 0.25
   pickupRange: 2
   physicalDamage: 0
@@ -94,7 +94,8 @@ MonoBehaviour:
   coolDownReduction: 15
   imageSprite: {fileID: 21300000, guid: 4c5efa4b438d0b74b816b4023fd59501, type: 3}
   itemName: Swift Boots
-  activeAbilityText: 'Active Ability: 2x current movement speed for (3) seconds'
+  activeAbilityText: 'Active Ability: 2x current movement speed for (3) seconds (Cooldown:
+    25s)'
   passiveAbilityText: 'Passive Ability: None'
   price: 2000
   activeBaseCooldown: 25

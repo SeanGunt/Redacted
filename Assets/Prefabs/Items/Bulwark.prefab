@@ -90,7 +90,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 300
-  healthRegen: 5
+  healthRegen: 2.5
   moveSpeed: 0
   pickupRange: 0
   physicalDamage: 0

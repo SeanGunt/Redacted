@@ -6,7 +6,7 @@ using TMPro;
 
 public class EnemyMaster : MonoBehaviour, IDamagable, IFreezable
 {
-    [SerializeField] protected float maxHealth, speed, damage;
+    public float maxHealth, speed, damage;
     [HideInInspector] public float baseSpeed;
     [SerializeField] private int expIndex;
     [SerializeField] protected string deathAnimName;
@@ -54,12 +54,16 @@ public class EnemyMaster : MonoBehaviour, IDamagable, IFreezable
     {
         player = GameManager.Instance.player;
         playerBase = player.GetComponent<PlayerBase>();
+        if (agent != null && !agent.isOnNavMesh)
+        {
+            // This is a bandaid fix, will actually fix this later
+            Destroy(gameObject);
+        }
     }
 
     protected virtual void Update()
     {
-        if (dead) return;
-        HandleFrozen();
+        if (dead || frozen) return;
         Movement();
         Rotation();
     }
@@ -82,20 +86,13 @@ public class EnemyMaster : MonoBehaviour, IDamagable, IFreezable
         StartCoroutine(ChangeColor());
     }
 
-    public void HandleFrozen()
-    {
-        if (frozen)
-        {
-            return;
-        }
-    }
-
     public void HandleOnFreeze()
     {
         frozen = true;
         if (agent != null)
         {
             agent.speed = 0;
+            agent.isStopped = true;
         }
         if (animator != null)
         {
@@ -109,6 +106,7 @@ public class EnemyMaster : MonoBehaviour, IDamagable, IFreezable
         if (agent != null)
         {
             agent.speed = baseSpeed;
+            agent.isStopped = false;
         }
         if (animator != null)
         {
@@ -218,7 +216,7 @@ public class EnemyMaster : MonoBehaviour, IDamagable, IFreezable
     {
         increase, decrease
     }
-    protected void ChangeSpeed(float changeAmount, SpeedChange speedChange)
+    public void ChangeSpeed(float changeAmount, SpeedChange speedChange)
     {
         switch (speedChange)
         {

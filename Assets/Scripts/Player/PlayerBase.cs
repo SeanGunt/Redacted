@@ -2,7 +2,6 @@ using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.InputSystem.iOS;
 
 public class PlayerBase : MonoBehaviour
 {
@@ -23,7 +22,11 @@ public class PlayerBase : MonoBehaviour
     [SerializeField] public float pickupRange;
     [HideInInspector] public float health;
     [SerializeField] public float physicalDamage;
+    [HideInInspector] public float totalPhysicalDamage;
+    [HideInInspector] public float physicalDamageMultiplier = 1.0f;
     [SerializeField] public float magicalDamage;
+    [HideInInspector] public float totalMagicalDamage;
+    [HideInInspector] public float magicalDamageMultiplier = 1.0f;
     [SerializeField] public float physicalResistance;
     [SerializeField] public float magicalResistance;
     [SerializeField] public float healthPerLevel;
@@ -51,6 +54,7 @@ public class PlayerBase : MonoBehaviour
     protected bool canUseAbility = true;
     [HideInInspector] public bool canFlipSprite = true;
     [HideInInspector] public bool dead = false;
+    [HideInInspector] public bool frozenByShop;
     protected bool canMove = true;
     protected bool isInvincible;
     protected Collider2D cachedCollider;
@@ -83,6 +87,7 @@ public class PlayerBase : MonoBehaviour
     virtual protected void Update()
     {
         HandleHealth();
+        HandleDamageMultipliers();
         HandleStatsUI();
         RightClick();
         HandleAbilities();
@@ -159,7 +164,7 @@ public class PlayerBase : MonoBehaviour
 
     private void HandleAbilities()
     {
-        if (playerInput.actions["LevelAbility"].inProgress) return;
+        if (playerInput.actions["LevelAbility"].inProgress || frozenByShop) return;
         HandleQAbility();
         HandleWAbility();
         HandleEAbility();
@@ -260,8 +265,8 @@ public class PlayerBase : MonoBehaviour
 
     private void HandleStatsUI()
     {
-        playerUI.physicalDamageText.text =  physicalDamage.ToString("0.##");
-        playerUI.magicalDamageText.text = magicalDamage.ToString("0.##");
+        playerUI.physicalDamageText.text =  totalPhysicalDamage.ToString("0.##");
+        playerUI.magicalDamageText.text = totalMagicalDamage.ToString("0.##");
         playerUI.physicalResistanceText.text = physicalResistance.ToString("0.##");
         playerUI.magicalResistanceText.text = magicalResistance.ToString("0.##");
         playerUI.criticalChanceText.text = critChance.ToString("0.##") + "%";
@@ -286,12 +291,26 @@ public class PlayerBase : MonoBehaviour
         magicalDamage += SaveManager.instance._gameData.extraMagicDamage;
     }
 
+    private void HandleDamageMultipliers()
+    {
+        totalMagicalDamage = magicalDamage * magicalDamageMultiplier;
+        totalPhysicalDamage = physicalDamage * physicalDamageMultiplier;
+    }
+
     private void HandleCoolDownReduction()
     {
         qCooldownAmount = qBaseCooldown - (qBaseCooldown * (cooldownReduction / 100));
         wCooldownAmount = wBaseCooldown - (wBaseCooldown * (cooldownReduction / 100));
         eCooldownAmount = eBaseCooldown - (eBaseCooldown * (cooldownReduction / 100));
         rCooldownAmount = rBaseCooldown - (rBaseCooldown * (cooldownReduction / 100));
+    }
+
+    public void HandleShopFreeze(Color imageColor)
+    {
+        playerUI.qImage.color = imageColor;
+        playerUI.wImage.color = imageColor;
+        playerUI.eImage.color = imageColor;
+        playerUI.rImage.color = imageColor;
     }
 
     protected virtual IEnumerator HandleQCooldown(float delay)
@@ -303,8 +322,11 @@ public class PlayerBase : MonoBehaviour
         playerUI.qImage.fillAmount = 0f;
         while(qCooldown >= 0)
         {
-            qCooldown -= Time.deltaTime;
-            playerUI.qImage.fillAmount += Time.deltaTime / qCooldownAmount;
+            if (!frozenByShop)
+            {
+                qCooldown -= Time.deltaTime;
+                playerUI.qImage.fillAmount += Time.deltaTime / qCooldownAmount;
+            }
             yield return null;
         }
         playerUI.qImage.fillAmount = 1f;

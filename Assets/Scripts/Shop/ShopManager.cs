@@ -8,6 +8,7 @@ public class ShopManager : MonoBehaviour, IDistanceInteractable
     private bool eerieParticlesPlaying;
     private bool shopMusicPlaying;
     private AudioClip defaultBackgroundClip;
+    private PlayerBase playerBase;
     private Light2D shopLight;
     [SerializeField] SpriteRenderer faceSpriteRenderer;
     [SerializeField] private Sprite[] faceSprites;
@@ -26,6 +27,7 @@ public class ShopManager : MonoBehaviour, IDistanceInteractable
     public void GetPlayer()
     {
         playerGO = GameManager.Instance.player.gameObject;
+        playerBase = playerGO.GetComponent<PlayerBase>();
     }
     public void HandleDistanceInteraction()
     {
@@ -88,11 +90,17 @@ public class ShopManager : MonoBehaviour, IDistanceInteractable
         float distanceToPlayer = Vector2.Distance(playerGO.transform.position, transform.position);
         if (distanceToPlayer <= 2f && !shopMusicPlaying)
         {
+            GameManager.Instance.FreezeTime();
+            playerBase.frozenByShop = true;
+            playerBase.HandleShopFreeze(new Color(1f, 0f, 0f, 0.7f));
             MusicManager.instance.FadeTracks(MusicManager.instance.tracks[1]);
             shopMusicPlaying = true;
         }
         else if (distanceToPlayer > 3f && shopMusicPlaying)
         {
+            GameManager.Instance.UnFreezeTime();
+            playerBase.frozenByShop = false;
+            playerBase.HandleShopFreeze(Color.white);
             MusicManager.instance.FadeTracks(defaultBackgroundClip);
             shopMusicPlaying = false;
         }

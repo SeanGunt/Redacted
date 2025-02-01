@@ -85,20 +85,6 @@ AnimationClip:
   m_HasMotionFloatCurves: 0
   m_Events:
   - time: 0
-    functionName: CantRotate
-    data: 
-    objectReferenceParameter: {fileID: 0}
-    floatParameter: 0
-    intParameter: 0
-    messageOptions: 0
-  - time: 0
-    functionName: GetMousePosition
-    data: 
-    objectReferenceParameter: {fileID: 0}
-    floatParameter: 0
-    intParameter: 0
-    messageOptions: 0
-  - time: 0
     functionName: CantFlipSprite
     data: 
     objectReferenceParameter: {fileID: 0}
@@ -107,6 +93,20 @@ AnimationClip:
     messageOptions: 0
   - time: 0
     functionName: InArrowAttack
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 0
+    functionName: CantRotate
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 0
+    functionName: GetMousePosition
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
@@ -126,15 +126,8 @@ AnimationClip:
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
-  - time: 0.75
+  - time: 0.875
     functionName: CanRotate
-    data: 
-    objectReferenceParameter: {fileID: 0}
-    floatParameter: 0
-    intParameter: 0
-    messageOptions: 0
-  - time: 0.75
-    functionName: CanFlipSprite
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
@@ -142,6 +135,13 @@ AnimationClip:
     messageOptions: 0
   - time: 0.875
     functionName: NotInArrowAttack
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 0.875
+    functionName: CanFlipSprite
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0

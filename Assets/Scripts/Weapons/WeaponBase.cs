@@ -12,6 +12,8 @@ public class WeaponBase : MonoBehaviour
     [HideInInspector] public Material defaultMaterial;
     [HideInInspector] public SpriteRenderer spriteRenderer;
     [HideInInspector] public AbilityType abilityType;
+    [HideInInspector] public bool replicatorPurchased;
+    [HideInInspector] public bool crimsonPerfectionPurchased;
     [HideInInspector] public float damageToApply;
     [HideInInspector] public float damageMultiplier = 1.0f;
     [HideInInspector] public bool canRotate = true;
@@ -105,12 +107,13 @@ public class WeaponBase : MonoBehaviour
             float critMultiplier = 2.0f;
             finalDamage *= critMultiplier;
         }
+        HandleLifeLeech(finalDamage * damageMultiplier);
         return finalDamage * damageMultiplier;
     }
 
     protected float DamageScaling(float physRat, float magRat)
     {
-        float damageScaling = (playerBase.physicalDamage * physRat) + (playerBase.magicalDamage * magRat);
+        float damageScaling = (playerBase.totalPhysicalDamage * physRat) + (playerBase.totalMagicalDamage * magRat);
         return damageScaling;
     }
 
@@ -133,6 +136,15 @@ public class WeaponBase : MonoBehaviour
         }
         wasCriticalHit = false;
         return false;
+    }
+
+    private void HandleLifeLeech(float damage)
+    {
+        if (crimsonPerfectionPurchased)
+        {
+            playerBase.health += damage * 0.10f;
+            playerBase.health =  Mathf.Min(playerBase.health + (damage * 0.10f), playerBase.baseHealth);
+        }
     }
 
     public void ChangeQMultiplier(float multiplier)

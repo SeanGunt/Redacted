@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class Archer : PlayerBase
 {
@@ -14,6 +15,7 @@ public class Archer : PlayerBase
             bow.abilityType = WeaponBase.AbilityType.Q;
             bow.HandleBowAnims("Fire");
             StartCoroutine(HandleQCooldown(bow.clips[1].length));
+            StartCoroutine(ReturnToNormalState(bow.clips[1].length));
         }
     }
 
@@ -24,6 +26,7 @@ public class Archer : PlayerBase
             bow.abilityType = WeaponBase.AbilityType.W;
             bow.HandleBowAnims("RapidFire");
             StartCoroutine(HandleWCooldown(bow.clips[2].length));
+            StartCoroutine(ReturnToNormalState(bow.clips[2].length));
         }
     }
 
@@ -45,6 +48,7 @@ public class Archer : PlayerBase
             bow.abilityType = WeaponBase.AbilityType.R;
             bow.HandleBowAnims("ArrowRain");
             StartCoroutine(HandleRCooldown(bow.clips[3].length));
+            StartCoroutine(ReturnToNormalState(bow.clips[3].length));
         }
     }
 
@@ -65,10 +69,22 @@ public class Archer : PlayerBase
         canMove = false;
         state = State.idle;
         yield return new WaitForSeconds(0.3f);
+        if (weaponBase.replicatorPurchased)
+        {
+            bow.SpawnBomb();
+        }
         canFlipSprite = true;
         canUseAbility = true;
         weaponBase.canRotate = true;
         canMove = true;
+    }
+
+    private IEnumerator ReturnToNormalState(float lengthOfClip)
+    {
+        yield return new WaitForSeconds(lengthOfClip);
+        bow.NotInArrowAttack();
+        bow.canRotate = true;
+        bow.CanFlipSprite();
     }
 }
  

@@ -103,8 +103,8 @@ MonoBehaviour:
   imageSprite: {fileID: 21300000, guid: 68cd92470204f64459e96c8133c7a8a0, type: 3}
   itemName: Robot Head
   activeAbilityText: 'Active Ability: Shoot a robot laser out of your head towards
-    your current mouse position dealing 200 damage'
+    your current mouse position dealing 200 damage (Cooldown: 5s)'
   passiveAbilityText: 'Passive Ability: None'
   price: 6000
-  activeBaseCooldown: 15
+  activeBaseCooldown: 5
   laserGO: {fileID: 6184728313668757947, guid: 38851f9018e1ff44cb2ad4bf4cd62a94, type: 3}

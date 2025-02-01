@@ -11,9 +11,9 @@ GameObject:
   - component: {fileID: 2807989740772640157}
   - component: {fileID: 1703813370328746879}
   - component: {fileID: 4537578084548061848}
-  - component: {fileID: -9048057037487646137}
+  - component: {fileID: 6683625481982584677}
   m_Layer: 0
-  m_Name: Ring of Corruption
+  m_Name: Temporal Manipulator
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -77,7 +77,7 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3730327886647879648}
   m_CullTransparentMesh: 1
---- !u!114 &-9048057037487646137
+--- !u!114 &6683625481982584677
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -86,25 +86,25 @@ MonoBehaviour:
   m_GameObject: {fileID: 3730327886647879648}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 72c7e285d1e682645ad16e8849a83139, type: 3}
+  m_Script: {fileID: 11500000, guid: 794f39831f1c41348847e4b46e75dc92, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: -100
-  healthRegen: 5
-  moveSpeed: 0.5
+  health: 0
+  healthRegen: 10
+  moveSpeed: 0.3
   pickupRange: 2
-  physicalDamage: 15
-  magicalDamage: 15
-  physicalResistance: -5
-  magicalResistance: 20
+  physicalDamage: 0
+  magicalDamage: 0
+  physicalResistance: 5
+  magicalResistance: 5
   lifeSteal: 0
   critChance: 0
-  coolDownReduction: 0
-  imageSprite: {fileID: 21300000, guid: b32f5df1ee8bdc24e956696c5e7001ec, type: 3}
-  itemName: Ring of Corruption
-  activeAbilityText: 'Active Ability: None'
-  passiveAbilityText: 'Passive Ability: Creates a small ring around the player, dealing
-    30 damage every 0.2 seconds to enemies within the ring'
-  price: 6000
-  activeBaseCooldown: 0
-  corruptionGO: {fileID: 2461709836706655268, guid: 7389ef2013b60074ca6b81576626d58a, type: 3}
+  coolDownReduction: 30
+  imageSprite: {fileID: 21300000, guid: 2e1b580236f69ca4aace82394404c733, type: 3}
+  itemName: Temporal Manipulator
+  activeAbilityText: 'Active Ability: Teleport to current mouse position (Cooldown:
+    15s)'
+  passiveAbilityText: 'Passive Ability: Nearby enemies are slowed by 25%'
+  price: 10000
+  activeBaseCooldown: 15
+  slowAuraGO: {fileID: 2461709836706655268, guid: af442e1580d8cb5408ea4638d47b8cb7, type: 3}

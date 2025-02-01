@@ -189,6 +189,7 @@ MonoBehaviour:
   vacuumSpeed: 6
   pickupAudioClip: {fileID: 8300000, guid: ac0cf1832d750a540a8c260b513a2e2b, type: 3}
   timerBar: {fileID: 717105294690077747, guid: 763cb07f54256dc4db4fdf2fbdea173d, type: 3}
+  shadow: {fileID: 1531926318784264249}
 --- !u!96 &-803575187937617523
 TrailRenderer:
   serializedVersion: 2

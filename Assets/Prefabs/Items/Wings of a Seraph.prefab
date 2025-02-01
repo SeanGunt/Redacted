@@ -103,7 +103,8 @@ MonoBehaviour:
   imageSprite: {fileID: 21300000, guid: 1872cdd2e68f56f4c8683b6aee628059, type: 3}
   itemName: Wings of a Seraph
   activeAbilityText: 'Active Ability: Call down a pillar of light at your current
-    mouse position, dealing 100 damage every 0.2 seconds (lasts 3 seconds)'
+    mouse position, dealing 100 damage every 0.2 seconds (lasts 3 seconds) (Cooldown:
+    15s)'
   passiveAbilityText: 'Passive Ability: None'
   price: 10000
   activeBaseCooldown: 45

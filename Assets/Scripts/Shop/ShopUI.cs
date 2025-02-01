@@ -18,7 +18,6 @@ public class ShopUI : MonoBehaviour
     {
         shopUI.SetActive(true);
         shopActive = true;
-        Time.timeScale = 0f;
     }
 
     public void CloseUI()
@@ -26,7 +25,6 @@ public class ShopUI : MonoBehaviour
         Cursor.SetCursor(GameManager.Instance.cursorDefaultTexture, Vector2.zero, CursorMode.Auto);
         shopUI.SetActive(false);
         shopActive = false;
-        Time.timeScale = 1f;
     }
 
     public bool IsShopOpen()

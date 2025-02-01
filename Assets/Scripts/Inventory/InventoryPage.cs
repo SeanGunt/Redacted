@@ -56,7 +56,9 @@ public class InventoryPage : MonoBehaviour
         listOfUIItems[itemIndex_2] = item1;
 
         currentlyDraggedItem.transform.SetParent(inventoryItem.transform.parent, false);
+        currentlyDraggedItem.transform.SetSiblingIndex(0);
         inventoryItem.transform.SetParent(parentToSwap, false);
+        inventoryItem.transform.SetSiblingIndex(0);
     }
 
 

@@ -95,7 +95,7 @@ MonoBehaviour:
   imageSprite: {fileID: 21300000, guid: 787f59679bf0b1b4ebf80552550eba31, type: 3}
   itemName: Enhancer
   activeAbilityText: 'Active Ability: Enhances next (3) hits with abilties to deal
-    2x damage'
+    2x damage (Cooldown: 30s)'
   passiveAbilityText: 'Passive Ability: None'
   price: 2000
   activeBaseCooldown: 30

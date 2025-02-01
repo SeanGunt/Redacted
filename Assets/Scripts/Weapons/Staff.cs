@@ -39,22 +39,44 @@ public class Staff : WeaponBase
     public void SpawnFireball()
     {
         GameObject fireball = Instantiate(fireballPrefab, staffSpawnPoint.transform.position, transform.rotation, GameManager.Instance.poolHolders[3].transform);
+        if (replicatorPurchased)
+        {
+            StartCoroutine(ReplicateProjectile(fireballPrefab, staffSpawnPoint.transform.position, transform.rotation));
+        }
         wizard.HandleRotation(mousePos, fireball.transform);
     }
 
     public void LightningBolt()
     {
         GameObject lightning = Instantiate(lightningPrefab, staffSpawnPoint.transform.position, transform.rotation, GameManager.Instance.poolHolders[3].transform);
+        if (replicatorPurchased)
+        {
+            StartCoroutine(ReplicateProjectile(lightningPrefab, staffSpawnPoint.transform.position, transform.rotation));
+        }
     }
 
     public void Iceball()
     {
         GameObject iceball = Instantiate(iceballPrefab, staffSpawnPoint.transform.position, transform.rotation, GameManager.Instance.poolHolders[3].transform);
+        if (replicatorPurchased)
+        {
+            StartCoroutine(ReplicateProjectile(iceballPrefab, staffSpawnPoint.transform.position, transform.rotation));
+        }
     }
 
     public void BlackHole()
     {
         GameObject blackHole = Instantiate(blackHolePrefab, wizard.GetMousePosition(), Quaternion.identity, GameManager.Instance.poolHolders[3].transform);
+        if (replicatorPurchased)
+        {
+            StartCoroutine(ReplicateProjectile(blackHolePrefab, wizard.GetMousePosition(), Quaternion.identity));
+        }
+    }
+
+    private IEnumerator ReplicateProjectile(GameObject projectileToReplicate, Vector3 spawnPos, Quaternion rotation)
+    {
+        yield return new WaitForSeconds(0.1f);
+        GameObject replicatedProjectile = Instantiate(projectileToReplicate, spawnPos, rotation, GameManager.Instance.poolHolders[3].transform);
     }
 
     

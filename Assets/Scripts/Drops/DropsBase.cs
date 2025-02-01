@@ -16,6 +16,7 @@ public class DropsBase : MonoBehaviour
     protected State state;
     protected TrailRenderer trailRenderer;
     protected SpriteRenderer spriteRenderer;
+    protected BoxCollider2D bc;
     protected GameObject player;
     protected PlayerBase playerBase;
     protected enum State
@@ -28,6 +29,7 @@ public class DropsBase : MonoBehaviour
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
         trailRenderer = GetComponent<TrailRenderer>();
+        bc = GetComponent<BoxCollider2D>();
         trailRenderer.startColor = GetComponent<SpriteRenderer>().color;
         trailRenderer.endColor = GetComponent<SpriteRenderer>().color;
     }
@@ -35,6 +37,7 @@ public class DropsBase : MonoBehaviour
     protected virtual void OnEnable()
     {
         player = GameManager.Instance.player;
+        bc.enabled = true;
         playerBase = player.GetComponent<PlayerBase>();
         startPos = transform.position;
         vacuumSpeedChange = 0f;
@@ -44,6 +47,7 @@ public class DropsBase : MonoBehaviour
     private void OnDisable()
     {
         vacuuming = false;
+        bc.enabled = false;
     }
 
     private void Update()

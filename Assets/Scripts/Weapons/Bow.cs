@@ -29,12 +29,20 @@ public class Bow : WeaponBase
     public void SpawnArrow(GameObject _arrowPrefab)
     {
         GameObject arrow = Instantiate(_arrowPrefab, arrowSpawnPoint.position, transform.rotation, GameManager.Instance.poolHolders[3].transform);
+        if (replicatorPurchased)
+        {
+            StartCoroutine(ReplicateProjectile(_arrowPrefab, true));
+        }
         Utilities.instance.HandleRotation(mousePos, arrow.transform);
     }
 
     public void SpawnNoCollisionArrow(GameObject _arrowPrefab)
     {
         GameObject arrow = Instantiate(_arrowPrefab, arrowSpawnPoint.position, transform.rotation, GameManager.Instance.poolHolders[3].transform);
+        if (replicatorPurchased)
+        {
+            StartCoroutine(ReplicateProjectile(_arrowPrefab, false));
+        }
         arrow.transform.rotation = weaponRotation.transform.rotation;
     }
 
@@ -59,6 +67,20 @@ public class Bow : WeaponBase
         Vector3 direction = (mousePos - weaponRotation.transform.position).normalized;
         float angle = Mathf.Atan2(-direction.x, direction.y) * Mathf.Rad2Deg;
         weaponRotation.transform.eulerAngles = new Vector3(0,0,angle);
+    }
+
+    private IEnumerator ReplicateProjectile(GameObject _arrowPrefab, bool collisionBasedArrow)
+    {
+        yield return new WaitForSeconds(0.1f);
+        GameObject duplicatedArrow = Instantiate(_arrowPrefab, arrowSpawnPoint.position, transform.rotation, GameManager.Instance.poolHolders[3].transform);
+        if (collisionBasedArrow)
+        {
+            Utilities.instance.HandleRotation(mousePos, duplicatedArrow.transform);
+        }
+        else
+        {
+            duplicatedArrow.transform.rotation = weaponRotation.transform.rotation;
+        }
     }
 
     public void InArrowAttack()
