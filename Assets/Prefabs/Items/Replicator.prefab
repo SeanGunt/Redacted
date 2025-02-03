@@ -93,8 +93,8 @@ MonoBehaviour:
   healthRegen: 0
   moveSpeed: 0
   pickupRange: 0
-  physicalDamage: 50
-  magicalDamage: 50
+  physicalDamage: 0
+  magicalDamage: 0
   physicalResistance: 0
   magicalResistance: 0
   lifeSteal: 0

@@ -2,7 +2,7 @@ using System.Collections;
 using UnityEngine.UI;
 using UnityEngine;
 
-public class ItemBase : MonoBehaviour, IItem
+public class ItemBase : MonoBehaviour, IItem, IShopFreeze
 {
     [Header("Item Stats")]
     public float health;
@@ -31,6 +31,8 @@ public class ItemBase : MonoBehaviour, IItem
     protected GameObject player;
     protected WeaponBase weaponBase;
     protected PlayerBase playerBase;
+    [Header("Other")]
+    protected bool frozen;
     
 
     private void Awake()
@@ -76,9 +78,22 @@ public class ItemBase : MonoBehaviour, IItem
         cooldownImage.fillAmount = 1f;
         while (activeCooldown >= 0)
         {
-            activeCooldown -= Time.deltaTime;
-            cooldownImage.fillAmount -= Time.deltaTime / activeBaseCooldown;
+            if (!frozen)
+            {
+                activeCooldown -= Time.deltaTime;
+                cooldownImage.fillAmount -= Time.deltaTime / activeBaseCooldown;
+            }
             yield return null;
         }
+    }
+
+    public void HandleOnShopFreeze()
+    {
+        frozen = true;
+    }
+
+    public void HandleOnShopUnFreeze()
+    {
+        frozen = false;
     }
 }

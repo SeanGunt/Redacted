@@ -1,9 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
 using System.Linq;
-using NavMeshPlus.Components;
 using UnityEngine;
-using UnityEngine.Rendering;
 using UnityEngine.Rendering.Universal;
 
 public class GameManager : MonoBehaviour

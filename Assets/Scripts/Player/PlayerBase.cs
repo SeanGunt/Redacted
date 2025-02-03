@@ -3,7 +3,7 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class PlayerBase : MonoBehaviour
+public class PlayerBase : MonoBehaviour, IShopFreeze
 {
     [Header("Classes")]
     private PlayerInput playerInput;
@@ -57,7 +57,7 @@ public class PlayerBase : MonoBehaviour
     protected bool canUseAbility = true;
     [HideInInspector] public bool canFlipSprite = true;
     [HideInInspector] public bool dead = false;
-    [HideInInspector] public bool frozenByShop;
+    private bool frozenByShop;
     protected bool canMove = true;
     protected bool isInvincible;
     protected Collider2D cachedCollider;
@@ -96,6 +96,7 @@ public class PlayerBase : MonoBehaviour
         HandleHealth();
         HandleDamageMultipliers();
         HandleStatsUI();
+        HandleShopFreeze();
         RightClick();
         HandleAbilities();
         HandleDistanceInteract();
@@ -331,12 +332,32 @@ public class PlayerBase : MonoBehaviour
         rCooldownAmount = rBaseCooldown - (rBaseCooldown * (cooldownReduction / 100));
     }
 
-    public void HandleShopFreeze(Color imageColor)
+    public void HandleShopFreeze()
     {
-        playerUI.qImage.color = imageColor;
-        playerUI.wImage.color = imageColor;
-        playerUI.eImage.color = imageColor;
-        playerUI.rImage.color = imageColor;
+        if (frozenByShop)
+        {
+            playerUI.qImage.color = new Color(1f, 0f, 0f, 0.7f);
+            playerUI.wImage.color = new Color(1f, 0f, 0f, 0.7f);
+            playerUI.eImage.color = new Color(1f, 0f, 0f, 0.7f);
+            playerUI.rImage.color = new Color(1f, 0f, 0f, 0.7f);
+        }
+        else
+        {
+            playerUI.qImage.color = Color.white;
+            playerUI.wImage.color = Color.white;
+            playerUI.eImage.color = Color.white;
+            playerUI.rImage.color = Color.white;
+        }
+    }
+
+    public void HandleOnShopFreeze()
+    {
+        frozenByShop = true;
+    }
+
+    public void HandleOnShopUnFreeze()
+    {
+        frozenByShop = false;
     }
 
     protected virtual IEnumerator HandleQCooldown(float delay)

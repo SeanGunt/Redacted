@@ -1,4 +1,4 @@
-using System;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.Rendering.Universal;
 public class ShopManager : MonoBehaviour, IDistanceInteractable
@@ -91,16 +91,14 @@ public class ShopManager : MonoBehaviour, IDistanceInteractable
         if (distanceToPlayer <= 2.25f && !shopMusicPlaying)
         {
             GameManager.Instance.FreezeTime();
-            playerBase.frozenByShop = true;
-            playerBase.HandleShopFreeze(new Color(1f, 0f, 0f, 0.7f));
+            ShopFreezeTime();
             MusicManager.instance.FadeTracks(MusicManager.instance.tracks[1]);
             shopMusicPlaying = true;
         }
         else if (distanceToPlayer > 3f && shopMusicPlaying)
         {
             GameManager.Instance.UnFreezeTime();
-            playerBase.frozenByShop = false;
-            playerBase.HandleShopFreeze(Color.white);
+            ShopUnFreezeTime();
             MusicManager.instance.FadeTracks(defaultBackgroundClip);
             shopMusicPlaying = false;
         }
@@ -114,4 +112,22 @@ public class ShopManager : MonoBehaviour, IDistanceInteractable
         GameManager.Instance.globalLight.intensity = Mathf.Pow(normalizedDistance, 2);
         shopLight.intensity = Mathf.Clamp(6f - distanceToPlayer, 0f, 5f);
     }
+
+    public void ShopFreezeTime()
+    {
+        var freezables = FindObjectsOfType<MonoBehaviour>().OfType<IShopFreeze>();
+        foreach(var freezable in freezables)
+        {
+            freezable.HandleOnShopFreeze();
+        }
+    }
+
+    public void ShopUnFreezeTime()
+    {
+        var freezables = FindObjectsOfType<MonoBehaviour>().OfType<IShopFreeze>();
+        foreach(var freezable in freezables)
+        {
+            freezable.HandleOnShopUnFreeze();
+        }
+    } 
 }
