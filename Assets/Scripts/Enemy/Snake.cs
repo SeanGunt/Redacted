@@ -5,6 +5,8 @@ using UnityEngine.AI;
 
 public class Snake : EnemyMaster
 {
+    [SerializeField] private AudioClip openJawClip;
+    [SerializeField] private AudioClip dashClip;
     private SnakeAnimation snakeAnimation;
     private Vector2 dashLocation;
     private bool dashing;
@@ -47,6 +49,7 @@ public class Snake : EnemyMaster
                 if (DistanceToPlayer() <= 6f && timeTillDash <= 0)
                 {
                     state = State.openingJaw;
+                    audioSource.PlayOneShot(openJawClip);
                     animator.SetTrigger("Attacking");
                 }
             break;
@@ -60,6 +63,7 @@ public class Snake : EnemyMaster
             break;
             case State.startDash:
                 GetPlayersPosition();
+                audioSource.PlayOneShot(dashClip);
                 HandleDashParams(10f, SpeedChange.increase, true, ObstacleAvoidanceType.NoObstacleAvoidance, 250f);
                 agent.SetDestination(dashLocation);
                 state = State.dashing;

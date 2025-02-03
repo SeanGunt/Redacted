@@ -88,7 +88,7 @@ public class ShopManager : MonoBehaviour, IDistanceInteractable
     private void HandleMusicFade()
     {
         float distanceToPlayer = Vector2.Distance(playerGO.transform.position, transform.position);
-        if (distanceToPlayer <= 2f && !shopMusicPlaying)
+        if (distanceToPlayer <= 2.25f && !shopMusicPlaying)
         {
             GameManager.Instance.FreezeTime();
             playerBase.frozenByShop = true;

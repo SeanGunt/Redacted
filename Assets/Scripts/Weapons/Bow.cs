@@ -83,6 +83,19 @@ public class Bow : WeaponBase
         }
     }
 
+    public void Normalize(int index)
+    {
+        StartCoroutine(ReturnToNormalState(index));
+    }
+
+    private IEnumerator ReturnToNormalState(int index)
+    {
+        yield return new WaitForSeconds(clips[index].length);
+        NotInArrowAttack();
+        canRotate = true;
+        CanFlipSprite();
+    }
+
     public void InArrowAttack()
     {
         inArrowAttack = true;

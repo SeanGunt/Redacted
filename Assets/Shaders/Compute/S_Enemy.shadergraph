@@ -261,7 +261,7 @@
             "m_SerializedMesh": "{\"mesh\":{\"fileID\":10210,\"guid\":\"0000000000000000e000000000000000\",\"type\":0}}",
             "m_Guid": ""
         },
-        "preventRotation": false
+        "preventRotation": true
     },
     "m_Path": "Shader Graphs",
     "m_GraphPrecision": 1,
@@ -1297,9 +1297,9 @@
         "m_Expanded": true,
         "m_Position": {
             "serializedVersion": "2",
-            "x": -314.9999694824219,
-            "y": 196.00001525878907,
-            "width": 208.0,
+            "x": -315.0000305175781,
+            "y": 196.0,
+            "width": 208.00006103515626,
             "height": 302.0
         }
     },

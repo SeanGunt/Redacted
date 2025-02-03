@@ -54,7 +54,6 @@ public class CosmicBarrel : EnemyMaster
         int previousRange = 1;
         foreach (BarrelPickups pickup in pickupsList)
         {
-            Debug.Log(pickup.prefab.name + " spawn range: " + previousRange + " to " + pickup.spawnChance);
             previousRange = pickup.spawnChance + 1; 
         }
 
@@ -78,7 +77,6 @@ public class CosmicBarrel : EnemyMaster
                     drop.transform.position = transform.position + new Vector3(0f, 0.3f, 0f);
                     drop.SetActive(true);
                 }
-                Debug.Log("Number rolled was " + randomSpawn + ", therefore spawning " + pickup.prefab.name);
                 break;
             }
         }

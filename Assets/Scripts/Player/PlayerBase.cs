@@ -45,11 +45,14 @@ public class PlayerBase : MonoBehaviour
     [HideInInspector] public int attacksUsed;
 
     [Header("Other")]
+    [SerializeField] private AudioClip playerDamagedClip;
+    [SerializeField] private AudioClip playerBigDamageClip;
     private int raycastLayerMask = 1 << 11;
     protected State state;
     private Vector3 positionToMove;
     protected Rigidbody2D rb;
     protected Animator animator;
+    protected Material material;
     private SpriteRenderer spriteRenderer;
     protected bool canUseAbility = true;
     [HideInInspector] public bool canFlipSprite = true;
@@ -83,6 +86,10 @@ public class PlayerBase : MonoBehaviour
         eBaseCooldown = eCooldownAmount;
         rBaseCooldown = rCooldownAmount;
         HandleMetaProgressionStats();
+
+        material = Instantiate(spriteRenderer.sharedMaterial);
+        spriteRenderer.material = material;
+        material.SetColor("_Color", Color.black);
     }
     virtual protected void Update()
     {
@@ -118,7 +125,6 @@ public class PlayerBase : MonoBehaviour
         if (overlappedCollider != null)
         {
             cachedCollider = overlappedCollider;
-            Debug.Log("Overlapping Collider");
             IDistanceInteractable other = overlappedCollider.transform.gameObject.GetComponent<IDistanceInteractable>();
             other.HandleDisplayInteractKey(true);
             if (playerInput.actions["Interact"].triggered)
@@ -134,7 +140,6 @@ public class PlayerBase : MonoBehaviour
         {
             if (cachedCollider != null)
             {
-                Debug.Log("Hello");
                 IDistanceInteractable other = cachedCollider.transform.gameObject.GetComponent<IDistanceInteractable>();
                 other.HandleDisplayInteractKey(false);
                 cachedCollider = null;
@@ -242,7 +247,6 @@ public class PlayerBase : MonoBehaviour
     {
         if (health < 0)
         {
-            Debug.Log("Dead");
             state = State.dead;
             dead = true;
             return;
@@ -252,7 +256,10 @@ public class PlayerBase : MonoBehaviour
         playerUI.healthBar.fillAmount = health * ratio;
         if (health < baseHealth)
         {
-            health += healthRegen * Time.deltaTime;
+            if (!frozenByShop)
+            {
+                health += healthRegen * Time.deltaTime;
+            }
         }
     }
 
@@ -260,7 +267,26 @@ public class PlayerBase : MonoBehaviour
     {
         if (isInvincible) return;
         float initialResistance = damageToTake - (damageToTake * resistanceType);
-        health -= initialResistance - (initialResistance * damageReduction);
+        float totalDamageTaken = initialResistance - (initialResistance * damageReduction);
+        health -= totalDamageTaken;
+        StartCoroutine(ChangeColor(totalDamageTaken));
+    }
+
+    private IEnumerator ChangeColor(float damageTaken)
+    {
+        if (damageTaken >= 50f)
+        {
+            material.SetColor("_Color", Color.red);
+            audioSource.PlayOneShot(playerBigDamageClip);
+        }
+        else
+        {
+            material.SetColor("_Color", Color.white);
+            audioSource.PlayOneShot(playerDamagedClip);
+        }
+        yield return new WaitForSeconds(0.1f);
+        material.SetColor("_Color", Color.black);
+        yield break;
     }
 
     private void HandleStatsUI()
@@ -342,8 +368,11 @@ public class PlayerBase : MonoBehaviour
         playerUI.wImage.fillAmount = 0f;
         while(wCooldown >= 0)
         {
-            wCooldown -= Time.deltaTime;
-            playerUI.wImage.fillAmount += Time.deltaTime / wCooldownAmount;
+            if (!frozenByShop)
+            {
+                wCooldown -= Time.deltaTime;
+                playerUI.wImage.fillAmount += Time.deltaTime / wCooldownAmount;
+            }
             yield return null;
         }
         playerUI.wImage.fillAmount = 1f;
@@ -359,8 +388,11 @@ public class PlayerBase : MonoBehaviour
         playerUI.eImage.fillAmount = 0f;
         while(eCooldown >= 0)
         {
-            eCooldown -= Time.deltaTime;
-            playerUI.eImage.fillAmount += Time.deltaTime / eCooldownAmount;
+            if (!frozenByShop)
+            {
+                eCooldown -= Time.deltaTime;
+                playerUI.eImage.fillAmount += Time.deltaTime / eCooldownAmount; 
+            }
             yield return null;
         }
         playerUI.eImage.fillAmount = 1f;
@@ -376,8 +408,11 @@ public class PlayerBase : MonoBehaviour
         playerUI.rImage.fillAmount = 0f;
         while(rCooldown >= 0)
         {
-            rCooldown -= Time.deltaTime;
-            playerUI.rImage.fillAmount += Time.deltaTime / rCooldownAmount;
+            if (!frozenByShop)
+            {
+                rCooldown -= Time.deltaTime;
+                playerUI.rImage.fillAmount += Time.deltaTime / rCooldownAmount;
+            }
             yield return null;
         }
         playerUI.rImage.fillAmount = 1f;

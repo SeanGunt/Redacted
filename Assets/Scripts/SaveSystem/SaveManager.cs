@@ -18,7 +18,6 @@ public class SaveManager : MonoBehaviour
         settingsDataPath = Application.persistentDataPath + "/SettingsData.json";
         LoadSettingsData();
         LoadGameData();
-        Debug.Log("Music volume set at " + _settingsData.musicVolume);
     }
 
     private void OnApplicationQuit()

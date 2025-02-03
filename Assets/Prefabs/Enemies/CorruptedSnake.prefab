@@ -268,6 +268,8 @@ MonoBehaviour:
   agent: {fileID: 0}
   hitAudioClip: {fileID: 8300000, guid: 08f19eb7b1d55644fa37e4e058989500, type: 3}
   deathAudioClip: {fileID: 8300000, guid: 0b4d6bcccbe4e984780f14b515b905e2, type: 3}
+  openJawClip: {fileID: 8300000, guid: 7879f43ea39c81a4486b3a1699c0e0ea, type: 3}
+  dashClip: {fileID: 8300000, guid: 039109c7c50db0c41b83db159d6d5dce, type: 3}
   dashDamage: 300
 --- !u!195 &5849693654029472556
 NavMeshAgent:

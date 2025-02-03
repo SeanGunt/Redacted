@@ -5363,7 +5363,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+  - {fileID: 2100000, guid: af5907e3c597a3a43b805d84c3aac70c, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -5419,7 +5419,11 @@ MonoBehaviour:
   pickupRange: 1.5
   health: 50
   physicalDamage: 31
+  totalPhysicalDamage: 0
+  physicalDamageMultiplier: 1
   magicalDamage: 0
+  totalMagicalDamage: 0
+  magicalDamageMultiplier: 1
   physicalResistance: 2.25
   magicalResistance: 1.2
   healthPerLevel: 53
@@ -5432,8 +5436,11 @@ MonoBehaviour:
   cooldownReduction: 0
   damageReduction: 0
   attacksUsed: 0
+  playerDamagedClip: {fileID: 8300000, guid: 343960b217d734d4281e211f45f428fa, type: 3}
+  playerBigDamageClip: {fileID: 8300000, guid: 232014b32c78c29439d2cd751e2ccbd8, type: 3}
   canFlipSprite: 1
   dead: 0
+  frozenByShop: 0
   sword: {fileID: 2304729474940142067}
   shield: {fileID: 3840680238470609555}
 --- !u!114 &4024712692425742683
@@ -6250,6 +6257,8 @@ MonoBehaviour:
   defaultMaterial: {fileID: 0}
   spriteRenderer: {fileID: 0}
   abilityType: 0
+  replicatorPurchased: 0
+  crimsonPerfectionPurchased: 0
   damageToApply: 0
   damageMultiplier: 1
   canRotate: 1

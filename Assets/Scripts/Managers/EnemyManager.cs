@@ -96,7 +96,6 @@ public class EnemyManager : MonoBehaviour, IFreezable
             bool insideUnwalkable = false;
             foreach (Collider2D collider in colliders)
             {
-                Debug.Log(collider.gameObject.name);
                 if (!collider.isTrigger)
                 {
                     insideUnwalkable = true;

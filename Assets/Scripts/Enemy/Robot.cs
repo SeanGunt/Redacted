@@ -5,6 +5,8 @@ using UnityEngine;
 public class Robot : EnemyMaster
 {
     [Header("Robot Specifics")]
+    [SerializeField] private AudioClip laserStartClip;
+    [SerializeField] private AudioClip laserFiringClip;
     [SerializeField] private GameObject laserPrefab;
     [SerializeField] private GameObject laserSpawnPoint;
     private RobotLaser robotLaser;
@@ -63,8 +65,10 @@ public class Robot : EnemyMaster
     {
         ChangeSpeed(1.5f, SpeedChange.decrease);
         state = State.lasering;
+        audioSource.PlayOneShot(laserStartClip);
         yield return new WaitForSeconds(0.6f);
         GameObject laser =  Instantiate(laserPrefab, laserSpawnPoint.transform.position, Quaternion.identity, GameManager.Instance.poolHolders[3].transform);
+        audioSource.PlayOneShot(laserFiringClip);
         robotLaser = laser.GetComponentInChildren<RobotLaser>();
         laser.transform.localScale = new Vector3(0.25f, 0f, 1f);
         Utilities.instance.HandleRotation(player.transform.position, laser.transform);

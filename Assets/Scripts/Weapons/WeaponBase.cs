@@ -142,8 +142,8 @@ public class WeaponBase : MonoBehaviour
     {
         if (crimsonPerfectionPurchased)
         {
-            playerBase.health += damage * 0.10f;
-            playerBase.health =  Mathf.Min(playerBase.health + (damage * 0.10f), playerBase.baseHealth);
+            playerBase.health += damage * 0.03f;
+            playerBase.health =  Mathf.Min(playerBase.health + (damage * 0.03f), playerBase.baseHealth);
         }
     }
 

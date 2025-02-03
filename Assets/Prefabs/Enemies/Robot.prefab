@@ -519,6 +519,8 @@ MonoBehaviour:
   agent: {fileID: 0}
   hitAudioClip: {fileID: 8300000, guid: 08f19eb7b1d55644fa37e4e058989500, type: 3}
   deathAudioClip: {fileID: 8300000, guid: a717e28fbcdf3f642b00f5f0bf8084c4, type: 3}
+  laserStartClip: {fileID: 8300000, guid: 7028c6faf4ea00243b4d71507c3cb434, type: 3}
+  laserFiringClip: {fileID: 8300000, guid: 48153f61a53c5434281a1c439e5c83e8, type: 3}
   laserPrefab: {fileID: 6184728313668757947, guid: 4fc721f12f9631d47938c6db00d5ce01, type: 3}
   laserSpawnPoint: {fileID: 5023469351176907816}
 --- !u!61 &7461042900292513888

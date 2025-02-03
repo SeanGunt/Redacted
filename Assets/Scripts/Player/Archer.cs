@@ -15,7 +15,6 @@ public class Archer : PlayerBase
             bow.abilityType = WeaponBase.AbilityType.Q;
             bow.HandleBowAnims("Fire");
             StartCoroutine(HandleQCooldown(bow.clips[1].length));
-            StartCoroutine(ReturnToNormalState(bow.clips[1].length));
         }
     }
 
@@ -26,7 +25,6 @@ public class Archer : PlayerBase
             bow.abilityType = WeaponBase.AbilityType.W;
             bow.HandleBowAnims("RapidFire");
             StartCoroutine(HandleWCooldown(bow.clips[2].length));
-            StartCoroutine(ReturnToNormalState(bow.clips[2].length));
         }
     }
 
@@ -48,7 +46,6 @@ public class Archer : PlayerBase
             bow.abilityType = WeaponBase.AbilityType.R;
             bow.HandleBowAnims("ArrowRain");
             StartCoroutine(HandleRCooldown(bow.clips[3].length));
-            StartCoroutine(ReturnToNormalState(bow.clips[3].length));
         }
     }
 
@@ -77,14 +74,6 @@ public class Archer : PlayerBase
         canUseAbility = true;
         weaponBase.canRotate = true;
         canMove = true;
-    }
-
-    private IEnumerator ReturnToNormalState(float lengthOfClip)
-    {
-        yield return new WaitForSeconds(lengthOfClip);
-        bow.NotInArrowAttack();
-        bow.canRotate = true;
-        bow.CanFlipSprite();
     }
 }
  

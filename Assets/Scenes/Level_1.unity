@@ -1211,8 +1211,8 @@ MonoBehaviour:
   - waveDuration: 20
     enemies:
     - enemyPrefab: {fileID: 6962506296399666357, guid: 5cff817b921f2c14ea4e766d3fb8bcc3, type: 3}
-      spawnRate: 2.5
-      spawnRateTimer: 2.5
+      spawnRate: 4
+      spawnRateTimer: 4
   - waveDuration: 40
     enemies:
     - enemyPrefab: {fileID: 8081501030465915632, guid: ae5ea9e41212ea14e9fdfaf2f74dc594, type: 3}
@@ -1222,16 +1222,16 @@ MonoBehaviour:
       spawnRate: 8
       spawnRateTimer: 8
     - enemyPrefab: {fileID: 6962506296399666357, guid: 5cff817b921f2c14ea4e766d3fb8bcc3, type: 3}
-      spawnRate: 8
-      spawnRateTimer: 8
+      spawnRate: 10
+      spawnRateTimer: 10
   - waveDuration: 120
     enemies:
     - enemyPrefab: {fileID: 8081501030465915632, guid: ae5ea9e41212ea14e9fdfaf2f74dc594, type: 3}
-      spawnRate: 2.5
-      spawnRateTimer: 2.5
+      spawnRate: 3
+      spawnRateTimer: 3
     - enemyPrefab: {fileID: 8081501030465915632, guid: 32ae82ed8bb4eaa46aa79470ca0b183b, type: 3}
-      spawnRate: 5
-      spawnRateTimer: 5
+      spawnRate: 6
+      spawnRateTimer: 6
     - enemyPrefab: {fileID: 6962506296399666357, guid: 5cff817b921f2c14ea4e766d3fb8bcc3, type: 3}
       spawnRate: 30
       spawnRateTimer: 30
@@ -1249,73 +1249,73 @@ MonoBehaviour:
       spawnRate: 2
       spawnRateTimer: 2
     - enemyPrefab: {fileID: 8081501030465915632, guid: 7ff2bc546d888d54cb84c15c446dc2ac, type: 3}
-      spawnRate: 6
-      spawnRateTimer: 6
+      spawnRate: 4
+      spawnRateTimer: 4
     - enemyPrefab: {fileID: 8081501030465915632, guid: 2670098d089c6c147ac1d52b97207884, type: 3}
-      spawnRate: 20
-      spawnRateTimer: 20
+      spawnRate: 15
+      spawnRateTimer: 15
   - waveDuration: 30
     enemies:
     - enemyPrefab: {fileID: 6962506296399666357, guid: 5cee0441f07d65c4cb88a6705580edbd, type: 3}
-      spawnRate: 5
-      spawnRateTimer: 5
+      spawnRate: 3
+      spawnRateTimer: 3
   - waveDuration: 90
     enemies:
     - enemyPrefab: {fileID: 6962506296399666357, guid: 5cee0441f07d65c4cb88a6705580edbd, type: 3}
-      spawnRate: 15
-      spawnRateTimer: 15
+      spawnRate: 10
+      spawnRateTimer: 10
     - enemyPrefab: {fileID: 8081501030465915632, guid: 7ff2bc546d888d54cb84c15c446dc2ac, type: 3}
       spawnRate: 3
       spawnRateTimer: 3
     - enemyPrefab: {fileID: 8081501030465915632, guid: 2670098d089c6c147ac1d52b97207884, type: 3}
-      spawnRate: 10
-      spawnRateTimer: 10
+      spawnRate: 6
+      spawnRateTimer: 6
   - waveDuration: 60
     enemies:
     - enemyPrefab: {fileID: 6962506296399666357, guid: 5cee0441f07d65c4cb88a6705580edbd, type: 3}
-      spawnRate: 6
-      spawnRateTimer: 6
-    - enemyPrefab: {fileID: 6962506296399666357, guid: 5cff817b921f2c14ea4e766d3fb8bcc3, type: 3}
-      spawnRate: 6
-      spawnRateTimer: 6
-  - waveDuration: 120
-    enemies:
-    - enemyPrefab: {fileID: 6962506296399666357, guid: 5cee0441f07d65c4cb88a6705580edbd, type: 3}
-      spawnRate: 15
-      spawnRateTimer: 15
-    - enemyPrefab: {fileID: 6962506296399666357, guid: 5cff817b921f2c14ea4e766d3fb8bcc3, type: 3}
-      spawnRate: 15
-      spawnRateTimer: 15
-    - enemyPrefab: {fileID: 8081501030465915632, guid: ae5ea9e41212ea14e9fdfaf2f74dc594, type: 3}
-      spawnRate: 8
-      spawnRateTimer: 8
-    - enemyPrefab: {fileID: 8081501030465915632, guid: 7ff2bc546d888d54cb84c15c446dc2ac, type: 3}
-      spawnRate: 8
-      spawnRateTimer: 8
-    - enemyPrefab: {fileID: 8081501030465915632, guid: 2670098d089c6c147ac1d52b97207884, type: 3}
-      spawnRate: 15
-      spawnRateTimer: 15
-    - enemyPrefab: {fileID: 8081501030465915632, guid: 32ae82ed8bb4eaa46aa79470ca0b183b, type: 3}
-      spawnRate: 10
-      spawnRateTimer: 10
-  - waveDuration: 120
-    enemies:
-    - enemyPrefab: {fileID: 6962506296399666357, guid: 5cee0441f07d65c4cb88a6705580edbd, type: 3}
-      spawnRate: 10
-      spawnRateTimer: 10
-    - enemyPrefab: {fileID: 8081501030465915632, guid: 7ff2bc546d888d54cb84c15c446dc2ac, type: 3}
       spawnRate: 3
       spawnRateTimer: 3
+    - enemyPrefab: {fileID: 6962506296399666357, guid: 5cff817b921f2c14ea4e766d3fb8bcc3, type: 3}
+      spawnRate: 3
+      spawnRateTimer: 3
+  - waveDuration: 120
+    enemies:
+    - enemyPrefab: {fileID: 6962506296399666357, guid: 5cee0441f07d65c4cb88a6705580edbd, type: 3}
+      spawnRate: 15
+      spawnRateTimer: 15
+    - enemyPrefab: {fileID: 6962506296399666357, guid: 5cff817b921f2c14ea4e766d3fb8bcc3, type: 3}
+      spawnRate: 10
+      spawnRateTimer: 10
+    - enemyPrefab: {fileID: 8081501030465915632, guid: ae5ea9e41212ea14e9fdfaf2f74dc594, type: 3}
+      spawnRate: 2
+      spawnRateTimer: 2
+    - enemyPrefab: {fileID: 8081501030465915632, guid: 7ff2bc546d888d54cb84c15c446dc2ac, type: 3}
+      spawnRate: 4
+      spawnRateTimer: 4
     - enemyPrefab: {fileID: 8081501030465915632, guid: 2670098d089c6c147ac1d52b97207884, type: 3}
+      spawnRate: 10
+      spawnRateTimer: 10
+    - enemyPrefab: {fileID: 8081501030465915632, guid: 32ae82ed8bb4eaa46aa79470ca0b183b, type: 3}
       spawnRate: 8
       spawnRateTimer: 8
+  - waveDuration: 120
+    enemies:
+    - enemyPrefab: {fileID: 6962506296399666357, guid: 5cee0441f07d65c4cb88a6705580edbd, type: 3}
+      spawnRate: 6
+      spawnRateTimer: 6
+    - enemyPrefab: {fileID: 8081501030465915632, guid: 7ff2bc546d888d54cb84c15c446dc2ac, type: 3}
+      spawnRate: 2.5
+      spawnRateTimer: 2.5
+    - enemyPrefab: {fileID: 8081501030465915632, guid: 2670098d089c6c147ac1d52b97207884, type: 3}
+      spawnRate: 5
+      spawnRateTimer: 5
   - waveDuration: 120
     enemies:
     - enemyPrefab: {fileID: 5428045065230858200, guid: dfc983f3acd144c48a1700d739411858, type: 3}
       spawnRate: 122
       spawnRateTimer: 1
     - enemyPrefab: {fileID: 8081501030465915632, guid: 7ff2bc546d888d54cb84c15c446dc2ac, type: 3}
-      spawnRate: 6
+      spawnRate: 3
       spawnRateTimer: 0
   - waveDuration: 120
     enemies:
@@ -1343,20 +1343,20 @@ MonoBehaviour:
       spawnRate: 6
       spawnRateTimer: 6
     - enemyPrefab: {fileID: 6962506296399666357, guid: 5cff817b921f2c14ea4e766d3fb8bcc3, type: 3}
-      spawnRate: 6
-      spawnRateTimer: 6
+      spawnRate: 4
+      spawnRateTimer: 4
     - enemyPrefab: {fileID: 8081501030465915632, guid: ae5ea9e41212ea14e9fdfaf2f74dc594, type: 3}
-      spawnRate: 3
-      spawnRateTimer: 3
+      spawnRate: 1
+      spawnRateTimer: 1
     - enemyPrefab: {fileID: 8081501030465915632, guid: 7ff2bc546d888d54cb84c15c446dc2ac, type: 3}
-      spawnRate: 3
-      spawnRateTimer: 3
+      spawnRate: 2.5
+      spawnRateTimer: 2.5
     - enemyPrefab: {fileID: 8081501030465915632, guid: 2670098d089c6c147ac1d52b97207884, type: 3}
-      spawnRate: 10
-      spawnRateTimer: 10
-    - enemyPrefab: {fileID: 8081501030465915632, guid: 32ae82ed8bb4eaa46aa79470ca0b183b, type: 3}
       spawnRate: 6
       spawnRateTimer: 6
+    - enemyPrefab: {fileID: 8081501030465915632, guid: 32ae82ed8bb4eaa46aa79470ca0b183b, type: 3}
+      spawnRate: 4
+      spawnRateTimer: 4
   spawnArea: {x: 20, y: 14}
 --- !u!1 &224142322
 GameObject:
