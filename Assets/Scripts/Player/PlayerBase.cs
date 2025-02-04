@@ -47,17 +47,18 @@ public class PlayerBase : MonoBehaviour, IShopFreeze
     [Header("Other")]
     [SerializeField] private AudioClip playerDamagedClip;
     [SerializeField] private AudioClip playerBigDamageClip;
-    private int raycastLayerMask = 1 << 11;
+    protected int raycastLayerMask = 1 << 11;
     protected State state;
     private Vector3 positionToMove;
     protected Rigidbody2D rb;
     protected Animator animator;
     protected Material material;
-    private SpriteRenderer spriteRenderer;
+    protected SpriteRenderer spriteRenderer;
     protected bool canUseAbility = true;
     [HideInInspector] public bool canFlipSprite = true;
     [HideInInspector] public bool dead = false;
-    private bool frozenByShop;
+    protected bool frozenByShop;
+    protected bool qCoolingDown, wCoolingDown, eCoolingDown, rCoolingDown;
     protected bool canMove = true;
     protected bool isInvincible;
     protected Collider2D cachedCollider;
@@ -96,7 +97,6 @@ public class PlayerBase : MonoBehaviour, IShopFreeze
         HandleHealth();
         HandleDamageMultipliers();
         HandleStatsUI();
-        HandleShopFreeze();
         RightClick();
         HandleAbilities();
         HandleDistanceInteract();
@@ -122,7 +122,7 @@ public class PlayerBase : MonoBehaviour, IShopFreeze
 
     private void HandleDistanceInteract()
     {
-        Collider2D overlappedCollider = Physics2D.OverlapCircle(transform.position, 1.25f, raycastLayerMask);
+        Collider2D overlappedCollider = Physics2D.OverlapCircle(transform.position, 1f, raycastLayerMask);
         if (overlappedCollider != null)
         {
             cachedCollider = overlappedCollider;
@@ -332,36 +332,59 @@ public class PlayerBase : MonoBehaviour, IShopFreeze
         rCooldownAmount = rBaseCooldown - (rBaseCooldown * (cooldownReduction / 100));
     }
 
-    public void HandleShopFreeze()
-    {
-        if (frozenByShop)
-        {
-            playerUI.qImage.color = new Color(1f, 0f, 0f, 0.7f);
-            playerUI.wImage.color = new Color(1f, 0f, 0f, 0.7f);
-            playerUI.eImage.color = new Color(1f, 0f, 0f, 0.7f);
-            playerUI.rImage.color = new Color(1f, 0f, 0f, 0.7f);
-        }
-        else
-        {
-            playerUI.qImage.color = Color.white;
-            playerUI.wImage.color = Color.white;
-            playerUI.eImage.color = Color.white;
-            playerUI.rImage.color = Color.white;
-        }
-    }
-
     public void HandleOnShopFreeze()
     {
         frozenByShop = true;
+        playerUI.qImage.color = new Color(1f, 0f, 0f, 0.7f);
+        playerUI.wImage.color = new Color(1f, 0f, 0f, 0.7f);
+        playerUI.eImage.color = new Color(1f, 0f, 0f, 0.7f);
+        playerUI.rImage.color = new Color(1f, 0f, 0f, 0.7f);
     }
 
     public void HandleOnShopUnFreeze()
     {
         frozenByShop = false;
+        if (qCoolingDown)
+        {
+            playerUI.qImage.color = playerUI.imageCooldownColor;
+        }
+        else
+        {
+            playerUI.qImage.color = Color.white;
+        }
+
+        if (wCoolingDown)
+        {
+            playerUI.wImage.color = playerUI.imageCooldownColor;
+        }
+        else
+        {
+            playerUI.wImage.color = Color.white;
+        }
+
+        if (eCoolingDown)
+        {
+            playerUI.eImage.color = playerUI.imageCooldownColor;
+        }
+        else
+        {
+            playerUI.eImage.color = Color.white;
+        }
+
+        if (rCoolingDown)
+        {
+            playerUI.rImage.color = playerUI.imageCooldownColor;
+        }
+        else
+        {
+            playerUI.rImage.color = Color.white;
+        }
+        
     }
 
     protected virtual IEnumerator HandleQCooldown(float delay)
     {
+        qCoolingDown = true;
         playerUI.qImage.color = Color.yellow;
         qCooldown = qCooldownAmount;
         yield return new WaitForSeconds(delay);
@@ -378,10 +401,12 @@ public class PlayerBase : MonoBehaviour, IShopFreeze
         }
         playerUI.qImage.fillAmount = 1f;
         playerUI.qImage.color = playerUI.imageStartColor;
+        qCoolingDown = false;
     }
 
     protected virtual IEnumerator HandleWCooldown(float delay)
     {
+        wCoolingDown = true;
         playerUI.wImage.color = Color.yellow;
         wCooldown = wCooldownAmount;
         yield return new WaitForSeconds(delay);
@@ -398,10 +423,12 @@ public class PlayerBase : MonoBehaviour, IShopFreeze
         }
         playerUI.wImage.fillAmount = 1f;
         playerUI.wImage.color = playerUI.imageStartColor;
+        wCoolingDown = false;
     }
 
     protected virtual IEnumerator HandleECooldown(float delay)
     {
+        eCoolingDown = true;
         playerUI.eImage.color = Color.yellow;
         eCooldown = eCooldownAmount;
         yield return new WaitForSeconds(delay);
@@ -418,10 +445,12 @@ public class PlayerBase : MonoBehaviour, IShopFreeze
         }
         playerUI.eImage.fillAmount = 1f;
         playerUI.eImage.color = playerUI.imageStartColor;
+        eCoolingDown = false;
     }
 
     protected virtual IEnumerator HandleRCooldown(float delay)
     {
+        eCoolingDown = true;
         playerUI.rImage.color = Color.yellow;
         rCooldown = rCooldownAmount;
         yield return new WaitForSeconds(delay);
@@ -438,5 +467,6 @@ public class PlayerBase : MonoBehaviour, IShopFreeze
         }
         playerUI.rImage.fillAmount = 1f;
         playerUI.rImage.color = playerUI.imageStartColor;
+        eCoolingDown = false;
     }
 }

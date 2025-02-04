@@ -488,9 +488,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 175
   speed: 2.75
-  damage: 25
+  damage: 55
   baseSpeed: 0
-  expIndex: 1
+  expIndex: 2
   deathAnimName: CorruptedHammerBird_Death
   enemyID: 0
   moneyGainedOnKill: 76

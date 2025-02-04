@@ -507,9 +507,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 135
   speed: 4
-  damage: 22
+  damage: 72
   baseSpeed: 0
-  expIndex: 2
+  expIndex: 3
   deathAnimName: CorruptedRobot_Death
   enemyID: 0
   moneyGainedOnKill: 101

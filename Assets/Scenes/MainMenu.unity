@@ -9603,6 +9603,8 @@ MonoBehaviour:
       amountToPool: 100
     - prefab: {fileID: 731891583094075925, guid: 9bd418ea4b3f07448b2bd5fbc2cde722, type: 3}
       amountToPool: 100
+    - prefab: {fileID: 731891583094075925, guid: cb3121a7b941c7d40b0efbfafe924de6, type: 3}
+      amountToPool: 100
     - prefab: {fileID: 7961660892212716164, guid: 3a60e61e13e7f3947a9b382dfd430114, type: 3}
       amountToPool: 10
     - prefab: {fileID: 7961660892212716164, guid: 51235361b4a0e90429f23dfbabbc1e98, type: 3}

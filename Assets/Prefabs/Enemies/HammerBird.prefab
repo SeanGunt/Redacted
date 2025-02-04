@@ -488,7 +488,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 80
   speed: 2.5
-  damage: 5
+  damage: 12
   baseSpeed: 0
   expIndex: 0
   deathAnimName: HammerBird_Death

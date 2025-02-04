@@ -256,7 +256,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 50
   speed: 2.2
-  damage: 4
+  damage: 15
   baseSpeed: 0
   expIndex: 0
   deathAnimName: Snake_Death

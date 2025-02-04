@@ -590,7 +590,7 @@ MonoBehaviour:
   speed: 2.25
   damage: 55
   baseSpeed: 0
-  expIndex: 2
+  expIndex: 3
   deathAnimName: CorruptedSeraphim_Death
   enemyID: 0
   moneyGainedOnKill: 1000
