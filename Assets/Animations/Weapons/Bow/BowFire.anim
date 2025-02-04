@@ -112,13 +112,6 @@ AnimationClip:
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
-  - time: 0
-    functionName: ReturnToNormalState
-    data: 
-    objectReferenceParameter: {fileID: 0}
-    floatParameter: 0
-    intParameter: 1
-    messageOptions: 0
   - time: 0.625
     functionName: SpawnArrow
     data: 
@@ -133,21 +126,21 @@ AnimationClip:
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
-  - time: 0.875
+  - time: 0.75
     functionName: CanRotate
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
-  - time: 0.875
+  - time: 0.75
     functionName: NotInArrowAttack
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
-  - time: 0.875
+  - time: 0.75
     functionName: CanFlipSprite
     data: 
     objectReferenceParameter: {fileID: 0}
