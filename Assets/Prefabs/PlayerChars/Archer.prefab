@@ -4855,7 +4855,7 @@ MonoBehaviour:
   qCooldownAmount: 1
   wCooldownAmount: 4
   eCooldownAmount: 5
-  rCooldownAmount: 30
+  rCooldownAmount: 20
   pickupRange: 2
   health: 0
   physicalDamage: 26

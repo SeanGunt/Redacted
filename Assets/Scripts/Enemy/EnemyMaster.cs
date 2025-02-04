@@ -54,11 +54,6 @@ public class EnemyMaster : MonoBehaviour, IDamagable, IFreezable
     {
         player = GameManager.Instance.player;
         playerBase = player.GetComponent<PlayerBase>();
-        if (agent != null && !agent.isOnNavMesh)
-        {
-            // This is a bandaid fix, will actually fix this later
-            Destroy(gameObject);
-        }
     }
 
     protected virtual void Update()

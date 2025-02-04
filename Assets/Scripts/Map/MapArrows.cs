@@ -6,8 +6,8 @@ public class MapArrows : MonoBehaviour
 {
     [SerializeField] private GameObject shopArrowPrefab;
     private List<Transform> shopArrows = new List<Transform>();
-    private float arrowOffsetX = 11.5f;
-    private float arrowOffsetY = 6.3f;
+    private float arrowOffset = 0.95f;
+    private float hideDistance = 3f;
 
     private void Start()
     {
@@ -25,31 +25,47 @@ public class MapArrows : MonoBehaviour
     }
     void UpdateShopArrows()
     {
+        Camera cam = Camera.main;
+
         for (int i = 0; i < shopArrows.Count; i++)
         {
             Transform assignedShop = MapUpdate.Instance.shopsList[i];
             if (assignedShop != null)
             {
-                Vector3 direction = (assignedShop.position - shopArrows[i].position).normalized;
+                Vector3 shopScreenPos = cam.WorldToScreenPoint(assignedShop.position);
 
-                float angle = Mathf.Atan2(-direction.x, direction.y) * Mathf.Rad2Deg;
+                if (shopScreenPos.z < 0)
+                {
+                    shopScreenPos *= -1;
+                }
 
-                shopArrows[i].eulerAngles = new Vector3(0,0,angle);
+                float distance = Vector3.Distance(shopArrows[i].position, assignedShop.position);
 
-                Vector3 arrowPos = Camera.main.transform.position + new Vector3(direction.x * arrowOffsetX, direction.y * arrowOffsetY, 0f);
-
-                shopArrows[i].position = new Vector3(arrowPos.x, arrowPos.y, 0f);
-                
-                float distanceToShop = Vector2.Distance(assignedShop.position, shopArrows[i].position);
-                if (distanceToShop <= 11.5f)
+                if (distance < hideDistance)
                 {
                     shopArrows[i].gameObject.SetActive(false);
                 }
-        
+                else
+                {
+                    shopArrows[i].gameObject.SetActive(true);
+                }
+
+                shopScreenPos = new Vector3(
+                    Mathf.Clamp(shopScreenPos.x, cam.pixelWidth * (1 - arrowOffset), cam.pixelWidth * arrowOffset),
+                    Mathf.Clamp(shopScreenPos.y, cam.pixelHeight * (1 - arrowOffset), cam.pixelHeight * arrowOffset),
+                    0
+                );
+
+                Vector3 arrowWorldPos = cam.ScreenToWorldPoint(new Vector3(shopScreenPos.x, shopScreenPos.y, cam.nearClipPlane));
+                shopArrows[i].position = new Vector3(arrowWorldPos.x, arrowWorldPos.y, 0f);
+
+                Vector3 arrowDirection = assignedShop.position - shopArrows[i].position;
+                float angle = Mathf.Atan2(arrowDirection.y, arrowDirection.x) * Mathf.Rad2Deg;
+                shopArrows[i].eulerAngles = new Vector3(0, 0, angle - 90);
             }
             else
             {
-                Debug.Log("Shops Returned Null");
+                Debug.LogWarning("Assigned shop is null");
             }
         }
     }

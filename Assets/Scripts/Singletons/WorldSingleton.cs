@@ -35,7 +35,7 @@ public class WorldSingleton : MonoBehaviour
     public int[,] bases;
     public int[,] collidables;
 
-    readonly public Vector2Int mapDimensions = new(250, 250);
+    readonly public Vector2Int mapDimensions = new(275, 275);
     private Vector2Int[] shopPositions = new Vector2Int[3];
     public List<WorldObjects> worldObjects = new();
     readonly private float collidableMin = -0.2f, collidableMax = 0.25f;
