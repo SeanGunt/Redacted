@@ -50,7 +50,7 @@ public class AbilityManager : MonoBehaviour
         playerUI.levelIconsDict[abilityType].SetActive(IsUIForLevelActive(abilityType));
     }
 
-    private void LevelUpAbility(string abilityType)
+    public void LevelUpAbility(string abilityType)
     {
         int maxLevel = GetMaxAbilityLevel(abilityType);
         GameManager.Instance.audioSource.PlayOneShot(levelUpAbilityAudioClip);
