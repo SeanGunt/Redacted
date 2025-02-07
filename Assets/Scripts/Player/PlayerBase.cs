@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using UnityEditor.SceneManagement;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -40,6 +41,8 @@ public class PlayerBase : MonoBehaviour, IShopFreeze
     [SerializeField] [Range(0.0f, 1.0f)] public float damageReduction;
     protected float qCooldown = 0f, wCooldown = 0f, eCooldown = 0f, rCooldown = 0f;
     protected float qBaseCooldown, wBaseCooldown, eBaseCooldown, rBaseCooldown;
+    protected float qActiveCooldownReductionMultiplier = 1f, wActiveCooldownReductionMultiplier = 1f, 
+    eActiveCooldownReductionMultiplier = 1f, rActiveCooldownReductionMultiplier = 1f;
     
     [Header("Item Logic")]
     [HideInInspector] public int attacksUsed;
@@ -324,14 +327,6 @@ public class PlayerBase : MonoBehaviour, IShopFreeze
         totalPhysicalDamage = physicalDamage * physicalDamageMultiplier;
     }
 
-    private void HandleCoolDownReduction()
-    {
-        qCooldownAmount = qBaseCooldown - (qBaseCooldown * (cooldownReduction / 100));
-        wCooldownAmount = wBaseCooldown - (wBaseCooldown * (cooldownReduction / 100));
-        eCooldownAmount = eBaseCooldown - (eBaseCooldown * (cooldownReduction / 100));
-        rCooldownAmount = rBaseCooldown - (rBaseCooldown * (cooldownReduction / 100));
-    }
-
     public void HandleOnShopFreeze()
     {
         frozenByShop = true;
@@ -382,6 +377,37 @@ public class PlayerBase : MonoBehaviour, IShopFreeze
         
     }
 
+    private void HandleCoolDownReduction()
+    {
+        qCooldownAmount = qBaseCooldown - (qBaseCooldown * (cooldownReduction / 100));
+        wCooldownAmount = wBaseCooldown - (wBaseCooldown * (cooldownReduction / 100));
+        eCooldownAmount = eBaseCooldown - (eBaseCooldown * (cooldownReduction / 100));
+        rCooldownAmount = rBaseCooldown - (rBaseCooldown * (cooldownReduction / 100));
+    }
+
+    public void HandleActiveCooldownMultipliers(float addedCooldownReduction)
+    {
+        if (qCoolingDown)
+        {
+            qActiveCooldownReductionMultiplier += addedCooldownReduction / 10f;
+        }
+
+        if (wCoolingDown)
+        {
+            wActiveCooldownReductionMultiplier += addedCooldownReduction / 10f;
+        }
+
+        if (eCoolingDown)
+        {
+            eActiveCooldownReductionMultiplier += addedCooldownReduction / 10f;
+        }
+
+        if (rCoolingDown)
+        {
+            rActiveCooldownReductionMultiplier += addedCooldownReduction / 10f;
+        }
+    }
+
     protected virtual IEnumerator HandleQCooldown(float delay)
     {
         qCoolingDown = true;
@@ -394,11 +420,12 @@ public class PlayerBase : MonoBehaviour, IShopFreeze
         {
             if (!frozenByShop)
             {
-                qCooldown -= Time.deltaTime;
+                qCooldown -= Time.deltaTime * qActiveCooldownReductionMultiplier;
                 playerUI.qImage.fillAmount += Time.deltaTime / qCooldownAmount;
             }
             yield return null;
         }
+        qActiveCooldownReductionMultiplier = 1f;
         playerUI.qImage.fillAmount = 1f;
         playerUI.qImage.color = playerUI.imageStartColor;
         qCoolingDown = false;
@@ -416,11 +443,12 @@ public class PlayerBase : MonoBehaviour, IShopFreeze
         {
             if (!frozenByShop)
             {
-                wCooldown -= Time.deltaTime;
+                wCooldown -= Time.deltaTime * wActiveCooldownReductionMultiplier;
                 playerUI.wImage.fillAmount += Time.deltaTime / wCooldownAmount;
             }
             yield return null;
         }
+        wActiveCooldownReductionMultiplier = 1f;
         playerUI.wImage.fillAmount = 1f;
         playerUI.wImage.color = playerUI.imageStartColor;
         wCoolingDown = false;
@@ -438,11 +466,12 @@ public class PlayerBase : MonoBehaviour, IShopFreeze
         {
             if (!frozenByShop)
             {
-                eCooldown -= Time.deltaTime;
+                eCooldown -= Time.deltaTime * eActiveCooldownReductionMultiplier;
                 playerUI.eImage.fillAmount += Time.deltaTime / eCooldownAmount; 
             }
             yield return null;
         }
+        eActiveCooldownReductionMultiplier = 1f;
         playerUI.eImage.fillAmount = 1f;
         playerUI.eImage.color = playerUI.imageStartColor;
         eCoolingDown = false;
@@ -450,7 +479,7 @@ public class PlayerBase : MonoBehaviour, IShopFreeze
 
     protected virtual IEnumerator HandleRCooldown(float delay)
     {
-        eCoolingDown = true;
+        rCoolingDown = true;
         playerUI.rImage.color = Color.yellow;
         rCooldown = rCooldownAmount;
         yield return new WaitForSeconds(delay);
@@ -460,13 +489,15 @@ public class PlayerBase : MonoBehaviour, IShopFreeze
         {
             if (!frozenByShop)
             {
-                rCooldown -= Time.deltaTime;
+                rCooldown -= Time.deltaTime * rActiveCooldownReductionMultiplier;
+                Debug.Log("R Cooldown = " + rCooldown);
                 playerUI.rImage.fillAmount += Time.deltaTime / rCooldownAmount;
             }
             yield return null;
         }
+        rActiveCooldownReductionMultiplier = 1f;
         playerUI.rImage.fillAmount = 1f;
         playerUI.rImage.color = playerUI.imageStartColor;
-        eCoolingDown = false;
+        rCoolingDown = false;
     }
 }

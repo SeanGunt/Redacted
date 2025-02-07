@@ -59,6 +59,7 @@ public class ItemBase : MonoBehaviour, IItem, IShopFreeze
         playerBase.critChance += critChance;
         playerBase.cooldownReduction += coolDownReduction;
         playerBase.Invoke("HandleCoolDownReduction", 0f);
+        playerBase.HandleActiveCooldownMultipliers(coolDownReduction);
     }
 
     public virtual void ActiveAbility()
