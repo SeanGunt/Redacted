@@ -27,7 +27,7 @@ public class Seraphim : EnemyMaster
         material = Instantiate(spriteRenderer.sharedMaterial);
         spriteRenderer.material = material;
         material.SetColor("_Color", Color.black);
-        MusicManager.instance.FadeTracks(MusicManager.instance.tracks[3]);
+        MusicManager.instance.FadeTracks(MusicManager.instance.tracks[3], 0f);
     }
 
     protected override void Update()

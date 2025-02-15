@@ -7,8 +7,10 @@ public class ShopManager : MonoBehaviour, IDistanceInteractable
     private ParticleSystem eerieParticles;
     private bool eerieParticlesPlaying;
     private bool shopMusicPlaying;
-    private AudioClip defaultBackgroundClip;
+    private AudioClip previousAudioClip;
     private PlayerBase playerBase;
+    private float timeToRestartBackgroundClip;
+    private float timeToRestartShopClip;
     private Light2D shopLight;
     [SerializeField] SpriteRenderer faceSpriteRenderer;
     [SerializeField] private Sprite[] faceSprites;
@@ -21,7 +23,6 @@ public class ShopManager : MonoBehaviour, IDistanceInteractable
         shopLight = GetComponentInChildren<Light2D>();
         eerieParticlesPlaying = false;
         faceSpriteRenderer.sprite = faceSprites[1];
-        defaultBackgroundClip = MusicManager.instance.musicSource.clip;
         interactCanvas.SetActive(false);
     }
     public void GetPlayer()
@@ -92,14 +93,17 @@ public class ShopManager : MonoBehaviour, IDistanceInteractable
         {
             GameManager.Instance.FreezeTime();
             ShopFreezeTime();
-            MusicManager.instance.FadeTracks(MusicManager.instance.tracks[1]);
+            previousAudioClip = MusicManager.instance.musicSource.clip;
+            MusicManager.instance.FadeTracks(MusicManager.instance.tracks[1], timeToRestartShopClip);
+            timeToRestartBackgroundClip = MusicManager.instance.musicSource.time;
             shopMusicPlaying = true;
         }
         else if (distanceToPlayer > 3f && shopMusicPlaying)
         {
             GameManager.Instance.UnFreezeTime();
             ShopUnFreezeTime();
-            MusicManager.instance.FadeTracks(defaultBackgroundClip);
+            MusicManager.instance.FadeTracks(previousAudioClip, timeToRestartBackgroundClip);
+            timeToRestartShopClip =  MusicManager.instance.musicSource.time;
             shopMusicPlaying = false;
         }
     }

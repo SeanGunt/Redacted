@@ -16,15 +16,21 @@ public class MusicManager : MonoBehaviour
         instance = this;
     }
 
-    public void FadeTracks(AudioClip trackToFadeInto)
+    public void FadeTracks(AudioClip trackToFadeInto, float time)
     {
         if (!currentlyFading)
         {
-            StartCoroutine(FadeTracksTogether(trackToFadeInto));
+            StartCoroutine(FadeTracksTogether(trackToFadeInto, time));
         }
     }
 
-    private IEnumerator FadeTracksTogether(AudioClip tracktoFadeInto)
+    public void SwapTracks(AudioClip trackToSwap)
+    {
+        musicSource.clip = trackToSwap;
+        musicSource.Play();
+    }
+
+    private IEnumerator FadeTracksTogether(AudioClip tracktoFadeInto, float time)
     {
         currentlyFading = true;
         while (musicSource.volume > 0)
@@ -34,6 +40,7 @@ public class MusicManager : MonoBehaviour
         }
         musicSource.clip = tracktoFadeInto;
         musicSource.Play();
+        musicSource.time = time;
         while (musicSource.volume < 1f)
         {
             musicSource.volume += Time.deltaTime * 3f;

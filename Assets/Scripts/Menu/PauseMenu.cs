@@ -34,11 +34,11 @@ public class PauseMenu : MonoBehaviour
     {
         if (GameManager.Instance.player.GetComponent<PlayerBase>().dead && !deathScreenActive)
         {
+            MusicManager.instance.SwapTracks(MusicManager.instance.tracks[4]);
             Time.timeScale = 0f;
             deathMenuCanvas.SetActive(true);
             playerUI =  GameObject.FindGameObjectWithTag("PlayerUI");
             playerUI.SetActive(false);
-            MusicManager.instance.FadeTracks(MusicManager.instance.tracks[4]);
             deathScreenActive = true;
         }
 
