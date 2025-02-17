@@ -157,8 +157,14 @@ public class EnemyMaster : MonoBehaviour, IDamagable, IFreezable
             exp.SetActive(true);
         }
         MoneyManager.instance.AddMoney(moneyGainedOnKill);
+        HandleOtherDeathEffects();
         Destroy(gameObject);
         yield return null;
+    }
+
+    protected virtual void HandleOtherDeathEffects()
+    {
+
     }
 
     protected virtual IEnumerator DoDamage()

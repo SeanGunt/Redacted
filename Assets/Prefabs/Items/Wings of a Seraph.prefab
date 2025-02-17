@@ -104,8 +104,8 @@ MonoBehaviour:
   itemName: Wings of a Seraph
   activeAbilityText: 'Active Ability: Call down a pillar of light at your current
     mouse position, dealing 100 damage every 0.2 seconds (lasts 3 seconds) (Cooldown:
-    15s)'
+    25s)'
   passiveAbilityText: 'Passive Ability: None'
   price: 10000
-  activeBaseCooldown: 15
+  activeBaseCooldown: 25
   playerOSU: {fileID: 1298634365030965109, guid: 82f4c001e7a7cf643b1998a8a85b64da, type: 3}

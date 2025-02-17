@@ -8,8 +8,6 @@ public class Seraphim : EnemyMaster
     [SerializeField] private GameObject saltBeamIndicatorGO;
     private bool pillarsBeingSpawned;
     private bool enraged;
-
-
     protected override void Awake()
     {
         agent = GetComponent<NavMeshAgent>();
@@ -74,5 +72,10 @@ public class Seraphim : EnemyMaster
         float randomX =  Random.Range(-2f, 2f);
 
         return new Vector2(playerBase.transform.position.x + randomX, playerBase.transform.position.y + randomY);
+    }
+
+    protected override void HandleOtherDeathEffects()
+    {
+        MusicManager.instance.SwapTracks(MusicManager.instance.tracks[2]);
     }
 }
