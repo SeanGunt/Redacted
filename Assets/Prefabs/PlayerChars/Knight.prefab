@@ -1668,7 +1668,7 @@ Transform:
   m_GameObject: {fileID: 1727576845}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.69, y: 0.53, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 3884314428910866148}
@@ -1715,8 +1715,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: a07fbcbc6d13ffb4ca3af8d46f617d7f, type: 3}
-  m_Color: {r: 0, g: 0, b: 0, a: 0.5019608}
+  m_Sprite: {fileID: 21300000, guid: 36e69f32c8aa29546bd8fd1bd71e00c6, type: 3}
+  m_Color: {r: 0, g: 0, b: 0, a: 0.23921569}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -5385,7 +5385,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   numOfLevelsAvailable: 0
-  levelUpAbilityAudioClip: {fileID: 8300000, guid: 96b0234dc605f7643b31d2be449d19c8, type: 3}
+  levelUpAbilityAudioClip: {fileID: 8300000, guid: 65a3cb108ae0edb47b8b74f4e11badba, type: 3}
 --- !u!50 &3884314428910866144
 Rigidbody2D:
   serializedVersion: 4

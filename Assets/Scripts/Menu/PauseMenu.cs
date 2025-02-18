@@ -44,6 +44,7 @@ public class PauseMenu : MonoBehaviour
 
         if (TimerManager.instance != null && TimerManager.instance.wonRun && !winScreenActive)
         {
+            MusicManager.instance.SwapTracks(MusicManager.instance.tracks[5]);
             Time.timeScale = 0f;
             winMenuCanvas.SetActive(true);
             playerUI =  GameObject.FindGameObjectWithTag("PlayerUI");
