@@ -77,5 +77,6 @@ public class Seraphim : EnemyMaster
     protected override void HandleOtherDeathEffects()
     {
         MusicManager.instance.SwapTracks(MusicManager.instance.tracks[2]);
+        LevelOneManager.instance.StartVoidification();
     }
 }

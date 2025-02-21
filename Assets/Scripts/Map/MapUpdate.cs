@@ -12,10 +12,10 @@ public class MapUpdate : MonoBehaviour
     public TileBase[] CollidableTiles;
     public TileBase[] BaseTiles;
     [SerializeField] private GameObject shopPrefab;
-    private Tilemap baseLayer, collidableLayer;
+    [HideInInspector] public Tilemap baseLayer, collidableLayer;
     [SerializeField] private NavMeshSurface navMeshSurface;
     [HideInInspector] public List<Transform> shopsList = new List<Transform>();
-    [SerializeField] private Transform worldObjectHolder;
+    public Transform worldObjectHolder;
     [SerializeField] private Transform shopsHolder;
     Vector2Int offset;
 
@@ -26,6 +26,8 @@ public class MapUpdate : MonoBehaviour
         
         baseLayer = CreateTilemap("base", 0);
         collidableLayer = CreateTilemap("collidable", 1);
+        baseLayer.color = Color.white;
+        collidableLayer.color = Color.white;
 
         collidableLayer.gameObject.AddComponent<TilemapCollider2D>();
         collidableLayer.gameObject.layer = 10;
