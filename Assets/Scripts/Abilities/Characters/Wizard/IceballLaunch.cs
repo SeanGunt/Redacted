@@ -26,14 +26,14 @@ public class IceballLaunch : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         audioSource = GetComponent<AudioSource>();
         spriteRenderer = GetComponent<SpriteRenderer>();
-        rb.velocity = transform.up * initialSpeed;
+        rb.linearVelocity = transform.up * initialSpeed;
         iceShardTimer =  iceShardShotRate;
         rb.AddTorque(initialRotationSpeed);
     }
 
     private void Update()
     {
-        rb.velocity = Vector2.Lerp(rb.velocity, rb.velocity.normalized * constantSpeed, decelerationRate * Time.deltaTime);
+        rb.linearVelocity = Vector2.Lerp(rb.linearVelocity, rb.linearVelocity.normalized * constantSpeed, decelerationRate * Time.deltaTime);
         
         iceShardTimer -= Time.deltaTime;
 

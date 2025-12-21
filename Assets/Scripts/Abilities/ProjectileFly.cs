@@ -14,7 +14,7 @@ public class ProjectileFly : MonoBehaviour
 
     private void FixedUpdate()
     {
-        rb.velocity = transform.up * speed;
+        rb.linearVelocity = transform.up * speed;
     }
     
 }

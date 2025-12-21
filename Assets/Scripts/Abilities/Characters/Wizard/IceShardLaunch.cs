@@ -30,7 +30,7 @@ public class IceShardLaunch : MonoBehaviour
 
     public void Launch()
     {
-        rb.velocity = transform.up * speed;
+        rb.linearVelocity = transform.up * speed;
         boxCollider2D.enabled = true;
     }
 
